@@ -1,5 +1,6 @@
 """執行：python -m twdaily [--top 800] [--out reports]"""
 import argparse
+import json
 import logging
 from datetime import datetime
 from pathlib import Path
@@ -9,6 +10,25 @@ import pandas as pd
 from . import data, market, news, report, screener
 
 log = logging.getLogger("twdaily")
+
+
+def build_summary(report_date, data_date, dashboard, institutional, picks_df, top=5):
+    """日報重點數字，供 Notion 資料庫欄位使用。"""
+    twii = next((r for r in dashboard if r["name"] == "台股加權指數"), None)
+    foreign = next((r for r in institutional or [] if r["name"].startswith("外資")), None)
+    top_picks = [] if picks_df.empty else [
+        f"{r.code} {r.name}（{r.score}分）" for r in picks_df.head(top).itertuples()
+    ]
+    return {
+        "report_date": report_date,
+        "data_date": data_date,
+        "picks": int(len(picks_df)),
+        "twii": round(twii["last"], 2) if twii else None,
+        "twii_d1": round(twii["d1"], 2) if twii else None,
+        "foreign_net": round(foreign["net"], 2) if foreign else None,
+        "top_picks": top_picks,
+        "industries": [] if picks_df.empty else picks_df["industry"].value_counts().head(3).index.tolist(),
+    }
 
 
 def run(top_n: int, out_dir: Path):
@@ -48,6 +68,8 @@ def run(top_n: int, out_dir: Path):
     (out_dir / "latest.md").write_text(md, encoding="utf-8")
     if not picks_df.empty:
         picks_df.to_csv(out_dir / f"{today:%Y-%m-%d}-picks.csv", index=False, encoding="utf-8-sig")
+    summary = build_summary(today.strftime("%Y-%m-%d"), data_date, dashboard, institutional, picks_df)
+    (out_dir / "latest.json").write_text(json.dumps(summary, ensure_ascii=False, indent=2), encoding="utf-8")
     log.info("完成：%s（入選 %d 檔）", path, len(picks_df))
     return path
 
