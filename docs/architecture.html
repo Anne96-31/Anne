@@ -111,11 +111,11 @@ section { display: grid; gap: 16px; }
     <div class="legend" aria-hidden="true">
       <span><i class="sw sw0"></i>外部資料來源</span>
       <span><i class="sw sw3"></i>③ 產生日報（python -m twdaily）</span>
-      <span><i class="sw sw4"></i>④ 提交日報（git push）</span>
+      <span><i class="sw sw4"></i>④ 清理過期日報＋提交（git push）</span>
       <span><i class="sw sw5"></i>⑤ 同步到 Notion</span>
     </div>
     <div class="scroll">
-      <svg class="arch" viewBox="0 0 1230 520" role="img" aria-label="GitHub Actions 每個交易日 16:47 依序執行六個步驟；產生日報步驟從四個資料來源抓取資料，經 MACD 篩選與報告組裝後輸出四個檔案；提交步驟把檔案推回 GitHub，Notion 步驟讀取 latest.md 與 latest.json 建立 Notion 頁面。">
+      <svg class="arch" viewBox="0 0 1230 520" role="img" aria-label="GitHub Actions 每天 08:00 依序執行六個步驟；產生日報步驟從四個資料來源抓取資料，經 MACD 篩選與報告組裝後輸出四個檔案；提交步驟把檔案推回 GitHub，Notion 步驟讀取 latest.md 與 latest.json 建立 Notion 頁面。">
         <defs>
           <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ah"/></marker>
           <marker id="ar3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ah3"/></marker>
@@ -124,7 +124,7 @@ section { display: grid; gap: 16px; }
         </defs>
 
         <!-- Top band: workflow steps -->
-        <text x="20" y="24" class="h">GITHUB ACTIONS · .github/workflows/daily-report.yml · 週一至五 16:47（台北）或手動 Run workflow</text>
+        <text x="20" y="24" class="h">GITHUB ACTIONS · .github/workflows/daily-report.yml · 每天 08:00（台北）或手動 Run workflow</text>
         <a href="#c-workflow">
           <rect x="20" y="40" width="170" height="44" rx="6" class="box"/>
           <text x="105" y="67" text-anchor="middle" class="t">① 安裝套件</text>
@@ -139,7 +139,7 @@ section { display: grid; gap: 16px; }
         </a>
         <a href="#c-workflow">
           <rect x="632" y="40" width="170" height="44" rx="6" class="b4"/>
-          <text x="717" y="67" text-anchor="middle" class="t">④ 提交日報</text>
+          <text x="717" y="67" text-anchor="middle" class="t">④ 清理・提交日報</text>
         </a>
         <a href="#c-notion">
           <rect x="836" y="40" width="170" height="44" rx="6" class="b5"/>
@@ -253,7 +253,7 @@ section { display: grid; gap: 16px; }
           <rect x="980" y="180" width="230" height="56" rx="6" class="b4"/>
           <circle cx="1196" cy="194" r="9" class="n4"/><text x="1196" y="198" text-anchor="middle" class="num">4</text>
           <text x="992" y="203" class="t">GitHub repo · reports/</text>
-          <text x="992" y="223" class="s">每日日報永久保存</text>
+          <text x="992" y="223" class="s">只保留最近 15 天</text>
         </a>
 
         <!-- ⑤ notion -->
@@ -266,7 +266,7 @@ section { display: grid; gap: 16px; }
           <text x="992" y="333" class="c" style="fill: var(--fg)">twdaily/notion.py</text>
           <text x="992" y="353" class="c">markdown_to_blocks()</text>
           <text x="992" y="373" class="c">ensure_schema()</text>
-          <text x="992" y="393" class="c">publish()</text>
+          <text x="992" y="393" class="c">publish() · prune_before()</text>
         </a>
         <line x1="1095" y1="406" x2="1095" y2="442" class="edge e5" marker-end="url(#ar5)"/>
         <text x="1103" y="429" class="lbl">Notion API</text>
@@ -284,7 +284,7 @@ section { display: grid; gap: 16px; }
       <table>
         <thead><tr><th>環節</th><th>檔案</th><th>主要函式</th><th>負責的事</th></tr></thead>
         <tbody>
-          <tr><td>排程與流程</td><td><code>.github/workflows/daily-report.yml</code></td><td>—</td><td>16:47 觸發，依序跑 ①–⑥</td></tr>
+          <tr><td>排程與流程</td><td><code>.github/workflows/daily-report.yml</code></td><td>—</td><td>每天 08:00 觸發，依序跑 ①–⑥</td></tr>
           <tr><td>③ 主程式</td><td><code>twdaily/__main__.py</code></td><td><code>run()</code>、<code>build_summary()</code></td><td>串起抓取、篩選、輸出檔案</td></tr>
           <tr><td>③ 抓取資料</td><td><code>twdaily/data.py</code></td><td><code>load_universe()</code>、<code>load_prices()</code>、<code>load_institutional()</code></td><td>股票清單、日線、產業別、三大法人</td></tr>
           <tr><td>③ 國際儀表板</td><td><code>twdaily/market.py</code></td><td><code>load_dashboard()</code></td><td>加權、費半、美股、匯率、油金等 16 項</td></tr>
@@ -292,7 +292,8 @@ section { display: grid; gap: 16px; }
           <tr><td>③ 技術指標</td><td><code>twdaily/indicators.py</code></td><td><code>macd()</code>、<code>rsi()</code></td><td>DIF / DEM / OSC、RSI14</td></tr>
           <tr><td>③ 選股</td><td><code>twdaily/screener.py</code></td><td><code>evaluate()</code></td><td>低檔金叉、DIF 翻正、0–7 評分</td></tr>
           <tr><td>③ 組報告</td><td><code>twdaily/report.py</code></td><td><code>build()</code></td><td>Markdown 日報與新手教學</td></tr>
-          <tr><td>⑤ Notion</td><td><code>twdaily/notion.py</code></td><td><code>publish()</code></td><td>建立資料庫欄位與每日頁面</td></tr>
+          <tr><td>④ 清理</td><td><code>twdaily/cleanup.py</code></td><td><code>prune_reports()</code></td><td>刪除超過 15 天的日報檔案</td></tr>
+          <tr><td>⑤ Notion</td><td><code>twdaily/notion.py</code></td><td><code>publish()</code></td><td>建立每日頁面，封存超過 15 天的頁面</td></tr>
           <tr><td>② 測試</td><td><code>tests/</code></td><td><code>test_screener.py</code>、<code>test_notion.py</code></td><td>8 個測試，失敗就不產生日報</td></tr>
         </tbody>
       </table>
@@ -302,17 +303,19 @@ section { display: grid; gap: 16px; }
       <article class="card" id="c-workflow">
         <div class="card-head"><span class="tag t1">①④⑥</span><h3>排程與流程</h3></div>
         <a class="path" href="https://github.com/Anne96-31/Anne/blob/master/.github/workflows/daily-report.yml">.github/workflows/daily-report.yml</a>
-        <p>GitHub 免費主機每天開一台機器跑完全部步驟。④ 把 reports/ 推回 repo，所以日報會永久保存。</p>
+        <p>GitHub 免費主機每天開一台機器跑完全部步驟。④ 先刪掉超過 15 天的日報，再把 reports/ 推回 repo。</p>
 <pre>on:
   schedule:
-    - cron: "47 8 * * 1-5"   <span class="cm"># UTC 08:47 = 台北 16:47</span>
+    - cron: "0 0 * * *"      <span class="cm"># UTC 00:00 = 台北 08:00</span>
   workflow_dispatch:          <span class="cm"># 可手動 Run workflow</span>
 
 - name: 產生日報
   run: python -m twdaily --top 800 --out reports
+- name: 刪除超過 15 天的日報
+  run: python -m twdaily.cleanup reports --days "$RETENTION_DAYS"
 - name: 提交日報
   run: |
-    git add reports
+    git add -A reports
     git commit -m "日報：$(TZ=Asia/Taipei date +%Y-%m-%d)"
     git push
 - name: 同步到 Notion
@@ -424,7 +427,7 @@ SECTIONS = [
       <article class="card" id="c-notion">
         <div class="card-head"><span class="tag t5">⑤</span><h3>同步到 Notion</h3></div>
         <a class="path" href="https://github.com/Anne96-31/Anne/blob/master/twdaily/notion.py">twdaily/notion.py</a>
-        <p>把 Markdown 轉成 Notion 區塊，補齊資料庫欄位，同一天重跑時先封存舊頁。沒設定 secrets 就自動略過。</p>
+        <p>把 Markdown 轉成 Notion 區塊，補齊資料庫欄位，同一天重跑時先封存舊頁，最後清掉超過 15 天的頁面。沒設定 secrets 就自動略過。</p>
 <pre>def publish(md_path, summary_path, token, db_id, report_url):
     blocks = markdown_to_blocks(md_path.read_text())
     title_prop = client.ensure_schema(db_id)   <span class="cm"># 補上 8 個欄位</span>
@@ -434,7 +437,10 @@ SECTIONS = [
         "properties": page_properties(summary, title_prop, report_url),
         "children": blocks[:100],              <span class="cm"># 一次最多 100 個區塊</span>
     })
-    <span class="cm"># 其餘區塊分批 PATCH /blocks/{id}/children</span></pre>
+    <span class="cm"># 其餘區塊分批 PATCH /blocks/{id}/children</span>
+
+<span class="cm"># 發布後：日期早於 15 天前的頁面移到垃圾桶</span>
+Notion(token).prune_before(db_id, cutoff_date(15).isoformat())</pre>
       </article>
 
       <article class="card" id="c-tests">

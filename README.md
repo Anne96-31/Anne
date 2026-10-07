@@ -1,6 +1,6 @@
 # Anne — 台股每日投資日報 📈
 
-每個交易日收盤後自動產生一份日報，內容包含：
+每天早上 8:00 自動產生一份日報，內容包含：
 
 1. **市場儀表板**：加權指數、櫃買、台積電 ADR、費半、美股三大指數、日韓陸股、VIX、美債殖利率、美元指數、新台幣匯率、原油、黃金
 2. **三大法人買賣超**（上市）
@@ -28,7 +28,10 @@ MACD 參數 12 / 26 / 9，命名依台灣看盤軟體慣例：DIF（快慢線差
 
 ## 自動排程
 
-[`.github/workflows/daily-report.yml`](.github/workflows/daily-report.yml) 於 **台北時間週一至週五 16:47** 執行，完成後把日報 commit 回 repo。
+[`.github/workflows/daily-report.yml`](.github/workflows/daily-report.yml) 於 **每天台北時間 08:00** 執行（涵蓋前一交易日收盤與美股隔夜行情），完成後把日報 commit 回 repo。
+
+- GitHub 排程在整點較擁擠，實際開始時間可能晚幾分鐘到十幾分鐘。
+- **自動清理**：只保留最近 **15 天** 的日報。過期的 `reports/YYYY-MM-DD.md`、`-picks.csv` 會被刪除（仍可在 git 歷史找回），Notion 中過期的頁面會移到垃圾桶（30 天內可復原）。天數可改 workflow 裡的 `RETENTION_DAYS`。
 
 - 排程只在 **預設分支（master）** 上生效，請先把這個分支合併進 master。
 - 也可在 GitHub → Actions → 「台股每日投資日報」→ **Run workflow** 手動執行。
