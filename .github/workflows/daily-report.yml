@@ -47,5 +47,12 @@ jobs:
           git commit -m "日報：$(TZ=Asia/Taipei date +%Y-%m-%d)"
           git push
 
+      - name: 同步到 Notion
+        # 未設定 secrets 時會自動略過
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
+        run: python -m twdaily.notion reports/latest.md reports/latest.json
+
       - name: 顯示摘要
         run: cat reports/latest.md >> "$GITHUB_STEP_SUMMARY"
