@@ -1,0 +1,51 @@
+name: 台股每日投資日報
+
+on:
+  schedule:
+    # 台北時間週一至週五 16:47（UTC 08:47），收盤與三大法人資料公布後
+    - cron: "47 8 * * 1-5"
+  workflow_dispatch:
+    inputs:
+      top:
+        description: "依成交金額掃描前 N 檔"
+        default: "800"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-report
+  cancel-in-progress: false
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: 安裝套件
+        run: pip install -r requirements.txt pytest
+
+      - name: 單元測試
+        run: python -m pytest -q tests
+
+      - name: 產生日報
+        run: python -m twdaily --top "${{ github.event.inputs.top || '800' }}" --out reports
+
+      - name: 提交日報
+        run: |
+          git config user.name "twdaily-bot"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add reports
+          git diff --cached --quiet && exit 0
+          git commit -m "日報：$(TZ=Asia/Taipei date +%Y-%m-%d)"
+          git push
+
+      - name: 顯示摘要
+        run: cat reports/latest.md >> "$GITHUB_STEP_SUMMARY"
