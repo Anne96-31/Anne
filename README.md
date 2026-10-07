@@ -10,6 +10,8 @@
 
 👉 **最新日報：[`reports/latest.md`](reports/latest.md)**，歷史日報都在 [`reports/`](reports/)，入選股另存 CSV（可用 Excel 開啟）。
 
+🗺️ 系統架構圖與各環節程式碼：[`docs/architecture.html`](docs/architecture.html)
+
 ## 選股邏輯
 
 MACD 參數 12 / 26 / 9，命名依台灣看盤軟體慣例：DIF（快慢線差）、DEM/MACD（訊號線）、OSC（柱狀體）。
