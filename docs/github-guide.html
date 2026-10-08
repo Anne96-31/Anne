@@ -1,0 +1,386 @@
+<title>Anne 專案 GitHub 操作地圖</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: single reading column (~1100px). Two flow diagrams up top, then a page-by-page comparison table, then Copilot usage cards keyed to the same pages. */
+:root {
+  --bg: #f5f6f8;
+  --surface: #ffffff;
+  --fg: #1c2230;
+  --muted: #5b6475;
+  --line: #ccd2dc;
+  --code-bg: #eceff4;
+  --accent: #2b5fae;        /* 本專案使用的頁面 */
+  --accent-soft: #e4ecf8;
+  --copilot: #8a4b0f;       /* Copilot 可介入的位置 */
+  --copilot-soft: #f7ecdf;
+  --ext: #2f6b4f;           /* 外部服務：Notion */
+  --ext-soft: #e2efe8;
+  --font-display: "Noto Serif TC", "Songti TC", serif;
+  --font-body: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #12161d; --surface: #1a2029; --fg: #e3e7ee; --muted: #9aa4b5; --line: #353e4c; --code-bg: #222a35;
+    --accent: #86aee8; --accent-soft: #1f2d42; --copilot: #e0a564; --copilot-soft: #33271a;
+    --ext: #7cc4a0; --ext-soft: #1d3128; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #12161d; --surface: #1a2029; --fg: #e3e7ee; --muted: #9aa4b5; --line: #353e4c; --code-bg: #222a35;
+  --accent: #86aee8; --accent-soft: #1f2d42; --copilot: #e0a564; --copilot-soft: #33271a;
+  --ext: #7cc4a0; --ext-soft: #1d3128; color-scheme: dark;
+}
+body { background: var(--bg); color: var(--fg); font-family: var(--font-body); font-size: 15px; line-height: 1.7; }
+.wrap { max-width: 1120px; margin: 0 auto; padding-inline: 20px; padding-block: 40px 72px; display: grid; gap: 48px; }
+header { display: grid; gap: 10px; max-width: 72ch; }
+h1 { font-family: var(--font-display); font-size: clamp(1.8rem, 4vw, 2.4rem); line-height: 1.25; margin: 0; text-wrap: balance; }
+h2 { font-family: var(--font-display); font-size: 1.35rem; margin: 0; text-wrap: balance; }
+h3 { font-size: 1.02rem; margin: 0; }
+p { margin: 0; }
+.lede, .note { color: var(--muted); }
+.eyebrow { font-size: .78rem; letter-spacing: .08em; color: var(--muted); font-weight: 500; }
+a { color: var(--accent); }
+code, .mono { font-family: var(--font-mono); font-size: .86em; }
+code { background: var(--code-bg); padding: 1px 5px; border-radius: 4px; overflow-wrap: anywhere; }
+section { display: grid; gap: 16px; }
+section > p { max-width: 75ch; }
+
+figure { margin: 0; display: grid; gap: 10px; }
+.scroll { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px; }
+svg.dg { display: block; width: 100%; height: auto; color: var(--fg); font-family: var(--font-body); }
+svg.dg.w1 { min-width: 960px; } svg.dg.w2 { min-width: 860px; }
+svg.dg .tab { font-size: 11px; letter-spacing: .08em; fill: var(--muted); font-weight: 500; }
+svg.dg .t { font-size: 13.5px; fill: var(--fg); font-weight: 500; }
+svg.dg .s { font-size: 12px; fill: var(--muted); }
+svg.dg .m { font-size: 11.5px; fill: var(--muted); font-family: var(--font-mono); }
+svg.dg .lbl { font-size: 11.5px; fill: var(--muted); }
+svg.dg .box { fill: var(--surface); stroke: var(--line); stroke-width: 1.2; }
+svg.dg .gh { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1.3; }
+svg.dg .ext { fill: var(--ext-soft); stroke: var(--ext); stroke-width: 1.3; }
+svg.dg .edge { stroke: var(--muted); stroke-width: 1.3; fill: none; }
+svg.dg .ah { fill: var(--muted); }
+svg.dg .cp { fill: var(--copilot); }
+svg.dg .cpt { font-size: 10.5px; fill: var(--surface); font-weight: 700; }
+svg.dg .btn { fill: var(--surface); stroke: var(--fg); stroke-width: 1.1; }
+svg.dg .btn-warn { fill: var(--copilot-soft); stroke: var(--copilot); stroke-width: 1.1; }
+svg.dg .bt { font-size: 11.5px; fill: var(--fg); font-weight: 500; }
+figcaption { color: var(--muted); font-size: .9rem; max-width: 80ch; }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: .88rem; }
+.legend span { display: inline-flex; align-items: center; gap: 8px; }
+.sw { width: 14px; height: 14px; border-radius: 3px; border: 1.5px solid; }
+.sw-gh { background: var(--accent-soft); border-color: var(--accent); }
+.sw-ext { background: var(--ext-soft); border-color: var(--ext); }
+.sw-cp { background: var(--copilot); border-color: var(--copilot); border-radius: 50%; }
+
+.tbl { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; }
+table { width: 100%; border-collapse: collapse; font-size: .9rem; min-width: 760px; }
+th, td { text-align: left; padding: 11px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-size: .76rem; letter-spacing: .06em; color: var(--muted); font-weight: 500; white-space: nowrap; }
+tr:last-child td { border-bottom: 0; }
+td:first-child { font-weight: 700; white-space: nowrap; }
+.path { font-family: var(--font-mono); font-size: .82rem; color: var(--muted); }
+
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 330px), 1fr)); gap: 16px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 18px 20px; display: grid; gap: 10px; align-content: start; min-width: 0; }
+.card .where { font-size: .78rem; letter-spacing: .06em; color: var(--copilot); font-weight: 700; }
+.card ol { margin: 0; padding-left: 1.3em; display: grid; gap: 4px; }
+.prompt { background: var(--copilot-soft); border-radius: 8px; padding: 10px 12px; font-size: .9rem; display: grid; gap: 6px; }
+.prompt span { font-size: .74rem; letter-spacing: .06em; color: var(--copilot); font-weight: 700; }
+
+.compare { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 16px; }
+.compare .card h3 { display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; }
+.pill { font-size: .74rem; font-weight: 700; padding: 1px 9px; border-radius: 99px; border: 1px solid var(--line); color: var(--muted); white-space: nowrap; }
+.pill.ok { color: var(--ext); border-color: var(--ext); }
+.pill.warn { color: var(--copilot); border-color: var(--copilot); }
+.caution { border-left: 3px solid var(--copilot); padding: 10px 14px; background: var(--surface); border-radius: 0 8px 8px 0; color: var(--fg); max-width: 80ch; }
+</style>
+
+<div class="wrap">
+  <header>
+    <span class="eyebrow">ANNE96-31 / ANNE · 操作指南</span>
+    <h1>Anne 專案 GitHub 操作地圖</h1>
+    <p class="lede">GitHub 的每個分頁各管一件事：Code 放程式、Pull requests 審改動、Actions 執行排程、Settings 放密碼。這頁用兩張圖說明我們的台股日報在這些分頁之間怎麼流動，再告訴你每一頁可以請 Copilot 幫什麼忙。</p>
+  </header>
+
+  <section>
+    <h2>一次改動從程式碼到每天的日報</h2>
+    <figure>
+      <div class="legend" aria-hidden="true">
+        <span><i class="sw sw-gh"></i>GitHub 分頁</span>
+        <span><i class="sw sw-ext"></i>外部服務</span>
+        <span><i class="sw sw-cp"></i>可以問 Copilot 的地方</span>
+      </div>
+      <div class="scroll">
+        <svg class="dg w1" viewBox="0 0 1100 320" role="img" aria-label="改動從 Claude 的分支開 Pull request，合併進 master 的 Code 後，Actions 每天 07:43 讀取 workflow 檔執行，讀取 Settings 裡的 Notion 密碼，再把日報推回 Code 的 reports 資料夾並寫入 Notion。">
+          <defs>
+            <marker id="g1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ah"/></marker>
+          </defs>
+
+          <!-- Settings (above Actions) -->
+          <a href="https://github.com/Anne96-31/Anne/settings/secrets/actions">
+            <rect x="700" y="14" width="190" height="62" rx="8" class="gh"/>
+            <text x="714" y="34" class="tab">SETTINGS · SECRETS</text>
+            <text x="714" y="54" class="m">NOTION_TOKEN</text>
+            <text x="714" y="69" class="m">NOTION_DATABASE_ID</text>
+          </a>
+          <line x1="795" y1="76" x2="795" y2="118" class="edge" marker-end="url(#g1)"/>
+          <text x="803" y="102" class="lbl">提供密碼</text>
+
+          <!-- Row -->
+          <rect x="20" y="120" width="170" height="78" rx="8" class="box"/>
+          <text x="34" y="142" class="tab">CLAUDE CODE</text>
+          <text x="34" y="164" class="t">在分支上寫程式</text>
+          <text x="34" y="184" class="m">claude/laughing-…</text>
+
+          <line x1="190" y1="159" x2="248" y2="159" class="edge" marker-end="url(#g1)"/>
+          <text x="219" y="150" text-anchor="middle" class="lbl">開 PR</text>
+
+          <a href="https://github.com/Anne96-31/Anne/pulls?q=is%3Apr">
+            <rect x="250" y="120" width="190" height="78" rx="8" class="gh"/>
+            <text x="264" y="142" class="tab">PULL REQUESTS</text>
+            <text x="264" y="164" class="t">#1 #2 #3 審查改動</text>
+            <text x="264" y="184" class="s">Files changed → Merge</text>
+            <circle cx="426" cy="134" r="9" class="cp"/><text x="426" y="138" text-anchor="middle" class="cpt">C</text>
+          </a>
+
+          <line x1="440" y1="159" x2="478" y2="159" class="edge" marker-end="url(#g1)"/>
+          <text x="459" y="150" text-anchor="middle" class="lbl">合併</text>
+
+          <a href="https://github.com/Anne96-31/Anne/tree/master">
+            <rect x="480" y="120" width="190" height="78" rx="8" class="gh"/>
+            <text x="494" y="142" class="tab">CODE · master</text>
+            <text x="494" y="164" class="m">daily-report.yml</text>
+            <text x="494" y="184" class="m">twdaily/*.py</text>
+            <circle cx="656" cy="134" r="9" class="cp"/><text x="656" y="138" text-anchor="middle" class="cpt">C</text>
+          </a>
+
+          <line x1="670" y1="159" x2="698" y2="159" class="edge" marker-end="url(#g1)"/>
+          <text x="684" y="150" text-anchor="middle" class="lbl">讀取</text>
+
+          <a href="https://github.com/Anne96-31/Anne/actions/workflows/daily-report.yml">
+            <rect x="700" y="120" width="190" height="78" rx="8" class="gh"/>
+            <text x="714" y="142" class="tab">ACTIONS</text>
+            <text x="714" y="164" class="t">台股每日投資日報</text>
+            <text x="714" y="184" class="s">每天 07:43 執行</text>
+            <circle cx="876" cy="134" r="9" class="cp"/><text x="876" y="138" text-anchor="middle" class="cpt">C</text>
+          </a>
+
+          <line x1="890" y1="159" x2="928" y2="159" class="edge" marker-end="url(#g1)"/>
+          <text x="909" y="150" text-anchor="middle" class="lbl">API</text>
+
+          <rect x="930" y="120" width="150" height="78" rx="8" class="ext"/>
+          <text x="944" y="142" class="tab">NOTION</text>
+          <text x="944" y="164" class="t">每天一頁日報</text>
+          <text x="944" y="184" class="s">保留 15 天</text>
+
+          <!-- Actions pushes reports back into Code -->
+          <polyline points="795,198 795,272 672,272" class="edge" marker-end="url(#g1)"/>
+          <text x="803" y="262" class="lbl">git push 日報</text>
+          <a href="https://github.com/Anne96-31/Anne/tree/master/reports">
+            <rect x="480" y="244" width="190" height="60" rx="8" class="gh"/>
+            <text x="494" y="266" class="tab">CODE · reports/</text>
+            <text x="494" y="288" class="m">2026-10-08.md …</text>
+          </a>
+        </svg>
+      </div>
+      <figcaption>藍色方塊都可以點，會直接開到 GitHub 上對應的頁面。關鍵是中間那條線：Actions 只會執行已合併進 master 的 workflow 檔，所以分支上的改動要先經過 Pull request 合併才會生效。今天早上沒有更新，就是卡在這一步。</figcaption>
+    </figure>
+  </section>
+
+  <section>
+    <h2>Actions 的三層頁面與按鈕差異</h2>
+    <p>你上次截圖的頁面是第二層的「某一次執行」。要產生新的一份日報，按鈕在第一層。</p>
+    <figure>
+      <div class="scroll">
+        <svg class="dg w2" viewBox="0 0 980 270" role="img" aria-label="Actions 分三層：第一層 workflow 頁有 Run workflow 按鈕，會用 master 最新程式跑一次新的；第二層某一次執行的頁面有 Re-run all jobs，會用當時的舊程式重跑；第三層 job 頁面顯示每個步驟的紀錄。">
+          <defs>
+            <marker id="g2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ah"/></marker>
+          </defs>
+          <!-- Level 1 -->
+          <a href="https://github.com/Anne96-31/Anne/actions/workflows/daily-report.yml">
+            <rect x="20" y="20" width="290" height="200" rx="8" class="gh"/>
+          </a>
+          <text x="36" y="44" class="tab">第一層 · WORKFLOW 頁</text>
+          <text x="36" y="68" class="t">台股每日投資日報</text>
+          <text x="36" y="90" class="s">列出每一次執行：#1 #2 #3 …</text>
+          <rect x="36" y="108" width="128" height="30" rx="6" class="btn"/>
+          <text x="100" y="128" text-anchor="middle" class="bt">Run workflow ▾</text>
+          <text x="36" y="164" class="s">用 master 最新的程式</text>
+          <text x="36" y="184" class="s">產生一份新的日報</text>
+          <text x="36" y="204" class="s" style="fill: var(--ext)">補跑今天的日報用這個</text>
+
+          <line x1="310" y1="120" x2="348" y2="120" class="edge" marker-end="url(#g2)"/>
+          <text x="329" y="110" text-anchor="middle" class="lbl">點開</text>
+
+          <!-- Level 2 -->
+          <rect x="350" y="20" width="290" height="200" rx="8" class="box"/>
+          <text x="366" y="44" class="tab">第二層 · 某一次執行（RUN）</text>
+          <text x="366" y="68" class="t">台股每日投資日報 #2</text>
+          <text x="366" y="90" class="s">Summary 顯示整份日報內容</text>
+          <rect x="366" y="108" width="128" height="30" rx="6" class="btn-warn"/>
+          <text x="430" y="128" text-anchor="middle" class="bt">Re-run all jobs</text>
+          <text x="366" y="164" class="s">用「當時」那個版本的程式重跑</text>
+          <text x="366" y="184" class="s">左側 Workflow file 可看當時的設定</text>
+          <text x="366" y="204" class="s" style="fill: var(--copilot)">新功能不會出現</text>
+
+          <line x1="640" y1="120" x2="678" y2="120" class="edge" marker-end="url(#g2)"/>
+          <text x="659" y="110" text-anchor="middle" class="lbl">點開</text>
+
+          <!-- Level 3 -->
+          <rect x="680" y="20" width="280" height="200" rx="8" class="box"/>
+          <text x="696" y="44" class="tab">第三層 · JOB 頁</text>
+          <text x="696" y="68" class="t">report</text>
+          <text x="696" y="90" class="m">✓ 單元測試</text>
+          <text x="696" y="110" class="m">✓ 產生日報</text>
+          <text x="696" y="130" class="m">✓ 刪除超過 15 天的日報</text>
+          <text x="696" y="150" class="m">✓ 提交日報</text>
+          <text x="696" y="170" class="m">✓ 同步到 Notion</text>
+          <text x="696" y="200" class="s">點任一步驟展開紀錄，出錯時看這裡</text>
+          <circle cx="946" cy="36" r="9" class="cp"/><text x="946" y="40" text-anchor="middle" class="cpt">C</text>
+
+          <text x="20" y="252" class="lbl">workflow 檔（Code 分頁）是食譜；Actions 的每一次執行是照食譜做的那一餐。改食譜要經過 PR，看某一餐怎麼做的要進 Actions。</text>
+        </svg>
+      </div>
+      <figcaption>第一層的 Run workflow 與第二層的 Re-run all jobs 看起來很像，差別在於用哪個版本的程式。合併新功能之後，一定要用 Run workflow。</figcaption>
+    </figure>
+  </section>
+
+  <section>
+    <h2>各分頁功能差異</h2>
+    <div class="tbl">
+      <table>
+        <thead><tr><th>分頁</th><th>用途</th><th>我們專案在這裡的東西</th><th>你會在這裡做的事</th><th>Copilot 能幫什麼</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Code</td>
+            <td>瀏覽目前的程式碼與檔案</td>
+            <td><span class="path">.github/workflows/daily-report.yml</span><br><span class="path">twdaily/</span>（選股、Notion）<br><span class="path">reports/</span>（每日日報）<br><span class="path">docs/</span>（架構圖）</td>
+            <td>讀日報、看程式；左上角分支選單切換 <code>master</code> 與 Claude 的分支；檔案右上 History 看修改紀錄</td>
+            <td>開啟任一檔案後請 Copilot 解釋內容</td>
+          </tr>
+          <tr>
+            <td>Pull requests</td>
+            <td>審查一批改動，同意後合併進 master</td>
+            <td>#1 日報系統、#2 Notion 同步、#3 每日排程與自動刪除</td>
+            <td>Files changed 看差異 → <b>Merge pull request</b></td>
+            <td>摘要這個 PR 改了什麼、請 Copilot 審查</td>
+          </tr>
+          <tr>
+            <td>Actions</td>
+            <td>執行 workflow、保存每次執行紀錄</td>
+            <td>「台股每日投資日報」每天 07:43 的執行紀錄</td>
+            <td><b>Run workflow</b> 手動補跑；失敗時點進去看哪一步紅叉</td>
+            <td>失敗的步驟可請 Copilot 解釋錯誤原因</td>
+          </tr>
+          <tr>
+            <td>Agents</td>
+            <td>Copilot 代理人在背景處理的任務清單</td>
+            <td>目前沒有，這個專案是由 Claude 開發</td>
+            <td>指派任務給 Copilot，追蹤它開出的 PR</td>
+            <td>依指示改程式並開 PR</td>
+          </tr>
+          <tr>
+            <td>Issues</td>
+            <td>記錄待辦事項、問題回報</td>
+            <td>目前沒有</td>
+            <td>寫下想改的地方，例如「入選股票太多」</td>
+            <td>可把 Issue 指派給 Copilot 處理</td>
+          </tr>
+          <tr>
+            <td>Settings</td>
+            <td>repo 設定、權限、密碼</td>
+            <td>Secrets：<code>NOTION_TOKEN</code>、<code>NOTION_DATABASE_ID</code>；Claude GitHub App 權限</td>
+            <td>更換 Notion 金鑰；密碼存進去之後就看不到原文，只能覆寫</td>
+            <td>（不適用）</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">Projects、Wiki、Security、Insights 這個專案目前用不到，可以先忽略。</p>
+  </section>
+
+  <section>
+    <h2>Copilot 怎麼用</h2>
+    <p>Copilot 有兩種模式：<b>Ask</b> 只回答問題、不改任何東西，適合學習；<b>Agent</b> 會實際修改程式並開 PR。新手建議先多用 Ask。以下是在各頁面的用法，按鈕位置與名稱會依你的 Copilot 方案和 GitHub 改版而略有不同。</p>
+    <div class="cards">
+      <article class="card">
+        <span class="where">GitHub 首頁（Dashboard）</span>
+        <h3>問任何關於 repo 的問題</h3>
+        <ol>
+          <li>在「Ask anything」輸入框旁，把模式選為 <b>Ask</b>。</li>
+          <li>點 <b>All repositories</b>，限定為 <code>Anne96-31/Anne</code>。</li>
+          <li>輸入問題，按送出。</li>
+        </ol>
+        <div class="prompt"><span>可以這樣問</span>這個 repo 每天的日報是怎麼產生的？請用新手看得懂的方式說明。</div>
+      </article>
+
+      <article class="card">
+        <span class="where">Code 分頁 · 開啟某個檔案</span>
+        <h3>請 Copilot 解釋程式碼</h3>
+        <ol>
+          <li>打開 <code>twdaily/screener.py</code>。</li>
+          <li>點檔案右上角的 Copilot 圖示，或選取幾行程式後問 Copilot。</li>
+        </ol>
+        <div class="prompt"><span>可以這樣問</span>「低檔金叉」和「DIF翻正」的條件各是什麼？評分 0–7 分是怎麼算的？</div>
+      </article>
+
+      <article class="card">
+        <span class="where">Pull requests · 某個 PR</span>
+        <h3>合併前先讓 Copilot 摘要</h3>
+        <ol>
+          <li>打開 PR，在右側 Reviewers 選 <b>Copilot</b> 請它審查。</li>
+          <li>或在 Copilot 對話中問這個 PR 的內容。</li>
+          <li>看完沒問題再按 Merge。</li>
+        </ol>
+        <div class="prompt"><span>可以這樣問</span>這個 PR 合併後，每天的排程和刪除規則會有什麼變化？有沒有風險？</div>
+      </article>
+
+      <article class="card">
+        <span class="where">Actions · 失敗的執行</span>
+        <h3>看懂錯誤訊息</h3>
+        <ol>
+          <li>點紅叉的那次執行 → report → 展開紅色步驟。</li>
+          <li>點錯誤旁的 Copilot 按鈕（例如 Explain error），或把錯誤貼給 Copilot。</li>
+        </ol>
+        <div class="prompt"><span>可以這樣問</span>「同步到 Notion」這一步為什麼失敗？我需要在 Notion 或 Settings 改什麼？</div>
+      </article>
+
+      <article class="card">
+        <span class="where">Issues → Agents</span>
+        <h3>讓 Copilot 動手改程式</h3>
+        <ol>
+          <li>新增 Issue，寫清楚要改什麼，例如「只列出評分 4 分以上的股票」。</li>
+          <li>在 Assignees 指派給 <b>Copilot</b>。</li>
+          <li>到 <b>Agents</b> 分頁看進度，它完成後會開 PR，你審查後再合併。</li>
+        </ol>
+        <div class="prompt"><span>Issue 範例</span>請把 twdaily/screener.py 的入選門檻改為評分 ≥ 4，並更新 tests/test_screener.py。</div>
+      </article>
+    </div>
+    <p class="caution">同一時間只讓一個 AI 改同一個分支。Copilot 和 Claude 都會開 PR，各自在自己的分支上工作就不會互相覆蓋。任何 PR 都先看過 Files changed 再合併，因為合併後的程式就是隔天早上 07:43 會自動執行的程式。</p>
+  </section>
+
+  <section>
+    <h2>要看什麼，去哪裡</h2>
+    <div class="compare">
+      <article class="card">
+        <h3>今天的日報 <span class="pill ok">每天看</span></h3>
+        <p class="note">Notion「台股每日日報」資料庫，點最上面那列的標題 → OPEN。GitHub 上則是 Code → <code>reports/latest.md</code>。</p>
+      </article>
+      <article class="card">
+        <h3>workflow 的設定 <span class="pill">想改排程時</span></h3>
+        <p class="note">Code → <code>.github/workflows/daily-report.yml</code>。排程時間在 <code>cron</code>，保存天數在 <code>RETENTION_DAYS</code>。</p>
+      </article>
+      <article class="card">
+        <h3>今天有沒有跑成功 <span class="pill warn">沒更新時</span></h3>
+        <p class="note">Actions → 台股每日投資日報。最上面一筆是 ✅ 就是成功；沒有今天的紀錄就按 Run workflow 補跑。</p>
+      </article>
+      <article class="card">
+        <h3>選股邏輯與程式 <span class="pill">想學習時</span></h3>
+        <p class="note">Code → <code>twdaily/screener.py</code>，或看<a href="https://claude.ai/artifact/WaiVgXwK9X8g4Ef6jb2hSC">系統架構圖</a>上每個環節的程式碼。</p>
+      </article>
+    </div>
+  </section>
+</div>
