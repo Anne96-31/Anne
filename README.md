@@ -28,9 +28,9 @@ MACD 參數 12 / 26 / 9，命名依台灣看盤軟體慣例：DIF（快慢線差
 
 ## 自動排程
 
-[`.github/workflows/daily-report.yml`](.github/workflows/daily-report.yml) 於 **每天台北時間 08:00** 執行（涵蓋前一交易日收盤與美股隔夜行情），完成後把日報 commit 回 repo。
+[`.github/workflows/daily-report.yml`](.github/workflows/daily-report.yml) 於 **每天台北時間 07:43** 開始執行，約 8:00 前完成（涵蓋前一交易日收盤與美股隔夜行情），完成後把日報 commit 回 repo。
 
-- GitHub 排程在整點較擁擠，實際開始時間可能晚幾分鐘到十幾分鐘。
+- 刻意避開整點：GitHub 免費排程在整點最擁擠，可能延遲數分鐘到數小時。若某天沒準時出現，可到 Actions 手動 **Run workflow**。
 - **自動清理**：只保留最近 **15 天** 的日報。過期的 `reports/YYYY-MM-DD.md`、`-picks.csv` 會被刪除（仍可在 git 歷史找回），Notion 中過期的頁面會移到垃圾桶（30 天內可復原）。天數可改 workflow 裡的 `RETENTION_DAYS`。
 
 - 排程只在 **預設分支（master）** 上生效，請先把這個分支合併進 master。

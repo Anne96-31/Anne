@@ -115,7 +115,7 @@ section { display: grid; gap: 16px; }
       <span><i class="sw sw5"></i>⑤ 同步到 Notion</span>
     </div>
     <div class="scroll">
-      <svg class="arch" viewBox="0 0 1230 520" role="img" aria-label="GitHub Actions 每天 08:00 依序執行六個步驟；產生日報步驟從四個資料來源抓取資料，經 MACD 篩選與報告組裝後輸出四個檔案；提交步驟把檔案推回 GitHub，Notion 步驟讀取 latest.md 與 latest.json 建立 Notion 頁面。">
+      <svg class="arch" viewBox="0 0 1230 520" role="img" aria-label="GitHub Actions 每天 07:43 依序執行六個步驟；產生日報步驟從四個資料來源抓取資料，經 MACD 篩選與報告組裝後輸出四個檔案；提交步驟把檔案推回 GitHub，Notion 步驟讀取 latest.md 與 latest.json 建立 Notion 頁面。">
         <defs>
           <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ah"/></marker>
           <marker id="ar3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ah3"/></marker>
@@ -124,7 +124,7 @@ section { display: grid; gap: 16px; }
         </defs>
 
         <!-- Top band: workflow steps -->
-        <text x="20" y="24" class="h">GITHUB ACTIONS · .github/workflows/daily-report.yml · 每天 08:00（台北）或手動 Run workflow</text>
+        <text x="20" y="24" class="h">GITHUB ACTIONS · .github/workflows/daily-report.yml · 每天 07:43（台北，8:00 前完成）或手動 Run workflow</text>
         <a href="#c-workflow">
           <rect x="20" y="40" width="170" height="44" rx="6" class="box"/>
           <text x="105" y="67" text-anchor="middle" class="t">① 安裝套件</text>
@@ -284,7 +284,7 @@ section { display: grid; gap: 16px; }
       <table>
         <thead><tr><th>環節</th><th>檔案</th><th>主要函式</th><th>負責的事</th></tr></thead>
         <tbody>
-          <tr><td>排程與流程</td><td><code>.github/workflows/daily-report.yml</code></td><td>—</td><td>每天 08:00 觸發，依序跑 ①–⑥</td></tr>
+          <tr><td>排程與流程</td><td><code>.github/workflows/daily-report.yml</code></td><td>—</td><td>每天 07:43 觸發，依序跑 ①–⑥</td></tr>
           <tr><td>③ 主程式</td><td><code>twdaily/__main__.py</code></td><td><code>run()</code>、<code>build_summary()</code></td><td>串起抓取、篩選、輸出檔案</td></tr>
           <tr><td>③ 抓取資料</td><td><code>twdaily/data.py</code></td><td><code>load_universe()</code>、<code>load_prices()</code>、<code>load_institutional()</code></td><td>股票清單、日線、產業別、三大法人</td></tr>
           <tr><td>③ 國際儀表板</td><td><code>twdaily/market.py</code></td><td><code>load_dashboard()</code></td><td>加權、費半、美股、匯率、油金等 16 項</td></tr>
@@ -306,7 +306,7 @@ section { display: grid; gap: 16px; }
         <p>GitHub 免費主機每天開一台機器跑完全部步驟。④ 先刪掉超過 15 天的日報，再把 reports/ 推回 repo。</p>
 <pre>on:
   schedule:
-    - cron: "0 0 * * *"      <span class="cm"># UTC 00:00 = 台北 08:00</span>
+    - cron: "43 23 * * *"    <span class="cm"># UTC 23:43 = 台北 07:43，避開整點</span>
   workflow_dispatch:          <span class="cm"># 可手動 Run workflow</span>
 
 - name: 產生日報
