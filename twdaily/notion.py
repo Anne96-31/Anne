@@ -136,11 +136,11 @@ class Notion:
             return r.json()
         raise RuntimeError(f"Notion API {method} {path} 重試後仍失敗")
 
-    def ensure_schema(self, db_id):
+    def ensure_schema(self, db_id, properties=PROPERTIES):
         """補上缺少的欄位，回傳標題欄位名稱。"""
         db = self.call("GET", f"/databases/{db_id}")
         props = db["properties"]
-        missing = {k: v for k, v in PROPERTIES.items() if k not in props}
+        missing = {k: v for k, v in properties.items() if k not in props}
         if missing:
             log.info("新增 Notion 欄位：%s", "、".join(missing))
             self.call("PATCH", f"/databases/{db_id}", {"properties": missing})
