@@ -53,6 +53,31 @@ MACD 參數 12 / 26 / 9，命名依台灣看盤軟體慣例：DIF（快慢線差
    - `NOTION_DATABASE_ID`：第 4 步的 ID 或網址
 6. 到 **Actions** → 「台股每日投資日報」→ **Run workflow** 測試，完成後 Notion 會出現第一頁。
 
+## 📘 每日商務英文（同步到 Notion）
+
+[`.github/workflows/daily-english.yml`](.github/workflows/daily-english.yml) 於 **每天台北時間 06:47** 用 Claude 產生當天的英文課程，並在 Notion「每日商務英文」資料庫新增一頁：
+
+- 🎯 **本日學習目標**與 ✅ 四項任務（可勾選的待辦清單）
+- ① **10 個高級商務詞彙**：詞性、中文、搭配詞、例句，會自動避開之前學過的字
+- ② **約 10 分鐘的商業文章**：以前一天的真實英文商業新聞為題材，附理解問題與進階表達
+- ③ **文法重點**：讓英文更像母語者的語感技巧，不會和最近兩週重複
+- ④ **寫作任務**（100–150 字），頁面最下方留了「我的短文」區塊，寫完貼給 Claude 批改
+
+資料庫欄位：`日期`、`Day`、`主題`、`詞彙`、`文法重點`、`完成`（打勾追蹤進度）。同一天重跑會封存舊頁面。
+
+**設定步驟（只需做一次）：**
+
+1. **取得 Claude API Key**：到 <https://platform.claude.com/settings/keys> 建立 API key。
+2. **建立 Notion 資料庫**：新增頁面 → `/database` → **Database - Full page**，命名為「每日商務英文」。欄位不用自己加。
+3. **授權資料庫**：右上角 **⋯** → **Connections** → 加入現有的「台股日報」Integration（同一把 `NOTION_TOKEN` 即可）。
+4. **設定 GitHub Secrets**（repo → Settings → Secrets and variables → Actions）：
+   - `ANTHROPIC_API_KEY`：第 1 步的 key
+   - `NOTION_ENGLISH_DATABASE_ID`：第 2 步資料庫的網址或 ID
+   - `NOTION_TOKEN`：沿用台股日報已設定的那一個
+5. 到 **Actions** →「每日商務英文」→ **Run workflow** 測試。
+
+本機預覽（不寫入 Notion）：`ANTHROPIC_API_KEY=sk-ant-xxx python -m dailyenglish --dry-run`
+
 ## 本機執行
 
 ```bash
