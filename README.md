@@ -78,6 +78,28 @@ MACD 參數 12 / 26 / 9，命名依台灣看盤軟體慣例：DIF（快慢線差
 
 本機預覽（不寫入 Notion）：`ANTHROPIC_API_KEY=sk-ant-xxx python -m dailyenglish --dry-run`
 
+## 🤖 每日 AI 資訊（同步到 Notion）
+
+[`.github/workflows/daily-ai.yml`](.github/workflows/daily-ai.yml) 於 **每天台北時間 07:13** 在 GitHub 雲端執行（電腦不用開機），抓取過去一天的 AI 新聞（英文國際媒體 + 繁中科技新聞），用 Claude 整理成繁體中文快報，在 Notion「每日 AI 資訊」資料庫新增一頁：
+
+- 📌 **今日一句話重點**與 3 個關鍵 takeaway
+- 6–10 則精選新聞，依類別分組：🚀 模型與產品、💰 產業與投資、🔬 研究與開源、🏛️ 政策與監管、🖥️ 晶片與算力、🇹🇼 台灣 AI；每則附摘要、💡 為什麼重要、原文連結
+- 👀 **後續觀察**與 📖 **AI 術語小教室**（不會和最近 30 天重複）
+- 會避開前 3 天已報導過的新聞；Claude 回傳的連結若不在當天抓到的新聞裡會被剔除，避免捏造來源
+
+資料庫欄位：`日期`、`重點`、`標籤`、`則數`、`新聞標題`、`術語`、`已讀`。同一天重跑會封存舊頁面。
+
+**設定步驟（只需做一次）：**
+
+1. **建立 Notion 資料庫**：新增頁面 → `/database` → **Database - Full page**，命名為「每日 AI 資訊」。欄位不用自己加。
+2. **授權資料庫**：右上角 **⋯** → **Connections** → 加入現有的「台股日報」Integration。
+3. **設定 GitHub Secrets**（repo → Settings → Secrets and variables → Actions）：
+   - `NOTION_AI_DATABASE_ID`：第 1 步資料庫的網址或 ID
+   - `ANTHROPIC_API_KEY`、`NOTION_TOKEN`：沿用已設定的
+4. 到 **Actions** →「每日 AI 資訊」→ **Run workflow** 測試。確認雲端版正常後，就可以把電腦上的排程關掉，避免同一天寫入兩次。
+
+本機預覽（不寫入 Notion）：`ANTHROPIC_API_KEY=sk-ant-xxx python -m dailyai --dry-run`
+
 ## 本機執行
 
 ```bash
