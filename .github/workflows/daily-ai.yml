@@ -1,0 +1,36 @@
+name: 每日 AI 資訊
+
+on:
+  schedule:
+    # 每天台北時間 07:13（UTC 23:13）整理過去一天的 AI 新聞，避開整點排程延遲
+    - cron: "13 23 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: daily-ai
+  cancel-in-progress: false
+
+jobs:
+  brief:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: 安裝套件
+        run: pip install -r requirements.txt pytest
+
+      - name: 單元測試
+        run: python -m pytest -q tests
+
+      - name: 整理 AI 新聞並寫入 Notion
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          NOTION_AI_DATABASE_ID: ${{ secrets.NOTION_AI_DATABASE_ID }}
+        run: python -m dailyai
