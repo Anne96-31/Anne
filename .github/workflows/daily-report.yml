@@ -2,8 +2,9 @@ name: 台股每日投資日報
 
 on:
   schedule:
-    # 台北時間週一至週五 16:47（UTC 08:47），收盤與三大法人資料公布後
-    - cron: "47 8 * * 1-5"
+    # 每天台北時間 07:43（UTC 23:43）開始，8:00 前完成：前一交易日收盤 + 美股隔夜行情
+    # 避開整點：GitHub 排程在整點最擁擠，容易延遲甚至略過
+    - cron: "43 23 * * *"
   workflow_dispatch:
     inputs:
       top:
@@ -12,6 +13,9 @@ on:
 
 permissions:
   contents: write
+
+env:
+  RETENTION_DAYS: "15"   # 日報保存天數（GitHub 檔案與 Notion 頁面）
 
 concurrency:
   group: daily-report
@@ -38,11 +42,14 @@ jobs:
       - name: 產生日報
         run: python -m twdaily --top "${{ github.event.inputs.top || '800' }}" --out reports
 
+      - name: 刪除超過 15 天的日報
+        run: python -m twdaily.cleanup reports --days "$RETENTION_DAYS"
+
       - name: 提交日報
         run: |
           git config user.name "twdaily-bot"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add reports
+          git add -A reports
           git diff --cached --quiet && exit 0
           git commit -m "日報：$(TZ=Asia/Taipei date +%Y-%m-%d)"
           git push

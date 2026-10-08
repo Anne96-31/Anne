@@ -13,6 +13,8 @@ from pathlib import Path
 
 import requests
 
+from .cleanup import DEFAULT_DAYS, cutoff_date
+
 log = logging.getLogger(__name__)
 
 API = "https://api.notion.com/v1"
@@ -151,6 +153,19 @@ class Notion:
         for page in res.get("results", []):
             self.call("PATCH", f"/pages/{page['id']}", {"archived": True})
 
+    def prune_before(self, db_id, cutoff: str):
+        """封存（移到垃圾桶）日期早於 cutoff 的日報頁面，回傳封存數量。"""
+        body = {"filter": {"property": "日期", "date": {"before": cutoff}}, "page_size": 100}
+        archived = 0
+        while True:
+            res = self.call("POST", f"/databases/{db_id}/query", body)
+            for page in res.get("results", []):
+                self.call("PATCH", f"/pages/{page['id']}", {"archived": True})
+                archived += 1
+            if not res.get("has_more"):
+                return archived
+            body["start_cursor"] = res["next_cursor"]
+
 
 def page_properties(summary, title_prop, report_url=None):
     def num(v):
@@ -204,7 +219,13 @@ def main():
     md = Path(sys.argv[1] if len(sys.argv) > 1 else "reports/latest.md")
     summary = Path(sys.argv[2] if len(sys.argv) > 2 else "reports/latest.json")
     date = json.loads(summary.read_text(encoding="utf-8"))["report_date"]
-    publish(md, summary, token, db_id.replace("-", "").split("?")[0][-32:], _report_url(date))
+    db_id = db_id.replace("-", "").split("?")[0][-32:]
+    publish(md, summary, token, db_id, _report_url(date))
+
+    days = int(os.environ.get("RETENTION_DAYS", DEFAULT_DAYS))
+    cutoff = cutoff_date(days).isoformat()
+    n = Notion(token).prune_before(db_id, cutoff)
+    log.info("Notion：封存 %d 頁超過 %d 天的日報（早於 %s）", n, days, cutoff)
 
 
 if __name__ == "__main__":
