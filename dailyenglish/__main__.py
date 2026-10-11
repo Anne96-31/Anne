@@ -34,6 +34,7 @@ def _plain(prop):
 
 def load_history(client: Notion, db_id: str, before: str):
     """讀取之前的課程頁面：回傳 (已學詞彙, 最近文法主題, 已上課天數)。"""
+    client.ensure_schema(db_id, PROPERTIES)  # 新資料庫要先建立「日期」等欄位才能查詢
     body = {"filter": {"property": "日期", "date": {"before": before}},
             "sorts": [{"property": "日期", "direction": "descending"}], "page_size": 100}
     pages = []
