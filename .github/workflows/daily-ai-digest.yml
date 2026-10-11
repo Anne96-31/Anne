@@ -1,0 +1,75 @@
+name: 每日 AI & Data 產業摘要
+
+on:
+  schedule:
+    # 每天台北時間 22:28（UTC 14:28）。避開整點與整半點：GitHub 排程在那些時間最擁擠，
+    # 容易延遲甚至略過。這個時段也剛好對齊晚上看筆記的習慣。
+    - cron: "28 14 * * *"
+  workflow_dispatch:
+    inputs:
+      days:
+        description: "回看幾天內的文章"
+        default: "2"
+      limit:
+        description: "最多收錄幾篇"
+        default: "14"
+
+permissions:
+  contents: write
+
+env:
+  RETENTION_DAYS: "30"   # 摘要保存天數（digests/ 的檔案與 Notion 頁面）
+
+concurrency:
+  group: daily-ai-digest
+  cancel-in-progress: false
+
+jobs:
+  digest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: 安裝套件
+        run: pip install -r requirements.txt pytest
+
+      - name: 單元測試
+        # 只跑 aidigest 的測試，避免其他專案的測試連帶擋住每日摘要
+        run: python -m pytest -q tests/test_aidigest.py
+
+      - name: 產生摘要並寫入 Notion
+        env:
+          TZ: Asia/Taipei
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          NOTION_AI_DIGEST_PAGE_ID: ${{ secrets.NOTION_AI_DIGEST_PAGE_ID }}
+        run: |
+          python -m aidigest \
+            --days "${{ github.event.inputs.days || '2' }}" \
+            --limit "${{ github.event.inputs.limit || '14' }}" \
+            --cleanup-days 0
+
+      - name: 刪除超過保存天數的舊摘要（檔案 + Notion 頁面）
+        env:
+          TZ: Asia/Taipei
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          NOTION_AI_DIGEST_PAGE_ID: ${{ secrets.NOTION_AI_DIGEST_PAGE_ID }}
+        run: python -m aidigest.cleanup digests --days "$RETENTION_DAYS"
+
+      - name: 提交摘要與去重複狀態
+        run: |
+          git config user.name "aidigest-bot"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A digests
+          git diff --cached --quiet && exit 0
+          git commit -m "AI 摘要：$(TZ=Asia/Taipei date +%Y-%m-%d)"
+          git push
+
+      - name: 顯示摘要
+        run: cat digests/latest.md >> "$GITHUB_STEP_SUMMARY"

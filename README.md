@@ -1,4 +1,16 @@
-# Anne — 台股每日投資日報 📈
+# Anne — 每日自動化筆記 📈📘🤖
+
+三套每天自動產生筆記並同步到 Notion 的流程，全部跑在 GitHub Actions 上，不需要開電腦：
+
+| 流程 | 台北時間 | 內容 |
+|---|---|---|
+| [📈 台股每日投資日報](#自動排程) | 07:43 | 市場儀表板、三大法人、MACD 選股、必看新聞 |
+| [📘 每日商務英文](#-每日商務英文同步到-notion) | 06:47 | 詞彙、商業文章、文法重點、寫作任務 |
+| [🤖 每日 AI & Data 產業摘要](#-每日-ai--data-產業摘要同步到-notion) | 22:28 | 30 個來源依「DE → AI Engineer 轉職」相關度排序後的中文摘要 |
+
+---
+
+## 📈 台股每日投資日報
 
 每天早上 8:00 自動產生一份日報，內容包含：
 
@@ -78,6 +90,56 @@ MACD 參數 12 / 26 / 9，命名依台灣看盤軟體慣例：DIF（快慢線差
 
 本機預覽（不寫入 Notion）：`ANTHROPIC_API_KEY=sk-ant-xxx python -m dailyenglish --dry-run`
 
+## 🤖 每日 AI & Data 產業摘要（同步到 Notion）
+
+[`.github/workflows/daily-ai-digest.yml`](.github/workflows/daily-ai-digest.yml) 於 **每天台北時間 22:28** 掃描 30 個 AI / Data 來源，依「Data Engineer → AI Engineer 轉職」的相關度排序，用 Claude 整理成繁體中文摘要，並在 Notion 母頁底下新增一個子頁。
+
+每頁內容：
+
+- 💡 **今日重點**：這批文章共同透露的產業訊號
+- 🔥 **今日必讀** / 👀 **值得快速瀏覽** / 🗂️ **存起來參考**，每篇附
+  - 內容（這篇在講什麼）
+  - **對你的意義**（連結到 DE → AI Engineer 的能力落差）
+  - **今天可以做**（10–30 分鐘做得完的具體動作）
+- 🎯 **今天的 30 分鐘學習計畫**：3 個排好優先順序的動作
+
+同一份 Markdown 會存到 [`digests/`](digests/)（最新一份是 [`digests/latest.md`](digests/latest.md)）。
+
+### 來源（30 個 RSS）
+
+| 類別 | 來源 |
+|---|---|
+| 核心 | KDnuggets、Towards Data Science、Analytics Vidhya、**TechOrange 科技報橘**（中文） |
+| 大廠工程部落格 | Netflix、Meta、Pinterest、Airbnb、Databricks、AWS ML、Cloudflare、GitHub AI |
+| 模型／平台官方 | OpenAI、Google AI、Google Research、Microsoft Research、Apple ML、Hugging Face |
+| 實務工作者 | Eugene Yan、Chip Huyen、Lil'Log、Simon Willison、Data Engineering Weekly、Materialized View、SeattleDataGuy、Maarten Grootendorst、The Pragmatic Engineer、Simon Späti、DAGWorks |
+| 研究 | arXiv cs.LG（權重壓低，每天最多佔 1 個名額，避免論文洗版） |
+
+Uber Engineering（`eng.uber.com`）官方沒有 RSS，且 `robots.txt` 禁止抓取 API，所以不自動抓取；摘要底部會保留提醒連結。要新增來源改 [`aidigest/sources.py`](aidigest/sources.py)。
+
+### 排序邏輯
+
+分數 = 來源權重 + 主題關鍵字加權（中英文並存）+ 新鮮度 + 實作型標題加分 − 商業噪音扣分。
+
+八大主題的權重依「對轉職的價值」設定：LLM 應用/RAG/Agent 3.2、評估/LLMOps 3.0、推論/部署 2.8、職涯/學習 2.6、系統設計/大廠實戰 2.4、資料工程/平台 2.2、工具/開源 1.8、模型基礎/研究 1.6。**同時命中「資料工程 + LLM/推論/LLMOps」的文章額外 +3 分** —— 那正是 DE 跨到 AI Engineer 的橋樑內容。細節在 [`aidigest/ranking.py`](aidigest/ranking.py)。
+
+### 自動清理
+
+只保留最近 **30 天**。過期的 `digests/YYYY-MM-DD.md` 會被刪除（仍可在 git 歷史找回），Notion 上過期的頁面會移到垃圾桶（30 天內可復原）。天數可改 workflow 裡的 `RETENTION_DAYS`。
+
+> 清理只會動**標題符合 `AI & Data 每日摘要 YYYY-MM-DD` 格式**的頁面，母頁底下你自己的其他筆記不會被碰到。
+
+**設定步驟（只需做一次）：**
+
+1. **建立 Notion 母頁**：新增一個普通頁面（不是資料庫），命名為「AI & Data 每日摘要」。
+2. **授權**：右上角 **⋯** → **Connections** → 加入現有的 Integration（同一把 `NOTION_TOKEN`）。
+3. **設定 GitHub Secrets**（repo → Settings → Secrets and variables → Actions）：
+   - `NOTION_AI_DIGEST_PAGE_ID`：第 1 步那一頁的網址或 ID
+   - `ANTHROPIC_API_KEY`、`NOTION_TOKEN`：沿用已設定的
+4. 到 **Actions** →「每日 AI & Data 產業摘要」→ **Run workflow** 測試。
+
+本機預覽（不寫入 Notion）：`python -m aidigest --dry-run`
+
 ## 本機執行
 
 ```bash
@@ -88,7 +150,17 @@ python -m pytest -q tests
 
 # 手動同步到 Notion
 NOTION_TOKEN=ntn_xxx NOTION_DATABASE_ID=xxx python -m twdaily.notion
+
+# 每日 AI & Data 摘要
+python -m aidigest --check          # 檢查 30 個來源與 Notion 連線
+python -m aidigest --dry-run        # 不寫入 Notion，只產生 digests/
+python -m aidigest                  # 正式執行
+python -m aidigest.cleanup digests --days 30 --dry-run   # 看清理會刪什麼
 ```
+
+> 在 Windows 本機跑時，若 `requests` 出現 `CERTIFICATE_VERIFY_FAILED`，
+> 裝 `pip install truststore` 即可（`aidigest/__init__.py` 會自動改用作業系統憑證庫）。
+> GitHub Actions 的 Ubuntu 不需要。
 
 ## 資料來源
 
