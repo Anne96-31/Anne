@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-12T00:17:05+08:00",
+ "updated": "2026-10-13T06:12:06+08:00",
  "seen": {
   "https://techorange.com/2026/10/10/machinenative-economy": "2026-10-12",
   "https://towardsdatascience.com/agentic-systems-a-practitioners-guide-to-6-advanced-architectural-patterns": "2026-10-12",
@@ -12,6 +12,20 @@
   "https://towardsdatascience.com/why-temperature-0-isnt-deterministic": "2026-10-12",
   "https://simonwillison.net/2026/Oct/9/deno-is-joining-cloudflare": "2026-10-12",
   "https://www.databricks.com/blog/how-california-built-its-behavioral-health-public-county-profile-databricks": "2026-10-12",
-  "https://simonwillison.net/2026/Oct/10/the-new-york-times": "2026-10-12"
+  "https://simonwillison.net/2026/Oct/10/the-new-york-times": "2026-10-12",
+  "https://arxiv.org/abs/2610.13325": "2026-10-13",
+  "https://techorange.com/2026/10/12/teamt5-aiagent": "2026-10-13",
+  "https://techorange.com/2026/10/12/ikala-aimarketing-agentic-commerce-tmmlu": "2026-10-13",
+  "https://github.blog/ai-and-ml/github-copilot/github-copilot-app-for-beginners-how-to-teach-copilot-about-your-codebase": "2026-10-13",
+  "https://techorange.com/2026/10/12/dominos-mcdonalds-ai": "2026-10-13",
+  "https://towardsdatascience.com/we-specified-an-ai-agent-in-2016-we-called-it-analytics": "2026-10-13",
+  "https://aws.amazon.com/blogs/machine-learning/accessing-openai-gpt-models-on-amazon-bedrock-with-global-cross-region-inference-in-thailand-malaysia-singapore-indonesia-and-taiwan": "2026-10-13",
+  "https://aws.amazon.com/blogs/machine-learning/run-multi-node-inference-workloads-using-ray-llm-deep-learning-containers": "2026-10-13",
+  "https://engineering.fb.com/2026/10/12/ml-applications/turning-opportunistic-ai-inference-capacity-into-better-ads-recommendations": "2026-10-13",
+  "https://www.analyticsvidhya.com/blog/2026/10/llm-batching": "2026-10-13",
+  "https://simonwillison.net/2026/Oct/12/python-3-15": "2026-10-13",
+  "https://www.kdnuggets.com/the-rise-of-ai-software-clones-why-rea-and-artcraft-are-going-viral": "2026-10-13",
+  "https://www.kdnuggets.com/chatgpt-vs-claude-vs-gemini-for-data-science-work-heres-what-i-found": "2026-10-13",
+  "https://towardsdatascience.com/i-built-a-trap-for-ai-image-judges-they-walked-into-a-different-one": "2026-10-13"
  }
 }
