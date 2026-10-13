@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-13T06:12:06+08:00",
+ "updated": "2026-10-14T04:18:54+08:00",
  "seen": {
   "https://techorange.com/2026/10/10/machinenative-economy": "2026-10-12",
   "https://towardsdatascience.com/agentic-systems-a-practitioners-guide-to-6-advanced-architectural-patterns": "2026-10-12",
@@ -26,6 +26,20 @@
   "https://simonwillison.net/2026/Oct/12/python-3-15": "2026-10-13",
   "https://www.kdnuggets.com/the-rise-of-ai-software-clones-why-rea-and-artcraft-are-going-viral": "2026-10-13",
   "https://www.kdnuggets.com/chatgpt-vs-claude-vs-gemini-for-data-science-work-heres-what-i-found": "2026-10-13",
-  "https://towardsdatascience.com/i-built-a-trap-for-ai-image-judges-they-walked-into-a-different-one": "2026-10-13"
+  "https://towardsdatascience.com/i-built-a-trap-for-ai-image-judges-they-walked-into-a-different-one": "2026-10-13",
+  "https://www.kdnuggets.com/the-roadmap-to-mastering-agentic-ai-systems-in-2026": "2026-10-14",
+  "https://techorange.com/2026/10/13/microsoft-maia-300-ai-chip": "2026-10-14",
+  "https://blog.cloudflare.com/rewinding-the-exponential": "2026-10-14",
+  "https://techorange.com/2026/10/13/microsoft-taiwan-ai-agent": "2026-10-14",
+  "https://techorange.com/2026/10/13/rmn-boom-headaches-cmos": "2026-10-14",
+  "https://www.analyticsvidhya.com/blog/2026/10/openai-decisions-api": "2026-10-14",
+  "https://www.ssp.sh/blog/why-yet-another-oss-sl": "2026-10-14",
+  "https://simonwillison.net/2026/Oct/13/geoffrey-huntley": "2026-10-14",
+  "https://machinelearning.apple.com/research/distributed-gpu-cloud": "2026-10-14",
+  "https://aws.amazon.com/blogs/machine-learning/mixture-of-experts-kernel-engineering-on-amazon-sagemaker-ai": "2026-10-14",
+  "https://towardsdatascience.com/your-agent-doesnt-need-more-freedom": "2026-10-14",
+  "https://aws.amazon.com/blogs/machine-learning/building-agents-that-transact-with-anchor-browser-and-agentcore-payments": "2026-10-14",
+  "https://towardsdatascience.com/how-to-leverage-nlp-for-product-data-science": "2026-10-14",
+  "https://www.kdnuggets.com/5-autohotkey-scripts-for-data-scientists": "2026-10-14"
  }
 }
