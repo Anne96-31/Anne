@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-14T04:18:54+08:00",
+ "updated": "2026-10-15T02:46:26+08:00",
  "seen": {
   "https://techorange.com/2026/10/10/machinenative-economy": "2026-10-12",
   "https://towardsdatascience.com/agentic-systems-a-practitioners-guide-to-6-advanced-architectural-patterns": "2026-10-12",
@@ -40,6 +40,20 @@
   "https://towardsdatascience.com/your-agent-doesnt-need-more-freedom": "2026-10-14",
   "https://aws.amazon.com/blogs/machine-learning/building-agents-that-transact-with-anchor-browser-and-agentcore-payments": "2026-10-14",
   "https://towardsdatascience.com/how-to-leverage-nlp-for-product-data-science": "2026-10-14",
-  "https://www.kdnuggets.com/5-autohotkey-scripts-for-data-scientists": "2026-10-14"
+  "https://www.kdnuggets.com/5-autohotkey-scripts-for-data-scientists": "2026-10-14",
+  "https://techorange.com/2026/10/14/predictive-scoring-work-ai-kroger": "2026-10-15",
+  "https://techorange.com/2026/10/14/govern-ai-and-low-code-tools": "2026-10-15",
+  "https://techorange.com/2026/10/14/meta-introducing-your-algorithm-facebook": "2026-10-15",
+  "https://blog.cloudflare.com/hyperdrive-mysql": "2026-10-15",
+  "https://www.databricks.com/blog/practical-guide-real-time-analytics-2026": "2026-10-15",
+  "https://www.databricks.com/blog/what-htap-plain-english-guide-hybrid-transactionalanalytical-processing": "2026-10-15",
+  "https://www.kdnuggets.com/5-fun-projects-for-llm-inference-engineering": "2026-10-15",
+  "https://aws.amazon.com/blogs/machine-learning/build-self-improving-document-processing-using-amazon-bedrock-agentcore": "2026-10-15",
+  "https://openai.com/index/the-eus-next-chapter-in-ai-is-agentic": "2026-10-15",
+  "https://aws.amazon.com/blogs/machine-learning/build-long-horizon-agents-with-grok-4-7-on-amazon-bedrock": "2026-10-15",
+  "https://towardsdatascience.com/a-scaffold-at-the-gate-building-ai-applications-that-can-evolve": "2026-10-15",
+  "https://towardsdatascience.com/coding-agents-can-solve-the-task-but-how-much-work-did-they-waste": "2026-10-15",
+  "https://www.analyticsvidhya.com/blog/2026/10/gemini-4-argon-review": "2026-10-15",
+  "https://www.kdnuggets.com/few-shot-text-classification-with-scikit-llm": "2026-10-15"
  }
 }
