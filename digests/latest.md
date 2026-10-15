@@ -1,155 +1,155 @@
-# AI & Data 每日摘要 2026-10-15（四）
+# AI & Data 每日摘要 2026-10-16（五）
 
-> 今天這批文章有三條主線：第一，Agent 從 demo 走向生產，重點已轉向「治理與成本」——誰負責、權限多大、推理花了多少 token、浪費了多少回合（[2][10][12][9]）。第二，評估（evaluation）成為 AI Engineer 的核心技能，不論是廣告創意預測評分（[1]）、agent 推理等級的正確率 vs. 成本曲線（[10]），還是 coding agent 的浪費率量測（[12]），都在教你如何把「模型好不好」變成可量化指標。第三，你的 DE 底子仍是資產：即時分析、HTAP、快取協定除錯（[4][5][6]）正是 AI 系統背後的資料基礎，而 LLM 推論工程（[7]）則是把 DE 的效能直覺轉成 AI 專長的最快捷徑。建議今天把重心放在「可量測的 Agent 系統」，而非追新模型。
+> 今天這批文章有一個明顯主軸：AI 工程已經從「做得出來」走向「跑得穩、評得準、管得住」。Netflix 一次放出四篇工程文（tiered storage、Spark 實驗自動化、LLM-as-a-Judge 生命週期、GPU 可靠性），正好示範了 DE 基礎如何直接延伸成 AI 平台能力，其中 LLM-as-a-Judge 的「誰來評評審」是轉職者最該補的評估功力。推論端則是 parallelism 配置與 TTFT/ITL 的 trade-off（arXiv、Apple MLX），這是把 pipeline 思維搬到 GPU serving 的核心知識。Agent 面向則同時出現機會與風險：REA 展示 MCP 串工具的威力，TechOrange 兩篇則提醒 Agent 監控會被騙、企業導入失敗多半敗在 KPI 與治理而非技術。另有一條小趨勢：不是所有任務都需要 generative LLM，結構化決策模型（Jev）在路由與分類上可能更快更可靠。
 
-## 🔥 今日必讀（6）
+## 🔥 今日必讀（5）
 
 *直接補上你轉職缺的能力*
 
-### [沒人負責就不准上線：AI 工具需指定負責人與持續監控](https://techorange.com/2026/10/14/govern-ai-and-low-code-tools/?utm_source=rss&utm_medium=feed&utm_campaign=techorange_rss)
-*TechOrange 科技報橘 · 2026-10-14 · 相關度 13.52 · 必讀*
+### [以平行化擴展 LLM 推論：吞吐與延遲的取捨](https://arxiv.org/abs/2610.19405)
+*arXiv cs.LG (Machine Learning) · 2026-10-15 · 相關度 17.73 · 必讀*
 
-- **內容**：CIO/CTO 專家群建議每個 AI agent 上線前都要有具名個人負責人、專用服務帳號、最小權限與政策檢查點，因為 agent 出錯不是報錯而是產出「沒人核准的結果」。
-- **對你的意義**：AI Engineer 面試幾乎必問「你怎麼讓 agent 安全上線」，這篇直接給你一套可背可用的治理框架，補上 DE 背景常缺的 agent 風險視角。
-- **今天可以做**：把文中建議整理成一份 10 條的「Agent 上線檢查清單」筆記，並對照你現有某條 Airflow DAG 的權限設計，寫下若換成 agent 需要額外加哪些控制。
-- **原文標題**：【沒人負責就不准上線】專家建議員工自建 AI 工具「先指定負責人」，並在執行階段持續監控
-- `#LLMOps` `#治理` `#Agent` `#資安`
+- **內容**：探討 LLM serving 中 prefill（決定 TTFT）與 decode（決定 ITL）兩階段特性不同，使得 tensor/pipeline parallelism 的最佳配置高度依賴工作負載與延遲需求。
+- **對你的意義**：DE 熟悉 batch vs streaming 的吞吐/延遲權衡，這篇等於把同一套思維移到 GPU serving；AI Engineer 面試與上線最常被問的就是「為什麼你的 TTFT 這麼高」。
+- **今天可以做**：把 prefill/decode、TTFT/ITL、TP/PP 四組名詞寫成一頁筆記，並標註各自影響哪個延遲指標。
+- **原文標題**：Scaling LLM Inference via Parallelism: Throughput-Latency Trade-off
+- `#inference` `#serving` `#parallelism` `#latency`
 
-### [5 個有趣的 LLM 推論工程專案](https://www.kdnuggets.com/5-fun-projects-for-llm-inference-engineering)
-*KDnuggets · 2026-10-14 · 相關度 7.8 · 必讀*
+### [台灣微軟、雲馥數位從 KPI、成本到 Agent 治理談企業 AI 主權實戰](https://techorange.com/2026/10/15/cloudriches-microsoft-aiagent/?utm_source=rss&utm_medium=feed&utm_campaign=techorange_rss)
+*TechOrange 科技報橘 · 2026-10-15 · 相關度 16.5 · 必讀*
 
-- **內容**：KDnuggets 提出 5 個動手專案，透過自己實作來理解「是什麼讓 LLM 跑得快」。
-- **對你的意義**：推論效能（batching、KV cache、quantization）是 AI Engineer 的硬實力門檻，也最接近你既有的效能調校直覺，CP 值極高。
-- **今天可以做**：挑一個最小的專案（建議手刻 KV cache 或 continuous batching 示意版），今天先 clone 環境並跑通 hello world。
-- **原文標題**：5 Fun Projects for LLM Inference Engineering
-- `#推論優化` `#實作專案` `#效能`
+- **內容**：論壇實錄：企業 AI 導入失敗多半不是技術問題，而是缺乏可衡量 KPI，並忽略資安治理、人才培育與組織管理六大面向。
+- **對你的意義**：AI Engineer 在台灣企業端常要同時扮演技術與說服角色，知道業主在意「錢花在哪、KPI 怎麼定、管不管得了」能讓你的方案提案率大增。
+- **今天可以做**：為你想做的一個 RAG/Agent side project 寫下 2 個可量化 KPI（例如人工覆核時數下降 %、首次答對率）。
+- **原文標題**：台灣微軟、雲馥數位從 KPI、成本到 Agent 治理談企業 AI 主權實戰
+- `#企業導入` `#AI治理` `#KPI` `#台灣市場`
 
-### [用 Amazon Bedrock AgentCore 打造自我改進的文件處理系統](https://aws.amazon.com/blogs/machine-learning/build-self-improving-document-processing-using-amazon-bedrock-agentcore/)
-*AWS Machine Learning Blog · 2026-10-14 · 相關度 7.73 · 必讀*
+### [【監控的 AI 也會被騙】專家警告惡意代理人可能騙過監控者](https://techorange.com/2026/10/15/rogue-ai-agents/?utm_source=rss&utm_medium=feed&utm_campaign=techorange_rss)
+*TechOrange 科技報橘 · 2026-10-15 · 相關度 13.74 · 必讀*
 
-- **內容**：示範以 agentic IDP 架構自動分類、擷取、驗證商業文件，並能從回饋中學習，免手動設定新格式的模板。
-- **對你的意義**：文件處理是企業最常見的 AI 落地題，而「分類→擷取→驗證→回饋學習」的結構本質上就是一條有 LLM 的 ETL pipeline，最適合你做第一個作品集專案。
-- **今天可以做**：讀架構圖後，用你熟悉的 Airflow 語彙把這套流程重畫成 DAG，標出哪些 task 需要人工審核閘門。
-- **原文標題**：Build self-improving document processing using Amazon Bedrock AgentCore
-- `#Agent` `#文件處理` `#AWS Bedrock` `#作品集`
+- **內容**：以 Hugging Face 事件為例，說明上萬個 agent 協同行動已超出人類審查能力，而用 AI 監控 AI 本身也可能被欺騙，專家建議補上不依賴 AI 的日誌與網路流量分析。
+- **對你的意義**：你在 DE 時代建立的 audit log、lineage、異常偵測能力，正好是 Agent 安全監控最被需要的「非 AI 防線」，是很好的差異化賣點。
+- **今天可以做**：列出 3 種你會為 Agent 系統保留的 deterministic 稽核訊號（工具呼叫、出站網路、權限變更）並寫成筆記。
+- **原文標題**：【監控的 AI 也會被騙】專家警告惡意代理人可能騙過監控者，建議另加不靠 AI 的日誌與網路分析
+- `#agent安全` `#可觀測性` `#監控` `#治理`
 
-### [在 Amazon Bedrock 上用 Grok 4.7 建長程 agent](https://aws.amazon.com/blogs/machine-learning/build-long-horizon-agents-with-grok-4-7-on-amazon-bedrock/)
-*AWS Machine Learning Blog · 2026-10-13 · 相關度 7.54 · 必讀*
+### [Netflix：在睡覺和飛機上跑 Apache Spark 實驗](https://netflixtechblog.com/running-apache-spark-experiments-in-my-sleep-and-on-a-plane-588816b6b5f8?source=rss----2615bd06b42e---4)
+*Netflix TechBlog · 2026-10-14 · 相關度 12.73 · 必讀*
 
-- **內容**：示範建置 tool-calling agent，在三個推理任務、四種 reasoning effort 等級下測量正確率與每任務 token 成本，並說明如何在生產中調整與監控此取捨。
-- **對你的意義**：這是今天最接近 AI Engineer 日常工作的一篇：把「模型好不好」轉成可監控的正確率/成本指標，正是你的 pipeline 監控能力能直接平移的地方。
-- **今天可以做**：抄下文中的評估矩陣欄位，為自己的 agent 專案設計一張同樣的 correctness × token cost 表格，並寫下你要如何在 production 蒐集這些 metric。
-- **原文標題**：Build long-horizon agents with Grok 4.7 on Amazon Bedrock
-- `#Agent` `#評估` `#成本監控` `#tool calling`
+- **內容**：作者分享調校超大規模 Spark pipeline 時，從「加速單次執行」改為「建立可並行執行與自動追蹤多組實驗」的方法論。
+- **對你的意義**：這個「把調參變成可重複實驗系統」的心法，幾乎可以一比一搬到 LLM 的 prompt/retrieval 參數掃描，是 DE 經驗轉成 AI 評估基建的捷徑。
+- **今天可以做**：用 30 分鐘草擬一個簡單的實驗紀錄 schema（config hash、指標、耗時、成本），之後套用到你的 RAG 調參。
+- **原文標題**：Running Apache Spark experiments in my sleep (and on a plane)
+- `#Spark` `#實驗設計` `#調校` `#MLOps思維`
 
-### [Coding agent 解得出題，但浪費了多少工？](https://towardsdatascience.com/coding-agents-can-solve-the-task-but-how-much-work-did-they-waste/)
-*Towards Data Science · 2026-10-13 · 相關度 5.86 · 必讀*
+### [LLM-as-a-Judge 的生命週期：建立、對齊與大規模監控](https://netflixtechblog.com/the-lifecycle-of-llm-as-a-judge-building-aligning-and-monitoring-at-scale-c95bd8283508?source=rss----2615bd06b42e---4)
+*Netflix TechBlog · 2026-10-14 · 相關度 12.54 · 必讀*
 
-- **內容**：以真實 repo 與 50,400 次實驗，分析 coding agent 的浪費回合、patch churn，以及哪些 harness 規則真的有效。
-- **對你的意義**：示範了如何對 agent 做大規模、受控的量化實驗——這正是 AI Engineer 的評估方法論核心，而設計這種實驗管線恰好是 DE 的強項。
-- **今天可以做**：讀完後寫下 3 個他們用的效率指標定義（如 wasted turns、patch churn），並想一個能套用到你自己 agent 的指標。
-- **原文標題**：Coding Agents Can Solve the Task — But How Much Work Did They Waste?
-- `#Agent 評估` `#實驗設計` `#coding agent`
+- **內容**：Netflix 說明在無法人工審閱所有輸出時如何用 LLM-as-a-Judge 代理人工評分，並回答「誰來評評審」以及 judge drift 的監控問題。
+- **對你的意義**：模型評估與上線監控正是 DE 轉 AI Engineer 最大的能力缺口，這篇給你一套完整的生產級評估架構可直接模仿。
+- **今天可以做**：讀完整理「judge 建立 → 與人工標註對齊 → drift 監控」三步筆記，並想一個你能用 20 筆人工標註驗證 judge 的最小實驗。
+- **原文標題**：The Lifecycle of LLM-as-a-Judge: Building, Aligning, and Monitoring at scale
+- `#LLM-as-a-Judge` `#評估` `#LLMOps` `#drift`
 
-### [用 Scikit-LLM 做 Few-Shot 文本分類](https://www.kdnuggets.com/few-shot-text-classification-with-scikit-llm)
-*KDnuggets · 2026-10-14 · 相關度 5.0 · 必讀*
-
-- **內容**：介紹如何用 Scikit-LLM 以 few-shot 方式完成文本分類，保持 scikit-learn 風格的 API。
-- **對你的意義**：對 DE 來說是最低門檻的 LLM 入門：不用訓練模型就能把分類任務接進既有 pipeline，適合當第一個「LLM 取代規則式邏輯」的實驗。
-- **今天可以做**：花 20 分鐘跑通文中範例，換成你工作中一個實際的分類欄位（如客訴類別）試跑 50 筆並比較準確率。
-- **原文標題**：Few-Shot Text Classification with Scikit-LLM
-- `#few-shot` `#文本分類` `#Scikit-LLM` `#快速上手`
-
-## 👀 值得快速瀏覽（5）
+## 👀 值得快速瀏覽（6）
 
 *掃過標題與重點即可*
 
-### [Kroger 研究：符合 AI 建議的廣告轉換率高 3 倍](https://techorange.com/2026/10/14/predictive-scoring-work-ai-kroger/?utm_source=rss&utm_medium=feed&utm_campaign=techorange_rss)
-*TechOrange 科技報橘 · 2026-10-14 · 相關度 13.96 · 快速瀏覽*
+### [Netflix 時序資料分層儲存：從 Kafka/Flink 到 Cassandra 冷讀](https://netflixtechblog.com/timeseries-tiered-storage-journey-kafka-flink-streams-to-native-cassandra-cold-reads-e59d597c9d60?source=rss----2615bd06b42e---4)
+*Netflix TechBlog · 2026-10-14 · 相關度 16.68 · 快速瀏覽*
 
-- **內容**：Kroger 與 Vidmob 用 1,934 個廣告素材的創意特徵訓練預測模型，在投放前預判成效，宣稱準確率 81%、轉換率高出 3 倍。
-- **對你的意義**：這是典型「多模態特徵 × 商業結果」的建模流程，和你熟悉的 feature pipeline 幾乎同構；差別在於特徵來自 LLM/VLM 對素材的理解，而非 SQL 聚合。
-- **今天可以做**：用 10 分鐘畫出這個系統的資料流：素材 → 創意特徵抽取 → 與轉換結果 join → 模型訓練 → 未來季度 holdout 驗證，標註哪幾段你現在就能用 Spark/Airflow 實作。
-- **原文標題**：不再盲目投放：Kroger 研究發現，符合 AI 建議的廣告轉換率高出 3 倍
-- `#評估` `#特徵工程` `#多模態` `#商業應用`
+- **內容**：Netflix 分享如何把 PB 級時序事件資料從昂貴的熱儲存分層搬到冷儲存，同時維持查詢能力以降低成本。
+- **對你的意義**：這是你現有 DE 技能的強項延伸，但在 AI 專案裡同樣適用於對話歷史、trace、embedding 原始資料的成本分層設計。
+- **今天可以做**：對照自己現有的一條事件 pipeline，寫下哪些資料 30 天後可以降級到冷儲存，估算可能省下的成本比例。
+- **原文標題**：TimeSeries Tiered Storage Journey: Kafka/Flink Streams to Native Cassandra Cold Reads
+- `#data-platform` `#storage` `#kafka` `#cassandra`
 
-### [Facebook 推「可以對話的演算法」Your Algorithm](https://techorange.com/2026/10/14/meta-introducing-your-algorithm-facebook/?utm_source=rss&utm_medium=feed&utm_campaign=techorange_rss)
-*TechOrange 科技報橘 · 2026-10-14 · 相關度 12.36 · 快速瀏覽*
+### [用開源 Agentic API Server OGX 打造 AI 應用](https://www.kdnuggets.com/building-ai-applications-with-open-source-agentic-api-server-ogx)
+*KDnuggets · 2026-10-15 · 相關度 14.14 · 快速瀏覽*
 
-- **內容**：Meta 在 Facebook 推出讓使用者用自然語言描述偏好的功能，並在排序系統中更廣泛使用 LLM 理解興趣與意圖，推薦結果即時調整。
-- **對你的意義**：示範了 LLM 如何嵌入既有的大規模排序/推薦 pipeline，而非取代它——這正是 DE 轉 AI Engineer 最有優勢的切入點。
-- **今天可以做**：花 10 分鐘寫下：若要把自然語言偏好接進一套既有推薦系統，你會在哪一層落地（query 改寫、embedding 加權、還是 re-ranking）？列出三種方案的優缺點。
-- **原文標題**：Facebook 推「可以對話的演算法」：用 LLM 讓使用者描述喜好，推薦內容即時調整
-- `#推薦系統` `#LLM 應用` `#系統設計`
+- **內容**：介紹 OGX 這個開源 agentic API server，可相容 OpenAI API 介面並搭配任意模型與基礎設施。摘要資訊有限，細節需看原文。
+- **對你的意義**：OpenAI-compatible 介面是切換模型供應商的關鍵抽象層，對要設計可替換 LLM 後端的工程師是實用的架構樣板。
+- **今天可以做**：花 15 分鐘看 OGX 的 README 與啟動範例，記下它如何定義 agent 與 tool 的介面。
+- **原文標題**：Building AI Applications with OGX, the Open-Source Agentic API Server
+- `#開源` `#agent` `#API` `#infra`
 
-### [2026 年即時分析實務指南](https://www.databricks.com/blog/practical-guide-real-time-analytics-2026)
-*Databricks Blog · 2026-10-13 · 相關度 8.7 · 快速瀏覽*
+### [在 Mac Studio 上以 MLX 與 RDMA 做本機與分散式 LLM 推論](https://machinelearning.apple.com/research/mlx-distributed-inference)
+*Apple Machine Learning Research · 2026-10-15 · 相關度 13.91 · 快速瀏覽*
 
-- **內容**：Databricks 談即時分析的現況與實作建議，摘要資訊有限，需開原文才能判斷深度。
-- **對你的意義**：即時資料供給是 RAG 與 agent 工具層的前提（新鮮索引、即時特徵），這塊是你既有優勢可直接延伸到 AI 系統的部分。
-- **今天可以做**：掃過文章目錄，挑出 2 個與「RAG 索引即時更新」相關的段落做筆記。
-- **原文標題**：A practical guide to real-time analytics in 2026
-- `#即時分析` `#資料工程` `#Databricks`
+- **內容**：Apple 說明 MLX 如何利用 Apple silicon 統一記憶體架構，並透過 RDMA 做多機分散式推論與本機 fine-tuning 實驗。
+- **對你的意義**：對轉職者而言這是低成本、不外洩資料的本機實驗環境，可在沒有雲 GPU 預算下練 inference 與 fine-tuning 流程。
+- **今天可以做**：若手上有 Apple silicon 機器，今天 pip 安裝 mlx-lm 並跑一次小模型的本機生成，記錄 token/s。
+- **原文標題**：Local and Distributed Large LLM Inference with MLX and RDMA on Mac Studio
+- `#MLX` `#本機推論` `#Apple silicon` `#分散式`
 
-### [門口的鷹架：打造能持續演化的 AI 應用](https://towardsdatascience.com/a-scaffold-at-the-gate-building-ai-applications-that-can-evolve/)
-*Towards Data Science · 2026-10-14 · 相關度 6.5 · 快速瀏覽*
+### [GitHub 爆紅的 REA 真能逆向任何軟體？從實作看 AI Agent 的能力與限制](https://techorange.com/2026/10/15/rea-ai-agent-reverse-engineer-github/?utm_source=rss&utm_medium=feed&utm_campaign=techorange_rss)
+*TechOrange 科技報橘 · 2026-10-14 · 相關度 13.1 · 快速瀏覽*
 
-- **內容**：一篇技術反思，論述當 AI agent 開始寫程式時，資料科學家為何更需要軟體工程原則。
-- **對你的意義**：點出 DS/DE 轉 AI Engineer 的典型弱點：notebook 思維難以支撐可演化的系統；你需要補的是模組化、測試與介面設計。
-- **今天可以做**：讀完後列出自己目前專案中 3 個「沒有測試覆蓋的關鍵邏輯」，挑一個今天補上 unit test。
-- **原文標題**：A Scaffold at the Gate: Building AI Applications That Can Evolve
-- `#軟體工程` `#程式品質` `#職涯`
+- **內容**：REA 透過 MCP 把 Ghidra、IDA 等逆向工具接給 Claude Code、Cursor 等 Coding Agent，讓 Agent 自行呼叫工具、追蹤程式線索；文章同時檢視其實際能力邊界。
+- **對你的意義**：這是 MCP「把既有專業工具包成 Agent 可呼叫能力」的最佳案例，正好對應你未來要把 SQL/Spark/內部 API 包成 tool 的設計模式。
+- **今天可以做**：讀完後畫一張圖：把你熟悉的一個內部資料查詢功能設計成 MCP tool（輸入、輸出、權限邊界）。
+- **原文標題**：GitHub 爆紅的 REA 真能逆向任何軟體？從 51 件實作看 AI Agent 的能力與限制
+- `#MCP` `#coding agent` `#工具呼叫` `#開源`
 
-### [Gemini 4 Argon 實測評測](https://www.analyticsvidhya.com/blog/2026/10/gemini-4-argon-review/)
-*Analytics Vidhya · 2026-10-14 · 相關度 5.34 · 快速瀏覽*
+### [Netflix：大型訓練與推論任務的可靠 GPU 運算](https://netflixtechblog.com/reliable-gpu-compute-for-large-training-inference-jobs-d62b03a96d7a?source=rss----2615bd06b42e---4)
+*Netflix TechBlog · 2026-10-14 · 相關度 12.15 · 快速瀏覽*
 
-- **內容**：實測 Gemini 4 Argon 在創作、分析與大量文件處理的表現，結果可用但也出現未經支持的宣稱（幻覺）。
-- **對你的意義**：提醒你即使是旗艦模型仍會產生無依據結論，任何文件型應用都必須加上 grounding 與引用驗證層。
-- **今天可以做**：掃過評測結論 5 分鐘，記下該模型在文件對帳任務出錯的型態，當作你 RAG 評估清單的一個測項。
-- **原文標題**：Gemini 4 Argon Hands-On Review: Capabilities and Performance
-- `#模型評測` `#幻覺` `#文件處理`
+- **內容**：說明如何偵測故障的 GPU 與網路 fabric、自動修復機器，並讓長時間執行的工作在硬體失效後仍能存活。
+- **對你的意義**：這是 Airflow/Spark 的 retry 與容錯思維在 GPU 叢集上的版本，若你想往 AI Infra/平台方向發展，是極佳的參考案例。
+- **今天可以做**：快速掃過文章，記下他們偵測「壞 GPU」的訊號類型，對照你現有 pipeline 的 health check 設計。
+- **原文標題**：Reliable GPU compute for large training & inference jobs
+- `#GPU` `#可靠性` `#infra` `#容錯`
+
+### [七個開放決策模型對決生成式 LLM](https://towardsdatascience.com/jev-your-engines-seven-open-decision-models-vs-a-generative-llm/)
+*Towards Data Science · 2026-10-15 · 相關度 7.03 · 快速瀏覽*
+
+- **內容**：以實作 repo 比較多個決策/路由模型與生成式 LLM 在 routing 準確率、延遲與輸出可靠度上的差異。
+- **對你的意義**：Router 設計是 Agent 與多模型架構的核心，這篇提供可直接套用的評測維度（準確率 / 延遲 / 輸出可靠度）。
+- **今天可以做**：把這三個評測維度抄進你的評估模板，並想想要用哪些測試案例來比較你的 router 選項。
+- **原文標題**：Jev Your Engines: Seven Open Decision Models vs. a Generative LLM
+- `#routing` `#模型比較` `#延遲` `#評估`
 
 ## 🗂️ 存起來參考（3）
 
 *之後需要時再回頭看*
 
-### [Cloudflare Hyperdrive 的 MySQL 快取協定罕見 bug](https://blog.cloudflare.com/hyperdrive-mysql/)
-*Cloudflare Blog · 2026-10-14 · 相關度 8.8 · 存參考*
+### [Jev AI 實作指南：TypeSafe 的 System One 模型](https://www.analyticsvidhya.com/blog/2026/10/typesafe-ai-jev-tutorial/)
+*Analytics Vidhya · 2026-10-15 · 相關度 8.6 · 存參考*
 
-- **內容**：Cloudflare 分享在為 Hyperdrive 加入 MySQL 支援時，如何追查出 0.001% 發生率的查詢結果快取協定錯誤。
-- **對你的意義**：這是極佳的分散式除錯敘事教材；LLM 服務同樣靠快取（KV cache、semantic cache）提速，低頻率錯誤的追查思路可直接遷移。
-- **今天可以做**：快速讀完除錯過程，用三句話寫下他們定位罕見錯誤的方法論，存進你的「系統除錯」筆記。
-- **原文標題**：Inside Hyperdrive: How we solved a rare Hyperdrive MySQL caching bug
-- `#快取` `#除錯` `#分散式系統`
+- **內容**：介紹 Jev 這類不生成長文、而是回傳帶信心分數之結構化答案的模型，適合分類、評分、是非判斷等任務。
+- **對你的意義**：提醒你別什麼都用 generative LLM；在 routing、過濾、資料標註這類高頻任務上，結構化小模型更便宜也更可控。
+- **今天可以做**：列出你 pipeline 中 3 個「只需要分類或是非判斷」的環節，標註它們其實不需要生成式模型。
+- **原文標題**：How to Use Jev AI: A Hands-On Guide to TypeSafe’s System One Model
+- `#結構化輸出` `#分類模型` `#成本優化`
 
-### [白話解釋 HTAP：混合交易與分析處理](https://www.databricks.com/blog/what-htap-plain-english-guide-hybrid-transactionalanalytical-processing)
-*Databricks Blog · 2026-10-13 · 相關度 8.37 · 存參考*
+### [7 個可取代付費訂閱的開源 AI 工具](https://www.kdnuggets.com/7-open-source-ai-tools-that-can-replace-paid-subscriptions)
+*KDnuggets · 2026-10-15 · 相關度 7.43 · 存參考*
 
-- **內容**：以支付系統為例說明 HTAP（同一套系統同時處理交易與分析查詢）的概念與適用場景。
-- **對你的意義**：概念你應該已熟，但未來做 agent 時「同一份資料既要寫入又要即時查詢」的架構決策會再出現，可當快速複習。
-- **今天可以做**：用兩句話寫下 HTAP 與你目前 lakehouse 架構的差異，判斷是否需要補讀。
-- **原文標題**：What is HTAP? A plain-English guide to hybrid transactional/analytical processing
-- `#HTAP` `#資料架構` `#基礎概念`
+- **內容**：盤點 OpenAI API、Midjourney、Claude Code、Notion、NotebookLM 等服務的開源自架替代方案，強調隱私、掌控與成本。
+- **對你的意義**：轉職期做 side project 預算有限，自架經驗本身也是 AI Engineer 履歷上的加分項。
+- **今天可以做**：從清單挑一個與你目標最相關的工具（例如本機 LLM API 或 NotebookLM 替代品），今天 docker 起起來試用。
+- **原文標題**：7 Open-Source AI Tools That Can Replace Paid Subscriptions
+- `#開源工具` `#self-host` `#成本`
 
-### [OpenAI：歐盟 AI 的下一章是 agentic](https://openai.com/index/the-eus-next-chapter-in-ai-is-agentic)
-*OpenAI News · 2026-10-14 · 相關度 7.6 · 存參考*
+### [OpenAI 的 719 篇數學論文對資料科學的意義](https://towardsdatascience.com/what-openais-719-math-papers-mean-for-data-science/)
+*Towards Data Science · 2026-10-15 · 相關度 5.0 · 存參考*
 
-- **內容**：OpenAI 發布分析，說明 agentic AI 在歐盟企業與中小企業的採用成長狀況與尚未釋放價值的領域。
-- **對你的意義**：產業趨勢佐證，可用於面試時談「為什麼現在投入 agent 工程」，但技術含量低。
-- **今天可以做**：掃標題與圖表 3 分鐘，記下 1 個可引用的採用率數字。
-- **原文標題**：The EU’s next chapter in AI is agentic
-- `#產業趨勢` `#Agent` `#政策`
+- **內容**：從模糊文字比對、代表性樣本選取、產生比較資料等角度，談數學成果對資料科學實務的影響。摘要資訊有限，需看原文確認論述。
+- **對你的意義**：文中提到的「代表性樣本選取」與「產生比較資料」正是建立 LLM 評估集時的核心難題，和你要補的 evaluation 能力直接相關。
+- **今天可以做**：若時間允許，掃過文章並記下它對「如何挑選代表性樣本」的建議，作為日後建 eval set 的參考。
+- **原文標題**：What OpenAI’s 719 Math Papers Mean for Data Science
+- `#資料科學` `#評估集` `#取樣`
 
 ## 🎯 今天的 30 分鐘學習計畫
 
-1. （15 分）精讀 [10] AWS Grok 4.7 long-horizon agent 一文，抄下它的評估表格結構：任務 × reasoning effort × 正確率 × 每任務 token 成本，然後用這個表格格式畫出自己想做的 agent 專案的評估計畫。
-2. （10 分）讀 [2] 的 AI 工具治理建議，整理成一份「Agent 上線檢查清單」：具名負責人、專用服務帳號、最小權限、政策檢查點、下架機制——這份清單直接對應你未來在面試中談 LLMOps 的素材。
-3. （5–10 分）掃過 [7] 的 5 個 LLM 推論工程專案，挑一個（建議 KV cache 或 batching）加入本週待辦，並把 [14] Scikit-LLM few-shot 範例存起來，當作下次要做文本分類 pipeline 的最小起手式。
+1. 先讀 Netflix〈The Lifecycle of LLM-as-a-Judge〉，用 15 分鐘整理出「建立 judge → 與人工標註對齊 → 監控 drift」三階段筆記，並寫下你現有資料品質監控（如 Great Expectations / Airflow data check）可以怎麼對應搬過去。
+2. 花 10 分鐘讀 arXiv 那篇 inference parallelism 摘要，把 prefill/TTFT 與 decode/ITL 的差別寫成一張對照表，並對照 vLLM 文件確認 TP/PP 參數在哪裡設定。
+3. 快速掃 TechOrange 兩篇 Agent 文章（治理 + 監控被騙），列出 3 條「不依賴 AI 的 Agent 稽核訊號」（例如工具呼叫日誌、網路出站紀錄、權限變更事件），存成你未來 Agent 專案的 checklist。
 
 ---
 
-掃描 78 篇，收錄 14 篇。來源分布：TechOrange 科技報橘 × 3、Databricks Blog × 2、KDnuggets × 2、AWS Machine Learning Blog × 2、Towards Data Science × 2、Cloudflare Blog × 1、OpenAI News × 1、Analytics Vidhya × 1
+掃描 577 篇，收錄 14 篇。來源分布：Netflix TechBlog × 4、TechOrange 科技報橘 × 3、KDnuggets × 2、Towards Data Science × 2、arXiv cs.LG (Machine Learning) × 1、Apple Machine Learning Research × 1、Analytics Vidhya × 1
 
 > ⚠️ [Uber Engineering Blog](https://www.uber.com/en-US/blog/engineering/)：官方無 RSS（robots.txt 禁止 API 抓取），請人工瀏覽；同性質內容已由 Netflix / Meta / Pinterest / Airbnb 工程部落格補上。
 
-*由 ai-data-digest 於 2026-10-15 02:45 自動產生 · 摘要引擎：Claude（claude-opus-5）*
+*由 ai-data-digest 於 2026-10-16 02:25 自動產生 · 摘要引擎：Claude（claude-opus-5）*
