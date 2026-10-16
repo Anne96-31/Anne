@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-16T02:26:33+08:00",
+ "updated": "2026-10-17T02:14:08+08:00",
  "seen": {
   "https://techorange.com/2026/10/10/machinenative-economy": "2026-10-12",
   "https://towardsdatascience.com/agentic-systems-a-practitioners-guide-to-6-advanced-architectural-patterns": "2026-10-12",
@@ -68,6 +68,20 @@
   "https://www.analyticsvidhya.com/blog/2026/10/typesafe-ai-jev-tutorial": "2026-10-16",
   "https://www.kdnuggets.com/7-open-source-ai-tools-that-can-replace-paid-subscriptions": "2026-10-16",
   "https://towardsdatascience.com/jev-your-engines-seven-open-decision-models-vs-a-generative-llm": "2026-10-16",
-  "https://towardsdatascience.com/what-openais-719-math-papers-mean-for-data-science": "2026-10-16"
+  "https://towardsdatascience.com/what-openais-719-math-papers-mean-for-data-science": "2026-10-16",
+  "https://techorange.com/2026/10/16/meta-muse-spark-open-ai": "2026-10-17",
+  "https://arxiv.org/abs/2609.35750": "2026-10-17",
+  "https://techorange.com/2026/10/15/datasys-agentspace": "2026-10-17",
+  "https://aws.amazon.com/blogs/machine-learning/introducing-reflection-beam-an-open-weight-model-for-agentic-coding-on-aws": "2026-10-17",
+  "https://techorange.com/2026/10/16/keypasco-ai-agent-summit": "2026-10-17",
+  "https://aws.amazon.com/blogs/machine-learning/metas-muse-spark-open-now-available-in-amazon-sagemaker-jumpstart": "2026-10-17",
+  "https://netflixtechblog.com/ontology-driven-observability-building-an-end-to-end-knowledge-graph-at-netflix-scale-421392cf5adf": "2026-10-17",
+  "https://techorange.com/2026/10/15/hesai-kosmo-spatial-camera-robotics": "2026-10-17",
+  "https://netflixtechblog.com/behind-the-scenes-evolving-netflixs-ads-event-pipeline-for-live-part-ii-826ebf9ad9fb": "2026-10-17",
+  "https://engineering.fb.com/2026/10/15/production-engineering/2026-world-cup-record-traffic-reliability-at-scale": "2026-10-17",
+  "https://huggingface.co/blog/nvidia/scaling-indic-pretraining": "2026-10-17",
+  "https://www.analyticsvidhya.com/blog/2026/10/rag-hallucination-filter-using-jev": "2026-10-17",
+  "https://towardsdatascience.com/do-you-still-own-the-code-your-ai-wrote-i-built-codeownership-to-measure-it": "2026-10-17",
+  "https://towardsdatascience.com/i-built-a-claim-checker-for-writing-with-codex-it-passed-a-wrong-claim": "2026-10-17"
  }
 }

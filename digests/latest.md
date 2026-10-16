@@ -1,155 +1,155 @@
-# AI & Data 每日摘要 2026-10-16（五）
+# AI & Data 每日摘要 2026-10-17（六）
 
-> 今天這批文章有一個明顯主軸：AI 工程已經從「做得出來」走向「跑得穩、評得準、管得住」。Netflix 一次放出四篇工程文（tiered storage、Spark 實驗自動化、LLM-as-a-Judge 生命週期、GPU 可靠性），正好示範了 DE 基礎如何直接延伸成 AI 平台能力，其中 LLM-as-a-Judge 的「誰來評評審」是轉職者最該補的評估功力。推論端則是 parallelism 配置與 TTFT/ITL 的 trade-off（arXiv、Apple MLX），這是把 pipeline 思維搬到 GPU serving 的核心知識。Agent 面向則同時出現機會與風險：REA 展示 MCP 串工具的威力，TechOrange 兩篇則提醒 Agent 監控會被騙、企業導入失敗多半敗在 KPI 與治理而非技術。另有一條小趨勢：不是所有任務都需要 generative LLM，結構化決策模型（Jev）在路由與分類上可能更快更可靠。
+> 今天的主軸是「Agent 進入正式營運」：Meta 的 Muse Spark Open（MoE、816B 總參數／每次僅啟用約 42B）同日就上架 SageMaker JumpStart，加上 Reflection Beam，顯示開放權重 + 託管部署已成企業自建 Agent 的預設路徑。第二條線是治理與可信度：Agent 身分與權限稽核、RAG hallucination filter（JEV）、以及兩篇 TDS 親手實作的 AI 產出審核工具都指出「驗證比生成更難」。第三條線是資料與可觀測性基礎建設：Netflix 的 ontology/knowledge graph observability、Ads Event Pipeline、Indic 2.8T token 資料管線，全都是 DE 技能可直接遷移的戰場。對你而言，今天最值得投資的是「部署一個開放權重模型 + 設計一套輸出驗證與權限邊界」這兩塊能力。
 
-## 🔥 今日必讀（5）
+## 🔥 今日必讀（6）
 
 *直接補上你轉職缺的能力*
 
-### [以平行化擴展 LLM 推論：吞吐與延遲的取捨](https://arxiv.org/abs/2610.19405)
-*arXiv cs.LG (Machine Learning) · 2026-10-15 · 相關度 17.73 · 必讀*
+### [Meta 開源 Muse Spark Open：8,160 億參數卻能跑在兩台 Mac](https://techorange.com/2026/10/16/meta-muse-spark-open-ai/?utm_source=rss&utm_medium=feed&utm_campaign=techorange_rss)
+*TechOrange 科技報橘 · 2026-10-16 · 相關度 16.51 · 必讀*
 
-- **內容**：探討 LLM serving 中 prefill（決定 TTFT）與 decode（決定 ITL）兩階段特性不同，使得 tensor/pipeline parallelism 的最佳配置高度依賴工作負載與延遲需求。
-- **對你的意義**：DE 熟悉 batch vs streaming 的吞吐/延遲權衡，這篇等於把同一套思維移到 GPU serving；AI Engineer 面試與上線最常被問的就是「為什麼你的 TTFT 這麼高」。
-- **今天可以做**：把 prefill/decode、TTFT/ITL、TP/PP 四組名詞寫成一頁筆記，並標註各自影響哪個延遲指標。
-- **原文標題**：Scaling LLM Inference via Parallelism: Throughput-Latency Trade-off
-- `#inference` `#serving` `#parallelism` `#latency`
+- **內容**：Meta 發布開放權重模型 Muse Spark Open，採 MoE 架構總參數 8,160 億、每次僅啟用約 420 億，主打程式開發與 Agent 任務，並與 Apple 合作在兩台 Mac Studio 上運行。
+- **對你的意義**：你未來要替公司決定「自架 open-weight 還是呼叫 API」，MoE 的總參數 vs 啟用參數差異直接決定記憶體、成本與延遲估算，這是 DE 成本思維可以無痛遷移的新算式。
+- **今天可以做**：花 10 分鐘寫一份對照筆記：Muse Spark Open、Qwen、DeepSeek 的授權與參數規模，並估算自架所需 VRAM 大致量級。
+- **原文標題**：Meta 推美最強開放模型 Muse Spark Open，8,160 億參數為何兩台 Mac 就能跑？
+- `#open-weight` `#MoE` `#Agent` `#部署成本`
 
-### [台灣微軟、雲馥數位從 KPI、成本到 Agent 治理談企業 AI 主權實戰](https://techorange.com/2026/10/15/cloudriches-microsoft-aiagent/?utm_source=rss&utm_medium=feed&utm_campaign=techorange_rss)
-*TechOrange 科技報橘 · 2026-10-15 · 相關度 16.5 · 必讀*
+### [AWS 上部署 Reflection Beam：agentic coding 開放權重模型](https://aws.amazon.com/blogs/machine-learning/introducing-reflection-beam-an-open-weight-model-for-agentic-coding-on-aws/)
+*AWS Machine Learning Blog · 2026-10-16 · 相關度 12.02 · 必讀*
 
-- **內容**：論壇實錄：企業 AI 導入失敗多半不是技術問題，而是缺乏可衡量 KPI，並忽略資安治理、人才培育與組織管理六大面向。
-- **對你的意義**：AI Engineer 在台灣企業端常要同時扮演技術與說服角色，知道業主在意「錢花在哪、KPI 怎麼定、管不管得了」能讓你的方案提案率大增。
-- **今天可以做**：為你想做的一個 RAG/Agent side project 寫下 2 個可量化 KPI（例如人工覆核時數下降 %、首次答對率）。
-- **原文標題**：台灣微軟、雲馥數位從 KPI、成本到 Agent 治理談企業 AI 主權實戰
-- `#企業導入` `#AI治理` `#KPI` `#台灣市場`
+- **內容**：介紹如何在 AWS 部署 Reflection AI 的 Beam，從 SageMaker JumpStart 即時端點，到用 HyperPod 搭配 SGLang / vLLM 做 Kubernetes 原生的分散式 GPU 控制。
+- **對你的意義**：vLLM / SGLang / K8s 是 AI Engineer 的「新版 Spark on YARN」，這篇給你一條從託管端點到自管推論叢集的完整升級路徑。
+- **今天可以做**：掃過文章中的部署選項表，筆記 JumpStart endpoint 與 vLLM on HyperPod 在成本、彈性、維運負擔上的三點差異。
+- **原文標題**：Introducing Reflection Beam: an open-weight model for agentic coding on AWS
+- `#vLLM` `#SageMaker` `#推論部署` `#Kubernetes`
 
-### [【監控的 AI 也會被騙】專家警告惡意代理人可能騙過監控者](https://techorange.com/2026/10/15/rogue-ai-agents/?utm_source=rss&utm_medium=feed&utm_campaign=techorange_rss)
-*TechOrange 科技報橘 · 2026-10-15 · 相關度 13.74 · 必讀*
+### [AI Agent 也需要身分證：從持續驗證到責任歸屬的信任治理](https://techorange.com/2026/10/16/keypasco-ai-agent-summit/?utm_source=rss&utm_medium=feed&utm_campaign=techorange_rss)
+*TechOrange 科技報橘 · 2026-10-16 · 相關度 11.37 · 必讀*
 
-- **內容**：以 Hugging Face 事件為例，說明上萬個 agent 協同行動已超出人類審查能力，而用 AI 監控 AI 本身也可能被欺騙，專家建議補上不依賴 AI 的日誌與網路流量分析。
-- **對你的意義**：你在 DE 時代建立的 audit log、lineage、異常偵測能力，正好是 Agent 安全監控最被需要的「非 AI 防線」，是很好的差異化賣點。
-- **今天可以做**：列出 3 種你會為 Agent 系統保留的 deterministic 稽核訊號（工具呼叫、出站網路、權限變更）並寫成筆記。
-- **原文標題**：【監控的 AI 也會被騙】專家警告惡意代理人可能騙過監控者，建議另加不靠 AI 的日誌與網路分析
-- `#agent安全` `#可觀測性` `#監控` `#治理`
+- **內容**：論壇指出 Agent 需要明確身分、授權與責任邊界，並以 Agent 數天內執行約 17,600 次行動、逐步擴權的事件說明治理從一次性審查轉向持續驗證的必要。
+- **對你的意義**：DE 熟悉的資料權限與 lineage 概念，正好是 Agent 治理的底層；能把權限盤點、稽核 log 設計講清楚，是你面試時差異化的強項。
+- **今天可以做**：寫一頁「Agent 稽核 log schema」草稿：agent_id、呼叫工具、目標資源、授權來源、結果、人工覆核狀態。
+- **原文標題**：「AI Agent 也需要自己的身分證。」從持續驗證到責任歸屬，來毅數位攜手合作夥伴拆解信任治理關鍵
+- `#AI 治理` `#權限` `#稽核` `#資安`
 
-### [Netflix：在睡覺和飛機上跑 Apache Spark 實驗](https://netflixtechblog.com/running-apache-spark-experiments-in-my-sleep-and-on-a-plane-588816b6b5f8?source=rss----2615bd06b42e---4)
-*Netflix TechBlog · 2026-10-14 · 相關度 12.73 · 必讀*
+### [Muse Spark Open 已上架 Amazon SageMaker JumpStart](https://aws.amazon.com/blogs/machine-learning/metas-muse-spark-open-now-available-in-amazon-sagemaker-jumpstart/)
+*AWS Machine Learning Blog · 2026-10-15 · 相關度 10.99 · 必讀*
 
-- **內容**：作者分享調校超大規模 Spark pipeline 時，從「加速單次執行」改為「建立可並行執行與自動追蹤多組實驗」的方法論。
-- **對你的意義**：這個「把調參變成可重複實驗系統」的心法，幾乎可以一比一搬到 LLM 的 prompt/retrieval 參數掃描，是 DE 經驗轉成 AI 評估基建的捷徑。
-- **今天可以做**：用 30 分鐘草擬一個簡單的實驗紀錄 schema（config hash、指標、耗時、成本），之後套用到你的 RAG 調參。
-- **原文標題**：Running Apache Spark experiments in my sleep (and on a plane)
-- `#Spark` `#實驗設計` `#調校` `#MLOps思維`
+- **內容**：Meta 針對程式開發最佳化的開放權重模型 Muse Spark Open 可透過 SageMaker Studio 或 Python SDK 部署到自己的 AWS 帳號端點並發出首次推論請求。
+- **對你的意義**：這是你今天最容易動手的「從零到一次推論」練習，把模型部署納入自己的技能清單，比只會呼叫 API 更接近 AI Engineer 職缺需求。
+- **今天可以做**：照文中步驟讀一次 SageMaker Python SDK 部署程式碼，把 deploy → invoke 的最小片段抄進自己的 snippet 筆記。
+- **原文標題**：Meta’s Muse Spark Open now available in Amazon SageMaker JumpStart
+- `#SageMaker` `#模型部署` `#open-weight` `#實作`
 
-### [LLM-as-a-Judge 的生命週期：建立、對齊與大規模監控](https://netflixtechblog.com/the-lifecycle-of-llm-as-a-judge-building-aligning-and-monitoring-at-scale-c95bd8283508?source=rss----2615bd06b42e---4)
-*Netflix TechBlog · 2026-10-14 · 相關度 12.54 · 必讀*
+### [用 JEV 當幻覺過濾器：讓 LLM 寫、讓 JEV 檢查](https://www.analyticsvidhya.com/blog/2026/10/rag-hallucination-filter-using-jev/)
+*Analytics Vidhya · 2026-10-16 · 相關度 7.5 · 必讀*
 
-- **內容**：Netflix 說明在無法人工審閱所有輸出時如何用 LLM-as-a-Judge 代理人工評分，並回答「誰來評評審」以及 judge drift 的監控問題。
-- **對你的意義**：模型評估與上線監控正是 DE 轉 AI Engineer 最大的能力缺口，這篇給你一套完整的生產級評估架構可直接模仿。
-- **今天可以做**：讀完整理「judge 建立 → 與人工標註對齊 → drift 監控」三步筆記，並想一個你能用 20 筆人工標註驗證 judge 的最小實驗。
-- **原文標題**：The Lifecycle of LLM-as-a-Judge: Building, Aligning, and Monitoring at scale
-- `#LLM-as-a-Judge` `#評估` `#LLMOps` `#drift`
+- **內容**：文章提出不要只在事後做單次 hallucination 檢查，而是讓 LLM 產生多個候選答案後，用 JEV 這類驗證機制篩選。
+- **對你的意義**：RAG 上線最大風險就是幻覺，能設計「生成—驗證—人工升級」的分層把關，是 AI Engineer 的核心交付物而非加分項。
+- **今天可以做**：讀完後在自己的小型 RAG demo 加一層簡單驗證：檢查回答中的每個事實句是否有對應 retrieved chunk 可支撐。
+- **原文標題**：JEV as a Hallucination Filter: Let the LLM Write, Let JEV Check
+- `#RAG` `#hallucination` `#評估` `#LLMOps`
 
-## 👀 值得快速瀏覽（6）
+### [我用 Codex 做了 claim checker，它卻放過一個錯誤主張](https://towardsdatascience.com/i-built-a-claim-checker-for-writing-with-codex-it-passed-a-wrong-claim/)
+*Towards Data Science · 2026-10-16 · 相關度 5.0 · 必讀*
+
+- **內容**：作者實作的事實查核工具雖找到正確段落，卻沒抓出內容不一致，審計過程揭示規則式檢查的失效邊界。
+- **對你的意義**：與 [12] 正好互補：一篇講怎麼做驗證、一篇講驗證會怎麼失敗，是你設計 evaluation 時必備的失敗模式清單。
+- **今天可以做**：和 [12] 一起讀，條列 3 種驗證器會漏抓的失敗模式（檢索對但推論錯、語意否定、數字不符）。
+- **原文標題**：I Built a Claim-Checker for Writing With Codex. It Passed a Wrong Claim.
+- `#評估` `#fact-checking` `#失敗分析` `#LLMOps`
+
+## 👀 值得快速瀏覽（5）
 
 *掃過標題與重點即可*
 
-### [Netflix 時序資料分層儲存：從 Kafka/Flink 到 Cassandra 冷讀](https://netflixtechblog.com/timeseries-tiered-storage-journey-kafka-flink-streams-to-native-cassandra-cold-reads-e59d597c9d60?source=rss----2615bd06b42e---4)
-*Netflix TechBlog · 2026-10-14 · 相關度 16.68 · 快速瀏覽*
+### [KV-streams：讓 Agentic RL 的 context compaction 更有效率](https://arxiv.org/abs/2609.35750)
+*arXiv cs.LG (Machine Learning) · 2026-10-16 · 相關度 15.51 · 快速瀏覽*
 
-- **內容**：Netflix 分享如何把 PB 級時序事件資料從昂貴的熱儲存分層搬到冷儲存，同時維持查詢能力以降低成本。
-- **對你的意義**：這是你現有 DE 技能的強項延伸，但在 AI 專案裡同樣適用於對話歷史、trace、embedding 原始資料的成本分層設計。
-- **今天可以做**：對照自己現有的一條事件 pipeline，寫下哪些資料 30 天後可以降級到冷儲存，估算可能省下的成本比例。
-- **原文標題**：TimeSeries Tiered Storage Journey: Kafka/Flink Streams to Native Cassandra Cold Reads
-- `#data-platform` `#storage` `#kafka` `#cassandra`
+- **內容**：論文提出 KV-streams，可與任何 context compaction 策略搭配，避免反覆 prefill 造成的訓練吞吐瓶頸，同時不犧牲表現。
+- **對你的意義**：長流程 Agent 的瓶頸是 context 與 GPU 記憶體，理解 KV cache 與 compaction 能讓你在設計多步驟 Agent 時知道成本從哪裡爆掉。
+- **今天可以做**：只讀 abstract，筆記「KV cache / prefill / context compaction」三個名詞的一句話定義即可。
+- **原文標題**：KV-streams for Efficient Compaction in Agentic Reinforcement Learning
+- `#Agent` `#KV cache` `#長上下文` `#研究`
 
-### [用開源 Agentic API Server OGX 打造 AI 應用](https://www.kdnuggets.com/building-ai-applications-with-open-source-agentic-api-server-ogx)
-*KDnuggets · 2026-10-15 · 相關度 14.14 · 快速瀏覽*
+### [鼎新數智 Agent Space 重新定義淨零永續工作新範式](https://techorange.com/2026/10/15/datasys-agentspace/?utm_source=rss&utm_medium=feed&utm_campaign=techorange_rss)
+*TechOrange 科技報橘 · 2026-10-15 · 相關度 12.15 · 快速瀏覽*
 
-- **內容**：介紹 OGX 這個開源 agentic API server，可相容 OpenAI API 介面並搭配任意模型與基礎設施。摘要資訊有限，細節需看原文。
-- **對你的意義**：OpenAI-compatible 介面是切換模型供應商的關鍵抽象層，對要設計可替換 LLM 後端的工程師是實用的架構樣板。
-- **今天可以做**：花 15 分鐘看 OGX 的 README 與啟動範例，記下它如何定義 agent 與 tool 的介面。
-- **原文標題**：Building AI Applications with OGX, the Open-Source Agentic API Server
-- `#開源` `#agent` `#API` `#infra`
+- **內容**：鼎新以 ERP 資料為底，用多個職能專家 Agent 協作串接碳排與物料、採購、生產、毛利資料，產出減碳建議並由人工把關關鍵環節。
+- **對你的意義**：這是典型「企業既有資料庫 + 多 Agent」的落地樣板，和你熟悉的 ERP／資料倉儲世界完全接得上，也示範了 human-in-the-loop 的切分點。
+- **今天可以做**：挑你現有的一張業務資料表，寫下如果要讓 Agent 讀它，需要補哪些 metadata 與欄位語意說明。
+- **原文標題**：鼎新數智 Agent Space 重新定義淨零永續工作新範式
+- `#multi-agent` `#企業落地` `#ERP` `#human-in-the-loop`
 
-### [在 Mac Studio 上以 MLX 與 RDMA 做本機與分散式 LLM 推論](https://machinelearning.apple.com/research/mlx-distributed-inference)
-*Apple Machine Learning Research · 2026-10-15 · 相關度 13.91 · 快速瀏覽*
+### [Netflix 以本體論驅動的可觀測性知識圖譜](https://netflixtechblog.com/ontology-driven-observability-building-an-end-to-end-knowledge-graph-at-netflix-scale-421392cf5adf?source=rss----2615bd06b42e---4)
+*Netflix TechBlog · 2026-10-16 · 相關度 10.98 · 快速瀏覽*
 
-- **內容**：Apple 說明 MLX 如何利用 Apple silicon 統一記憶體架構，並透過 RDMA 做多機分散式推論與本機 fine-tuning 實驗。
-- **對你的意義**：對轉職者而言這是低成本、不外洩資料的本機實驗環境，可在沒有雲 GPU 預算下練 inference 與 fine-tuning 流程。
-- **今天可以做**：若手上有 Apple silicon 機器，今天 pip 安裝 mlx-lm 並跑一次小模型的本機生成，記錄 token/s。
-- **原文標題**：Local and Distributed Large LLM Inference with MLX and RDMA on Mac Studio
-- `#MLX` `#本機推論` `#Apple silicon` `#分散式`
+- **內容**：Netflix 面對每秒 3,800 萬筆即時 log、每日 20 億以上請求的規模，建立端到端知識圖譜與 ontology 來理解系統全貌。
+- **對你的意義**：知識圖譜 + ontology 既是大規模 observability 解法，也是 GraphRAG 的核心基礎；這是 DE 的資料建模能力直接變現成 AI 能力的接口。
+- **今天可以做**：讀前半段，用 5 分鐘畫出你負責系統的最小 ontology（服務、資料集、owner、依賴關係四類節點）。
+- **原文標題**：Ontology-Driven Observability: Building an End-to-End Knowledge Graph at Netflix Scale
+- `#knowledge graph` `#ontology` `#observability` `#GraphRAG`
 
-### [GitHub 爆紅的 REA 真能逆向任何軟體？從實作看 AI Agent 的能力與限制](https://techorange.com/2026/10/15/rea-ai-agent-reverse-engineer-github/?utm_source=rss&utm_medium=feed&utm_campaign=techorange_rss)
-*TechOrange 科技報橘 · 2026-10-14 · 相關度 13.1 · 快速瀏覽*
+### [Netflix 直播廣告事件管線演進（下）](https://netflixtechblog.com/behind-the-scenes-evolving-netflixs-ads-event-pipeline-for-live-part-ii-826ebf9ad9fb?source=rss----2615bd06b42e---4)
+*Netflix TechBlog · 2026-10-14 · 相關度 10.82 · 快速瀏覽*
 
-- **內容**：REA 透過 MCP 把 Ghidra、IDA 等逆向工具接給 Claude Code、Cursor 等 Coding Agent，讓 Agent 自行呼叫工具、追蹤程式線索；文章同時檢視其實際能力邊界。
-- **對你的意義**：這是 MCP「把既有專業工具包成 Agent 可呼叫能力」的最佳案例，正好對應你未來要把 SQL/Spark/內部 API 包成 tool 的設計模式。
-- **今天可以做**：讀完後畫一張圖：把你熟悉的一個內部資料查詢功能設計成 MCP tool（輸入、輸出、權限邊界）。
-- **原文標題**：GitHub 爆紅的 REA 真能逆向任何軟體？從 51 件實作看 AI Agent 的能力與限制
-- `#MCP` `#coding agent` `#工具呼叫` `#開源`
+- **內容**：接續第一部，說明 Ads Event Publisher 如何集中收集裝置端廣告 telemetry、加上投放情境做 enrichment，並以統一 data contract 發佈給計費、測量、報表等下游。
+- **對你的意義**：data contract 與統一事件流的設計，正是未來你要為 LLM 應用建立 trace / evaluation 資料集時的同一套方法論。
+- **今天可以做**：快速掃 data contract 段落，寫下你現有 pipeline 中最該補上 schema contract 的一條資料流。
+- **原文標題**：Behind the Scenes: Evolving Netflix’s Ads Event Pipeline for Live — Part II
+- `#data contract` `#event pipeline` `#串流` `#資料工程`
 
-### [Netflix：大型訓練與推論任務的可靠 GPU 運算](https://netflixtechblog.com/reliable-gpu-compute-for-large-training-inference-jobs-d62b03a96d7a?source=rss----2615bd06b42e---4)
-*Netflix TechBlog · 2026-10-14 · 相關度 12.15 · 快速瀏覽*
+### [你還擁有 AI 寫的程式碼嗎？我做了 CodeOwnership 來量測](https://towardsdatascience.com/do-you-still-own-the-code-your-ai-wrote-i-built-codeownership-to-measure-it/)
+*Towards Data Science · 2026-10-16 · 相關度 5.0 · 快速瀏覽*
 
-- **內容**：說明如何偵測故障的 GPU 與網路 fabric、自動修復機器，並讓長時間執行的工作在硬體失效後仍能存活。
-- **對你的意義**：這是 Airflow/Spark 的 retry 與容錯思維在 GPU 叢集上的版本，若你想往 AI Infra/平台方向發展，是極佳的參考案例。
-- **今天可以做**：快速掃過文章，記下他們偵測「壞 GPU」的訊號類型，對照你現有 pipeline 的 health check 設計。
-- **原文標題**：Reliable GPU compute for large training & inference jobs
-- `#GPU` `#可靠性` `#infra` `#容錯`
-
-### [七個開放決策模型對決生成式 LLM](https://towardsdatascience.com/jev-your-engines-seven-open-decision-models-vs-a-generative-llm/)
-*Towards Data Science · 2026-10-15 · 相關度 7.03 · 快速瀏覽*
-
-- **內容**：以實作 repo 比較多個決策/路由模型與生成式 LLM 在 routing 準確率、延遲與輸出可靠度上的差異。
-- **對你的意義**：Router 設計是 Agent 與多模型架構的核心，這篇提供可直接套用的評測維度（準確率 / 延遲 / 輸出可靠度）。
-- **今天可以做**：把這三個評測維度抄進你的評估模板，並想想要用哪些測試案例來比較你的 router 選項。
-- **原文標題**：Jev Your Engines: Seven Open Decision Models vs. a Generative LLM
-- `#routing` `#模型比較` `#延遲` `#評估`
+- **內容**：作者自評理解信心 4/5，卻在 8 分鐘內找不出刻意植入的 bug，因而打造工具量測開發者對 AI 產出程式碼的實際掌握度。
+- **對你的意義**：當你大量用 Copilot/Codex 寫 pipeline 與 Agent 程式時，這篇提醒你「看得懂」與「真的能維護」之間的落差，攸關上線品質責任。
+- **今天可以做**：今天挑一段 AI 幫你寫的程式碼，蓋住註解自己口頭解釋一遍，記錄卡住的地方。
+- **原文標題**：Do You Still Own the Code Your AI Wrote? I Built CodeOwnership to Measure It
+- `#AI coding` `#程式品質` `#工程實務`
 
 ## 🗂️ 存起來參考（3）
 
 *之後需要時再回頭看*
 
-### [Jev AI 實作指南：TypeSafe 的 System One 模型](https://www.analyticsvidhya.com/blog/2026/10/typesafe-ai-jev-tutorial/)
-*Analytics Vidhya · 2026-10-15 · 相關度 8.6 · 存參考*
+### [禾賽空間相機 Kosmo：把真實場域變成機器人訓練資料](https://techorange.com/2026/10/15/hesai-kosmo-spatial-camera-robotics/?utm_source=rss&utm_medium=feed&utm_campaign=techorange_rss)
+*TechOrange 科技報橘 · 2026-10-15 · 相關度 10.98 · 存參考*
 
-- **內容**：介紹 Jev 這類不生成長文、而是回傳帶信心分數之結構化答案的模型，適合分類、評分、是非判斷等任務。
-- **對你的意義**：提醒你別什麼都用 generative LLM；在 routing、過濾、資料標註這類高頻任務上，結構化小模型更便宜也更可控。
-- **今天可以做**：列出你 pipeline 中 3 個「只需要分類或是非判斷」的環節，標註它們其實不需要生成式模型。
-- **原文標題**：How to Use Jev AI: A Hands-On Guide to TypeSafe’s System One Model
-- `#結構化輸出` `#分類模型` `#成本優化`
+- **內容**：禾賽發表結合 LiDAR、影像感測器與 IMU 的 Kosmo One 與雲端平台 Kosmo World，單人掃描 100 平方公尺室內空間約需 15 分鐘，解決 Physical AI 的真實世界資料缺口。
+- **對你的意義**：提醒你資料取得成本與規模化永遠是 AI 的瓶頸，這個「資料管線思維」正是 DE 最值錢的遷移資產，只是標的從表格變成多模態。
+- **今天可以做**：花 5 分鐘思考並記下：若要為某個 AI 應用建資料集，取得成本、標註方式、規模化瓶頸各是什麼。
+- **原文標題**：從自駕光達到機器人：禾賽推空間相機 Kosmo，把真實場域變成訓練數據
+- `#Physical AI` `#多模態資料` `#資料採集` `#機器人`
 
-### [7 個可取代付費訂閱的開源 AI 工具](https://www.kdnuggets.com/7-open-source-ai-tools-that-can-replace-paid-subscriptions)
-*KDnuggets · 2026-10-15 · 相關度 7.43 · 存參考*
+### [2026 世界盃：破紀錄流量下的可靠性工程](https://engineering.fb.com/2026/10/15/production-engineering/2026-world-cup-record-traffic-reliability-at-scale/)
+*Engineering at Meta · 2026-10-15 · 相關度 10.74 · 存參考*
 
-- **內容**：盤點 OpenAI API、Midjourney、Claude Code、Notion、NotebookLM 等服務的開源自架替代方案，強調隱私、掌控與成本。
-- **對你的意義**：轉職期做 side project 預算有限，自架經驗本身也是 AI Engineer 履歷上的加分項。
-- **今天可以做**：從清單挑一個與你目標最相關的工具（例如本機 LLM API 或 NotebookLM 替代品），今天 docker 起起來試用。
-- **原文標題**：7 Open-Source AI Tools That Can Replace Paid Subscriptions
-- `#開源工具` `#self-host` `#成本`
+- **內容**：Meta 分享世界盃期間創下歷史新高的尖峰流量，如何在高度突發的負載下維持基礎設施可靠性。摘要資訊有限，細節需讀原文。
+- **對你的意義**：LLM 服務同樣有尖峰與排隊問題（token 吞吐、GPU 擴縮），看大廠如何處理 spiky traffic 可為你日後的推論容量規劃建立直覺。
+- **今天可以做**：存檔，日後規劃推論服務 autoscaling 時再讀。
+- **原文標題**：2026 World Cup: Breaking Records, Spiky Charts and Reliability at Scale
+- `#可靠性` `#容量規劃` `#SRE`
 
-### [OpenAI 的 719 篇數學論文對資料科學的意義](https://towardsdatascience.com/what-openais-719-math-papers-mean-for-data-science/)
-*Towards Data Science · 2026-10-15 · 相關度 5.0 · 存參考*
+### [Indic 預訓練資料擴展：2.8 兆 token 與開源資料生成管線](https://huggingface.co/blog/nvidia/scaling-indic-pretraining)
+*Hugging Face Blog · 2026-10-16 · 相關度 8.0 · 存參考*
 
-- **內容**：從模糊文字比對、代表性樣本選取、產生比較資料等角度，談數學成果對資料科學實務的影響。摘要資訊有限，需看原文確認論述。
-- **對你的意義**：文中提到的「代表性樣本選取」與「產生比較資料」正是建立 LLM 評估集時的核心難題，和你要補的 evaluation 能力直接相關。
-- **今天可以做**：若時間允許，掃過文章並記下它對「如何挑選代表性樣本」的建議，作為日後建 eval set 的參考。
-- **原文標題**：What OpenAI’s 719 Math Papers Mean for Data Science
-- `#資料科學` `#評估集` `#取樣`
+- **內容**：摘要資訊有限，僅依標題判斷：NVIDIA 分享為印度語系預訓練擴展到 2.8 兆 token 的做法，並開源資料生成管線。
+- **對你的意義**：預訓練語料的清洗、去重、品質過濾本質上就是超大規模 ETL，是 DE 背景最容易切進模型端的切口，也與繁中語料建置高度相關。
+- **今天可以做**：打開原文看一下資料管線架構圖，筆記他們做了哪些過濾／去重步驟。
+- **原文標題**：Scaling Indic Pretraining: 2.8 Trillion Tokens and an Open Data Generation Pipeline
+- `#預訓練資料` `#資料管線` `#多語言` `#開源`
 
 ## 🎯 今天的 30 分鐘學習計畫
 
-1. 先讀 Netflix〈The Lifecycle of LLM-as-a-Judge〉，用 15 分鐘整理出「建立 judge → 與人工標註對齊 → 監控 drift」三階段筆記，並寫下你現有資料品質監控（如 Great Expectations / Airflow data check）可以怎麼對應搬過去。
-2. 花 10 分鐘讀 arXiv 那篇 inference parallelism 摘要，把 prefill/TTFT 與 decode/ITL 的差別寫成一張對照表，並對照 vLLM 文件確認 TP/PP 參數在哪裡設定。
-3. 快速掃 TechOrange 兩篇 Agent 文章（治理 + 監控被騙），列出 3 條「不依賴 AI 的 Agent 稽核訊號」（例如工具呼叫日誌、網路出站紀錄、權限變更事件），存成你未來 Agent 專案的 checklist。
+1. 先讀 [6] + [1]，在筆記寫下 MoE「總參數 vs 啟用參數」如何影響記憶體與成本估算，並列出若要在 SageMaker JumpStart 部署一個 open-weight 模型需要哪些步驟與 instance 規格。
+2. 讀 [12] 並對照 [14]，用自己既有的一個 RAG 或文件問答場景，畫出「生成 → 多候選 → 驗證器過濾 → 人工把關」的流程圖，標出每一層要記錄哪些 log 欄位。
+3. 掃 [5] 與 [7]，把你目前 pipeline 的一張資料表/服務當例子，寫下若由 Agent 存取時需要的身分、權限邊界與稽核欄位清單（誰、做了什麼、影響哪個下游）。
 
 ---
 
-掃描 577 篇，收錄 14 篇。來源分布：Netflix TechBlog × 4、TechOrange 科技報橘 × 3、KDnuggets × 2、Towards Data Science × 2、arXiv cs.LG (Machine Learning) × 1、Apple Machine Learning Research × 1、Analytics Vidhya × 1
+掃描 544 篇，收錄 14 篇。來源分布：TechOrange 科技報橘 × 4、AWS Machine Learning Blog × 2、Netflix TechBlog × 2、Towards Data Science × 2、arXiv cs.LG (Machine Learning) × 1、Engineering at Meta × 1、Hugging Face Blog × 1、Analytics Vidhya × 1
 
 > ⚠️ [Uber Engineering Blog](https://www.uber.com/en-US/blog/engineering/)：官方無 RSS（robots.txt 禁止 API 抓取），請人工瀏覽；同性質內容已由 Netflix / Meta / Pinterest / Airbnb 工程部落格補上。
 
-*由 ai-data-digest 於 2026-10-16 02:25 自動產生 · 摘要引擎：Claude（claude-opus-5）*
+*由 ai-data-digest 於 2026-10-17 02:12 自動產生 · 摘要引擎：Claude（claude-opus-5）*
