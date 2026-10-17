@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-17T02:14:08+08:00",
+ "updated": "2026-10-18T01:22:50+08:00",
  "seen": {
   "https://techorange.com/2026/10/10/machinenative-economy": "2026-10-12",
   "https://towardsdatascience.com/agentic-systems-a-practitioners-guide-to-6-advanced-architectural-patterns": "2026-10-12",
@@ -82,6 +82,20 @@
   "https://huggingface.co/blog/nvidia/scaling-indic-pretraining": "2026-10-17",
   "https://www.analyticsvidhya.com/blog/2026/10/rag-hallucination-filter-using-jev": "2026-10-17",
   "https://towardsdatascience.com/do-you-still-own-the-code-your-ai-wrote-i-built-codeownership-to-measure-it": "2026-10-17",
-  "https://towardsdatascience.com/i-built-a-claim-checker-for-writing-with-codex-it-passed-a-wrong-claim": "2026-10-17"
+  "https://towardsdatascience.com/i-built-a-claim-checker-for-writing-with-codex-it-passed-a-wrong-claim": "2026-10-17",
+  "https://techorange.com/2026/10/17/control-your-ai-costs": "2026-10-18",
+  "https://aws.amazon.com/blogs/machine-learning/building-trust-in-ai-agents-a-production-ready-evaluation-framework-with-amazon-bedrock-agentcore": "2026-10-18",
+  "https://www.kdnuggets.com/agentic-rag-vs-naive-rag-when-your-retrieval-system-should-think-for-itself": "2026-10-18",
+  "https://techorange.com/2026/10/16/grok-voice-3-0-ai-agent": "2026-10-18",
+  "https://techorange.com/2026/10/16/neural-networks-already-clean-goodfire": "2026-10-18",
+  "https://towardsdatascience.com/the-number-your-quantization-gate-doesnt-have": "2026-10-18",
+  "https://www.kdnuggets.com/5-best-resources-to-learn-about-world-models-in-2026": "2026-10-18",
+  "https://techorange.com/2026/10/16/bank-of-america-contractors-patch-mythos-flaws": "2026-10-18",
+  "https://www.databricks.com/blog/transactions-are-generally-available-advancing-warehousing-lakehouse": "2026-10-18",
+  "https://openai.com/index/itau-generative-ai": "2026-10-18",
+  "https://engineering.fb.com/2026/10/15/ml-applications/how-meta-built-forum-ai-native-engineering": "2026-10-18",
+  "https://www.databricks.com/blog/stripe-data-pipeline-now-syncs-real-time-stripe-data-lakebase-postgres": "2026-10-18",
+  "https://www.databricks.com/blog/reducing-noise-how-atlassian-built-ocsf-security-lakehouse-databricks": "2026-10-18",
+  "https://towardsdatascience.com/deploying-data-science-tools-part-1": "2026-10-18"
  }
 }
