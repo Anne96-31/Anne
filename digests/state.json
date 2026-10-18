@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-18T01:22:50+08:00",
+ "updated": "2026-10-19T01:27:45+08:00",
  "seen": {
   "https://techorange.com/2026/10/10/machinenative-economy": "2026-10-12",
   "https://towardsdatascience.com/agentic-systems-a-practitioners-guide-to-6-advanced-architectural-patterns": "2026-10-12",
@@ -96,6 +96,14 @@
   "https://engineering.fb.com/2026/10/15/ml-applications/how-meta-built-forum-ai-native-engineering": "2026-10-18",
   "https://www.databricks.com/blog/stripe-data-pipeline-now-syncs-real-time-stripe-data-lakebase-postgres": "2026-10-18",
   "https://www.databricks.com/blog/reducing-noise-how-atlassian-built-ocsf-security-lakehouse-databricks": "2026-10-18",
-  "https://towardsdatascience.com/deploying-data-science-tools-part-1": "2026-10-18"
+  "https://towardsdatascience.com/deploying-data-science-tools-part-1": "2026-10-18",
+  "https://simonwillison.net/2026/Oct/16/code-review": "2026-10-19",
+  "https://towardsdatascience.com/inferring-the-host-a-bayesian-look-at-the-monty-hall-problem": "2026-10-19",
+  "https://towardsdatascience.com/both-charts-are-right-so-why-do-they-disagree": "2026-10-19",
+  "https://simonwillison.net/2026/Oct/17/web-edit": "2026-10-19",
+  "https://research.google/blog/grounding-ai-agents-in-biological-reality-building-blocks-for-autonomous-wet-labs": "2026-10-19",
+  "https://www.analyticsvidhya.com/blog/2026/10/rea-ai-agent-reverse-engineer-anything": "2026-10-19",
+  "https://simonwillison.net/2026/Oct/17/document-currentscript": "2026-10-19",
+  "https://towardsdatascience.com/when-eeg-models-see-the-same-people-in-training-and-testing": "2026-10-19"
  }
 }
