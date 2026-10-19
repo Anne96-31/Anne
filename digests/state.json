@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-19T01:27:45+08:00",
+ "updated": "2026-10-20T04:03:12+08:00",
  "seen": {
   "https://techorange.com/2026/10/10/machinenative-economy": "2026-10-12",
   "https://towardsdatascience.com/agentic-systems-a-practitioners-guide-to-6-advanced-architectural-patterns": "2026-10-12",
@@ -104,6 +104,20 @@
   "https://research.google/blog/grounding-ai-agents-in-biological-reality-building-blocks-for-autonomous-wet-labs": "2026-10-19",
   "https://www.analyticsvidhya.com/blog/2026/10/rea-ai-agent-reverse-engineer-anything": "2026-10-19",
   "https://simonwillison.net/2026/Oct/17/document-currentscript": "2026-10-19",
-  "https://towardsdatascience.com/when-eeg-models-see-the-same-people-in-training-and-testing": "2026-10-19"
+  "https://towardsdatascience.com/when-eeg-models-see-the-same-people-in-training-and-testing": "2026-10-19",
+  "https://arxiv.org/abs/2610.16352": "2026-10-20",
+  "https://www.kdnuggets.com/langchain-vs-llamaindex-vs-building-from-scratch-heres-what-i-suggest": "2026-10-20",
+  "https://techorange.com/2026/10/19/shanghai-humanoid-robots-factories": "2026-10-20",
+  "https://engineering.fb.com/2026/10/19/ml-applications/thin-orchestrator-ai-agent-architecture": "2026-10-20",
+  "https://github.blog/ai-and-ml/github-copilot/how-to-continue-a-github-copilot-app-session-in-vs-code": "2026-10-20",
+  "https://aws.amazon.com/blogs/machine-learning/improve-ttft-for-multi-turn-agentic-workloads-with-bi-directional-kv-transfer-in-vllm": "2026-10-20",
+  "https://techorange.com/2026/10/19/qualcomm-physical-ai-dragonwingiq": "2026-10-20",
+  "https://aws.amazon.com/blogs/machine-learning/push-based-kv-transfer-to-improve-ttft-and-tpot-for-disaggregated-inference-in-vllm": "2026-10-20",
+  "https://blog.cloudflare.com/obsessive-inference-optimization": "2026-10-20",
+  "https://www.kdnuggets.com/claude-haiku-5-5-whats-new-and-how-to-use-it-for-fast-cheap-ai-workflows": "2026-10-20",
+  "https://www.analyticsvidhya.com/blog/2026/10/agent-harness-engineering-guide": "2026-10-20",
+  "https://techorange.com/2026/10/19/private-cloud-ai-spending": "2026-10-20",
+  "https://towardsdatascience.com/welcome-to-google-gemini-4-argon": "2026-10-20",
+  "https://towardsdatascience.com/can-conformal-prediction-take-you-from-accurate-to-reliable-machine-learning": "2026-10-20"
  }
 }
