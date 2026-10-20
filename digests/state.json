@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-20T04:03:12+08:00",
+ "updated": "2026-10-21T02:35:10+08:00",
  "seen": {
   "https://techorange.com/2026/10/10/machinenative-economy": "2026-10-12",
   "https://towardsdatascience.com/agentic-systems-a-practitioners-guide-to-6-advanced-architectural-patterns": "2026-10-12",
@@ -118,6 +118,20 @@
   "https://www.analyticsvidhya.com/blog/2026/10/agent-harness-engineering-guide": "2026-10-20",
   "https://techorange.com/2026/10/19/private-cloud-ai-spending": "2026-10-20",
   "https://towardsdatascience.com/welcome-to-google-gemini-4-argon": "2026-10-20",
-  "https://towardsdatascience.com/can-conformal-prediction-take-you-from-accurate-to-reliable-machine-learning": "2026-10-20"
+  "https://towardsdatascience.com/can-conformal-prediction-take-you-from-accurate-to-reliable-machine-learning": "2026-10-20",
+  "https://techorange.com/2026/10/20/qualcomm-edge-ai-ecosystem": "2026-10-21",
+  "https://techorange.com/2026/10/20/aws-amazon-torchneuron-nvidia-cuda": "2026-10-21",
+  "https://aws.amazon.com/blogs/machine-learning/build-a-semantic-layer-for-agentic-ai-on-aws-with-atscale-and-amazon-bedrock-agentcore": "2026-10-21",
+  "https://techorange.com/2026/10/20/rock-tsai-open-source-sovereign-ai": "2026-10-21",
+  "https://aws.amazon.com/blogs/machine-learning/securing-ai-agent-identity-with-x-509-pki-on-aws": "2026-10-21",
+  "https://techorange.com/2026/10/20/dream-labs-seed-build-brain-robots": "2026-10-21",
+  "https://aws.amazon.com/blogs/machine-learning/build-a-semantic-layer-for-agentic-ai-on-aws-with-strategy-mosaic-and-amazon-bedrock-agentcore": "2026-10-21",
+  "https://aws.amazon.com/blogs/machine-learning/build-a-semantic-layer-for-agentic-ai-on-aws-with-denodo-and-amazon-bedrock-agentcore": "2026-10-21",
+  "https://medium.com/pinterest-engineering/introducing-modulelens-zooming-into-pytorch-modules-for-human-and-agentic-engineering-b7e9be9d29f8": "2026-10-21",
+  "https://towardsdatascience.com/skill-or-mcp-server-ask-what-stops-the-llm-from-disobeying": "2026-10-21",
+  "https://www.kdnuggets.com/the-roadmap-to-becoming-an-ai-product-manager-in-2026": "2026-10-21",
+  "https://www.kdnuggets.com/5-docker-containers-for-devs": "2026-10-21",
+  "https://towardsdatascience.com/the-hidden-cost-of-llm-routing-why-switching-models-costs-more": "2026-10-21",
+  "https://simonwillison.net/2026/Oct/18/llm-echo": "2026-10-21"
  }
 }
