@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-21T02:35:10+08:00",
+ "updated": "2026-10-22T02:48:25+08:00",
  "seen": {
   "https://techorange.com/2026/10/10/machinenative-economy": "2026-10-12",
   "https://towardsdatascience.com/agentic-systems-a-practitioners-guide-to-6-advanced-architectural-patterns": "2026-10-12",
@@ -132,6 +132,20 @@
   "https://www.kdnuggets.com/the-roadmap-to-becoming-an-ai-product-manager-in-2026": "2026-10-21",
   "https://www.kdnuggets.com/5-docker-containers-for-devs": "2026-10-21",
   "https://towardsdatascience.com/the-hidden-cost-of-llm-routing-why-switching-models-costs-more": "2026-10-21",
-  "https://simonwillison.net/2026/Oct/18/llm-echo": "2026-10-21"
+  "https://simonwillison.net/2026/Oct/18/llm-echo": "2026-10-21",
+  "https://techorange.com/2026/10/21/delta-diaems": "2026-10-22",
+  "https://techorange.com/2026/10/21/deepseek-deepinfer-ai": "2026-10-22",
+  "https://arxiv.org/abs/2610.23047": "2026-10-22",
+  "https://aws.amazon.com/blogs/machine-learning/beyond-the-kv-cache-training-and-serving-i14s-laplace-3b-linear-attention-model-on-aws-trainium2-with-native-pytorch": "2026-10-22",
+  "https://www.kdnuggets.com/5-best-github-repositories-for-ai-agent-skills": "2026-10-22",
+  "https://openai.com/index/building-chatgpt-ad-stack": "2026-10-22",
+  "https://towardsdatascience.com/i-built-a-pipeline-to-track-the-job-market-im-trying-to-break-into": "2026-10-22",
+  "https://techorange.com/2026/10/21/unifying-edge-ai-coral-npus-open-standard-brings-portable-energy-viable-intelligence-model-silicon": "2026-10-22",
+  "https://aws.amazon.com/blogs/machine-learning/fine-tuning-gpt-oss-20b-for-multilingual-reasoning-on-amazon-sagemaker-hyperpod": "2026-10-22",
+  "https://aws.amazon.com/blogs/machine-learning/discover-tools-at-runtime-with-aws-agent-registry": "2026-10-22",
+  "https://aws.amazon.com/blogs/machine-learning/how-eon-built-multi-cloud-investigation-with-an-mcp-gateway-on-amazon-bedrock-agentcore": "2026-10-22",
+  "https://towardsdatascience.com/how-to-turn-long-running-python-simulations-into-a-self-service-platform": "2026-10-22",
+  "https://www.analyticsvidhya.com/blog/2026/10/open-source-alternatives-paid-software": "2026-10-22",
+  "https://www.kdnuggets.com/named-entity-recognition-using-scikit-llm": "2026-10-22"
  }
 }
