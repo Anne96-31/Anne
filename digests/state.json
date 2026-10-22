@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-22T02:48:25+08:00",
+ "updated": "2026-10-23T02:41:30+08:00",
  "seen": {
   "https://techorange.com/2026/10/10/machinenative-economy": "2026-10-12",
   "https://towardsdatascience.com/agentic-systems-a-practitioners-guide-to-6-advanced-architectural-patterns": "2026-10-12",
@@ -146,6 +146,20 @@
   "https://aws.amazon.com/blogs/machine-learning/how-eon-built-multi-cloud-investigation-with-an-mcp-gateway-on-amazon-bedrock-agentcore": "2026-10-22",
   "https://towardsdatascience.com/how-to-turn-long-running-python-simulations-into-a-self-service-platform": "2026-10-22",
   "https://www.analyticsvidhya.com/blog/2026/10/open-source-alternatives-paid-software": "2026-10-22",
-  "https://www.kdnuggets.com/named-entity-recognition-using-scikit-llm": "2026-10-22"
+  "https://www.kdnuggets.com/named-entity-recognition-using-scikit-llm": "2026-10-22",
+  "https://aws.amazon.com/blogs/machine-learning/5-production-challenges-in-multi-agent-systems-and-how-deep-insight-solved-them": "2026-10-23",
+  "https://arxiv.org/abs/2610.28933": "2026-10-23",
+  "https://simonwillison.net/2026/Oct/22/donating-agent-skills": "2026-10-23",
+  "https://towardsdatascience.com/does-agentic-rag-actually-retrieve-better-evidence-i-tested-it-on-298-questions": "2026-10-23",
+  "https://techorange.com/2026/10/22/artificial-intelligence-finance-embraces-gen-ai-autonomous-cash-management": "2026-10-23",
+  "https://techorange.com/2026/10/22/spacex-tesla-merger": "2026-10-23",
+  "https://aws.amazon.com/blogs/machine-learning/adaptive-agentic-intelligence-framework-using-strands-agents": "2026-10-23",
+  "https://techorange.com/2026/10/22/walmart-agent-gateway-ai-shopping-agents": "2026-10-23",
+  "https://techorange.com/2026/10/21/how-to-implement-ai-agents-singapore": "2026-10-23",
+  "https://towardsdatascience.com/could-on-policy-self-distillation-revolutionize-post-training": "2026-10-23",
+  "https://aws.amazon.com/blogs/machine-learning/how-rescale-built-an-ai-triage-agent-with-strands-agents-and-ai-dlc": "2026-10-23",
+  "https://towardsdatascience.com/raman-spectra-preprocessing-and-non-negative-least-squares-modelling-in-python-monitoring-zeolite-crystallization": "2026-10-23",
+  "https://simonwillison.net/2026/Oct/21/php-security-release": "2026-10-23",
+  "https://www.analyticsvidhya.com/blog/2026/10/build-an-ai-employee-in-python": "2026-10-23"
  }
 }

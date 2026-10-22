@@ -1,155 +1,155 @@
-# AI & Data 每日摘要 2026-10-22（四）
+# AI & Data 每日摘要 2026-10-23（五）
 
-> 今天的主軸是「Agent 工具治理」與「推論基礎設施開源化」兩條線：AWS 連發 Agent Registry 與 Bedrock AgentCore MCP Gateway，顯示 agent 的工具管理正從硬編碼走向 runtime 語意搜尋與集中式認證閘道——這和 DE 熟悉的 schema registry / 連線憑證治理高度同構，是你最容易遷移既有經驗的切入點。另一條線是 DeepSeek 開源 DeepInfer 推論引擎、AWS Trainium 上的 Difflet 與 linear attention 模型，推論成本與記憶體（KV cache）成為系統設計的核心變數。此外 fine-tuning（SFT vs GRPO）有了可量化的決策案例，而 TDS 的 dbt snapshot pipeline 與非同步模擬平台兩篇則提醒：AI Engineer 的底層仍是扎實的資料與工作流工程。建議今天把重心放在 MCP/Agent Registry 的概念與一個可跑的最小範例。
+> 今天的主軸非常清楚：agentic AI 正從 demo 走向 production，但卡關的全是工程問題——orchestration、模型路由、安全執行、監控與治理（[1][7][11][9]）。企業端的數據也印證這個落差：生成式 AI 採用率一年從 16% 衝到 80%，但讓 AI 自主執行的 agentic 採用率仍停在 5%（[5]），而 Walmart 用 MCP 開放代理購物並設定權限上限（[8]），顯示「代理的權限邊界與閘道設計」會是下一個熱點能力。同時 Anthropic 把 Agent Skills 捐給 Linux Foundation 旗下的 AAIF（[3]），agent 介面正在標準化，MCP + Skills 值得你現在就投資學習。另一條提醒線是務實的評估態度：Agentic RAG 在 298 題實測上並沒有穩定贏過一般檢索（[4]），對 DE 出身的你，這正是把『可量測的 evaluation pipeline』當成轉職差異化武器的機會。
 
-## 🔥 今日必讀（6）
+## 🔥 今日必讀（4）
 
 *直接補上你轉職缺的能力*
 
-### [DeepSeek 開源推論框架 DeepInfer](https://techorange.com/2026/10/21/deepseek-deepinfer-ai/?utm_source=rss&utm_medium=feed&utm_campaign=techorange_rss)
-*TechOrange 科技報橘 · 2026-10-21 · 相關度 14.52 · 必讀*
+### [多代理系統上線的五大挑戰與解法](https://aws.amazon.com/blogs/machine-learning/5-production-challenges-in-multi-agent-systems-and-how-deep-insight-solved-them/)
+*AWS Machine Learning Blog · 2026-10-21 · 相關度 18.45 · 必讀*
 
-- **內容**：DeepSeek 開源整合式推論引擎 DeepInfer，公開支撐單叢集日處理 155 兆 tokens 的平行運算、非同步排程與 speculative decoding 設計。
-- **對你的意義**：AI Engineer 必須懂推論成本結構；從開放權重到開放推論引擎，意味著自建部署的門檻下降，你需要理解 batching、排程與解碼優化這些「服務層」概念。
-- **今天可以做**：查閱並筆記三個名詞：continuous batching、speculative decoding、MoE expert parallelism，各用兩句話寫出它們各自省下什麼資源。
-- **原文標題**：DeepSeek 把 AI 推論框架開源了！揭露單一叢集日處理 155 兆 Tokens 的系統設計
-- `#推論引擎` `#開源` `#DeepSeek` `#部署效能`
+- **內容**：AWS 以開源的 Deep Insight 為例，拆解 multi-agent 從 prototype 到 production 會遇到的五個問題：編排、各 agent 的模型選擇、可靠運行、安全程式執行與監控。
+- **對你的意義**：這五項幾乎就是 AI Engineer 的職責定義，而且每一項都能對應到你熟悉的 pipeline 排程、重試、隔離執行與可觀測性概念，是最快把 DE 經驗轉譯成 AI 系統設計語言的素材。
+- **今天可以做**：讀完後列一張對照表：五大挑戰 vs 你在 Airflow/Spark 裡對應的既有解法與差異點。
+- **原文標題**：5 production challenges in multi-agent systems and how Deep Insight solved them
+- `#Agent` `#LLMOps` `#系統設計` `#AWS`
 
-### [我做了一條追蹤目標職缺市場的 pipeline](https://towardsdatascience.com/i-built-a-pipeline-to-track-the-job-market-im-trying-to-break-into/)
-*Towards Data Science · 2026-10-21 · 相關度 11.2 · 必讀*
+### [Agentic RAG 真的檢索得更好嗎？298 題實測](https://towardsdatascience.com/does-agentic-rag-actually-retrieve-better-evidence-i-tested-it-on-298-questions/)
+*Towards Data Science · 2026-10-22 · 相關度 12.52 · 必讀*
 
-- **內容**：作者用 dbt snapshots 建增量 pipeline 追蹤職缺資料，並分享途中遇到 API 回傳不實資料的踩坑經驗。
-- **對你的意義**：用你最熟的 DE 技能打造轉職用的個人專案，既練手也是作品集；之後再加上 embedding 做職缺語意搜尋就能延伸成 AI 專案。
-- **今天可以做**：今天建一個最小版本：抓 20 筆 AI Engineer 職缺存成 table，規劃好 snapshot 欄位（SCD2）與後續要加的 JD embedding 欄位。
-- **原文標題**：I Built a Pipeline to Track the Job Market I'm Trying to Break Into.
-- `#dbt` `#資料管線` `#作品集` `#職涯`
+- **內容**：作者讓 agent 自行決定是否重新檢索，結果是找到一些原本漏掉的文獻、也弄丟一些原本找到的，整體增益不足以信任。
+- **對你的意義**：直接示範 AI Engineer 的核心素養：不是把架構堆複雜，而是用對照實驗證明有效；這種「設計評測資料集與指標」的工作幾乎就是 DE 的強項延伸。
+- **今天可以做**：仿照它的方法，為自己的小型 RAG demo 設計 20 題評測集與 2 個指標，先跑出 baseline 數字。
+- **原文標題**：Does Agentic RAG Actually Retrieve Better Evidence? I Tested It on 298 Questions
+- `#RAG` `#Agentic RAG` `#評估` `#實驗設計`
 
-### [在 SageMaker HyperPod 上微調 GPT-OSS-20B](https://aws.amazon.com/blogs/machine-learning/fine-tuning-gpt-oss-20b-for-multilingual-reasoning-on-amazon-sagemaker-hyperpod/)
-*AWS Machine Learning Blog · 2026-10-20 · 相關度 10.25 · 必讀*
+### [用 Strands Agents 打造自適應代理框架](https://aws.amazon.com/blogs/machine-learning/adaptive-agentic-intelligence-framework-using-strands-agents/)
+*AWS Machine Learning Blog · 2026-10-21 · 相關度 10.25 · 必讀*
 
-- **內容**：實作分享 GPT-OSS-20B 多語推理微調，SFT 把推理語言正確率從 22% 拉到 100%，GRPO 在還有空間處再加分，並給出 SFT 與 RL 的選擇準則。
-- **對你的意義**：fine-tuning 的「何時該做、該用哪種」是 AI Engineer 面試與實務的高頻題，這篇提供有量化結果的決策依據。
-- **今天可以做**：做一張決策表：問題屬於格式/風格不一致→SFT；屬於偏好與多解排序→RL/GRPO；屬於知識缺口→RAG，各寫一個例子。
-- **原文標題**：Fine-tuning GPT-OSS-20B for multilingual reasoning on Amazon SageMaker HyperPod
-- `#fine-tuning` `#SFT` `#GRPO` `#模型評估`
+- **內容**：AAIF 框架用本地小模型（Ollama）處理例行任務、複雜請求才路由到 Amazon Bedrock 雲端模型，以 IoT 監控情境示範實作。
+- **對你的意義**：模型路由（model routing）是 LLM 成本與延遲優化的核心手法，和你做資料分層／冷熱資料分流的思維一致，是很好的能力遷移點。
+- **今天可以做**：畫一張簡單的 routing 決策圖：什麼條件走本地 SLM、什麼條件升級到大模型。
+- **原文標題**：Adaptive agentic intelligence framework using Strands Agents
+- `#Agent` `#模型路由` `#成本優化` `#Bedrock`
 
-### [用 AWS Agent Registry 在 runtime 發現工具](https://aws.amazon.com/blogs/machine-learning/discover-tools-at-runtime-with-aws-agent-registry/)
-*AWS Machine Learning Blog · 2026-10-20 · 相關度 9.54 · 必讀*
+### [Walmart 推代理閘道，用 MCP 讓 AI 代理購物](https://techorange.com/2026/10/22/walmart-agent-gateway-ai-shopping-agents/?utm_source=rss&utm_medium=feed&utm_campaign=techorange_rss)
+*TechOrange 科技報橘 · 2026-10-22 · 相關度 9.78 · 必讀*
 
-- **內容**：當 agent 工具從數個長到數百個，硬編碼 wiring 會崩潰；本文示範以語意搜尋在 runtime 發現 MCP server 與 A2A agent 的 Discover-Instantiate-Execute 迴圈。
-- **對你的意義**：這是 agent 系統的規模化核心問題，概念上等同你熟悉的 metadata catalog / schema registry，是 DE 轉 AI 最可直接遷移經驗的題目。
-- **今天可以做**：畫出 Discover-Instantiate-Execute 流程圖，並寫下它與 Airflow plugin 註冊機制的三個差異點。
-- **原文標題**：Discover tools at runtime with AWS Agent Registry
-- `#AI Agent` `#MCP` `#工具治理` `#AWS`
-
-### [Eon 用 Bedrock AgentCore MCP Gateway 做多雲調查](https://aws.amazon.com/blogs/machine-learning/how-eon-built-multi-cloud-investigation-with-an-mcp-gateway-on-amazon-bedrock-agentcore/)
-*AWS Machine Learning Blog · 2026-10-20 · 相關度 9.03 · 必讀*
-
-- **內容**：Eon 以單一認證 gateway 取代 AWS/GCP/Azure 各自的工具憑證與本機 MCP process，讓逾百位開發者與 agent 共用存取，新人上手從兩天縮到兩分鐘。
-- **對你的意義**：展示 agent 在企業環境的身分認證與權限治理實務，正是 DE 熟悉的連線管理延伸，也是上線維運能力的加分項。
-- **今天可以做**：列出你現有 pipeline 中散落的三組憑證，設計一個「統一 gateway + 最小權限」的改法草圖。
-- **原文標題**：How Eon built multi-cloud investigation with an MCP Gateway on Amazon Bedrock AgentCore
-- `#MCP Gateway` `#Bedrock AgentCore` `#安全治理` `#企業案例`
-
-### [用 Scikit-LLM 做命名實體辨識](https://www.kdnuggets.com/named-entity-recognition-using-scikit-llm)
-*KDnuggets · 2026-10-21 · 相關度 5.0 · 必讀*
-
-- **內容**：示範用 Scikit-LLM 以 scikit-learn 風格 API 建立客製化 NER pipeline，靠 LLM 推理能力取代傳統標註訓練。
-- **對你的意義**：對 DE 很實用：非結構化文字（工單、log、合約）轉結構化欄位是你 pipeline 的常見需求，這是低成本把 LLM 嵌入 ETL 的做法。
-- **今天可以做**：用 Scikit-LLM 跑一個最小範例，拿 10 筆你熟悉的業務文字抽出 3 個實體欄位，記錄準確度與 token 成本。
-- **原文標題**：Named Entity Recognition Using Scikit-LLM
-- `#NER` `#Scikit-LLM` `#非結構化資料` `#ETL`
+- **內容**：Walmart 推出 Agent Gateway（實為 MCP server），讓外部 AI 代理在受控權限下購物，可設消費上限、不交出卡號；Amazon 則選擇封鎖 Meta 的代理。
+- **對你的意義**：是 MCP 在真實商業場景的權限設計案例，告訴你 agent 上線時必須處理的授權、額度與身分邊界，這些是 LLMOps 面試常問的題目。
+- **今天可以做**：用 200 字寫下：如果你要替公司做 MCP server，會設計哪些工具權限層級與風險控管。
+- **原文標題**：Amazon 擋 Muse、Walmart 卻為 AI 代理「開窗」：可設定消費上限、卡號不交給代理
+- `#MCP` `#Agent 權限` `#商業案例`
 
 ## 👀 值得快速瀏覽（5）
 
 *掃過標題與重點即可*
 
-### [明昌國際導入台達 DIAEMS 設備管理系統](https://techorange.com/2026/10/21/delta-diaems/?utm_source=rss&utm_medium=feed&utm_campaign=techorange_rss)
-*TechOrange 科技報橘 · 2026-10-21 · 相關度 14.92 · 快速瀏覽*
+### [DDF：量化新資料集的邊際價值](https://arxiv.org/abs/2610.28933)
+*arXiv cs.LG (Machine Learning) · 2026-10-22 · 相關度 15.89 · 快速瀏覽*
 
-- **內容**：傳統金屬加工廠把紙本設備維護紀錄數位化，解決非計畫停機、庫存失控與老師傅經驗難傳承的問題。
-- **對你的意義**：這是典型「有資料但沒結構化」的場域，正是 DE 背景切入 AI 落地案的優勢起點：先有設備事件資料管線，之後才談維修知識庫 RAG。
-- **今天可以做**：花 10 分鐘構想：若要把這類維修工單與技師經驗做成 RAG 知識庫，資料來源、chunking 策略與 metadata 欄位各該怎麼設計，寫成半頁筆記。
-- **原文標題**：金屬加工大廠明昌國際攜手台達加速數位轉型，導入設備管理系統 DIAEMS
-- `#製造業 AI` `#資料數位化` `#台灣案例`
+- **內容**：提出 Data Differentiator Framework，用互資訊冗餘懲罰、成本正規化的邊際效用（ablation 推得）與治理權重，評分候選資料資產是否真的帶來增量資訊。
+- **對你的意義**：這是 DE 背景最有優勢的切入點：把『資料是否值得買／納入 RAG corpus』變成可計算的指標，正好補上 AI Engineer 在資料價值評估上的空缺。
+- **今天可以做**：用你手上任一資料表，試算兩個欄位與既有特徵的互資訊，體會冗餘度如何量化。
+- **原文標題**：The Data Differentiator Framework (DDF): Quantifying Marginal Data Value with Information-Theoretic and Game-Theoretic Measures in an Agentic Evaluation Pipeline (SDSAE)
+- `#資料價值` `#評估` `#arXiv` `#資料工程`
 
-### [Trainium2 上訓練與服務 Laplace 3B linear attention 模型](https://aws.amazon.com/blogs/machine-learning/beyond-the-kv-cache-training-and-serving-i14s-laplace-3b-linear-attention-model-on-aws-trainium2-with-native-pytorch/)
-*AWS Machine Learning Blog · 2026-10-20 · 相關度 12.87 · 快速瀏覽*
+### [Anthropic 把 Agent Skills 捐給 AAIF](https://simonwillison.net/2026/Oct/22/donating-agent-skills/)
+*Simon Willison's Weblog · 2026-10-22 · 相關度 15.44 · 快速瀏覽*
 
-- **內容**：i14 用原生 PyTorch 在 Trainium2 訓練 linear attention 模型，其 recurrent state 固定 29.5 MB，不隨 context 長度成長，避開 KV cache 膨脹。
-- **對你的意義**：長 context 的記憶體成本是 LLM 服務容量規劃的核心變數，理解 KV cache 為何成長，才有能力估算 GPU 需求與併發上限。
-- **今天可以做**：用紙筆推算一次：transformer KV cache 大小公式（層數×頭數×維度×context×2×精度），套一個 7B 模型與 32k context 算出數字。
-- **原文標題**：Beyond the KV cache: Training and serving i14’s Laplace 3B linear attention model on AWS Trainium2 with native PyTorch
-- `#KV cache` `#linear attention` `#推論記憶體`
+- **內容**：Anthropic 將 Agent Skills 標準捐給 Linux Foundation 旗下的 Agentic AI Foundation，與先前捐出的 MCP 同一歸宿。
+- **對你的意義**：代表 agent 的工具／能力介面正在標準化，學 MCP + Agent Skills 是可跨廠商帶走的技能，而不是綁死單一 SDK。
+- **今天可以做**：花 10 分鐘讀 Agent Skills 的規格結構，寫下它與 MCP tools 的角色差異。
+- **原文標題**：Donating Agent Skills to the Agentic AI Foundation
+- `#MCP` `#Agent Skills` `#開放標準`
 
-### [5 個最佳 AI Agent Skills GitHub 專案](https://www.kdnuggets.com/5-best-github-repositories-for-ai-agent-skills)
-*KDnuggets · 2026-10-21 · 相關度 12.6 · 快速瀏覽*
+### [8 成美企財務用生成式 AI，代理式僅 5%](https://techorange.com/2026/10/22/artificial-intelligence-finance-embraces-gen-ai-autonomous-cash-management/?utm_source=rss&utm_medium=feed&utm_campaign=techorange_rss)
+*TechOrange 科技報橘 · 2026-10-22 · 相關度 10.95 · 快速瀏覽*
 
-- **內容**：整理五個熱門 agent skill 集合，協助 coding agent 進行規劃、測試、除錯、review 與軟體建構。摘要資訊有限，細節需看原文。
-- **對你的意義**：直接提供可抄的 agent 能力設計樣板，對剛要從 pipeline 思維轉成 agent 思維的你，是最省時的入門素材庫。
-- **今天可以做**：打開其中一個 repo，挑一個 skill 的 prompt/工具定義讀完，模仿它寫一個「SQL 查詢檢查」skill 的定義草稿。
-- **原文標題**：5 Best GitHub Repositories for AI Agent Skills
-- `#AI Agent` `#開源` `#GitHub` `#學習資源`
+- **內容**：PYMNTS 與摩根大通研究顯示，2026 年 80% 財務團隊用生成式 AI 管理現金流（2025 年為 16%），但代理式 AI 採用率從 6% 微降至 5%。
+- **對你的意義**：點出產業真正的瓶頸不是生成能力，而是「讓 AI 自主執行」所需的信任、稽核與風控機制——這正是 AI Engineer 的加值空間。
+- **今天可以做**：寫三行筆記：若要讓一個 agent 自動執行財務動作，你會加哪三道防護（審批、額度上限、稽核 log）。
+- **原文標題**：8 成美國企業財務團隊用生成式 AI 管現金流，採用代理式 AI 卻只有 5%
+- `#產業動態` `#Agentic AI` `#企業採用`
 
-### [OpenAI 如何打造 ChatGPT 的廣告技術堆疊](https://openai.com/index/building-chatgpt-ad-stack)
-*OpenAI News · 2026-10-21 · 相關度 12.45 · 快速瀏覽*
+### [Rescale 用 Strands Agents 與 AI-DLC 打造測試分流代理](https://aws.amazon.com/blogs/machine-learning/how-rescale-built-an-ai-triage-agent-with-strands-agents-and-ai-dlc/)
+*AWS Machine Learning Blog · 2026-10-22 · 相關度 8.94 · 快速瀏覽*
 
-- **內容**：OpenAI 說明以 LLM 理解對話意圖、將廣告與回答明確區隔，並在規模下維持相關性的廣告系統設計。
-- **對你的意義**：是少見的 LLM 產品級系統設計公開文，可觀察他們如何做意圖抽取、排序與信任邊界——這些都是 AI Engineer 的系統設計考題。
-- **今天可以做**：讀完後寫下他們「讓廣告與答案分離」的三個機制，思考同樣手法能否用在你的 RAG 系統區隔「來源內容」與「模型臆測」。
-- **原文標題**：How we built ChatGPT’s novel ad stack for user trust and relevance
-- `#系統設計` `#OpenAI` `#LLM 產品`
+- **內容**：Rescale 採用 AWS 的 AI-Driven Development Lifecycle 框架，搭配 Strands Agents 與 Bedrock，在數週內做出智慧測試 triage agent 並推廣到整個工程組織。
+- **對你的意義**：示範一個內部工程痛點如何被 agent 化，這類「內部效率型 agent」通常是 DE 轉 AI Engineer 最容易在公司內拿到的第一個專案。
+- **今天可以做**：列出你團隊中三個重複性人工判斷工作，選一個寫成 agent 的輸入／工具／輸出規格草稿。
+- **原文標題**：How Rescale built an AI triage agent with Strands Agents and AI-DLC
+- `#Agent 實戰` `#AI-DLC` `#內部工具`
 
-### [把長時間 Python 模擬變成自助服務平台](https://towardsdatascience.com/how-to-turn-long-running-python-simulations-into-a-self-service-platform/)
-*Towards Data Science · 2026-10-21 · 相關度 8.9 · 快速瀏覽*
+### [用 Python 打造睡覺時也在工作的 AI 員工](https://www.analyticsvidhya.com/blog/2026/10/build-an-ai-employee-in-python/)
+*Analytics Vidhya · 2026-10-22 · 相關度 6.0 · 快速瀏覽*
 
-- **內容**：作者分享在 AWS 上建非同步工作負載的經驗，聚焦 queue 設計、失敗復原與可重現性。
-- **對你的意義**：LLM 的批次推論、評估跑分與 fine-tuning job 都是長時任務，這套 queue 與 retry 設計可直接套用到 AI workload 平台。
-- **今天可以做**：對照你現在的 Airflow DAG，寫下三個讓 LLM 批次評估任務具備可重現性的要素（seed、版本鎖定、輸入快照）。
-- **原文標題**：How to Turn Long-Running Python Simulations Into a Self-Service Platform
-- `#非同步架構` `#平台工程` `#可重現性`
+- **內容**：教學型文章，示範用研究員、寫手、編輯三個 agent 分工自動產出每週電子報，其中編輯會抓出寫手捏造的數據。
+- **對你的意義**：是最低門檻的 multi-agent 動手範例，特別是「編輯 agent 做事實查核」等同於你在 pipeline 裡做的資料品質檢查，概念可直接遷移。
+- **今天可以做**：今天挑其中的 editor/reviewer 角色，用 30 行程式做一個會檢查輸出是否有未佐證數字的驗證 agent。
+- **原文標題**：Build AI Employees in Python That Work While You Sleep
+- `#Multi-agent` `#Python` `#動手教學` `#自動化`
 
-## 🗂️ 存起來參考（3）
+## 🗂️ 存起來參考（5）
 
 *之後需要時再回頭看*
 
-### [Difflet：AWS Trainium 上的 Diffusion 推論引擎](https://arxiv.org/abs/2610.23047)
-*arXiv cs.LG (Machine Learning) · 2026-10-21 · 相關度 13.43 · 存參考*
+### [科技早餐：SpaceX 特斯拉評估合併、NVIDIA DSX POD](https://techorange.com/2026/10/22/spacex-tesla-merger/?utm_source=rss&utm_medium=feed&utm_campaign=techorange_rss)
+*TechOrange 科技報橘 · 2026-10-21 · 相關度 10.54 · 存參考*
 
-- **內容**：論文提出 Difflet，讓五種 diffusion pipeline 共用一套編譯後端，並在每個去噪步驟由 host controller 決定是否重用快取輸出。
-- **對你的意義**：展示「用 runtime 決策省運算」的系統思維，與你在 pipeline 做增量處理/快取的直覺相通，但應用在模型服務層。
-- **今天可以做**：只讀 abstract，記下「step-level caching 決策」這個模式，想一個你自家 pipeline 中可類比的重算略過機制。
-- **原文標題**：DIFFLET: A Fast Inference Engine for Diffusion Transformer Models on AWS Trainium
-- `#diffusion` `#Trainium` `#推論優化` `#論文`
+- **內容**：綜合科技新聞，含 SpaceX 與特斯拉評估合併、SpaceX AI 部門營收占比過半，以及 NVIDIA 發表模組化 AI 工廠 DSX POD、宣稱部署可縮短到最快 14 天。
+- **對你的意義**：算力供給與 AI 基礎設施的交付速度，會直接影響你未來做模型部署時的成本與選型假設，屬於背景資訊而非技能。
+- **今天可以做**：只需快速掃過標題與 DSX POD 段落，記下「AI 基礎設施交付正在模組化」這個趨勢。
+- **原文標題**：【科技早餐】SpaceX、特斯拉評估合併！潛在市值逾 3 兆美元
+- `#產業新聞` `#AI 基礎設施` `#NVIDIA`
 
-### [Google Coral NPU 擴大商用，瞄準智慧眼鏡](https://techorange.com/2026/10/21/unifying-edge-ai-coral-npus-open-standard-brings-portable-energy-viable-intelligence-model-silicon/?utm_source=rss&utm_medium=feed&utm_campaign=techorange_rss)
-*TechOrange 科技報橘 · 2026-10-21 · 相關度 10.27 · 存參考*
+### [新加坡如何監管 AI 代理：沿用現行法規並先試驗](https://techorange.com/2026/10/21/how-to-implement-ai-agents-singapore/?utm_source=rss&utm_medium=feed&utm_campaign=techorange_rss)
+*TechOrange 科技報橘 · 2026-10-21 · 相關度 9.39 · 存參考*
 
-- **內容**：Synaptics 推出整合開源 Coral NPU 的 Astra SR200 處理器，讓智慧眼鏡、攝影機等裝置能離線執行 Gemma 等模型。
-- **對你的意義**：edge AI 代表未來一部分推論會離開雲端，對資料流設計與模型量化需求不同；屬於擴大視野、短期非核心。
-- **今天可以做**：略讀標題與重點即可，記下「RISC-V + Apache 2.0 開源 NPU」這個趨勢關鍵字。
-- **原文標題**：Google 免授權費 Coral NPU 擴大商用：新思國際推最高 400 GOPS 晶片瞄準智慧眼鏡
-- `#edge AI` `#NPU` `#硬體趨勢`
+- **內容**：新加坡官員表示代理式 AI 的風險多是既有問題的延伸，將沿用個資法等既有框架與 Model AI Governance Framework，由 GovTech 等機關先行試驗。
+- **對你的意義**：幫你建立 AI 治理的語彙（可解釋、透明、當責、監督角色），這是企業導入 agent 時 AI Engineer 必須能對話的面向。
+- **今天可以做**：快速掃過，記下三個治理關鍵詞並想想自己的 pipeline 要加哪些 audit log。
+- **原文標題**：新加坡政府如何因應 AI 代理風險：沿用現行法規、讓政府機關先試驗
+- `#AI 治理` `#法規` `#Agentic AI`
 
-### [10 個付費軟體的免費開源替代方案](https://www.analyticsvidhya.com/blog/2026/10/open-source-alternatives-paid-software/)
-*Analytics Vidhya · 2026-10-21 · 相關度 6.93 · 存參考*
+### [On-Policy 自蒸餾會改寫 post-training 嗎？](https://towardsdatascience.com/could-on-policy-self-distillation-revolutionize-post-training/)
+*Towards Data Science · 2026-10-22 · 相關度 9.27 · 存參考*
 
-- **內容**：整理十款可取代付費軟體的開源工具，涵蓋影像編輯、專案管理、文件簽署等。與 AI 工程核心關聯低。
-- **對你的意義**：與 DE 轉 AI Engineer 的能力落差關聯不大，僅屬生產力工具資訊。
-- **今天可以做**：今天可略過，若有軟體訂閱成本困擾再回頭看清單。
-- **原文標題**：10 Free Open Source Alternatives to Paid Software
-- `#開源工具` `#生產力`
+- **內容**：介紹一種以強化學習為基礎的 on-policy self-distillation 方法，嘗試在教會基礎模型新技能的同時避免破壞既有能力。
+- **對你的意義**：屬於模型訓練層的進階知識；對 DE 轉職初期不是當務之急，但了解 post-training 選項能讓你在「要不要 fine-tune」的決策上更有底氣。
+- **今天可以做**：只讀前言，把「catastrophic forgetting」與「on-policy distillation」兩個詞寫進你的名詞筆記。
+- **原文標題**：Could On-Policy Self-Distillation Revolutionize Post-Training?
+- `#post-training` `#蒸餾` `#RL` `#研究`
+
+### [Python 拉曼光譜前處理與非負最小平方建模](https://towardsdatascience.com/raman-spectra-preprocessing-and-non-negative-least-squares-modelling-in-python-monitoring-zeolite-crystallization/)
+*Towards Data Science · 2026-10-22 · 相關度 8.91 · 存參考*
+
+- **內容**：一篇可重現的教學，用真實原位資料示範光譜前處理與 NNLS 光譜解混，監測沸石結晶過程。
+- **對你的意義**：與 LLM 轉職路徑關聯低，但可視為科學資料前處理與可重現 notebook 寫作的範例，對建立乾淨的實驗流程習慣有參考價值。
+- **今天可以做**：若有餘力再看；否則收藏即可。
+- **原文標題**：Raman Spectra Preprocessing and Non-Negative Least Squares Modelling in Python: Monitoring Zeolite Crystallization
+- `#科學計算` `#Python` `#教學`
+
+### [PHP 安全更新與強化計畫](https://simonwillison.net/2026/Oct/21/php-security-release/)
+*Simon Willison's Weblog · 2026-10-21 · 相關度 8.4 · 存參考*
+
+- **內容**：PHP 8.x 全線釋出修補兩個遠端程式執行漏洞，因協同揭露流程外洩導致漏洞資訊提前流傳、已有攻擊程式出現，建議立即升級。
+- **對你的意義**：與 AI 技能無直接關係，但提醒你 agent 系統中的「安全程式執行」與相依套件風險，是上線前必查的項目。
+- **今天可以做**：確認自己有無服務跑在 PHP 上；沒有的話跳過，僅記下供應鏈安全的警覺。
+- **原文標題**：Today's PHP Security Release, and How We're Strengthening PHP Security
+- `#資安` `#CVE` `#維運`
 
 ## 🎯 今天的 30 分鐘學習計畫
 
-1. 先讀 [10] AWS Agent Registry 的 Discover-Instantiate-Execute 迴圈，用 15 分鐘畫一張圖，對照你熟悉的 Airflow Operator 註冊 / schema registry，寫下「工具發現」與「metadata catalog」的相同與不同點。
-2. 接著讀 [11] Eon 的 MCP Gateway 案例，列出 3 個你現在 pipeline 中的憑證管理痛點，思考若改成單一認證閘道暴露給 agent 會怎麼設計。
-3. 最後花 10 分鐘掃 [9] SFT vs GRPO 的決策準則，做一張「什麼情況選 prompt engineering / RAG / SFT / RL」的決策筆記，當作日後專案的判斷依據。
+1. 先讀 [1]，把五大 production 挑戰（orchestration、per-agent model selection、可靠運行、安全程式執行、監控）各寫一句對照你現有 Airflow/Spark pipeline 的類比，產出一頁筆記。
+2. 讀 [4]，動手定義一組最小 RAG 評估表：20 題 × (retrieval hit、answer correctness、latency、token cost)，用 SQL/pandas 算出 baseline vs agentic 的差異，這是你 DE 背景最快能變現的技能。
+3. 花 10 分鐘掃 [3] 與 [8]，在本機跑一個最簡單的 MCP server（或讀一份 MCP spec 的 tools 定義），理解 agent 如何被授權與限制權限。
 
 ---
 
-掃描 502 篇，收錄 14 篇。來源分布：AWS Machine Learning Blog × 4、TechOrange 科技報橘 × 3、KDnuggets × 2、Towards Data Science × 2、arXiv cs.LG (Machine Learning) × 1、OpenAI News × 1、Analytics Vidhya × 1
+掃描 459 篇，收錄 14 篇。來源分布：TechOrange 科技報橘 × 4、AWS Machine Learning Blog × 3、Towards Data Science × 3、Simon Willison's Weblog × 2、arXiv cs.LG (Machine Learning) × 1、Analytics Vidhya × 1
 
 > ⚠️ [Uber Engineering Blog](https://www.uber.com/en-US/blog/engineering/)：官方無 RSS（robots.txt 禁止 API 抓取），請人工瀏覽；同性質內容已由 Netflix / Meta / Pinterest / Airbnb 工程部落格補上。
 
-*由 ai-data-digest 於 2026-10-22 02:46 自動產生 · 摘要引擎：Claude（claude-opus-5）*
+*由 ai-data-digest 於 2026-10-23 02:40 自動產生 · 摘要引擎：Claude（claude-opus-5）*
