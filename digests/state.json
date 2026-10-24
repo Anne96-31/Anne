@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-24T02:32:57+08:00",
+ "updated": "2026-10-25T01:31:31+08:00",
  "seen": {
   "https://techorange.com/2026/10/10/machinenative-economy": "2026-10-12",
   "https://towardsdatascience.com/agentic-systems-a-practitioners-guide-to-6-advanced-architectural-patterns": "2026-10-12",
@@ -174,6 +174,20 @@
   "https://www.kdnuggets.com/google-open-sources-harness-self-improving-ai-agents-without-retraining": "2026-10-24",
   "https://www.kdnuggets.com/how-to-process-large-json-files-in-python-with-ijson": "2026-10-24",
   "https://towardsdatascience.com/same-answer-different-reason-what-a-reasoning-model-says-when-it-follows-a-planted-hint": "2026-10-24",
-  "https://towardsdatascience.com/dont-let-messy-data-bend-your-curves": "2026-10-24"
+  "https://towardsdatascience.com/dont-let-messy-data-bend-your-curves": "2026-10-24",
+  "https://techorange.com/2026/10/24/robotics-readiness-gap": "2026-10-25",
+  "https://netflixtechblog.com/beyond-api-compatibility-building-a-tool-to-measure-the-blast-radius-of-library-changes-9474f2fd4f90": "2026-10-25",
+  "https://towardsdatascience.com/how-to-add-guardrails-to-a-local-llm-agent": "2026-10-25",
+  "https://techorange.com/2026/10/23/sovereign-ai-2026": "2026-10-25",
+  "https://techorange.com/2026/10/23/1password-for-agents-ai": "2026-10-25",
+  "https://www.databricks.com/blog/built-agents-case-spark-declarative-pipelines": "2026-10-25",
+  "https://simonwillison.net/2026/Oct/23/quick-study-painter": "2026-10-25",
+  "https://techorange.com/2026/10/23/google-cloud-openai-gpt6-models": "2026-10-25",
+  "https://openai.com/index/decisions-api": "2026-10-25",
+  "https://netflixtechblog.com/single-tenant-titus-vm-level-isolation-on-a-multi-tenant-container-platform-6d8b1909d163": "2026-10-25",
+  "https://openai.com/index/scaling-storage-one-billion-users-part-two": "2026-10-25",
+  "https://www.kdnuggets.com/5-free-ai-coding-agents-you-should-try-in-2026": "2026-10-25",
+  "https://www.kdnuggets.com/what-companies-actually-mean-when-they-say-they-want-ai-experience": "2026-10-25",
+  "https://towardsdatascience.com/python-315-has-a-new-profiler": "2026-10-25"
  }
 }
