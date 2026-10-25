@@ -1,155 +1,110 @@
-# AI & Data 每日摘要 2026-10-25（日）
+# AI & Data 每日摘要 2026-10-26（一）
 
-> 今天這批文章的主軸是「Agent 進入生產環境後的配套工程」：從 Agent 的權限與憑證邊界（1Password for Agents、AI 主權論壇的五種控制權）、Agent 的輸出護欄（local LLM guardrails），到 Agent 已實際在寫資料管線（Databricks Spark Declarative Pipelines 宣稱 70%+ 由 agent 產生）與 Netflix 用工具量測變更影響半徑，共同訊號是：LLM 能力本身已商品化，真正稀缺的是治理、評估與跨系統上下文供給。第二條線是多模型供應策略（Google Cloud 上架 GPT-6）與成本/延遲分層（Decisions API），代表 AI Engineer 要會做 model routing 與成本控制。對 DE 轉職者最有利的切角是：你熟悉的 pipeline、權限控管、observability 能力正好是這波「Agent 基礎建設」最缺的人。
+> 今天的主軸有兩條：一是「Agent 進了 production 之後的可靠性問題」——工具失敗卻仍自信作答、dashboard 卻全綠，這正是 DE 熟悉的資料品質與可觀測性思維可以直接遷移的戰場；二是「企業資料平台如何真正支撐 AI」，Towards Data Science 把 lakehouse 升級為受治理的 AI 平台拆成六種架構模式，是 DE 轉 AI Engineer 最短的橋。模型端則是 Kimi K3.1 Pro 以約 Opus 等級品質、1/5 成本與 1M context 登場（11/4 前釋出權重），代表多模型路由與成本工程會成為日常技能。其餘如 Cloudflare 後量子金鑰、Databricks 即時能源交易、Google TB 篩檢基礎模型，屬於領域應用與基礎建設參考。整體訊號：AI Engineer 的價值正從「會串 API」移向「會把 Agent/RAG 做得可觀測、可治理、可控成本」。
 
-## 🔥 今日必讀（4）
+## 🔥 今日必讀（2）
 
 *直接補上你轉職缺的能力*
 
-### [Netflix Quasar：量測函式庫變更的影響半徑](https://netflixtechblog.com/beyond-api-compatibility-building-a-tool-to-measure-the-blast-radius-of-library-changes-9474f2fd4f90?source=rss----2615bd06b42e---4)
-*Netflix TechBlog · 2026-10-23 · 相關度 13.4 · 必讀*
+### [Agent 上線後，工具掛了還照樣亂答](https://towardsdatascience.com/agentic-ai-in-production-why-your-agent-keeps-answering-after-its-tools-fail/)
+*Towards Data Science · 2026-10-25 · 相關度 15.3 · 必讀*
 
-- **內容**：Netflix 建工具把 API 變更與跨 repo 實際引用對應起來，讓發版決策有證據；並指出 coding agent 更需要跨倉庫上下文。
-- **對你的意義**：點出 Agent 要能可靠改程式，關鍵不是模型而是「上下文供給系統」——這正是 DE 擅長的 metadata/lineage 工程可以直接遷移的價值。
-- **今天可以做**：寫一段 200 字筆記：把 data lineage 的概念類比成 code dependency graph，列出兩者可共用的設計。
-- **原文標題**：Beyond API Compatibility: Building a Tool to Measure the Blast Radius of Library Changes
-- `#Agent 上下文` `#平台工程` `#Netflix`
+- **內容**：探討 production 中 agentic AI 的典型失敗：工具呼叫失敗時 agent 不中止，反而自信地編出答案，而監控面板仍顯示一切正常。
+- **對你的意義**：DE 很擅長資料品質檢查與 pipeline 失敗告警，但 LLM agent 的失敗是「靜默且看起來正確」，這正是你必須補上的新型可觀測性能力。
+- **今天可以做**：把你現有 Airflow 的失敗告警邏輯類比寫成一份 agent tool-call 的失敗處理規則筆記（retry、fallback、強制拒答）。
+- **原文標題**：Agentic AI in Production: Why Your Agent Keeps Answering After Its Tools Fail
+- `#Agent` `#可觀測性` `#production`
 
-### [如何為本地 LLM Agent 加上 Guardrails](https://towardsdatascience.com/how-to-add-guardrails-to-a-local-llm-agent/)
-*Towards Data Science · 2026-10-24 · 相關度 11.24 · 必讀*
+### [為 AI 做資料賦能：六種進階架構模式](https://towardsdatascience.com/data-enablement-for-ai-a-practitioners-guide-to-6-advanced-architectural-patterns/)
+*Towards Data Science · 2026-10-25 · 相關度 9.94 · 必讀*
 
-- **內容**：用 Gemma 4、Ollama 與 OpenAI Agents SDK 實作 Agent 護欄的動手教學（摘要資訊有限，細節需看原文）。
-- **對你的意義**：Guardrails 是 AI Engineer 的核心上線能力，等同於你在 pipeline 裡做的 data quality check，是最容易從 DE 經驗延伸的一塊。
-- **今天可以做**：今天用 Ollama 跑一個本地模型，實作一個 output guardrail 擋掉含個資的回覆。
-- **原文標題**：How to Add Guardrails to a Local LLM Agent
-- `#Guardrails` `#Agents SDK` `#本地模型`
+- **內容**：超越「切塊即 embedding」的天真做法，提出六種把企業 lakehouse 轉為受治理 AI 平台的 production 架構。
+- **對你的意義**：這是 DE 背景最具優勢的切入點——你已有 lakehouse 與治理經驗，缺的只是把它接到 RAG/Agent 的架構語彙。
+- **今天可以做**：挑一個你熟悉的資料域，畫出從 lakehouse 到 retrieval 層的資料流草圖，標註權限與 metadata 缺口。
+- **原文標題**：Data Enablement for AI: A Practitioner's Guide to 6 Advanced Architectural Patterns
+- `#RAG` `#資料架構` `#lakehouse` `#治理`
 
-### [為 Agent 而生：Spark 宣告式管線的理由](https://www.databricks.com/blog/built-agents-case-spark-declarative-pipelines)
-*Databricks Blog · 2026-10-23 · 相關度 7.64 · 必讀*
-
-- **內容**：Databricks 指出已有超過七成 SDP 生產管線由 AI agent 撰寫，主張宣告式語法更適合 agent 生成與驗證。
-- **對你的意義**：這直接衝擊你的 DE 本業：寫管線的工作正被 agent 取代，轉型方向是設計讓 agent 可用的規格層與驗證機制。
-- **今天可以做**：挑一條既有 Spark/Airflow 任務，寫出它的宣告式規格描述，思考 agent 需要哪些 schema 與測試才能安全生成。
-- **原文標題**：Built for Agents: The Case for Spark Declarative Pipelines
-- `#Databricks` `#宣告式管線` `#Agent 自動化`
-
-### [企業說要「AI 經驗」時到底在指什麼](https://www.kdnuggets.com/what-companies-actually-mean-when-they-say-they-want-ai-experience)
-*KDnuggets · 2026-10-23 · 相關度 5.76 · 必讀*
-
-- **內容**：解析職缺中「AI experience」要求背後企業實際期待的能力組合（摘要資訊有限）。
-- **對你的意義**：直接對應你的求職定位，可用來校準履歷關鍵字與作品集方向，避免準備錯方向。
-- **今天可以做**：讀完後改寫履歷中兩條 DE 經歷，改用 AI 系統語言描述（如資料品質 → eval pipeline）。
-- **原文標題**：What Companies Actually Mean When They Say They Want “AI Experience”
-- `#職涯` `#履歷` `#求職策略`
-
-## 👀 值得快速瀏覽（5）
+## 👀 值得快速瀏覽（4）
 
 *掃過標題與重點即可*
 
-### [Intel 機器人準備度差距報告：邊緣 AI 成自動化後盾](https://techorange.com/2026/10/24/robotics-readiness-gap/?utm_source=rss&utm_medium=feed&utm_campaign=techorange_rss)
-*TechOrange 科技報橘 · 2026-10-23 · 相關度 16.98 · 快速瀏覽*
+### [【戴季全專欄】市長要考慮的不只是 AI 園區，城市需要的是迎接 AI 時代的治理能力](https://techorange.com/2026/10/25/taipei-taiwan-ai-city/?utm_source=rss&utm_medium=feed&utm_campaign=techorange_rss)
+*TechOrange 科技報橘 · 2026-10-24 · 相關度 7.68 · 快速瀏覽*
 
-- **內容**：Intel 調查全球 800 位高管，指出企業部署機器人的野心遠超過內部策略、技能與安全準備，並提出五維度轉型架構。
-- **對你的意義**：Physical AI 屬於邊緣推論場景，跟你熟悉的集中式資料管線不同，可建立對「邊緣端資料回傳與模型更新」的架構直覺。
-- **今天可以做**：花 5 分鐘把報告的五個維度（策略/技能/安全/型態/規模）抄成筆記，對照你公司資料平台在哪一維度最弱。
-- **原文標題**：【英特爾「機器人準備度差距」報告】邊緣 AI 算力是自動化規模的後盾，專用型 AMR 與工業手臂是產出翻倍主力
-- `#Physical AI` `#邊緣運算` `#產業報告`
+- **內容**：論述台北發展 AI 的關鍵不只是土地與園區，而是人才、電力、算力、資本等生產要素的有效組合與治理能力。
+- **對你的意義**：幫你理解台灣 AI 人才市場的結構性需求（算力、軟體團隊、新創），對判斷轉職後該往哪類公司靠有參考價值。
+- **今天可以做**：花 5 分鐘掃讀，記下文中提到的幾層 AI 產業分工，標出自己想切入的那一層。
+- **原文標題**：【戴季全專欄】市長要考慮的不只是 AI 園區，城市需要的是迎接 AI 時代的治理能力
+- `#台灣產業` `#政策` `#職涯`
 
-### [主權不等於自建，握有掌控權才是](https://techorange.com/2026/10/23/sovereign-ai-2026/?utm_source=rss&utm_medium=feed&utm_campaign=techorange_rss)
-*TechOrange 科技報橘 · 2026-10-23 · 相關度 8.7 · 快速瀏覽*
+### [Kimi K3.1 Pro 評測：近 Opus 品質、五分之一成本](https://www.analyticsvidhya.com/blog/2026/10/kimi-k3-1-pro-review/)
+*Analytics Vidhya · 2026-10-25 · 相關度 7.44 · 快速瀏覽*
 
-- **內容**：AI 主權論壇專家提出資料、流程、決策、技術等多重控制權，並舉繁簡中文測試顯示模型對台灣用語的落差。
-- **對你的意義**：台灣企業導入 LLM 時語言在地化與資料治理是真實痛點，這是 DE 背景者切入 AI 專案最容易被信任的入口。
-- **今天可以做**：設計 10 個台灣用語測試題，丟給你常用的模型比對繁簡中文回答差異，記錄錯誤率。
-- **原文標題**：「主權不等於自建，握有掌控權才是。」微軟、鴻海、資誠、iKala 等專家共同拆解 AI 主權防線與邊界
-- `#主權 AI` `#資料治理` `#在地化評估`
+- **內容**：評測 Moonshot 的 Kimi K3.1 Pro 在 coding agent benchmark、1M token context 與金融任務的表現，並與 Opus 5.5、GPT-6 Astra 比較。
+- **對你的意義**：AI Engineer 的日常決策之一是模型選型與成本控制，這類橫向評測幫你建立「效能 / 成本 / context」的取捨直覺。
+- **今天可以做**：做一張三欄比較表（成本、context、適合任務），寫下你會在什麼情境改用便宜模型。
+- **原文標題**：Kimi K3.1 Pro Review: Near-Opus Quality at 1/5th the Cost
+- `#模型評測` `#成本` `#model routing`
 
-### [1Password 推 Agent 免交密碼登入機制](https://techorange.com/2026/10/23/1password-for-agents-ai/?utm_source=rss&utm_medium=feed&utm_campaign=techorange_rss)
-*TechOrange 科技報橘 · 2026-10-23 · 相關度 8.48 · 快速瀏覽*
+### [battledrones v14：用 prompt 擴充四人地圖](https://simonwillison.net/2026/Oct/24/battledrones/)
+*Simon Willison's Weblog · 2026-10-24 · 相關度 5.38 · 快速瀏覽*
 
-- **內容**：1Password for Agents 讓 Agent 在使用者核准下登入網站而不取得明文密碼，已串接 Meta、OpenAI、Anthropic。
-- **對你的意義**：Agent 的身分與憑證管理是生產化門檻，理解這套授權模式有助你設計 Agent 存取內部資料庫與 API 的權限邊界。
-- **今天可以做**：畫一張流程圖：Agent 要查公司資料倉儲時，憑證、核准與稽核應如何分層，10 分鐘完成。
-- **原文標題**：AI Agent 遇到登入畫面就卡關？1Password 推免交密碼新機制，串接 Meta、OpenAI
-- `#Agent 安全` `#憑證管理` `#人工核准`
+- **內容**：Simon Willison 展示用一段 prompt 讓 Claude Opus 5.5 新增四人地圖並改寫 WebSocket 多人連線程式碼的實作紀錄。
+- **對你的意義**：是觀摩「如何把需求寫成一段能讓 coding agent 一次做對」的 prompt 範例，對提升 agent 開發效率有直接幫助。
+- **今天可以做**：讀那段原始 prompt，模仿其結構替你手上一個小需求寫一段規格明確的 coding prompt 並實測。
+- **原文標題**：battledrones v14: Compass Rose, a four player map
+- `#coding agent` `#prompt` `#實作紀錄`
 
-### [Google Cloud 引進 OpenAI GPT-6 模型](https://techorange.com/2026/10/23/google-cloud-openai-gpt6-models/?utm_source=rss&utm_medium=feed&utm_campaign=techorange_rss)
-*TechOrange 科技報橘 · 2026-10-22 · 相關度 6.78 · 快速瀏覽*
+### [Kimi K3.1 Pro 發表與定價細節](https://simonwillison.net/2026/Oct/23/kimi-k31-pro/)
+*Simon Willison's Weblog · 2026-10-23 · 相關度 4.54 · 快速瀏覽*
 
-- **內容**：Google Cloud 將 GPT-6 系列納入 Model Garden，平台已整合逾 200 款模型，主打依效能、速度與成本選型並統一帳單與稽核。
-- **對你的意義**：多模型並存成常態，AI Engineer 必備的 model routing 與成本/品質取捨能力，正是面試常見題目。
-- **今天可以做**：列出一張三欄表：你的三種任務（抽取、摘要、推理）各該用哪一級模型與理由。
-- **原文標題**：【科技早餐】Google Cloud 引進 OpenAI GPT-6，兩大 AI 對手跨陣營合作
-- `#多模型策略` `#雲端平台` `#成本優化`
+- **內容**：Kimi K3.1 Pro 上線 API，承諾 11/4 前釋出完整權重，輸入 $2／輸出 $10 每百萬 token，約為 Opus 5.5 的一半價。
+- **對你的意義**：權重開放加上低價，意味著自架或私有部署 LLM 的可行性提高，與你的基礎設施能力高度互補。
+- **今天可以做**：記下定價與釋出時程，評估一個現有任務換到此模型後每月 token 成本的差異。
+- **原文標題**：Introducing Kimi K3.1 Pro
+- `#開源模型` `#定價` `#推論成本`
 
-### [OpenAI 擴展儲存系統服務十億 ChatGPT 用戶（下）](https://openai.com/index/scaling-storage-one-billion-users-part-two)
-*OpenAI News · 2026-10-23 · 相關度 6.27 · 快速瀏覽*
-
-- **內容**：介紹 Habitat 如何透過可靠多租戶、全球快取與 Azure Cosmos DB 達成 12 倍讀取加速。
-- **對你的意義**：LLM 產品的對話狀態與記憶體背後就是大規模線上儲存，這是 DE 的資料系統底子可直接加分的領域。
-- **今天可以做**：讀完後寫下「全球快取 + 多租戶」三個設計取捨，對照你做過的資料存取層。
-- **原文標題**：Rapidly scaling online storage to serve over 1 billion ChatGPT users (Part II)
-- `#大規模系統` `#快取` `#儲存架構`
-
-## 🗂️ 存起來參考（5）
+## 🗂️ 存起來參考（3）
 
 *之後需要時再回頭看*
 
-### [Quick Study：用一句 prompt 生成油畫化工具](https://simonwillison.net/2026/Oct/23/quick-study-painter/)
-*Simon Willison's Weblog · 2026-10-23 · 相關度 7.0 · 存參考*
+### [後量子加密導入地理圍欄金鑰管理](https://blog.cloudflare.com/post-quantum-geo-key-manager/)
+*Cloudflare Blog · 2026-10-23 · 相關度 4.37 · 存參考*
 
-- **內容**：Simon Willison 用單一 prompt 讓 Claude 產出以 Canvas 與 Sobel 邊緣偵測把照片轉成繪畫的小工具。
-- **對你的意義**：示範 prompt 驅動的一次性工具開發節奏，有助你培養「用 LLM 快速做內部小工具」的手感。
-- **今天可以做**：模仿其做法，用一句 prompt 請模型生成一個你工作上會用的小網頁工具（例如 SQL 格式化器）。
-- **原文標題**：Quick Study
-- `#prompt 工程` `#vibe coding` `#小工具`
+- **內容**：Cloudflare 說明如何重構密碼學堆疊，讓地理圍欄的解密金鑰抵禦「先截取、日後解密」攻擊並滿足資料主權要求。
+- **對你的意義**：與 AI Engineer 日常較遠，但若未來處理跨境企業 RAG 資料的合規問題，資料主權設計會是必修背景知識。
+- **今天可以做**：收藏連結，只記下「harvest now, decrypt later」與資料主權兩個名詞的意義即可。
+- **原文標題**：Bringing post-quantum cryptography to geographically fenced key management
+- `#資安` `#資料主權` `#基礎建設`
 
-### [OpenAI 推出 Decisions API](https://openai.com/index/decisions-api)
-*OpenAI News · 2026-10-22 · 相關度 6.76 · 存參考*
+### [在 Databricks 上做即時能源交易與分析](https://www.databricks.com/blog/real-time-energy-trading-and-analytics-databricks)
+*Databricks Blog · 2026-10-23 · 相關度 3.65 · 存參考*
 
-- **內容**：主打快速、聚焦、低成本的決策型 API（摘要資訊有限，僅一句宣傳說明）。
-- **對你的意義**：在 Agent 流程中大量的分類與路由判斷若能改用低成本決策端點，可顯著降低延遲與費用，是實務上線關鍵。
-- **今天可以做**：把你心中某個 Agent 流程畫出來，標出哪些節點其實只是分類判斷、可改用輕量決策呼叫。
-- **原文標題**：Build more responsive apps with the Decisions API
-- `#OpenAI API` `#成本優化` `#Agent 路由`
+- **內容**：摘要資訊有限，主題為能源交易桌所需的不只是更快的資料，而是即時分析架構。
+- **對你的意義**：是你現有 DE 技能的延伸案例，可觀察即時資料平台如何為後續 AI/決策應用鋪路。
+- **今天可以做**：快速掃過架構段落，記下其 streaming 與服務層的分工，對照自己的批次 pipeline。
+- **原文標題**：Real-time energy trading and analytics on Databricks
+- `#Databricks` `#streaming` `#產業應用`
 
-### [Netflix Titus：多租戶容器平台上的 VM 級隔離](https://netflixtechblog.com/single-tenant-titus-vm-level-isolation-on-a-multi-tenant-container-platform-6d8b1909d163?source=rss----2615bd06b42e---4)
-*Netflix TechBlog · 2026-10-22 · 相關度 6.4 · 存參考*
+### [基礎模型進入結核病篩檢第一線](https://research.google/blog/bringing-foundational-models-to-the-front-lines-of-tb-screening/)
+*Google Research Blog · 2026-10-23 · 相關度 3.05 · 存參考*
 
-- **內容**：Netflix 在 Kubernetes 基礎的 Titus 平台上提供單租戶、VM 級隔離選項，支撐每週數百萬容器。
-- **對你的意義**：若你要負責 LLM 推論服務或執行不可信 agent 產生的程式碼，隔離與多租戶設計是必備的基礎建設知識。
-- **今天可以做**：記錄三個重點：何時需要 VM 級隔離、對 agent code execution sandbox 的啟示、與你現有 K8s 經驗的落差。
-- **原文標題**：Single-tenant Titus: VM-level isolation on a multi-tenant container platform
-- `#Kubernetes` `#多租戶` `#基礎建設`
-
-### [2026 年值得一試的 5 款免費 AI 編碼 Agent](https://www.kdnuggets.com/5-free-ai-coding-agents-you-should-try-in-2026)
-*KDnuggets · 2026-10-23 · 相關度 6.03 · 存參考*
-
-- **內容**：盤點 OpenCode Zen、Gemini 免費額度、Kilo Gateway、Cline Provider 與 Charm Hyper 等免付費使用管道。
-- **對你的意義**：轉職期用免費額度大量練 agent 開發與工具串接，可低成本累積實作作品集。
-- **今天可以做**：今天安裝其中一款，讓它幫你把一段既有 ETL 腳本加上單元測試。
-- **原文標題**：5 Free AI Coding Agents You Should Try in 2026
-- `#coding agent` `#免費工具` `#開發效率`
-
-### [Python 3.15 推出全新 Profiler](https://towardsdatascience.com/python-315-has-a-new-profiler/)
-*Towards Data Science · 2026-10-24 · 相關度 5.0 · 存參考*
-
-- **內容**：介紹 Python 3.15 新 profiler 能找出 cProfile 遺漏的效能問題。
-- **對你的意義**：LLM 應用的延遲往往卡在 I/O 與前後處理而非模型本身，會用 profiler 才能正確定位瓶頸。
-- **今天可以做**：用新 profiler 或現有工具跑一次你的資料處理腳本，找出前三大耗時函式。
-- **原文標題**：Python 3.15 Has a New Profiler
-- `#Python` `#效能分析` `#除錯`
+- **內容**：摘要資訊有限，僅標示為 Generative AI 主題，內容關於把 foundational model 應用於 TB 篩檢前線。
+- **對你的意義**：可作為「基礎模型落地到高風險領域」的案例，提醒評估與驗證流程在正式應用中的份量。
+- **今天可以做**：存入待讀清單，日後研究模型評估與高風險場域驗證時再回頭細看。
+- **原文標題**：Bringing foundational models to the front lines of TB screening
+- `#foundation model` `#醫療` `#應用案例`
 
 ## 🎯 今天的 30 分鐘學習計畫
 
-1. （15 分鐘）讀 [3] 的 guardrails 教學，用 OpenAI Agents SDK 的 input/output guardrail 寫一個最小範例：擋掉含 PII 或超出業務範圍的請求，並把結果記成筆記。
-2. （10 分鐘）讀 [6]，把你現有的一條 Airflow/Spark pipeline 改寫成「宣告式規格 + 由 agent 生成實作」的草稿，列出哪些中繼資料（schema、lineage、SLA）是 agent 必須拿到的上下文。
-3. （5 分鐘）掃 [13] 與 [4]，對照自己履歷列出 3 項可被驗證的「AI experience」證據，並在其中至少一項加上資料／權限治理的角度。
+1. 先讀 [1]，用 10 分鐘把「tool 失敗後 agent 仍作答」的失敗模式寫成一份檢查清單，並對照自己 pipeline 的 data quality check 思維，列出 3 個 agent 層級的斷言（tool 回傳為空 / 逾時 / schema 不符就必須拒答）。
+2. 再掃 [2] 的六種架構模式，挑一個跟你現有 lakehouse 最接近的，畫一張「現況 → AI-ready」的草圖，標出 metadata、權限與 chunking 策略要補哪裡。
+3. 最後花 10 分鐘看 [6]+[4]，把 Kimi K3.1 Pro 與 Opus/GPT-6 的價格與 context 整理成一張小抄，並想一個自家情境下「便宜模型做粗篩、貴模型做複核」的路由規則。
 
 ---
 
-掃描 51 篇，收錄 14 篇。來源分布：TechOrange 科技報橘 × 4、Netflix TechBlog × 2、Towards Data Science × 2、OpenAI News × 2、KDnuggets × 2、Databricks Blog × 1、Simon Willison's Weblog × 1
+掃描 17 篇，收錄 9 篇。來源分布：Towards Data Science × 2、Simon Willison's Weblog × 2、TechOrange 科技報橘 × 1、Analytics Vidhya × 1、Cloudflare Blog × 1、Databricks Blog × 1、Google Research Blog × 1
 
 > ⚠️ [Uber Engineering Blog](https://www.uber.com/en-US/blog/engineering/)：官方無 RSS（robots.txt 禁止 API 抓取），請人工瀏覽；同性質內容已由 Netflix / Meta / Pinterest / Airbnb 工程部落格補上。
 
-*由 ai-data-digest 於 2026-10-25 01:30 自動產生 · 摘要引擎：Claude（claude-opus-5）*
+*由 ai-data-digest 於 2026-10-26 01:42 自動產生 · 摘要引擎：Claude（claude-opus-5）*

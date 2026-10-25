@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-25T01:31:31+08:00",
+ "updated": "2026-10-26T01:44:09+08:00",
  "seen": {
   "https://techorange.com/2026/10/10/machinenative-economy": "2026-10-12",
   "https://towardsdatascience.com/agentic-systems-a-practitioners-guide-to-6-advanced-architectural-patterns": "2026-10-12",
@@ -188,6 +188,15 @@
   "https://openai.com/index/scaling-storage-one-billion-users-part-two": "2026-10-25",
   "https://www.kdnuggets.com/5-free-ai-coding-agents-you-should-try-in-2026": "2026-10-25",
   "https://www.kdnuggets.com/what-companies-actually-mean-when-they-say-they-want-ai-experience": "2026-10-25",
-  "https://towardsdatascience.com/python-315-has-a-new-profiler": "2026-10-25"
+  "https://towardsdatascience.com/python-315-has-a-new-profiler": "2026-10-25",
+  "https://towardsdatascience.com/agentic-ai-in-production-why-your-agent-keeps-answering-after-its-tools-fail": "2026-10-26",
+  "https://towardsdatascience.com/data-enablement-for-ai-a-practitioners-guide-to-6-advanced-architectural-patterns": "2026-10-26",
+  "https://techorange.com/2026/10/25/taipei-taiwan-ai-city": "2026-10-26",
+  "https://www.analyticsvidhya.com/blog/2026/10/kimi-k3-1-pro-review": "2026-10-26",
+  "https://simonwillison.net/2026/Oct/24/battledrones": "2026-10-26",
+  "https://simonwillison.net/2026/Oct/23/kimi-k31-pro": "2026-10-26",
+  "https://blog.cloudflare.com/post-quantum-geo-key-manager": "2026-10-26",
+  "https://www.databricks.com/blog/real-time-energy-trading-and-analytics-databricks": "2026-10-26",
+  "https://research.google/blog/bringing-foundational-models-to-the-front-lines-of-tb-screening": "2026-10-26"
  }
 }
