@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-26T01:44:09+08:00",
+ "updated": "2026-10-27T04:02:55+08:00",
  "seen": {
   "https://techorange.com/2026/10/10/machinenative-economy": "2026-10-12",
   "https://towardsdatascience.com/agentic-systems-a-practitioners-guide-to-6-advanced-architectural-patterns": "2026-10-12",
@@ -197,6 +197,20 @@
   "https://simonwillison.net/2026/Oct/23/kimi-k31-pro": "2026-10-26",
   "https://blog.cloudflare.com/post-quantum-geo-key-manager": "2026-10-26",
   "https://www.databricks.com/blog/real-time-energy-trading-and-analytics-databricks": "2026-10-26",
-  "https://research.google/blog/bringing-foundational-models-to-the-front-lines-of-tb-screening": "2026-10-26"
+  "https://research.google/blog/bringing-foundational-models-to-the-front-lines-of-tb-screening": "2026-10-26",
+  "https://www.kdnuggets.com/building-your-first-ai-agent-in-python-with-the-openai-agents-sdk": "2026-10-27",
+  "https://aws.amazon.com/blogs/machine-learning/groundhog-day-for-ai-agents-prompt-caching-patterns-for-using-openai-models-on-amazon-bedrock": "2026-10-27",
+  "https://www.databricks.com/blog/building-live-intelligence-databricks-ai-search-supports-streaming-tables-materialized-views": "2026-10-27",
+  "https://aws.amazon.com/blogs/machine-learning/build-agentic-retrieval-on-a-managed-amazon-bedrock-knowledge-base-with-cdk": "2026-10-27",
+  "https://www.databricks.com/blog/how-teach-databricks-free-edition": "2026-10-27",
+  "https://www.kdnuggets.com/the-roadmap-to-becoming-a-computer-vision-engineer-in-2026": "2026-10-27",
+  "https://towardsdatascience.com/my-machine-learning-pipeline-cheated-and-cross-validation-never-noticed": "2026-10-27",
+  "https://netflixtechblog.com/making-failure-diagnosis-reliable-with-pensive-ai-6b0811a1c015": "2026-10-27",
+  "https://openai.com/index/openai-cut-incident-investigation": "2026-10-27",
+  "https://www.kdnuggets.com/7-advanced-python-design-patterns-for-data-scientists": "2026-10-27",
+  "https://towardsdatascience.com/what-makes-ai-written-stories-feel-off": "2026-10-27",
+  "https://towardsdatascience.com/opening-the-box-can-machine-learning-resolve-schrdingers-cat": "2026-10-27",
+  "https://simonwillison.net/2026/Oct/25/seam-cutter": "2026-10-27",
+  "https://www.analyticsvidhya.com/blog/2026/10/astra-vs-argon-vs-opus": "2026-10-27"
  }
 }
