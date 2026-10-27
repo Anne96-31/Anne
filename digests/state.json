@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-27T04:02:55+08:00",
+ "updated": "2026-10-28T03:31:26+08:00",
  "seen": {
   "https://techorange.com/2026/10/10/machinenative-economy": "2026-10-12",
   "https://towardsdatascience.com/agentic-systems-a-practitioners-guide-to-6-advanced-architectural-patterns": "2026-10-12",
@@ -211,6 +211,20 @@
   "https://towardsdatascience.com/what-makes-ai-written-stories-feel-off": "2026-10-27",
   "https://towardsdatascience.com/opening-the-box-can-machine-learning-resolve-schrdingers-cat": "2026-10-27",
   "https://simonwillison.net/2026/Oct/25/seam-cutter": "2026-10-27",
-  "https://www.analyticsvidhya.com/blog/2026/10/astra-vs-argon-vs-opus": "2026-10-27"
+  "https://www.analyticsvidhya.com/blog/2026/10/astra-vs-argon-vs-opus": "2026-10-27",
+  "https://techorange.com/2026/10/27/kneron-taiwan-spark-southeast-asia-sovereign-ai": "2026-10-28",
+  "https://arxiv.org/abs/2603.09983": "2026-10-28",
+  "https://www.databricks.com/blog/spot-fixes-measured-gains-improving-document-extraction-accuracy-aiextract-and-mlflow-prompt": "2026-10-28",
+  "https://techorange.com/2026/10/27/ai-compute-funding-openai-spacex-2026": "2026-10-28",
+  "https://techorange.com/2026/10/27/anthropic-ipo-s1": "2026-10-28",
+  "https://www.databricks.com/blog/bigquery-databricks-strategic-framework": "2026-10-28",
+  "https://techorange.com/2026/10/27/xpeng-guangzhou-robotaxi-approval": "2026-10-28",
+  "https://aws.amazon.com/blogs/machine-learning/exowatt-beats-frontier-models-on-accuracy-with-sagemaker-serverless-model-customization": "2026-10-28",
+  "https://www.databricks.com/blog/vital-skills-upskilling-genie-code-healthcare-and-life-sciences-skills": "2026-10-28",
+  "https://towardsdatascience.com/i-broke-a-browser-agent-on-purpose-spotting-the-fault-was-not-the-same-as-fixing-it": "2026-10-28",
+  "https://blog.cloudflare.com/kv-cache-exposure-remediation": "2026-10-28",
+  "https://towardsdatascience.com/in-the-age-of-borrowed-thinking-how-to-become-more-valuable-as-ai-gets-smarter": "2026-10-28",
+  "https://www.analyticsvidhya.com/blog/2026/10/gpt-6-1-terra-review": "2026-10-28",
+  "https://www.kdnuggets.com/google-gemini-omni-what-it-actually-does-what-it-costs-and-how-it-compares": "2026-10-28"
  }
 }
