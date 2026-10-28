@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-28T03:31:26+08:00",
+ "updated": "2026-10-29T03:42:41+08:00",
  "seen": {
   "https://techorange.com/2026/10/10/machinenative-economy": "2026-10-12",
   "https://towardsdatascience.com/agentic-systems-a-practitioners-guide-to-6-advanced-architectural-patterns": "2026-10-12",
@@ -225,6 +225,20 @@
   "https://blog.cloudflare.com/kv-cache-exposure-remediation": "2026-10-28",
   "https://towardsdatascience.com/in-the-age-of-borrowed-thinking-how-to-become-more-valuable-as-ai-gets-smarter": "2026-10-28",
   "https://www.analyticsvidhya.com/blog/2026/10/gpt-6-1-terra-review": "2026-10-28",
-  "https://www.kdnuggets.com/google-gemini-omni-what-it-actually-does-what-it-costs-and-how-it-compares": "2026-10-28"
+  "https://www.kdnuggets.com/google-gemini-omni-what-it-actually-does-what-it-costs-and-how-it-compares": "2026-10-28",
+  "https://aws.amazon.com/blogs/machine-learning/building-an-agentic-ai-platform-on-amazon-bedrock-agentcore": "2026-10-29",
+  "https://techorange.com/2026/10/28/cohere-qwen38-alibaba-cloud-upload": "2026-10-29",
+  "https://arxiv.org/abs/2602.14635": "2026-10-29",
+  "https://techorange.com/2026/10/28/anthropic-hunger-beats-tenure-advice-junior-engineers": "2026-10-29",
+  "https://techorange.com/2026/10/28/foxconn-aiagent": "2026-10-29",
+  "https://techorange.com/2026/10/28/isabel-hou-sovereign-ai-agent-governance": "2026-10-29",
+  "https://towardsdatascience.com/your-rag-pipeline-is-missing-a-1994-algorithm": "2026-10-29",
+  "https://openai.com/index/legora": "2026-10-29",
+  "https://aws.amazon.com/blogs/machine-learning/distributed-training-with-ray-train-dlcs-and-efa-on-eks": "2026-10-29",
+  "https://towardsdatascience.com/building-and-visualising-kolmogorovarnold-networks": "2026-10-29",
+  "https://aws.amazon.com/blogs/machine-learning/accelerating-software-delivery-with-agentic-qa-automation-using-amazon-nova-act-part-3": "2026-10-29",
+  "https://huggingface.co/blog/nvidia/nemotron-transcribe-granary": "2026-10-29",
+  "https://www.kdnuggets.com/can-this-open-source-model-beat-ai-detectors-lets-test-it-locally": "2026-10-29",
+  "https://www.kdnuggets.com/access-multiple-ai-models-in-your-python-apps-using-openrouter": "2026-10-29"
  }
 }
