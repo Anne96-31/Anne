@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-29T03:42:41+08:00",
+ "updated": "2026-10-30T03:46:11+08:00",
  "seen": {
   "https://techorange.com/2026/10/10/machinenative-economy": "2026-10-12",
   "https://towardsdatascience.com/agentic-systems-a-practitioners-guide-to-6-advanced-architectural-patterns": "2026-10-12",
@@ -239,6 +239,20 @@
   "https://aws.amazon.com/blogs/machine-learning/accelerating-software-delivery-with-agentic-qa-automation-using-amazon-nova-act-part-3": "2026-10-29",
   "https://huggingface.co/blog/nvidia/nemotron-transcribe-granary": "2026-10-29",
   "https://www.kdnuggets.com/can-this-open-source-model-beat-ai-detectors-lets-test-it-locally": "2026-10-29",
-  "https://www.kdnuggets.com/access-multiple-ai-models-in-your-python-apps-using-openrouter": "2026-10-29"
+  "https://www.kdnuggets.com/access-multiple-ai-models-in-your-python-apps-using-openrouter": "2026-10-29",
+  "https://techorange.com/2026/10/29/google-tpu-oracle-ai-cloud": "2026-10-30",
+  "https://techorange.com/2026/10/29/cloudmile-aiagent-aegis-2": "2026-10-30",
+  "https://techorange.com/2026/10/29/google-gemini-4-carbon-cyber-defenders": "2026-10-30",
+  "https://www.analyticsvidhya.com/blog/2026/10/fde-vs-ai-engineer-roles-skills": "2026-10-30",
+  "https://techorange.com/2026/10/28/agent-costs-will-rise": "2026-10-30",
+  "https://aws.amazon.com/blogs/machine-learning/accelerate-agentic-ai-with-nvidia-nemotron-models-on-amazon-eks-and-sagemaker-hyperpod-eks": "2026-10-30",
+  "https://simonwillison.net/2026/Oct/29/how-i-built-the-most-ai-pilled-company-in-the-world": "2026-10-30",
+  "https://openai.com/index/how-we-detect-frontier-model-misalignment": "2026-10-30",
+  "https://aws.amazon.com/blogs/machine-learning/how-moengage-turned-over-400-apis-into-agent-tools-with-agentcore-gateway": "2026-10-30",
+  "https://aws.amazon.com/blogs/machine-learning/building-intent-driven-ui-testing-with-amazon-nova-act": "2026-10-30",
+  "https://aws.amazon.com/blogs/machine-learning/build-a-repeatable-php-to-java-migration-engine-with-kiro": "2026-10-30",
+  "https://newsletter.maartengrootendorst.com/p/a-visual-guide-to-multimodal-generation": "2026-10-30",
+  "https://towardsdatascience.com/what-is-harness-engineering-a-hands-on-introduction": "2026-10-30",
+  "https://towardsdatascience.com/how-to-make-ai-work-for-end-to-end-business-processes": "2026-10-30"
  }
 }
