@@ -1,155 +1,155 @@
-# AI & Data 每日摘要 2026-10-31（六）
+# AI & Data 每日摘要 2026-11-01（日）
 
-> 今天的主軸非常清楚：multi-agent 系統正從 demo 走進企業核心流程。聯合利華 NOVA（訂單處理 90 秒、95% 免人工）與 Worldwide Express on Bedrock（例外單減 75%、釋出 1000 萬美元現金流）兩個案例，共同說明 agent 的價值來自「非結構化輸入 → 結構化系統（SAP/ERP）」這條管線，這正是 DE 背景最容易切入的位置。第二條線是 agent 的可靠度工程：Google Research 的 Harness² 指出不換模型、只調整 instruction/tool/工作管理就能提升表現，Towards Data Science 則提出把決策模型包成 tool，兩者都在講「agent 的瓶頸常在 harness 而非 model」。第三條線是職涯訊號：Anthropic 取消 LeetCode 式面試、KDnuggets 統計職缺真正要求的 AI 技能，顯示評估重點轉向「與 AI 協作把事情做完」的能力。基礎設施面則有 Databricks Real-Time Mode GA 與 Bedrock 在 GovCloud 的受控部署，提醒低延遲資料管線與企業級治理仍是 AI 系統的底座。
+> 今天的主軸是「AI 從 PoC 走向生產環境」後暴露的三大現實問題：成本（博通私有雲報告、Bedrock FinOps playbook）、資料與評估品質（靜默資料錯誤、Microsoft 用合成企業資料評估 Copilot），以及部署主權（Mistral Large 4 開放權重可自建）。Agent 側則從「能跑」進化到「能觀測、能驗證」——AWS AgentCore 讓 coding agent 的成果即時預覽，TDS 的實驗則提醒不同模型對錯誤 reward 標籤的抗性差異極大。對 DE 轉 AI Engineer 的人來說，這批文章幾乎都落在你的既有優勢區（資料品質、成本歸因、平台維運）與需要補的新技能（agent runtime、LLM 評估集設計）交界處，是很好的切入點。
 
 ## 🔥 今日必讀（5）
 
 *直接補上你轉職缺的能力*
 
-### [現在的職缺真正要求的 AI 技能](https://www.kdnuggets.com/the-ai-skills-that-actually-show-up-in-job-postings-right-now)
-*KDnuggets · 2026-10-29 · 相關度 10.88 · 必讀*
+### [我告訴 AI Agent 錯答案是對的，有一個模型信了](https://towardsdatascience.com/i-told-an-ai-agent-that-its-wrong-answers-were-right-one-model-believed-me/)
+*Towards Data Science · 2026-10-31 · 相關度 9.67 · 必讀*
 
-- **內容**：KDnuggets 統計目前職缺中最常出現的 AI 技能，並解讀它們對職涯的意義。摘要資訊有限，細節需讀原文。
-- **對你的意義**：你正在做 DE → AI Engineer 的轉職，最怕學錯方向；這類職缺字詞統計可以直接校準你的學習清單與履歷關鍵字。
-- **今天可以做**：讀完後列出文中技能，與自己現有能力做一張兩欄差距表，圈出最缺的 1 項當本週主題。
-- **原文標題**：The AI Skills That Actually Show Up in Job Postings Right Now
-- `#職涯` `#技能地圖` `#求職`
+- **內容**：作者針對「reward label 幾乎不影響 agent 學習」的論文主張，實測三個模型，結果其中一個完全照錯誤標籤行動。
+- **對你的意義**：這直接關係到你未來要負責的 agent 評估與回饋迴路設計：模型對錯誤回饋的敏感度差異，決定了 human-in-the-loop 與自動評分器能不能信任。
+- **今天可以做**：用 OpenAI 或 Ollama 任一模型做 5 分鐘小實驗：連續三輪在它答對時告訴它「錯了」，記錄它是否改口，寫成一則 sycophancy 觀察筆記。
+- **原文標題**：I Told an AI Agent That Its Wrong Answers Were Right. One Model Believed Me.
+- `#Agent` `#模型評估` `#reward`
 
-### [聯合利華 NOVA 多代理系統：訂單處理快 8 倍](https://techorange.com/2026/10/30/unilevers-multi-agent-creating-customer-value-global-scale/?utm_source=rss&utm_medium=feed&utm_campaign=techorange_rss)
-*TechOrange 科技報橘 · 2026-10-30 · 相關度 9.15 · 必讀*
+### [能通過所有清洗流程的靜默資料錯誤](https://www.kdnuggets.com/silent-data-errors-that-survive-every-cleaning-pipeline)
+*KDnuggets · 2026-10-30 · 相關度 6.92 · 必讀*
 
-- **內容**：聯合利華與微軟在 Foundry 上打造五個 agent 分工的 NOVA 系統，處理 email/PDF/紙本照片訂單，試行市場 95% 免人工、前段流程縮到約 90 秒，再寫回 SAP。
-- **對你的意義**：這是 DE 最容易複製的 agent 架構：非結構化輸入 → 多 agent 擷取 → 一個 verifier agent 稽核 → 寫入既有系統 + 例外轉人工，本質上就是你熟悉的 ETL 加上 LLM 擷取層與品質閘門。
-- **今天可以做**：花 15 分鐘把 NOVA 的五 agent 分工畫成架構圖，並對照自己現有一條資料攝取流程，標出哪一段可以換成 LLM 擷取 + verifier。
-- **原文標題**：聯合利華 AI 代理連紙本表單照片都能讀：訂單處理快 8 倍、試行市場 95% 免人工
-- `#multi-agent` `#企業案例` `#文件擷取` `#人機協作`
+- **內容**：列舉 4 種能騙過 null 檢查、重複檢查與 schema 測試的資料瑕疵。摘要資訊有限，細節需讀原文。
+- **對你的意義**：這是你的主場，但在 AI 時代意義不同：靜默錯誤進了 embedding 與 RAG 語料後不會報錯，只會讓答案微妙地錯，而且極難追查。
+- **今天可以做**：讀完後挑一個你負責的資料表，寫出「若這份資料被切 chunk 做 RAG，哪種靜默錯誤會造成最嚴重的幻覺」的一段分析。
+- **原文標題**：Silent Data Errors That Survive Every Cleaning Pipeline
+- `#資料品質` `#RAG` `#data validation`
 
-### [你的 Agent 工具也可以自己做決策](https://towardsdatascience.com/your-agents-tools-can-make-decisions-too/)
-*Towards Data Science · 2026-10-30 · 相關度 9.11 · 必讀*
+### [端到端管理 Amazon Bedrock 成本：FinOps 與平台團隊 playbook](https://aws.amazon.com/blogs/machine-learning/managing-amazon-bedrock-costs-end-to-end-a-playbook-for-finops-and-platform-teams/)
+*AWS Machine Learning Blog · 2026-10-30 · 相關度 6.6 · 必讀*
 
-- **內容**：實作導向文章，談如何把決策模型（decision models）包裝成 agent 的 tool，讓決策邏輯不全靠 LLM 推理。
-- **對你的意義**：這正面回應 DE 最在意的可重現性：把規則與既有模型做成確定性 tool，agent 只負責協調，能大幅降低幻覺與不穩定輸出。
-- **今天可以做**：花 20 分鐘讀完並寫一個最小範例：把一段既有的 SQL 規則或評分邏輯包成 function tool，交給 LLM 呼叫。
-- **原文標題**：Your Agent’s Tools Can Make Decisions, Too
-- `#Agent` `#tool use` `#決策模型` `#系統設計`
+- **內容**：提出五階段營運模型：成本歸屬到人、每個請求可觀測、強制預算、優化平台預設值、建立定期檢視節奏。
+- **對你的意義**：把 LLM 請求當成可觀測的資料事件來設計 metadata——這正是 DE 的本能，卻是多數 AI 工程師的弱項，是你最快能在團隊發揮價值的切入點。
+- **今天可以做**：用 15 分鐘設計一張 llm_request_log 表的欄位（request_id、owner、model、input/output tokens、latency、cost、use_case），當作日後 LLMOps 的基礎。
+- **原文標題**：Managing Amazon Bedrock costs end to end: A playbook for FinOps and platform teams
+- `#LLMOps` `#成本管理` `#可觀測性`
 
-### [Harness²：不換模型也能提升 AI Agent 表現](https://www.analyticsvidhya.com/blog/2026/10/harness2-improving-ai-agent-performance/)
-*Analytics Vidhya · 2026-10-30 · 相關度 8.75 · 必讀*
+### [Mistral 公開兆參數 Large 4 權重，企業可自建部署](https://techorange.com/2026/10/30/mistral-large-4-open-weights-cybersecurity/?utm_source=rss&utm_medium=feed&utm_campaign=techorange_rss)
+*TechOrange 科技報橘 · 2026-10-30 · 相關度 6.36 · 必讀*
 
-- **內容**：介紹 Google Research 的 Harness²，指出 agent 失敗時未必要升級模型，instruction 傳遞方式、工具使用與工作管理同樣決定可靠度。
-- **對你的意義**：這是 AI Engineer 與「只會呼叫 API 的人」的分水嶺：你要能診斷 agent 失敗是出在 model 還是 harness，這種系統性除錯思維跟你 debug pipeline 的能力高度相通。
-- **今天可以做**：讀完後列出 5 個可調的 harness 槓桿，並針對你跑過的任一 LLM prompt，改寫 tool 描述或輸出格式後重跑一次比較結果。
-- **原文標題**：Harness²: Improving AI Agent Performance Without Model Upgrades
-- `#Agent 可靠度` `#評估` `#Google Research` `#LLMOps`
+- **內容**：Mistral 釋出 1 兆參數的 Large 4 開放權重模型，可從 Hugging Face 下載並以 vLLM、SGLang 部署於自有基礎設施，定位為資安防禦用途。
+- **對你的意義**：open-weight + vLLM/SGLang 自建推論，是 AI Engineer 的核心硬技能，也和文章 [1] 的私有 AI 趨勢直接呼應；DE 熟悉的叢集與資源調度經驗在這裡可直接轉移。
+- **今天可以做**：今天先不跑兆參數模型，改用 vLLM 在本機或 Colab 起一個小模型（如 Qwen3-4B）的 OpenAI 相容 endpoint，記下啟動參數與吞吐量。
+- **原文標題**：不怕 AI 被斷供？Mistral 公開兆參數 Large 4 權重，金融、製造業可自建資安防禦
+- `#open-weight` `#vLLM` `#自建部署`
 
-### [Worldwide Express 用 Bedrock 自動化貨運例外處理](https://aws.amazon.com/blogs/machine-learning/how-worldwide-express-automated-freight-exceptions-with-amazon-bedrock/)
-*AWS Machine Learning Blog · 2026-10-30 · 相關度 7.07 · 必讀*
+### [用合成企業資料評估，建立對 Microsoft Copilot 的信心](https://www.microsoft.com/en-us/research/blog/from-synthetic-enterprise-data-evaluations-to-real-microsoft-copilot-ai-confidence/)
+*Microsoft Research · 2026-10-30 · 相關度 5.22 · 必讀*
 
-- **內容**：物流業者以 Amazon Bedrock 打造 multi-agent 方案處理 LTL 帳務例外，上線半年後 active exceptions 減少 75%、收款時間提前四週、釋出 1000 萬美元自由現金流。
-- **對你的意義**：提供可拿來說服主管的 ROI 敘事模板，也示範 agent 導入要挑「高量、規則模糊、例外多」的流程——這類流程通常就長在你維運的資料管線旁邊。
-- **今天可以做**：花 15 分鐘讀完，寫下該案例的流程切分與成效指標，再挑公司內一個例外處理流程估算可省下的人時。
-- **原文標題**：How Worldwide Express automated freight exceptions with Amazon Bedrock
-- `#Bedrock` `#multi-agent` `#ROI` `#企業案例`
+- **內容**：微軟說明企業級評估需要能反映真實組織複雜度的測試資料，但真實資料含敏感資訊不可使用，因此改用合成資料建構評估集。
+- **對你的意義**：評估集建構是 AI Engineer 最被低估卻最吃香的能力，而「如何造出有代表性的資料」本質上是資料工程問題，你有先天優勢。
+- **今天可以做**：花 15 分鐘用 LLM 生成 20 筆模擬你公司領域的 Q&A 評估題，標註預期答案與來源文件，建立你的第一個 eval set 雛形。
+- **原文標題**：From synthetic enterprise data evaluations to real Microsoft Copilot AI confidence
+- `#評估` `#合成資料` `#Copilot`
 
 ## 👀 值得快速瀏覽（5）
 
 *掃過標題與重點即可*
 
-### [Databricks Spark 宣告式管線 Real-Time Mode 正式上線](https://www.databricks.com/blog/announcing-general-availability-real-time-mode-spark-declarative-pipelines-databricks)
-*Databricks Blog · 2026-10-29 · 相關度 12.58 · 快速瀏覽*
+### [博通報告：97% IT 主管認為公有雲支出被浪費，轉向私有 AI](https://techorange.com/2026/10/31/private-cloud-outlook/?utm_source=rss&utm_medium=feed&utm_campaign=techorange_rss)
+*TechOrange 科技報橘 · 2026-10-30 · 相關度 18.82 · 快速瀏覽*
 
-- **內容**：Databricks 宣布 Spark Declarative Pipelines 的 Real-Time Mode（RTM）正式 GA，主打低延遲的營運型資料用例。
-- **對你的意義**：這是你現有 Spark 技能可直接延伸的點：AI 應用（即時推薦、即時 feature、agent 所需的新鮮 context）成敗常取決於資料新鮮度，低延遲管線是你相對其他 AI 轉職者的明顯優勢。
-- **今天可以做**：花 10 分鐘讀完 GA 公告，寫下 RTM 與你目前 micro-batch 作法在延遲與成本上的差異，並想一個「餵給 LLM 的即時 context」應用點。
-- **原文標題**：Announcing General Availability of Real-Time Mode for Spark Declarative Pipelines on Databricks
-- `#Databricks` `#Spark` `#即時管線` `#資料工程`
+- **內容**：博通與 Radius Tech 調查 1,800 位 IT 決策者，指出 AI 進入生產階段後成本管理（31%）首度超越資安成為公有雲最大隱憂，企業轉向私有雲優先的 AI 架構。
+- **對你的意義**：AI Engineer 面試常被問「這套 RAG 上線後每月多少錢、資料能不能出境」，這正是 DE 出身的你最容易建立差異化的地方——你懂資源配置與資料治理，只需補上 LLM 推論成本結構的知識。
+- **今天可以做**：花 10 分鐘列出你現有某條 pipeline 若改成 LLM 加值版本，會新增哪些成本項目（token、GPU 時數、vector DB 儲存），並標註哪些適合放私有環境。
+- **原文標題**：【博通私有雲展望報告】97% IT 決策者坦言公有雲支出遭浪費，布局「私有 AI」翻轉昂貴算力架構
+- `#私有AI` `#雲端成本` `#產業趨勢`
 
-### [用 Vibe Coding 一步步做出 Breakout 遊戲](https://www.kdnuggets.com/vibe-coding-a-classic-game-building-breakout-step-by-step-with-an-ai-assistant)
-*KDnuggets · 2026-10-30 · 相關度 10.22 · 快速瀏覽*
+### [用 Bedrock AgentCore runtime 即時預覽 coding agent 的網頁成果](https://aws.amazon.com/blogs/machine-learning/preview-web-apps-live-as-your-coding-agent-builds-them-with-amazon-bedrock-agentcore-runtime/)
+*AWS Machine Learning Blog · 2026-10-30 · 相關度 8.9 · 快速瀏覽*
 
-- **內容**：示範 vibe coding 工作流：用自然語言描述需求，讓 AI agent 負責產碼、執行與迭代，而非逐行手寫。
-- **對你的意義**：AI Engineer 的日常是「指揮 agent 完成任務並驗收」，這篇是練習這種協作節奏的輕量入口，也能讓你體會 agent 迭代迴圈的失敗模式。
-- **今天可以做**：用 Claude Code 或 Cursor 花 20 分鐘 vibe code 一個小工具（例如把 CSV 轉成 JSONL 的腳本），記錄你下了幾輪修正指令。
-- **原文標題**：Vibe Coding a Classic Game: Building Breakout Step by Step with an AI Assistant
-- `#vibe coding` `#AI coding` `#agent 工作流`
+- **內容**：AgentCore Session endpoint 為每個 runtime session 提供帶驗證的 URL，可轉發 HTTP 與 WebSocket，讓你在瀏覽器即時看到 coding agent 修改檔案後的網站變化。
+- **對你的意義**：agent runtime 的 session、網路隔離與驗證機制，是 DE 背景最不熟的一塊；理解它等於理解 agent 在生產環境如何被安全地託管。
+- **今天可以做**：讀完文章後，把 AgentCore session 的生命週期（建立→授權 URL→埠轉發→銷毀）畫成一張流程圖，對照你熟悉的 Airflow task 執行環境。
+- **原文標題**：Preview web apps live as your coding agent builds them with Amazon Bedrock AgentCore runtime
+- `#AgentCore` `#AWS` `#agent部署`
 
-### [【温宏駿專欄】穩定幣與 AI Agent 會是銀行存款的殺手還是助力？](https://techorange.com/2026/10/29/stablecoin-ai-agent-bank-deposit/?utm_source=rss&utm_medium=feed&utm_campaign=techorange_rss)
-*TechOrange 科技報橘 · 2026-10-29 · 相關度 9.95 · 快速瀏覽*
+### [如何用 Claude Code 寫出零 bug 的應用](https://towardsdatascience.com/how-to-build-bug-free-applications-with-claude-code/)
+*Towards Data Science · 2026-10-31 · 相關度 6.5 · 快速瀏覽*
 
-- **內容**：從 Meta 的 AI Agent Muse 串接銀行、大型銀行限制外部 agent 動用資金、BIS 論文證實存款利率影響穩定幣流通量三件事，論證 agent 正在改變資金流向的決策方式。
-- **對你的意義**：這是「agent 被賦予實際行動權限」時的治理與風險現場：銀行為何封鎖外部 agent，正是你未來設計 agent 權限、授權邊界與稽核軌跡時要處理的問題。
-- **今天可以做**：花 10 分鐘讀完，筆記列出「若我做一個能動用公司資料/資金的 agent，需要哪 3 道權限與稽核機制」。
-- **原文標題**：【温宏駿專欄】穩定幣與 AI Agent 會是銀行存款的殺手還是助力？
-- `#AI Agent` `#金融` `#治理` `#風險`
+- **內容**：主張以 E2E 測試作為搭配 coding agent 開發時的主要品質防線。摘要資訊有限。
+- **對你的意義**：轉職期你會大量用 coding agent 補足應用開發速度，但沒有測試護欄的 AI 產出會變技術債；E2E 測試思維可以借用你寫 data quality test 的既有習慣。
+- **今天可以做**：挑一個你用 AI 寫過的小腳本，補上一個最小 E2E 測試（輸入→輸出斷言），體驗 agent 修改程式後測試如何擋下回歸。
+- **原文標題**：How to Build Bug-Free Applications with Claude Code
+- `#Claude Code` `#測試` `#AI輔助開發`
 
-### [Anthropic 取消 coding 面試](https://newsletter.pragmaticengineer.com/p/the-pulse-anthropic-kills-the-coding)
-*The Pragmatic Engineer · 2026-10-30 · 相關度 7.24 · 快速瀏覽*
+### [模型疲勞中國更明顯，業者改攻利基市場](https://techorange.com/2026/10/30/ai-model-fatigue-in-china/?utm_source=rss&utm_medium=feed&utm_campaign=techorange_rss)
+*TechOrange 科技報橘 · 2026-10-30 · 相關度 6.14 · 快速瀏覽*
 
-- **內容**：The Pragmatic Engineer 報導 Anthropic 把 LeetCode 式面試從流程中移除，並談 incident.io 的 AI 支出細節與微軟的工程師離職方案。
-- **對你的意義**：對轉職者是重要訊號：面試重心正從刷題轉向「用 AI 工具實際交付」，你該投資在作品集與 agent 協作流程，而非純演算法題。
-- **今天可以做**：花 10 分鐘讀完，順手在筆記列出你能在面試中展示的 2 個 AI 協作實作成果（例如一個 RAG demo 或 agent 工具）。
-- **原文標題**：The Pulse: Anthropic kills the coding interview
-- `#職涯` `#面試` `#Anthropic` `#產業趨勢`
+- **內容**：新模型頻繁迭代造成開發者的「模型疲勞」，中國廠商陷入價格戰，轉向利基市場尋找出路。
+- **對你的意義**：提醒你轉職時別追逐每一個新模型，而要把力氣放在不隨模型更替折舊的能力：評估框架、資料品質、系統架構。
+- **今天可以做**：用 5 分鐘寫下你的學習清單中哪三項是「模型無關」的長期資產，哪三項只是短期工具知識。
+- **原文標題**：【模型疲勞，中國更明顯】每次升級都重設價格底線，AI 業者積極開拓利基市場
+- `#產業趨勢` `#模型迭代` `#學習策略`
 
-### [Claude Code Mods：自製 hooks 解決 AI 編碼痛點](https://towardsdatascience.com/claude-code-mods-custom-hooks-to-fix-my-biggest-ai-coding-frustrations/)
-*Towards Data Science · 2026-10-30 · 相關度 5.63 · 快速瀏覽*
+### [Databricks 與 SAP 聯手推出端到端資料與 AI 能力](https://www.databricks.com/blog/databricks-and-sap-unleash-end-end-data-ai-capabilities-level-enterprise-ai-transformation)
+*Databricks Blog · 2026-10-30 · 相關度 4.6 · 快速瀏覽*
 
-- **內容**：作者自製四個 Claude Code mods，用來保護 API key、追蹤計畫進度、抓出未測試的程式碼與監控 context 使用量，宣稱比傳統 hooks 開銷低上看 100 倍且有 135 個測試通過。
-- **對你的意義**：示範如何為 AI coding agent 加上護欄與可觀測性，這種「給 agent 裝監控」的思維，和你未來要做的 LLMOps（成本、context、品質監控）完全同源。
-- **今天可以做**：花 15 分鐘讀完，挑其中一個 hook 概念（建議 context 用量監控）寫成筆記，想想如何套用到你自己的 agent 專案。
-- **原文標題**：Claude Code Mods: Custom Hooks to Fix My Biggest AI Coding Frustrations
-- `#Claude Code` `#hooks` `#護欄` `#可觀測性`
+- **內容**：強調當今模型能力已強，缺的是企業業務脈絡，兩家合作打通資料到 AI 的鏈路。摘要資訊有限。
+- **對你的意義**：再次印證「模型不缺、business context 才稀缺」，而把企業資料變成模型可用的 context，正是 DE 轉 AI Engineer 最自然的職能延伸。
+- **今天可以做**：花 10 分鐘寫下你公司的三個核心資料資產，以及要讓它們成為 LLM 的 context 需要做哪些轉換（schema 說明、metadata、chunking 策略）。
+- **原文標題**：Databricks and SAP unleash end-to-end data & AI capabilities to level up enterprise AI transformation
+- `#Databricks` `#SAP` `#企業資料`
 
 ## 🗂️ 存起來參考（4）
 
 *之後需要時再回頭看*
 
-### [Edge AI 下一步：無線感測讓既有設備變環境感測器](https://techorange.com/2026/10/30/wireless-sensing-edge-ai-next/?utm_source=rss&utm_medium=feed&utm_campaign=techorange_rss)
-*TechOrange 科技報橘 · 2026-10-30 · 相關度 9.71 · 存參考*
+### [從家門到捷運站，TPASS 還缺哪一塊？共享運具補上最後一哩](https://techorange.com/2026/10/30/deat-tpass/?utm_source=rss&utm_medium=feed&utm_campaign=techorange_rss)
+*TechOrange 科技報橘 · 2026-10-30 · 相關度 6.14 · 存參考*
 
-- **內容**：embedUR 創辦人主張 Edge AI 不應只等同電腦視覺，利用 Wi-Fi／藍牙／UWB 等既有無線訊號做感測，可在低功耗 MCU 上即時判讀人體移動與存在。
-- **對你的意義**：對 DE 來說這是一種新的資料來源型態（訊號模式而非影像），若未來做 IoT 類 AI 專案，訊號前處理與標註管線的設計責任很可能落在你身上。
-- **今天可以做**：花 10 分鐘讀完，筆記一句：無線感測資料若要進你的 pipeline，取樣率、標註與儲存格式會有什麼挑戰。
-- **原文標題**：Edge AI 不只靠攝影機：無線感測有望讓數十億台既有設備變身環境感測器
-- `#Edge AI` `#無線感測` `#IoT` `#邊緣推論`
+- **內容**：DEAT 專欄討論 TPASS 整合捷運、公車、臺鐵與 YouBike 後，中距離「最後一哩」仍需共享電動機車等運具補位。
+- **對你的意義**：與 AI Engineer 轉職直接相關度低，但可當作「多源移動資料整合」的本土案例，思考需求預測或行程規劃 agent 的資料來源設計。
+- **今天可以做**：若有興趣，花 5 分鐘想一個題目：若要做「通勤路線推薦 agent」，需要哪些資料表與即時 API。
+- **原文標題**：【DEAT 專欄】從家門到捷運站，TPASS 還缺哪一塊？共享運具正在補上最後一哩
+- `#交通數據` `#台灣案例` `#產業應用`
 
-### [Ben Hylak 引述：每個產品都該是 headless MCP](https://simonwillison.net/2026/Oct/29/ben-hylak/)
-*Simon Willison's Weblog · 2026-10-29 · 相關度 7.12 · 存參考*
+### [GELU 啟用函數解析：Transformer 為何不用 ReLU](https://www.analyticsvidhya.com/blog/2026/10/gelu-activation-function-explained/)
+*Analytics Vidhya · 2026-10-31 · 相關度 5.97 · 存參考*
 
-- **內容**：Simon Willison 引述 Ben Hylak 的俏皮觀點：所有產品都該變成 headless MCP 餵給 agent，使用者不必管底層（當然自家產品例外）。
-- **對你的意義**：點出 MCP 正成為「系統對 agent 曝露能力」的標準介面，對 DE 來說，把資料資產包成 MCP server 是你最直接的 AI 化貢獻。
-- **今天可以做**：花 10 分鐘看一份 MCP server 的最小範例，想一個把自家 data catalog 或查詢 API 包成 MCP tool 的點子。
-- **原文標題**：Quoting Ben Hylak
-- `#MCP` `#Agent` `#介面設計`
+- **內容**：說明 GELU 以平滑、依輸入決定通過量的機制，取代 ReLU 直接截斷負值，影響網路學習複雜模式的方式。
+- **對你的意義**：補 Transformer 內部結構的基礎知識，面試被問「為什麼用 GELU」時能答得出來；屬於 DE 轉職時常見的理論缺口。
+- **今天可以做**：用 matplotlib 畫出 ReLU 與 GELU 的曲線並疊圖，寫一句話描述兩者在負值區的差異。
+- **原文標題**：GELU Activation Function Explained: How It Works and Why Transformers Use It
+- `#Transformer` `#深度學習基礎` `#GELU`
 
-### [ChatGPT 訂閱方案附贈 API credits](https://simonwillison.net/2026/Oct/29/api-credits/)
-*Simon Willison's Weblog · 2026-10-29 · 相關度 6.0 · 存參考*
+### [財富管理客戶導入流程，光有 AI 還不夠](https://www.databricks.com/blog/wealth-management-client-onboarding-needs-more-ai)
+*Databricks Blog · 2026-10-30 · 相關度 5.51 · 存參考*
 
-- **內容**：OpenAI 跟進 Anthropic，對 100/200/500 美元訂閱用戶提供等額（會過期的）API credits，可套用到 API organization。
-- **對你的意義**：對自學轉職者是實質成本優惠：你可以用既有訂閱的額度去跑 RAG/agent 實驗與公開 demo，降低做作品集的門檻。
-- **今天可以做**：花 5 分鐘確認自己訂閱是否符合資格，若有額度就排一個本週要用它跑的小型 RAG 實驗。
-- **原文標題**：API credits benefit for eligible ChatGPT subscriptions
-- `#OpenAI` `#成本` `#開發資源`
+- **內容**：Databricks 指出財富管理的客戶 onboarding 即使每個系統都正常運作仍會卡住，暗示流程與資料串接才是瓶頸。摘要資訊有限。
+- **對你的意義**：這是典型「AI 不是萬靈丹、資料與流程整合才是關鍵」的案例，正好是 DE 出身者能主導的商業價值論述。
+- **今天可以做**：用 5 分鐘思考一個你熟悉的業務流程，列出哪些環節是 LLM 能解、哪些其實是資料整合問題。
+- **原文標題**：Wealth Management Client Onboarding Needs More Than AI
+- `#金融業` `#企業導入` `#Databricks`
 
-### [在 AWS GovCloud 用 Bedrock 設定 ChatGPT 桌面版](https://aws.amazon.com/blogs/machine-learning/configure-the-chatgpt-desktop-app-with-amazon-bedrock-in-aws-govcloud-us/)
-*AWS Machine Learning Blog · 2026-10-30 · 相關度 5.81 · 存參考*
+### [nesformer：把 NES 模擬器烤進 Qwen3.5-4B 權重](https://simonwillison.net/2026/Oct/30/nesformer/)
+*Simon Willison's Weblog · 2026-10-30 · 相關度 4.83 · 存參考*
 
-- **內容**：教學說明如何讓 ChatGPT 桌面應用把推論導到 AWS GovCloud (US-West) 的 Bedrock，透過 API 模式登入、受管裝置政策、具名 AWS profile 與網路限制做受控部署。
-- **對你的意義**：這是企業導入 LLM 的治理範本：資料落地、網路隔離與裝置政策，正是你在受規範產業推動 AI 專案時會被資安部門問到的題目。
-- **今天可以做**：花 10 分鐘掃過設定步驟，列出 3 項你公司導入 LLM 時必須先談定的資安控制項。
-- **原文標題**：Configure the ChatGPT desktop app with Amazon Bedrock in AWS GovCloud (US)
-- `#AWS` `#Bedrock` `#合規` `#企業部署`
+- **內容**：開發者把 NES 6502 CPU 模擬器訓練進小模型權重中，可在模型內（非常緩慢地）執行超級瑪利歐 ROM。
+- **對你的意義**：娛樂性高於實用性，但可直觀感受「模型權重能編碼確定性計算邏輯」的邊界，對理解模型能力與限制有幫助。
+- **今天可以做**：花 5 分鐘讀 Hacker News 上作者公開的 prompt，觀察他如何把一個模糊想法拆解成 agent 可執行的研究步驟。
+- **原文標題**：dbreunig/nesformer
+- `#開源專案` `#趣味實驗` `#Qwen`
 
 ## 🎯 今天的 30 分鐘學習計畫
 
-1. 先讀 Harness²（[8]）與 [7]，用 10 分鐘寫一頁筆記：列出「不換模型也能改善 agent」的 5 個槓桿（prompt/instruction、tool schema、錯誤回饋、context 管理、把決策邏輯外包給確定性 tool），並標記哪些是你用 DE 思維就能做的。
-2. 對照 [6] 聯合利華 NOVA 與 [11] Worldwide Express，用 10 分鐘畫一張自己版本的 multi-agent 架構圖：四個擷取 agent + 一個 verifier + human-in-the-loop 例外佇列，套到你現有某條 pipeline 的髒資料入口（例如 email/PDF 來源表）。
-3. 花 10 分鐘掃 [2] 的職缺技能清單，把它與你現有 DE 技能做差距表，挑出 1 項（建議是 agent evaluation 或 RAG）寫進本週學習目標。
+1. 先讀 [12] Microsoft 用合成企業資料做 Copilot 評估，把「如何在不碰敏感資料的前提下建評估集」整理成 10 行筆記，對照你現有 pipeline 中可合成的資料表。
+2. 再讀 [5] Bedrock 成本五階段模型，用你熟悉的 Airflow/BigQuery 成本歸因思維，畫一張「每次 LLM 請求 → owner / token / 成本」的 metadata schema 草稿。
+3. 最後掃 [4] 靜默資料錯誤 + [2] 錯誤 reward 標籤實驗，寫下「資料層的 silent error 會如何污染 RAG 檢索結果」的三個具體情境。
 
 ---
 
-掃描 66 篇，收錄 14 篇。來源分布：TechOrange 科技報橘 × 3、KDnuggets × 2、Towards Data Science × 2、Simon Willison's Weblog × 2、AWS Machine Learning Blog × 2、Databricks Blog × 1、Analytics Vidhya × 1、The Pragmatic Engineer × 1
+掃描 40 篇，收錄 14 篇。來源分布：TechOrange 科技報橘 × 4、Towards Data Science × 2、AWS Machine Learning Blog × 2、Databricks Blog × 2、KDnuggets × 1、Analytics Vidhya × 1、Microsoft Research × 1、Simon Willison's Weblog × 1
 
 > ⚠️ [Uber Engineering Blog](https://www.uber.com/en-US/blog/engineering/)：官方無 RSS（robots.txt 禁止 API 抓取），請人工瀏覽；同性質內容已由 Netflix / Meta / Pinterest / Airbnb 工程部落格補上。
 
-*由 ai-data-digest 於 2026-10-31 03:31 自動產生 · 摘要引擎：Claude（claude-opus-5）*
+*由 ai-data-digest 於 2026-11-01 02:39 自動產生 · 摘要引擎：Claude（claude-opus-5）*
