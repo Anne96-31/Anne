@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-01T02:40:37+08:00",
+ "updated": "2026-11-02T03:01:31+08:00",
  "seen": {
   "https://techorange.com/2026/10/10/machinenative-economy": "2026-10-12",
   "https://towardsdatascience.com/agentic-systems-a-practitioners-guide-to-6-advanced-architectural-patterns": "2026-10-12",
@@ -281,6 +281,15 @@
   "https://www.databricks.com/blog/wealth-management-client-onboarding-needs-more-ai": "2026-11-01",
   "https://www.microsoft.com/en-us/research/blog/from-synthetic-enterprise-data-evaluations-to-real-microsoft-copilot-ai-confidence": "2026-11-01",
   "https://simonwillison.net/2026/Oct/30/nesformer": "2026-11-01",
-  "https://www.databricks.com/blog/databricks-and-sap-unleash-end-end-data-ai-capabilities-level-enterprise-ai-transformation": "2026-11-01"
+  "https://www.databricks.com/blog/databricks-and-sap-unleash-end-end-data-ai-capabilities-level-enterprise-ai-transformation": "2026-11-01",
+  "https://towardsdatascience.com/the-enterprise-context-layer-a-practitioners-guide-to-6-advanced-architectural-patterns": "2026-11-02",
+  "https://www.databricks.com/blog/lakebase-branching-cicd-lessons-100-pr-databases": "2026-11-02",
+  "https://simonwillison.net/2026/Oct/31/datasette-llm": "2026-11-02",
+  "https://towardsdatascience.com/fix-the-image-not-the-prompt": "2026-11-02",
+  "https://simonwillison.net/2026/Oct/31/how-we-took-over-chatgpt-accounts": "2026-11-02",
+  "https://towardsdatascience.com/a-neural-network-learned-to-read-digits-from-pure-noise": "2026-11-02",
+  "https://towardsdatascience.com/we-taught-ai-to-answer-questions-who-taught-it-to-change-its-mind": "2026-11-02",
+  "https://simonwillison.net/2026/Nov/1/kyle-kingsbury": "2026-11-02",
+  "https://www.databricks.com/blog/deliberate-decisions-and-enterprise-ai-value": "2026-11-02"
  }
 }
