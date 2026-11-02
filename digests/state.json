@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-02T03:01:31+08:00",
+ "updated": "2026-11-03T06:51:45+08:00",
  "seen": {
   "https://techorange.com/2026/10/10/machinenative-economy": "2026-10-12",
   "https://towardsdatascience.com/agentic-systems-a-practitioners-guide-to-6-advanced-architectural-patterns": "2026-10-12",
@@ -290,6 +290,20 @@
   "https://towardsdatascience.com/a-neural-network-learned-to-read-digits-from-pure-noise": "2026-11-02",
   "https://towardsdatascience.com/we-taught-ai-to-answer-questions-who-taught-it-to-change-its-mind": "2026-11-02",
   "https://simonwillison.net/2026/Nov/1/kyle-kingsbury": "2026-11-02",
-  "https://www.databricks.com/blog/deliberate-decisions-and-enterprise-ai-value": "2026-11-02"
+  "https://www.databricks.com/blog/deliberate-decisions-and-enterprise-ai-value": "2026-11-02",
+  "https://arxiv.org/abs/2604.26103": "2026-11-03",
+  "https://techorange.com/2026/11/03/mclaren-ai-agent": "2026-11-03",
+  "https://techorange.com/2026/11/02/ai-powered-solo-founders": "2026-11-03",
+  "https://techorange.com/2026/11/02/elite-cloud-mixroute-smart-routing": "2026-11-03",
+  "https://techorange.com/2026/11/02/mediatek-ai-asic-google-foxconn-tpu": "2026-11-03",
+  "https://aws.amazon.com/blogs/machine-learning/build-efficient-agents-with-knowledge-distillation-on-amazon-sagemaker-ai": "2026-11-03",
+  "https://aws.amazon.com/blogs/machine-learning/how-circle-k-accelerated-devops-incident-triage-to-under-15-minutes-with-amazon-bedrock": "2026-11-03",
+  "https://aws.amazon.com/blogs/machine-learning/agentic-engineering-intelligence-with-amazon-nova-multimodal-embeddings-and-amazon-bedrock-agentcore": "2026-11-03",
+  "https://blog.cloudflare.com/dns-targeted-zone-builds": "2026-11-03",
+  "https://towardsdatascience.com/let-decision-models-watch-your-agents": "2026-11-03",
+  "https://towardsdatascience.com/our-ai-has-an-invisible-footprint-lets-see-how-to-measure-it": "2026-11-03",
+  "https://www.kdnuggets.com/5-ai-certifications-worth-paying-for-in-2026-and-which-to-skip": "2026-11-03",
+  "https://openai.com/index/qodo-codex-plugin": "2026-11-03",
+  "https://www.kdnuggets.com/running-llms-locally-does-not-mean-your-data-is-safe-what-coheres-study-reveals": "2026-11-03"
  }
 }
