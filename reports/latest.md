@@ -1,6 +1,6 @@
-# 📈 台股每日投資日報 — 2026-11-03
+# 📈 台股每日投資日報 — 2026-11-04
 
-價格資料日：**2026-11-03**｜掃描 800 檔高流動性上市櫃股票｜入選 **7** 檔
+價格資料日：**2026-11-04**｜掃描 800 檔高流動性上市櫃股票｜入選 **4** 檔
 
 > ⚠️ 本報告由程式依公開資料自動產生，僅供學習與研究參考，不構成任何投資建議。技術訊號不保證未來報酬，投資前請自行判斷並承擔風險。
 
@@ -8,21 +8,21 @@
 
 | 指標 | 最新 | 日漲跌 | 5日漲跌 | 資料日 |
 |---|---:|---:|---:|---|
-| 台股加權指數 | 43,698.54 | 🔻 -2.72% | 🔻 -5.20% | 11/03 |
-| 台積電 ADR | 398.63 | 🔻 -1.85% | 🔻 -6.07% | 11/02 |
-| 費城半導體 | 10,328.33 | 🔻 -3.37% | 🔻 -6.81% | 11/02 |
-| 那斯達克 | 25,164.36 | 🔻 -1.07% | 🔻 -3.84% | 11/02 |
-| 標普 500 | 7,541.40 | 🔻 -0.51% | 🔻 -1.76% | 11/02 |
-| 道瓊工業 | 51,983.98 | 🔺 +0.41% | 🔻 -0.72% | 11/02 |
-| 日經 225 | 63,081.86 | 🔻 -0.33% | 🔺 +1.43% | 11/02 |
-| 韓國 KOSPI | 5,658.62 | 🔻 -3.42% | 🔺 +0.36% | 11/03 |
-| 上證指數 | 3,612.09 | 🔻 -0.71% | 🔻 -0.99% | 11/03 |
-| VIX 恐慌指數 | 21.15 | 🔺 +8.91% | 🔺 +15.01% | 11/02 |
-| 美國 10 年債殖利率 | 4.89 | 🔻 -0.71% | 🔻 -1.85% | 11/02 |
-| 美元指數 | 101.78 | 🔻 -0.10% | 🔻 -0.18% | 11/02 |
-| 美元/新台幣 | 32.72 | 🔺 +0.35% | 🔺 +0.58% | 11/03 |
-| WTI 原油 | 96.67 | 🔻 -7.16% | 🔻 -5.00% | 11/02 |
-| 黃金 | 3,936.00 | 🔺 +0.95% | 🔻 -2.54% | 11/02 |
+| 台股加權指數 | 42,554.05 | 🔻 -1.74% | 🔻 -9.53% | 11/04 |
+| 台積電 ADR | 404.80 | 🔺 +1.55% | 🔻 -7.34% | 11/03 |
+| 費城半導體 | 10,600.40 | 🔺 +2.63% | 🔻 -7.68% | 11/03 |
+| 那斯達克 | 25,372.01 | 🔺 +0.83% | 🔻 -4.18% | 11/03 |
+| 標普 500 | 7,568.92 | 🔺 +0.36% | 🔻 -1.99% | 11/03 |
+| 道瓊工業 | 51,786.72 | 🔻 -0.38% | 🔻 -1.13% | 11/03 |
+| 日經 225 | 60,835.36 | 🔻 -3.56% | 🔻 -3.85% | 11/04 |
+| 韓國 KOSPI | 5,461.66 | 🔻 -3.31% | 🔻 -9.16% | 11/04 |
+| 上證指數 | 3,595.85 | 🔻 -0.34% | 🔻 -2.33% | 11/04 |
+| VIX 恐慌指數 | 20.83 | 🔻 -1.51% | 🔺 +18.89% | 11/03 |
+| 美國 10 年債殖利率 | 4.95 | 🔺 +1.19% | 🔻 -0.82% | 11/03 |
+| 美元指數 | 101.33 | 🔻 -0.41% | 🔻 -0.97% | 11/03 |
+| 美元/新台幣 | 32.87 | 🔺 +0.88% | 🔺 +1.38% | 11/04 |
+| WTI 原油 | 95.27 | 🔻 -1.23% | 🔻 -4.63% | 11/03 |
+| 黃金 | 3,942.10 | 🔻 -0.69% | 🔻 -3.25% | 11/03 |
 
 ## 2. 三大法人買賣超（上市）
 
@@ -34,15 +34,12 @@ _（今日三大法人資料尚未公布或無法取得）_
 
 | # | 代號 | 名稱 | 市場 | 產業 | 收盤 | 漲跌 | 訊號 | 評分 | 區間位置 | 量比 | RSI | 站上月線 | 均額(百萬) |
 |---:|---|---|---|---|---:|---:|---|:---:|---:|---:|---:|:---:|---:|
-| 1 | 6757 | 台灣虎航 | 上市 | 航運 | 54.90 | +1.29% | 低檔金叉 | ⭐⭐⭐⭐⭐⭐ 6 | 42% | 3.64 | 60 | ✅ | 35 |
-| 2 | 2610 | 華航 | 上市 | 航運 | 20.65 | +0.00% | DIF翻正 | ⭐⭐⭐⭐⭐ 5 | 54% | 1.15 | 55 | ✅ | 323 |
-| 3 | 1907 | 永豐餘 | 上市 | 造紙 | 29.15 | -1.52% | DIF翻正 | ⭐⭐⭐⭐⭐ 5 | 75% | 0.71 | 54 | ✅ | 33 |
-| 4 | 2491 | 吉祥全 | 上市 | 光電 | 41.25 | -7.41% | DIF翻正 | ⭐⭐⭐⭐⭐ 5 | 59% | 3.48 | 55 | ✅ | 46 |
-| 5 | 4967 | 十銓 | 上市 | 半導體 | 266.00 | -2.74% | DIF翻正 | ⭐⭐⭐⭐ 4 | 69% | 1.24 | 50 | ✅ | 714 |
-| 6 | 3141 | 晶宏 | 上櫃 | 半導體 | 74.10 | +1.09% | 低檔金叉 | ⭐⭐⭐⭐ 4 | 34% | 1.02 | 42 | — | 108 |
-| 7 | 1210 | 大成 | 上市 | 食品 | 51.00 | -0.78% | 低檔金叉 | ⭐⭐⭐ 3 | 31% | 0.52 | 43 | — | 65 |
+| 1 | 2610 | 華航 | 上市 | 航運 | 20.55 | -0.72% | DIF翻正 | ⭐⭐⭐⭐⭐ 5 | 53% | 0.40 | 52 | ✅ | 328 |
+| 2 | 6757 | 台灣虎航 | 上市 | 航運 | 53.90 | -1.46% | 低檔金叉 | ⭐⭐⭐⭐⭐ 5 | 34% | 0.93 | 53 | ✅ | 37 |
+| 3 | 2491 | 吉祥全 | 上市 | 光電 | 38.75 | -5.60% | DIF翻正 | ⭐⭐⭐⭐ 4 | 52% | 1.11 | 50 | ✅ | 49 |
+| 4 | 1907 | 永豐餘 | 上市 | 造紙 | 28.55 | -2.06% | DIF翻正 | ⭐⭐⭐ 3 | 67% | 0.65 | 49 | — | 33 |
 
-**訊號集中產業**：航運（2）、半導體（2）、造紙（1）、光電（1）、食品（1）
+**訊號集中產業**：航運（2）、光電（1）、造紙（1）
 
 > 若同一產業多檔同時翻揚，可能代表類股輪動資金進駐，值得進一步研究該產業的基本面催化劑。
 
@@ -66,47 +63,47 @@ _（今日三大法人資料尚未公布或無法取得）_
 
 ### 🇹🇼 台股盤勢與法人動向
 
-- [聯發科蔡力行：請大家買聯發科股票！要有耐心報酬一定驚人](https://tw.news.yahoo.com/%E8%81%AF%E7%99%BC%E7%A7%91%E8%94%A1%E5%8A%9B%E8%A1%8C-%E8%AB%8B%E5%A4%A7%E5%AE%B6%E8%B2%B7%E8%81%AF%E7%99%BC%E7%A7%91%E8%82%A1%E7%A5%A8-%E8%A6%81%E6%9C%89%E8%80%90%E5%BF%83%E5%A0%B1%E9%85%AC-%E5%AE%9A%E9%A9%9A%E4%BA%BA-034945620.html) `11/03 11:49`
-- [聯發科上市25年股東權益報酬16290%　蔡力行籲買股](https://tw.news.yahoo.com/%E8%81%AF%E7%99%BC%E7%A7%91%E4%B8%8A%E5%B8%8225%E5%B9%B4%E8%82%A1%E6%9D%B1%E6%AC%8A%E7%9B%8A%E5%A0%B1%E9%85%AC16290-%E8%94%A1%E5%8A%9B%E8%A1%8C%E7%B1%B2%E8%B2%B7%E8%82%A1-034257801.html) `11/03 11:42`
-- [台股重挫新台幣貶勢再起　早盤貶逾1.5角至32.7元價位](https://tw.stock.yahoo.com/news/%E5%8F%B0%E8%82%A1%E9%87%8D%E6%8C%AB%E6%96%B0%E5%8F%B0%E5%B9%A3%E8%B2%B6%E5%8B%A2%E5%86%8D%E8%B5%B7-%E6%97%A9%E7%9B%A4%E8%B2%B6%E9%80%BE1-5%E8%A7%92%E8%87%B332-7%E5%85%83%E5%83%B9%E4%BD%8D-033759190.html) `11/03 11:37`
-- [4萬5千點守不住！外資狂倒11萬張00406A　專家點名「這3大變數」牽動台股](https://tw.stock.yahoo.com/news/4%E8%90%AC5%E5%8D%83%E9%BB%9E%E5%AE%88%E4%B8%8D%E4%BD%8F-%E5%A4%96%E8%B3%87%E7%8B%82%E5%80%9211%E8%90%AC%E5%BC%B500406a-%E5%B0%88%E5%AE%B6%E9%BB%9E%E5%90%8D-%E9%80%993%E5%A4%A7%E8%AE%8A%E6%95%B8-%E7%89%BD%E5%8B%95%E5%8F%B0%E8%82%A1-033000725.html) `11/03 11:30`
-- [輝達都說讚！聯發科25連翻33倍　蔡力行：快來買我們家股票](https://tw.news.yahoo.com/%E8%BC%9D%E9%81%94%E9%83%BD%E8%AA%AA%E8%AE%9A-%E8%81%AF%E7%99%BC%E7%A7%9125%E9%80%A3%E7%BF%BB33%E5%80%8D-%E8%94%A1%E5%8A%9B%E8%A1%8C-%E5%BF%AB%E4%BE%86%E8%B2%B7%E6%88%91%E5%80%91%E5%AE%B6%E8%82%A1%E7%A5%A8-033000392.html) `11/03 11:30`
-- [【台股盤中】跌逾900點44000點保衛戰　資服股走強](https://tw.stock.yahoo.com/news/%E5%8F%B0%E8%82%A1%E7%9B%A4%E4%B8%AD-%E8%B7%8C%E9%80%BE900%E9%BB%9E44000%E9%BB%9E%E4%BF%9D%E8%A1%9B%E6%88%B0-%E8%B3%87%E6%9C%8D%E8%82%A1%E8%B5%B0%E5%BC%B7-032355353.html) `11/03 11:23`
-- [台積電今年6起工殤！勞團籲政府基金監督](https://tw.news.yahoo.com/%E5%8F%B0%E7%A9%8D%E9%9B%BB%E4%BB%8A%E5%B9%B46%E8%B5%B7%E5%B7%A5%E6%AE%A4-%E5%8B%9E%E5%9C%98%E7%B1%B2%E6%94%BF%E5%BA%9C%E5%9F%BA%E9%87%91%E7%9B%A3%E7%9D%A3-032339595.html) `11/03 11:23`
-- [外資提款、投信挺進！主動ETF連14日買超 狂掃日月光、聯發科](https://tw.news.yahoo.com/%E5%A4%96%E8%B3%87%E6%8F%90%E6%AC%BE-%E6%8A%95%E4%BF%A1%E6%8C%BA%E9%80%B2-%E4%B8%BB%E5%8B%95etf%E9%80%A314%E6%97%A5%E8%B2%B7%E8%B6%85-%E7%8B%82%E6%8E%83%E6%97%A5%E6%9C%88%E5%85%89-%E8%81%AF%E7%99%BC%E7%A7%91-032302036.html) `11/03 11:23`
+- [【Hot台股】股后川湖崩跌9%失守9千元 網歎「朝腰斬邁進」 分析師示警：別急抄底](https://tw.stock.yahoo.com/news/%E3%80%90hot%E5%8F%B0%E8%82%A1%E3%80%91%E8%82%A1%E5%90%8E%E5%B7%9D%E6%B9%96%E5%B4%A9%E8%B7%8C9%E5%A4%B1%E5%AE%889%E5%8D%83%E5%85%83-%E7%B6%B2%E6%AD%8E%E3%80%8C%E6%9C%9D%E8%85%B0%E6%96%AC%E9%82%81%E9%80%B2%E3%80%8D-%E5%88%86%E6%9E%90%E5%B8%AB%E7%A4%BA%E8%AD%A6%EF%BC%9A%E5%88%A5%E6%80%A5%E6%8A%84%E5%BA%95-030146036.html) `11/04 11:01`
+- [電金傳產震盪齊跌　台股下挫逾700點失守43000點](https://tw.stock.yahoo.com/news/%E9%9B%BB%E9%87%91%E5%82%B3%E7%94%A2%E9%9C%87%E7%9B%AA%E9%BD%8A%E8%B7%8C-%E5%8F%B0%E8%82%A1%E4%B8%8B%E6%8C%AB%E9%80%BE700%E9%BB%9E%E5%A4%B1%E5%AE%8843000%E9%BB%9E-025945597.html) `11/04 10:59`
+- [台股重挫回檔逾一成00406A跌逾7% 00998A不只抗跌更逆勢上漲](https://tw.stock.yahoo.com/news/%E5%8F%B0%E8%82%A1%E9%87%8D%E6%8C%AB%E5%9B%9E%E6%AA%94%E9%80%BE-%E6%88%9000406a%E8%B7%8C%E9%80%BE7-00998a%E4%B8%8D%E5%8F%AA%E6%8A%97%E8%B7%8C%E6%9B%B4%E9%80%86%E5%8B%A2%E4%B8%8A%E6%BC%B2-025201511.html) `11/04 10:52`
+- [賣壓不止！台股震幅逾1200點  盤中跌逾750點、摜破4萬3  台積電跌至2265元](https://tw.news.yahoo.com/%E8%B3%A3%E5%A3%93%E4%B8%8D%E6%AD%A2-%E5%8F%B0%E8%82%A1%E9%9C%87%E5%B9%85%E9%80%BE1200%E9%BB%9E-%E7%9B%A4%E4%B8%AD%E8%B7%8C%E9%80%BE750%E9%BB%9E-%E6%91%9C%E7%A0%B44%E8%90%AC3-%E5%8F%B0%E7%A9%8D%E9%9B%BB%E8%B7%8C%E8%87%B32265%E5%85%83-025018491.html) `11/04 10:50`
+- [台股大跌別急著逃命！經理人喊長線多頭　它靠雙引擎配置搶反彈](https://tw.news.yahoo.com/%E5%8F%B0%E8%82%A1%E5%A4%A7%E8%B7%8C%E5%88%A5%E6%80%A5%E8%91%97%E9%80%83%E5%91%BD-%E7%B6%93%E7%90%86%E4%BA%BA%E5%96%8A%E9%95%B7%E7%B7%9A%E5%A4%9A%E9%A0%AD-%E5%AE%83%E9%9D%A0%E9%9B%99%E5%BC%95%E6%93%8E%E9%85%8D%E7%BD%AE%E6%90%B6%E5%8F%8D%E5%BD%88-024900985.html) `11/04 10:49`
+- [美國期中選情帶崩亞股！日股慘跌2000點 台股匯大暴殺](https://tw.stock.yahoo.com/news/%E7%BE%8E%E5%9C%8B%E6%9C%9F%E4%B8%AD%E9%81%B8%E6%83%85%E5%B8%B6%E5%B4%A9%E4%BA%9E%E8%82%A1-%E6%97%A5%E8%82%A1%E6%85%98%E8%B7%8C2000%E9%BB%9E-%E5%8F%B0%E8%82%A1%E5%8C%AF%E5%A4%A7%E6%9A%B4%E6%AE%BA-024836735.html) `11/04 10:48`
+- [台股殺聲隆隆！「國家隊」逆勢買超近285億　掃貨 TOP 20 名單一次看](https://tw.news.yahoo.com/%E5%8F%B0%E8%82%A1%E6%AE%BA%E8%81%B2%E9%9A%86%E9%9A%86-%E5%9C%8B%E5%AE%B6%E9%9A%8A-%E9%80%86%E5%8B%A2%E8%B2%B7%E8%B6%85%E8%BF%91285%E5%84%84-%E6%8E%83%E8%B2%A8-top-024814035.html) `11/04 10:48`
+- [台股暴跌1612點！郭哲榮「6檔明牌全翻黑」仍喊年底衝5萬點　萬份雞排珍奶再掀議論](https://tw.stock.yahoo.com/news/%E5%8F%B0%E8%82%A1%E6%9A%B4%E8%B7%8C1612%E9%BB%9E-%E9%83%AD%E5%93%B2%E6%A6%AE-6%E6%AA%94%E6%98%8E%E7%89%8C%E5%85%A8%E7%BF%BB%E9%BB%91-%E4%BB%8D%E5%96%8A%E5%B9%B4%E5%BA%95%E8%A1%9D5%E8%90%AC%E9%BB%9E-%E8%90%AC%E4%BB%BD%E9%9B%9E%E6%8E%92%E7%8F%8D%E5%A5%B6%E5%86%8D%E6%8E%80%E8%AD%B0%E8%AB%96-023200287.html) `11/04 10:32`
 
 ### 🔬 產業趨勢：半導體 / AI / 電子供應鏈
 
-- [長庚大學研發全球罕見p型二維半導體 助攻AI發展 - Yahoo新聞](https://news.google.com/rss/articles/CBMiyAJBVV95cUxNN284T3p5b2JOTnFudXlJd1ZaTWFxMTh5aHdNNTR6SVE4QVZheV95Z2s4V0V5VFJHRVhneGtCUngxaVFIcGM1VlY1UHFEVU42VnlZUkZYTHI0YWVuQV9xMmx2ZlpBeFlKcjlqQTZhVFoybVZldzVQMUcwM3hDdDlKYnlRUnZjQ2pqX1FhV2U2RGRfaTlSV0ZyVEtrcEFUVFgzWm1mMDh0aUUzZUg2SFJ3MTlGZkIxUzBRR3BSQVJkX1d2UXlISXFCaE5ZSk5BS0hnOFFUOVhXQzRnQU9yOUo3TTRQWEhIWkRnU1JlZjAta0JrNTlrcEZfaG1tQmFkM2lGTFBjSFQ2OVVoTURvNTVOY1dvUUlOaXBfVEhPYXl3TjZlVEY3VEQ4NDRKOG1UVlRJb2dLUFJ0U3ZkYzYtclIyYWxGbzV6WUxy?oc=5) — Yahoo新聞 `11/03 12:02`
-- [台股挑戰五萬點，台積電EPS拚百元！後市看什麼？ - 草根影響力新視野](https://news.google.com/rss/articles/CBMiSkFVX3lxTE1PODNUejdfNlIxa3BDODRoV1o0dmhXMFRwZGhzei1fU0dOSllRaUU5WGNfdzA4NHJBbWt1YTdLWncyOWRvU0xEMERn?oc=5) — 草根影響力新視野 `11/03 12:02`
-- [台積電 1 奈米落腳台南？國科會：南科新園區 2027 年啟動開發 - 鏈新聞 ABMedia](https://news.google.com/rss/articles/CBMiT0FVX3lxTFBPQ29wVlBMUTZCZTRhLWZZdjcwakNMSFZkaDdGUU02S2lfVFdoYXBJVDZWUFY0UTJGdTVOUzdQTmJDbndSclFYd2pGVEhwMzg?oc=5) — 鏈新聞 ABMedia `11/03 11:55`
-- [【即時新聞】台積電(2330)砸重金買廠擴產！這「6檔概念股」竟慘遭大戶倒貨重挫？ - CMoney投資網誌](https://news.google.com/rss/articles/CBMikAFBVV95cUxPdmpILVVic09TM29Ja0tCQm5Gb2lyamRUaTdMWlNBZlhnTS00bWk3OTI3TEhqU3E3Z0ZqZHI1R0NEVTN0bmhULVZ1WnBjNzdrZzc4YXc2Q0xBVktRWGx4clZyMjB2Ukp3bmxFY3RrRVNka09fRGFLY0MzNUZuSVhGb3RTaVpxZXk0elVvRndzMHY?oc=5) — CMoney投資網誌 `11/03 11:47`
-- [【即時新聞】最新台積電砸559億擴產，外資轉向狂砍逾萬張還能追嗎？ - CMoney](https://news.google.com/rss/articles/CBMiZ0FVX3lxTFA4RkpMZGRkeGpNeEVKdTNUY1E4dm9uVlFSTXZaZVJLOG51UG0zREVqVmdoal9FM3lYM2ozNWR3aGtxZUtoaE03R0ZCalpKWUtMUWJKaS0wejlyQnRoQkQ2Y1IyZGtmMlk?oc=5) — CMoney `11/03 11:46`
-- [耐特11/19掛牌上市！暫定承銷價80元 半導體、BBU營收比重衝25% - 壹蘋新聞網](https://news.google.com/rss/articles/CBMiggFBVV95cUxPUUJSMy1fbHhuMTJLS1I2dDhpWlc1ZGhHYmtyN1hkZ3pTS3REUXdFaGRmYm1Fa1c1NVhtWUN2T1VjZmd1WnI1ZDA3Nko2bHZMS1NWTk5JaVgwV2JPdnJySmloVTNqR29HdEFTekJSb2lQdm5BMktDVVM0eHZGX0xiWmxB?oc=5) — 壹蘋新聞網 `11/03 11:44`
-- [【即時新聞】台積電ADR跌破400美元拖累大盤，這「5檔概念股」同步慘遭大戶調節！ - CMoney投資網誌](https://news.google.com/rss/articles/CBMikAFBVV95cUxQLVhSOTlJSzNISjRKaE5OOW4xcHpzX05LdUs3ZmxjUFg3LUhSLXkyRmZaVjJKRlZMQy1hbGpUcGExQ0tBU01RcHBmU0tuanJuY19VeWVhRkl1WV9mUU9BUVI4OTlJRHJzMkVLbFRGakFaQjFmZzJ6QnVYYlJRY1lhWWFPTG1aWXFiVHRKaUtleUI?oc=5) — CMoney投資網誌 `11/03 11:42`
-- [【11/03 產業即時新聞】半導體設備族群重挫大跌，高價指標股遭空方狙擊陷入修正 - CMoney投資網誌](https://news.google.com/rss/articles/CBMijgFBVV95cUxNVC0ycEp1TWFGMXBVYzVIWWxZUzYzVFppdVp0QlhSUGM1UGw4OHJwejhzN3JnbE96UVNvZDhCLS1sa01tYmNnZVpidmYtOWpaUmdoNmJvb1U2UGVVOUlzX0tZclV2Sy1VXzdpQnNVaVNKWVFtZzVMeEtqNGRNNXliVlhMaTlybkduRWhhN3FR?oc=5) — CMoney投資網誌 `11/03 11:40`
+- [緯穎毛利率9.3%、廣達只有5.02%！AI伺服器誰更賺錢？代採購模式揭開財報盲點 - 理財周刊](https://news.google.com/rss/articles/CBMib0FVX3lxTFAyb010MkdWMS1VOEo3YmFqYzBWNmVKSW8tc3BFSWVfaFBGZkZ5Zk1rbzN2R09xX01vd1A0LUV0SHk2cHlhdjBnTnZFVHo0YmJMSUF5U2RfRmZ5ODhMNEhDbFFCSHFPWHhEWEQ5OWNRbw?oc=5) — 理財周刊 `11/04 11:18`
+- [日月光投控：日月光半導體製造10/15~11/3取得供營業用之廠務工程一批，計約3.14億元 - 台視全球資訊網](https://news.google.com/rss/articles/CBMinAFBVV95cUxOTmZSNnAzVGhtYTZoa3M0TlNJbzE5S0hVNmZOeU1QQjc3dHEtUHZJUlkxRkQyZkN6UnphemdOUnBkUmwzVlRCR2hiQXBwUEN0N3QzRWF6Z3JJM3Rpc2pSbTUxUGREd0JXS042WnNjc2VKSWc2amxSdmdfRTMyOFFuZHRjYzk0bGJZdVAxTWtkSzVRT3d4R1B5UU1ZME4?oc=5) — 台視全球資訊網 `11/04 11:16`
+- [【11:13 即時新聞】承啟(2425)股價走強，市場聚焦AI伺服器板卡動能 - CMoney投資網誌](https://news.google.com/rss/articles/CBMijgFBVV95cUxOZzR5NnlfUnVOOHlVUjh0QUtpRDFXQlFPZVNOM0dYaHc3THU5VVZxZ3FJM1R4NEVta3pncVB6b0ZlRXF1LWozMWNxWm1lLXFwcHAzUTY4THc4NmVDZHFSbUd1VjM3a090by1iUVdheC1BNHR5aWgxUnlxNTc3OXhkbVBIbndvWmZ2aG53RmxR?oc=5) — CMoney投資網誌 `11/04 11:14`
+- [控制權未解法律戰升級　安世半導體控告聞泰科技索賠逾650億 - 經濟日報](https://news.google.com/rss/articles/CBMifkFVX3lxTE01cTRrQy1rV0VjRXl2TktuckthNnEwXzJTTHZrMWJzdEFET1MyS09oSFJYcjZyLXBCMVhheG9LakY3VEZJOExDbGlPVklZVHFQTW5pbDdZV2ZrVDRCd0RvY1d0YUJNVXhBa1ZwM0hBVWdWSnh2aUJaS01LSUFpd9IBX0FVX3lxTE5KaTJRZzVLMjFmUVVRM1NISmotUElYeUxKS3UzRUhZS2NtOWFRZlpQcXROeTl1aGpaSFdLT2RzVW9Gb3FfZXRITzc3NjJjc2tCZmZ3Rlhfa3h3VHhiMlhj?oc=5) — 經濟日報 `11/04 11:12`
+- [「朝升暮貶」韓元怪現象半導體出口成關鍵| 產經| 產經 - UDN](https://news.google.com/rss/articles/CBMifEFVX3lxTE43YlhOdm1uWjBEMmxCeThJQTVqVVpSRUVEWFdKb3N3eS1uaFBRa2YyTkRqX2duVkNOelF2RGlmVTVpbUZDS0JkYTg1SFhNNFRRVVFpcEdPUzFVaVluWWk1MlFUVmZndzV3dGlsRElNMW5IYUJyNmFqazFVZk0?oc=5) — UDN `11/04 11:11`
+- [【即時新聞】外資提款千億！費半強彈送暖，這「2檔先進封裝指標」接棒反攻？ - CMoney投資網誌](https://news.google.com/rss/articles/CBMikAFBVV95cUxOck1BX085Um9ZLWwxTUpFVTZLSkpkdm8wWVRIZFJnZU9PaHhtM3Jha0QyWVdrRjkzVkdlUFdnbjRYaEl4WHdFeXF4dXA3VWF5clVhRml0WDdkZ2MzeXpKX00zbFZRRnAwV1hCaWU2YUVYLVo0TmVSNkZUX0RqeE1PRmk5WXVpYmR2OXhsekRURDk?oc=5) — CMoney投資網誌 `11/04 11:11`
+- [抽中就有9.7萬元！「半導體廠務工程大廠」啟動上櫃 報酬率逼近4成 - Yahoo股市](https://news.google.com/rss/articles/CBMikANBVV95cUxOLXlTZ1FvOF83WU4xeDlXR01DOWQ0RmJUVElaU3JBajdXT3RZS21hTGJVX3loOHhjWkRjWFEzVTVSSDduZ3ZtYUdxTUJHS2FZNjMtdFVrVXlMTGQ2ekF3YS1HcGluNEUtalhiVHUzMkk4cFNBSGY5dUVJSUVTR01PbF8yb3NqMkx4cEtRM0o4b01qN2Q0YnQ4cjhtYXJ1cHhlQ2ZTVFFLSU1ONUpTb2VPMU1ISWU4ZkhLUUJNVkpITjNFMDlOSWJDTzF6aWJJUm4zakIwLTZBM205REtkOEJIMUgzNWx6OFJEbGxNM1MzaHY0LXlrWElyWHozcGNzdDFmRjM1UnZEZXJzMXJmVWpLSElZQ2NENzFhaTZ1NjhqR2lsNXdsVkhPSFJKeWFHVzVydkdkaS15ZXQ0RTkweVFMelJzek9Db3pwNWNqOG9mQ3pIa3poOXFyYTZ6NmNCY1d2enJ5a2pISVI3UnhWVmx2cWZ4bFl5VmtPMHhWQ0V6WGVvYTdveVhfQVVXOXFlV09N?oc=5) — Yahoo股市 `11/04 11:07`
+- [半導體製造貢獻獲肯定 IEEE Milestone記錄台灣科技創新 - 電子工程專輯](https://news.google.com/rss/articles/CBMiwgFBVV95cUxQWEdQUElfcUR1Tks2RTNLOXJtTXp3MkExdjBFUVAzSi1zc2F5MGo4Y2dqODgzTGxkZGY4N3NxY1lPQmFJTGhpUjdab3RxX0JxdTRobEU5b1lESDRia2k3UXY3Zmp5bXVDQ0p1NzJVZV96a1NXT29mZXJUbkNKRTl0MUlXNjB1Y2JtdDJpY1hROTJEMTF0clJ5SHBrNmUzX3NoYVFRckM4ZnktSzV5RWxmcFFFYnRsbmtnY2xER05vV3FWdw?oc=5) — 電子工程專輯 `11/04 11:02`
 
 ### 🏭 傳產・金融・航運・能源
 
-- [「AI避風港」失靈？蘋果營收創新高，市場卻擔心這三件事 - 商業周刊](https://news.google.com/rss/articles/CBMibEFVX3lxTFBVMVdnejJ0UnJvYkFoTmRhMDk3RlUyLVN2UEVIQ2UxM3MzVWI4dFlGM29odXJ0Q3lIcTdWQ0JqY1dFM1o2OE5fRTBJTmF0TEJSZjRyc1JkR0haN1dqYWd0Y05jVVhwcTdVWHdRbg?oc=5) — 商業周刊 `11/03 11:33`
-- [營收狂飆58％創新高！這「PCB大廠」Q3 EPS拚雙位數、全年挑戰千億 法人估毛利率衝33％ - FTNN 新聞網](https://news.google.com/rss/articles/CBMiS0FVX3lxTFBwUUJaMlEySktlNDlqdFZmOThTakc0Q0hxUzRkYnNnVmEwTDhBTENLcUhMa1pZQXFlQUF3aDVISHdFVktab3lmN2d1bw?oc=5) — FTNN 新聞網 `11/03 11:15`
-- [10月衝6325元後股價回檔修正 台光電今盤中一度挫逾4% - TVBS新聞網](https://news.google.com/rss/articles/CBMiT0FVX3lxTFBQUy1xZHdWYWs2R1VuWG1ieWQyR3JlcXc3OHRITmRJT1Zkck56MXVOaUZJclVzZWg0VUZFWnVKSDc0M1EyWTg4NGhfSzF2UnM?oc=5) — TVBS新聞網 `11/03 10:50`
-- [《大陸產業》大陸航運業迎來超級行情 - 富聯網](https://news.google.com/rss/articles/CBMiiAFBVV95cUxQWmdZRk1zT2FqYVBiMVJPWEs1bHpPSFlNZi1zcXQwZUFUc2UySGFqTDN3YXgtWUVZcWNwcXZ2T0xoWmIwMXZmNGFzdjJFc2o4YlhXTXNXQ3pjMjd3UDJtdWJSRlVSSEpKSnRlamFnam1ETzVaODNSOHhKTzZSZ2R0ZXRiZUxoUW9E?oc=5) — 富聯網 `11/03 09:30`
-- [NAPCO 第一季營收創新高 經常性營收成長 11.5% - TradingKey](https://news.google.com/rss/articles/CBMicEFVX3lxTE00WERKU085OUhjcGlpejQ1ZEE3WGNPR3c4RVpWR0FicEVIem1oLXlNZDhWRTNQV3RuSXVIRkFkMFhraVN5QWt5bFpCQXlzemRZR1hoLW5Bak9WQy1PUm5iWGtSTW1rQkFwZUtCa3U2ai0?oc=5) — TradingKey `11/03 08:03`
-- [華創證券：繼續看好航運行業全船型上行機遇 三季報業績高增印證邏輯 作者 智通財經 - Investing.com 香港 - 股市報價& 財經新聞](https://news.google.com/rss/articles/CBMicEFVX3lxTE1qM3NvRjZNbnZSZGQ4NTJldHFmYXFJNUt0U0VfUGpNXzVORktVVzZIOWwwcWM3d2Z1X1ljMllOY1czSXAxeVVMNjlHWVFsUWU1Nk9pLWpXU2FJY1BDN0dWYUZhcFBoTDVwZm5jRVRFdUg?oc=5) — Investing.com 香港 - 股市報價& 財經新聞 `11/03 07:59`
-- [營收：豐達科(3004)10月營收5億4473萬元續創新高，月增1.44%，年增51.09% - 富聯網](https://news.google.com/rss/articles/CBMiiAFBVV95cUxPSk5HSURqMk5VWl80SnI2ZGxEXzNTZE5aNkNsc294dVFCZmFZc0RHZHU1MVB1NjdHZGhJOTFoWmlyNGRGUllUbzRGZ290UlduQ0VOSmNQMnF1alVUQkxILWxhbGNiblNZQm1wbEp5dWhpTUE5Zk1KMTZqMlIwVENqM1lMbGd1MFRW?oc=5) — 富聯網 `11/03 07:05`
-- [長榮(2603) 個股概覽 | 個股 - 股市 - CMoney](https://news.google.com/rss/articles/CBMiU0FVX3lxTE5BZHFDdE8wd1VHVTJzVUtNWC1MczJ1RkhqbExldzdBS3dTX2FST2VkVVY4blRSeGVGNEQzaEwxLVN6U2pZamNmMl9MakxpdmJ3VDdZ?oc=5) — CMoney `11/03 06:36`
+- [超微財報》Q3營收創新高、資料中心業績成長97％ 盤後股價漲5％ - 財訊](https://news.google.com/rss/articles/CBMie0FVX3lxTE1pMm1VYl80cHZyLTF5dEQwR3pkdTFBQXNUdW0zRlJjeHNKdUl4WWxtaXRBcFNuNVdGOFBlNi1sWk15ZFRpV25XSHhJT0ktRy1URk1hSWU3Q3kxel9rbFpvWjF6cmU3dFpJSFRfM2VKTVBMTnRrVTJBdmlqSQ?oc=5) — 財訊 `11/04 10:46`
+- [焦點股》環球晶：外資下修目標價 摜至跌停 - 自由財經](https://news.google.com/rss/articles/CBMiX0FVX3lxTE9GSmRsS2ZxVV9ZZzRMaGh2ZzJ6MWZDMHFOQUJMTjJDZFNuVVA3T2lQeld6ZlZzSEZEQ2VNejNSVE15WFZZV19XeWFIWUJOakdDUVdkaFk2TGNwOXFKOFRV0gFkQVVfeXFMTVIxbXNiY255ek1qcHJtS3ZXN3NwNll0OWVVeHIxOUxxekttcGhlVDJDdnk3cTBkOUdJbk1NajNNd2prWTNWSjRkSFR3WGxQbm5LWThuaWFhaFNFNW9ZS3NOVkVkLQ?oc=5) — 自由財經 `11/04 10:39`
+- [南亞科10月營收連12個月刷新高！累計前10月破3000億元、年增逾6倍 - 非凡新聞台](https://news.google.com/rss/articles/CBMiX0FVX3lxTE1Nd1JnMXppVmJvbG5rY1JFRUt3OUVheVJ4c3MzOVl6dUVkY0Z2Sk9MLXhwWjE1SjNuamVVU3V1aVZqbFhxU1hZVW5ZaXVCdWY2ZzlYcGMya29mdEZjYmdF?oc=5) — 非凡新聞台 `11/04 10:32`
+- [南亞科營收連12月創高 股價卻跌破400元！股民嘆：記憶體風光過了 - 自由時報](https://news.google.com/rss/articles/CBMiWEFVX3lxTE4xYmM3WkJpUlNOZlRqaXA0N1FfSy1sM0ZYaURoV2p6QmNtdVlVM1Vqcm1TQ0V0UlAyb1VSNTZMNmliem15UWJBb2ZORjVkME9WdTZvX0FqNGk?oc=5) — 自由時報 `11/04 09:57`
+- [焦點股》南電：10月營收創新高也沒用 股價面臨千元保衛戰 - 自由時報](https://news.google.com/rss/articles/CBMiWEFVX3lxTE1MZFJZOFhBMjNqa0sxMEktSHNabmxjaHhXM1ExWEN0NktuM2FseXRCOEdoSkZWYi05S1dmN0E3Y0xyb0NrMHRQeEZwTHBIb1dPZWVBcE5Ea1k?oc=5) — 自由時報 `11/04 09:49`
+- [邊緣AI落地發酵 擷發科10月業績創今年單月新高 - 蕃新聞](https://news.google.com/rss/articles/CBMiUkFVX3lxTE9CekV3QzJjTlk0S0tPMVFaWkhoQTgwNUlDWXEtQU1IZERmbERJQ2dPNnZ0STRjMXQ5Y05YMUgxNHo0d3BpcEN0MlJjM2pFNzlhUUE?oc=5) — 蕃新聞 `11/04 09:00`
+- [2026 年最新台灣百大集團績效評比 - TEJ台灣經濟新報](https://news.google.com/rss/articles/CBMioAFBVV95cUxOUjV5WFZOcHNhWmpYR3g3T0pPUGcwblYwVFpVcFExRUppVWllVDI5Qm9uWVh1RkdjakgyT3FHbF9Ed3I1Rk55SkR3SFMtelZiSmJvcG4zXy11bUJ2MTBTdUM4X0VNOUN1THJLSjRuVFJLXzhGV1RFcHQ2SzU4WmFzRWFxX0VjbWtWZWhfQ21DWVJaTVBqZExLU3RSZXBSTTln?oc=5) — TEJ台灣經濟新報 `11/04 09:00`
+- [AI智慧社區大單挹注！擷發科10月營收增6倍創今年新高 連7月成長 - 壹蘋新聞網](https://news.google.com/rss/articles/CBMiggFBVV95cUxPTHhKZXlOSDBQc3QzejZzRkFXMWkxd2RJa0FyakhQMnQxd3hPekEyOTlZT2dYZEtlTTRmRTVield2NFd0M1JsaXVUbzFLS0RjR2FDUlU2RktiMFlrNlVDQld6cjlRSzZ5WmkxM2JmdzBCdk9pdU5ZbkVKY2tUUTA2VWx3?oc=5) — 壹蘋新聞網 `11/04 08:27`
 
 ### 🌐 國際財經：Fed・美股・匯率・地緣政治
 
-- [Nvidia Stock And 2 US Growth Stocks Facing A Treasury Yield Reset - Yahoo Finance](https://news.google.com/rss/articles/CBMikwFBVV95cUxOdlNrQ1ZDQmNvTllra2ViQVl3NmZ1X2YySEE3TXgzNzIyUHRtNkV5SjFLZ0F4NGtnaGJ3eFQ1VUdiTFNHcmlVYVNyblBfU1VlLXZhTTBRZTNSOXptbU14a0lzSHB4cHA3N3lUYTgwMWdlYklKYVczTVJ2VTZkVkJaSEVXWkg4NWE5bnEwVUlpdElES3M?oc=5) — Yahoo Finance `11/03 11:41`
-- [那指 100 今年第三度陷修正 槓桿 ETF 散戶慘 - TechNews 科技新報](https://news.google.com/rss/articles/CBMipgFBVV95cUxOZ2tLal8ySVpGZWpfNjlwY2E2dW14MVd5dzd4V2xjTlhwRHFRa0lKeHRnVUpNXzRvcmw5Y0ZJS2loaVh6SHRsT2xQZ3QxMUpaRTRvTWR2OUhtVDYwc21TcmNfVGJvYnoxc0tWUjQxOVVraVdLVXRuVzBMczA4dFZ6V2JON2NjVTdJZTNrdnluNjNOTGY2WUgwV0FyZ3oyMlJCVFNCRGh3?oc=5) — TechNews 科技新報 `11/03 11:30`
-- [美國期中選舉與台灣「地緣戰略韌性」高哲翰專文 - 台灣華報](https://news.google.com/rss/articles/CBMia0FVX3lxTE11XzNtSElYM2pZTXp1cDdMYW5QWGpWaGs0NnU5RXM4ZXFFWll6alFrWmlwUEQ5OVJLRTdwN3RkcEtlRkpBT2VMZEh1VS1tdlFNajVNRjRSR0RiTW5IWXNsaHJjWW5SQTJFaXB3?oc=5) — 台灣華報 `11/03 11:16`
-- [影音／鐵粉嘆被害慘！關稅、戰爭重創美農工業 川普貿易休兵救選票 - TVBS新聞網](https://news.google.com/rss/articles/CBMiT0FVX3lxTE9mWmF4RkxuaDIwX1dDTnNCRWFOZm9vdjlHNkZaQng5Q1g0c21TOEc4RV9ET1BvX3dnQm9xZDFhYWJNSXBIajFyWmJYV2dZYkE?oc=5) — TVBS新聞網 `11/03 10:55`
-- [Stocks mostly down as AI concerns top plunge in oil prices - Yahoo Finance](https://news.google.com/rss/articles/CBMimwFBVV95cUxQUE1tNzlfeUhTaGExV2pybWtVakVVUUExd1FCOVFicnlfLXBFbHFUUmdCMlZiajh5aU5wYWtYdmNrVXlCUTVNU0FyQXF1anl0ZVdhcGZNc1pmZXB3Q3JuTHJ0aU5yMGtWY1JVNEpBOHVtdVBXTGNyRUplNTM1TnRqa3lyaTNhNUhaVGoySkdHa2E4TlgtcnFzMC1hWQ?oc=5) — Yahoo Finance `11/03 10:55`
-- [【台股盤中】電金傳全倒 台股盤中下挫超過800點面臨44K保衛戰| 金融 - 非凡新聞台](https://news.google.com/rss/articles/CBMiYEFVX3lxTFAxQUM0NWdtcU9BUzZ4SENLRnY2LWY2TWROUzY1cHpjS29hM2F4X3RMd2kxOVVtWFd2SGlYdlowRFpXM1d5eVdhQlhUQlk4eHhWLUwyNm5PcFpNR2lEM2RITA?oc=5) — 非凡新聞台 `11/03 10:33`
-- [華許是鷹是鴿或非重點？Fed暫停升息背後 「長債殖利率」成關鍵 - 鉅亨網](https://news.google.com/rss/articles/CBMiS0FVX3lxTFBndS1QY0Qtc09mZ0ZmQTVoNlpNT1VqRXVVTVRlcl81S1Y1amtkYmIycldDSjgwMmFTNkZSdEJFZFVZYlpwcDBNTVJDVQ?oc=5) — 鉅亨網 `11/03 10:30`
-- [【研究觀點】加權破半年線尋求年線支撐：美期中選舉決戰投開票、三大落底指標檢驗、玻纖矽晶圓止穩，大戶投策略關注地板急跌、主本比選股策略｜豐雲學堂2026 年 11 月 - 永豐金證券](https://news.google.com/rss/articles/CBMizwZBVV95cUxQbWVPNXJlTktuNlhRR05UbENsWTc5MV96ck1SOENsVGRQWEQ2bHA2M0c1cV9jSmpHdllJVk1ITmpkeVZaMk95NU9IYk1sNDZDUTMyNjZScEsxLU9fc2Z4MTZXbi03MTFWVGNWamhROVhVdmlWTy1sQWgwTGF1UDhTRDZRVUE3ZV9pbGZ4OTE2RVBfZmRtUnJfQk1RNjRLWlRBWXFtdnd3ZnFPazVjTzFKd0R6RHZJSEVyYjJYMFFVakctcm8wSlZkdWNTWVd0QV9Rb3JESkVEVnpFY0lIMW9JUnhIVTFETHFQT2RFU0RmYlBDUUVqQWxXZHpmeWdfQzZNMHB0WmpZXzlTS2JaZGpfOWhIaXlRLUNrMDhWSjhLTEd2ZjZ2cTVINlhyVnA2TGZYZi1aaTBBTTZ2RXJydVJNdWVsSzl2Yzd1dllhMDdSSXRNUGRIaWVGVEVLVk1scXFYWGlxV19jNzZkQm1VclNraldQYTNNNlBvWmFtbXZPZGpEY0FnMU92WlJNY3dRTEJqOHhlaXhzME1JUllOU0pLNXJvT01TYWFMVVRZejBzODAwZm55Z09LMkJId3VjcjlpdTd6WTVaOFhrY0JaTWozczZQOU1fYkstaVZqc3BZcDM2ZEFCajMyU3ZuTmlrTnB0T19sM3hHNUhXelc2V1hvUWhPRUtReVF3OXlJNG1kR3Z4WHZqUzZpMzRPeUI2cXFqdHZXT3BnUUlTS3FPMlhnNG5xeDk4bzBZQXY5Z2pXV3BZcURPNGZraDk4ZERSUk1DVER2QmFmQzVvaXNfNUc2NFZMcjFELTFZMDNzejA0M0JpOTlXVHNrcjFpc0N3ZEV2cm9KazZRQW1GWDJnaEp2Ykx0NWdkY2g5ZGtqVmRteXFTd1NQVTdrSzFXZHlCcnBGWWNONjk3Y3ZfUlRTOTJjbnlfU2dpMENQaVZMNDc4OFhfbG5aRWxpT0lfOUd3SXFHd3UySW1KUEpfWGNXc21hT1N3amhYR3RpVGNCOXpvUGJnMDFKZTJQSFN5OF9FbXpNZ0k5WDhmcVkyd2FpRS1pNHFVQ3NreWY1VlBtaklTUG1hU2R4TUJSdFNTX1l3VVcyOEJtZzkyVzNLVlA1cFpz?oc=5) — 永豐金證券 `11/03 10:22`
+- [民主期中開票領先！台日韓股市走低，恐懼美國縮減亞洲投資 - 動區動趨](https://news.google.com/rss/articles/CBMimgFBVV95cUxOMXJaa0NJWXZOajVjNUxDNXl5NU5Sa3F2NlNpTzF0WlBFQm9taWlxckxQenp3bXRoWGpGbkg4SWc2TWc2aWtXazhMTWFTRE9SN0k3MWU4NUxHdTVZaDdRYnk4U1NIVVF4cTVyZ3ltT0Q1T2R2dEI4Q0tLb09sNGFKelhUTmRoZ2ozWG5RbnRYWkZ1c21neWdWTVN3?oc=5) — 動區動趨 `11/04 10:43`
+- [匯市大地震躥史上第四巨量| 金融 - 非凡新聞台](https://news.google.com/rss/articles/CBMiYEFVX3lxTE5FYTMxWVJkdVRKTkROQmIyU3lvTEsxdzFDOUU4Y04wcUw0cWhRUGVyaWtDSWFXSU1HSm5JUnV4Z0RGaVRDVGM0TDBiN3RxclQweVRoTVNRajBXRWlYXzJrbA?oc=5) — 非凡新聞台 `11/04 10:35`
+- [美債殖利率破5%！科技股挨刀 00998A反吃金融紅利 成資產配置焦點 - 蕃新聞](https://news.google.com/rss/articles/CBMiUkFVX3lxTE5YN2FjcWVnd1ZZMFhlUWw4TjNKZlo1U2ZTMnRtcHBmUnVVblFwdlNuNEhFalQzN0pHekJhLVlDSks1N3ZWcWh1a2VIR3FndWNmdVE?oc=5) — 蕃新聞 `11/04 10:06`
+- [美國財政困境與貨幣政策矛盾仍支撐黃金多頭- 新聞 - MoneyDJ](https://news.google.com/rss/articles/CBMikgFBVV95cUxPTkdld24xM3ZVcy1HQXdQTHdVVHUxZTRMdDdBSmQxZWlBVkJlc1NBcW9GNWc3VFVVeHFhbjVGdExKSVZaZjRqbEdtX1NQZ1E3SVF3T0NIdVVHQXBIX2txNm1hOV9pUFhPRXpkMmlQeV9nY09hRmoxRVlCbnhmQUN0aHhaZEo0ZWpuMkw2am5yZ19BQQ?oc=5) — MoneyDJ `11/04 09:51`
+- [澳洲央行鷹派升息至 18 年高點 澳股期貨盤中走軟 - Life 生活網](https://news.google.com/rss/articles/CBMivgJBVV95cUxPd1RWWnFyTkEzZkRkODFLMkpmQ2J2UmR6cVlFSlJES0NoMlJuYlY3MjJ6U1NpYVI3d2xEem9ENzNnSXpzZ1FqSUk3S1Bic2dHQzNWSDd4M096ZGVtN3JTZWI2VGNyc2lfT0EwcTN2OUh3UHc2ZTBTYnc1dXZ4SDBNZTVQMFdGOTN5blFMVzZPaE5EQ184YUMxd3FpMVNfeWdHLXNFMzE3UnhQZGc0TWJCZGtXcEFoZWdJQkFIR2UtUE1qQ2FSZnhZSEV0LUpoSV9tb2VfN1NKclgxUTQ0NkhhSF9YTkhzdExsV2tZSWExNW5EdjhVNWFfdW5KZ1BFMlRTMHVEbUk0U3l6ZTgxYmM1RE5WM1Bqd2JxUWplUm5vSVN4OVlaLXZkWGxIUFV2S2xCdVVoeU04UWh1QTVVS0E?oc=5) — Life 生活網 `11/04 09:41`
+- [台股上沖下洗！電金賣單殺出 指數震盪逾600點翻黑 - 自由財經](https://news.google.com/rss/articles/CBMiX0FVX3lxTE1FTDlvaUIzdkpOVmxmdHhkbXBqQ01UZks1UElSblRIT3JycUJidk5lb2cyR24tTzZfYTRzNmFreVZvaFJxR1dDRGJGb2REQS0tbF8wTkM4NDRYUVJiZm9n0gFkQVVfeXFMUFBoYmFLc19GajZFQTh5R1dTUWM4NFB1X2g1aUNrNHBuWWFxeXcwN1UtVDZteGdxOHphYk4yemRhTk1SQmRRUWZuNnl1RnlMRFdOVlRub3FicVpDNGxzOHJMSTBkbQ?oc=5) — 自由財經 `11/04 09:30`
+- [亞股大暴走！韓股急殺逾4％翻黑 日經跌逾1400點 - 自由財經](https://news.google.com/rss/articles/CBMiX0FVX3lxTFB6ZGpfeHpmSmp6cFdCTkJiSmIxRGdacW5JTTQ2OGVRa1BmWGVySDY0UEVEYnBsY3Fvb1AwbDFZTnMyclVCYURXeXp1V1dRRmpZWTQ5MDZ6U1V1d0pORHNV0gFkQVVfeXFMTnd0cEVhLTBxV3FiYnZ6a1VvaVFlZjNnV2xPWDdfamlXeE1tampJckstTFhsTVl2MjdINGRodzFuUVdnLTEzQWl6Z3RoUnAwS0dJQzU2MmZ5VjdaZ2RlbjI5a1VkRg?oc=5) — 自由財經 `11/04 09:21`
+- [台股狂瀉近5000點！0050跌逾10%、00998A僅跌0.7% 劉姿麟揭抗震關鍵 - Life 生活網](https://news.google.com/rss/articles/CBMi2gFBVV95cUxPa1RMem5CTVNia1M1TW5veVplTWVLa0s5QWZhVDB5UFQtVVFBQzJzcE55NUFmMzZGSHBpTWpIVVRZQzF4WWRENHRyYjJlT09yTkJsdmhTSkNPWVFGMDlFSU5QRU9IclRGLTZtQ21qTEFxOU56ZEI0Ul93YUtIQjJVNDdlRlhSM1lWYi1kaGtVNTVMakdqR0hxLWgwbGluWlVvTGRPRjRUU2tjQWo1b21mbTlpSUx5U1JuUGNFV0ZnVXBKa01ZdDBKemFuaDVtTmw2ZEhIOVctYmNGZw?oc=5) — Life 生活網 `11/04 09:17`
 
 
 ## 5. ✅ 每日盤後檢查清單
