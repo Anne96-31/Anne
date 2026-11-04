@@ -1,155 +1,155 @@
-# AI & Data 每日摘要 2026-11-04（三）
+# AI & Data 每日摘要 2026-11-05（四）
 
-> 今天這批文章有一條很清楚的主線：Agent 要能在企業內真正幹活，關鍵不在模型，而在『語意層與資料治理』。Simon Späti 談人類少寫程式、改由 agent 搭配 data model 與 catalog 產生 SQL，AWS 的 EDB Postgres + Bedrock AgentCore 示範把業務定義、join path、row-level security 全部放進 Postgres，雲馥談 Fabric IQ 串起資料語意——三篇講的其實是同一件事，而這正是 DE 背景最有優勢切入 AI Engineer 的位置。第二條線是『從 demo 到上線』：TDS 的 agent 維運、Meta F3 Lightning 的特徵服務、8 種 inference framework 比較，提醒你評估、監控與延遲成本才是真正的工程門檻。第三條線是工具落地：DeepSeek 開源 coding agent、llm 0.37、本地模型清單，適合今天就動手跑最小範例。
+> 今天整批文章的主軸非常集中：Agent 從 demo 走向 production，而真正的瓶頸不是模型聰不聰明，而是 context engineering、權限邊界與可觀測性。AWS 一口氣給了三個產線級案例（四層 context 框架、LLM 資料品質 Agent、電信 agentic 維運），Databricks 則補上 MLflow + OpenTelemetry 的 agent tracing，顯示「評估與監控」已經是 AI Engineer 的核心職能而非加分項。治理面同步升溫：香港金管局 SAGE、美國大行擋外部 Agent 動錢，說明 human-in-the-loop 與授權驗證會成為企業導入的硬門檻。對 DE 轉職者最好的切入點，就是把你熟悉的 pipeline 與 data quality 經驗，包成 Agent 的 tool 與 evaluation 資料集。
 
-## 🔥 今日必讀（6）
+## 🔥 今日必讀（5）
 
 *直接補上你轉職缺的能力*
 
-### [人類少寫程式：工作轉向驗證 agent 輸出](https://www.ssp.sh/blog/humans-write-less-code/)
-*Simon Späti – Data Engineering Design · 2026-11-03 · 相關度 11.89 · 必讀*
+### [生產級 AI Agent 的四層 context engineering](https://aws.amazon.com/blogs/machine-learning/four-layers-of-context-engineering-for-production-ai-agents-how-deep-insight-applies-them-in-working-code/)
+*AWS Machine Learning Blog · 2026-11-04 · 相關度 14.77 · 必讀*
 
-- **內容**：分析師與業務逐漸改用 prompt 讓 agent 寫 SQL，有了 data model、文件與 data catalog 當 context，產出品質會隨迭代測試逐步提升。
-- **對你的意義**：這正是 DE 轉 AI Engineer 的黃金切點：你既有的資料模型與 metadata 就是 agent 的 context 來源，而你的新職責是設計『驗證 agent 輸出的測試套件』而非自己寫查詢。
-- **今天可以做**：挑一張你最熟的事實表，把欄位語意與常用 join 寫成 markdown 文件，餵給 LLM 讓它產生一段 SQL，再人工檢查正確率。
-- **原文標題**：As Humans Write Less Code: Workloads Shift from Human to Agent Verification with Iterative Test Suites
-- `#Agent` `#SemanticLayer` `#DataCatalog` `#SQL`
+- **內容**：AWS 提出 context 管理才是 production agent 的真瓶頸，並以開源 Deep Insight（Strands Agents SDK + Bedrock AgentCore）示範架構、prompt、檔案式工具、驗證 agent 四層框架。
+- **對你的意義**：DE 很會設計資料流，但 agent 的「context 流」是新技能；這篇把 context 當成可工程化的分層系統，正好補上你從 pipeline 思維轉到 agent 思維的缺口。
+- **今天可以做**：讀完後畫一張四層對照圖，把每一層對應到你熟悉的 pipeline 概念（schema、config、staging table、data validation）。
+- **原文標題**：Four layers of context engineering for production AI agents: How Deep Insight applies them in working code
+- `#Agent` `#context engineering` `#Bedrock` `#開源`
 
-### [2026 年值得一試的 8 個 LLM 推論框架](https://www.kdnuggets.com/8-llm-inference-frameworks-you-should-try-in-2026)
-*KDnuggets · 2026-11-03 · 相關度 11.58 · 必讀*
+### [Claude 平台原生支援 MLflow OpenTelemetry 觀測](https://www.databricks.com/blog/claude-platform-now-supports-native-opentelemetry-observability-databricks-mlflow)
+*Databricks Blog · 2026-11-03 · 相關度 14.12 · 必讀*
 
-- **內容**：比較各家 LLM inference framework 在 production serving、request batching、KV cache 管理與部署效率上的差異。
-- **對你的意義**：AI Engineer 面試與實戰常被問 throughput 與成本最佳化，這篇是你從『會呼叫 API』進階到『懂自架服務』的入門地圖。
-- **今天可以做**：把文章中的框架列成比較表，標註各自適合的場景，並挑一個（如 vLLM）記下其 KV cache 機制一句話解釋。
-- **原文標題**：8 LLM Inference Frameworks You Should Try in 2026
-- `#推論框架` `#vLLM` `#KVCache` `#Serving`
+- **內容**：摘要資訊有限，但重點是 Claude Platform 可用 OpenTelemetry 把 agent 執行過程送進 Databricks MLflow，解決 agent 答案看似合理卻漏掉關鍵發現、重複讀同一來源的問題。
+- **對你的意義**：LLMOps 的 tracing 是 DE 最容易上手的轉職切入點，因為概念等同你熟悉的 pipeline 可觀測性，只是觀測對象換成 tool call 與 token。
+- **今天可以做**：在本機用 MLflow tracing（或 autolog）跑一次最小 LLM 呼叫，觀察 trace 裡記了哪些欄位。
+- **原文標題**：Claude Platform now supports native OpenTelemetry observability in Databricks MLflow
+- `#LLMOps` `#observability` `#MLflow` `#OpenTelemetry`
 
-### [用 EDB Postgres AI 與 Bedrock AgentCore 打造語意層](https://aws.amazon.com/blogs/machine-learning/build-a-semantic-layer-for-agentic-ai-with-edb-postgres-ai-and-amazon-bedrock-agentcore/)
-*AWS Machine Learning Blog · 2026-11-03 · 相關度 10.93 · 必讀*
+### [Indegene 用 LLM Agent 擴展企業資料品質](https://aws.amazon.com/blogs/machine-learning/how-indegene-is-modernizing-and-scaling-enterprise-data-quality-in-life-sciences/)
+*AWS Machine Learning Blog · 2026-11-04 · 相關度 12.2 · 必讀*
 
-- **內容**：把業務語意、join path 與存取控制全部放在 Postgres 內，由 Strands Agents 在 Bedrock AgentCore 上查詢，用 GRANT 與 row-level security 限制每個 agent 能讀什麼。
-- **對你的意義**：這篇把你熟悉的 DB 權限治理直接變成 agent 安全邊界，是 DE 技能可以 1:1 平移到 AI Engineer 的最佳示範。
-- **今天可以做**：在本機 Postgres 建一張測試表，設定 row-level security，想像一個 agent 角色只能看特定部門資料並實測一次。
-- **原文標題**：Build a semantic layer for agentic AI with EDB Postgres AI and Amazon Bedrock AgentCore
-- `#SemanticLayer` `#Agent` `#Postgres` `#資料治理`
+- **內容**：Indegene 在 AWS 上打造 production 等級的 LLM Data Quality Agent，自動產生具脈絡的資料品質規則並輸出可執行的 SQL/Python，搭配 human-in-the-loop 治理。
+- **對你的意義**：這是 DE 背景最具優勢的 AI 應用：你懂 data quality rule 與 SQL，加上 LLM 就是一個現成的轉職作品題目。
+- **今天可以做**：寫一個最小 prompt，讓 LLM 讀你某張表的 schema 與樣本，產出 5 條 DQ 規則與對應 SQL，自己驗證準確率。
+- **原文標題**：How Indegene is modernizing and scaling enterprise data quality in life sciences
+- `#data quality` `#LLM 應用` `#human-in-the-loop` `#DE 優勢`
 
-### [企業 AI 如何建立共同語言？以 Fabric IQ 串起資料語意與業務脈絡](https://techorange.com/2026/11/02/cloudriches-aiagent-fabric-iq/?utm_source=rss&utm_medium=feed&utm_campaign=techorange_rss)
-*TechOrange 科技報橘 · 2026-11-02 · 相關度 10.21 · 必讀*
+### [可靠代理人懂得暫停：先產出計畫再比對權限](https://techorange.com/2026/11/04/designing-ai-agents-to-prevent-mistakes/?utm_source=rss&utm_medium=feed&utm_campaign=techorange_rss)
+*TechOrange 科技報橘 · 2026-11-04 · 相關度 9.97 · 必讀*
 
-- **內容**：同一個「營收」在財務、業務與 CRM 定義不同，當 AI Agent 參與決策時，缺乏一致資料定義與治理會讓錯誤在自動化流程中被放大。
-- **對你的意義**：用台灣企業語境講清楚『為什麼 AI 專案最後卡在資料治理』，這是你能立刻對主管提案、把 DE 經驗包裝成 AI 價值的題材。
-- **今天可以做**：寫下公司內三個同名不同義的指標，各自列出定義與來源系統，當成語意層設計的第一版草稿。
-- **原文標題**：企業 AI 如何建立共同語言？雲馥數位蔡嘉豪：以 Fabric IQ 串起資料語意與業務脈絡
-- `#資料治理` `#語意層` `#企業AI` `#台灣案例`
+- **內容**：多領域專家分享降低 agent 出錯的設計做法：讓推理貼近原始資料減少 context 流失、以權限邊界限制高風險行動、避免權限無聲擴張。
+- **對你的意義**：直接給你 agent 設計的安全模式（plan-then-act、最小權限），這是把 demo agent 升級成 production agent 的關鍵差異。
+- **今天可以做**：把文中的設計原則整理成一份 5 條「Agent 上線前檢查表」，特別標註權限範圍如何定義。
+- **原文標題**：【可靠的代理人懂得暫停】讓 AI 代理行動前先產出計畫，比對權限範圍再決定執行
+- `#Agent 設計` `#權限控管` `#可靠度` `#中文好讀`
 
-### [Agent 在 demo 能跑，接下來要讓它撐過週一](https://towardsdatascience.com/your-agent-works-in-the-demo-now-make-it-survive-monday/)
-*Towards Data Science · 2026-11-03 · 相關度 8.2 · 必讀*
+### [2026 年資料科學面試的變化與準備方式](https://www.kdnuggets.com/the-data-science-interview-in-2026-whats-changed-and-how-to-prepare)
+*KDnuggets · 2026-11-04 · 相關度 8.56 · 必讀*
 
-- **內容**：摘要資訊有限，主旨是 demo 只是最簡單的部分，真正困難在於讓 agent 在真實生產環境穩定運作。
-- **對你的意義**：直指 AI Engineer 的核心價值：可靠度、錯誤處理與監控，而這恰好是 DE 做 pipeline SLA 的既有強項可以延伸之處。
-- **今天可以做**：花 15 分鐘讀完，並把文中提到的失效模式整理成你自己的『agent 上線檢查清單』。
-- **原文標題**：Your Agent Works in the Demo. Now Make It Survive Monday.
-- `#Agent上線` `#可靠度` `#LLMOps`
+- **內容**：逐輪拆解招聘流程的轉變，包括 AI 輔助的 coding 輪次與 GenAI 評估題型，並說明該如何調整準備方式。
+- **對你的意義**：直接對應你的轉職求職流程，尤其「GenAI evaluation 問題」正是 DE 最缺、也最容易被問倒的一環。
+- **今天可以做**：照文章列出的輪次，誠實自評每一項 1–5 分，標出最弱兩項排進本月學習計畫。
+- **原文標題**：The Data Science Interview in 2026: What’s Changed and How to Prepare
+- `#面試` `#職涯` `#GenAI 評估` `#轉職`
 
-### [llm 0.37 發布](https://simonwillison.net/2026/Nov/2/llm/)
-*Simon Willison's Weblog · 2026-11-02 · 相關度 7.21 · 必讀*
-
-- **內容**：Simon Willison 的 LLM CLI/Python 函式庫更新，新增 OpenAI 相容端點設定指令、更換較便宜的預設模型，並讓 embedding 支援不同 content-type 的二進位內容（如音訊、影像、影片）。
-- **對你的意義**：對 DE 來說這是最低摩擦的 LLM 入門工具，可以直接在 shell 裡把 LLM 串進既有的批次腳本與 cron 流程。
-- **今天可以做**：pip install -U llm，設定一組 API key，跑一次 llm prompt 與 llm embed，並試著對一個檔案目錄建索引。
-- **原文標題**：llm 0.37
-- `#CLI工具` `#embedding` `#開源` `#快速上手`
-
-## 👀 值得快速瀏覽（5）
+## 👀 值得快速瀏覽（6）
 
 *掃過標題與重點即可*
 
-### [Tutor Intelligence 獲 a16z 領投 7,500 萬美元](https://techorange.com/2026/11/03/tutor-intelligence-series-b-robot-labor-by-the-hour/?utm_source=rss&utm_medium=feed&utm_campaign=techorange_rss)
-*TechOrange 科技報橘 · 2026-11-03 · 相關度 11.8 · 快速瀏覽*
+### [Pinterest 用 Ray 擴展模型評估（第四篇）](https://medium.com/pinterest-engineering/scaling-model-evaluation-at-pinterest-with-ray-part-4-4a96cd12cc11?source=rss----4c5a5f6279b6---4)
+*Pinterest Engineering · 2026-11-04 · 相關度 12.7 · 快速瀏覽*
 
-- **內容**：機器人公司以『按工時/件數賣完成的工作』收費，卡關時由遠端真人接手，每次任務都回饋成訓練資料。
-- **對你的意義**：這是 human-in-the-loop 加上 data flywheel 的商業化範例，跟你未來設計 agent 系統的 fallback 機制與回饋資料管線邏輯完全相同。
-- **今天可以做**：花 10 分鐘畫出一張流程圖：你的 agent 在信心不足時如何轉交人工，以及人工處理結果如何回流成評估資料集。
-- **原文標題**：買機器人的工作，卡關由真人遠端接手：Tutor Intelligence 獲 a16z 領投 7,500 萬美元
-- `#HumanInTheLoop` `#DataFlywheel` `#商業模式`
+- **內容**：Pinterest 工程團隊延續 Ray 系列，說明如何把 Ray 應用到大規模 model evaluation，並提及 accumulator 等機制。
+- **對你的意義**：Ray 是「分散式資料處理 → ML 平台」的橋樑，你的 Spark 經驗可直接遷移，是 DE 轉 AI 基礎設施方向最實際的技能複用。
+- **今天可以做**：花 15 分鐘對照 Spark 與 Ray Data 的 API 差異，列出三個你現有批次任務可以改用 Ray 的場景。
+- **原文標題**：Scaling Model Evaluation at Pinterest with Ray (Part 4)
+- `#Ray` `#模型評估` `#ML 平台` `#Spark 遷移`
 
-### [在 AWS 上打造超低延遲語音 AI 應用](https://aws.amazon.com/blogs/machine-learning/building-ultra-low-latency-voice-ai-applications-on-aws/)
-*AWS Machine Learning Blog · 2026-11-03 · 相關度 11.79 · 快速瀏覽*
+### [VicOne 於 GTC Berlin 展示 Rthena 機器人資安防護](https://techorange.com/2026/11/04/vicone-gtc-berlin-rthena-cybersecurity/?utm_source=rss&utm_medium=feed&utm_campaign=techorange_rss)
+*TechOrange 科技報橘 · 2026-11-04 · 相關度 10.13 · 快速瀏覽*
 
-- **內容**：Cartesia 用 State Space Model 搭配 AWS 基礎設施做到 sub-100ms 的 TTS/STT，並說明如何部署在 SageMaker 或自管 EC2 GPU。
-- **對你的意義**：補的是 DE 較弱的 inference 部署與延遲預算能力，特別是 GPU 實例選型與串流式推論的工程取捨。
-- **今天可以做**：讀部署段落，記下『延遲預算拆解』三個環節（模型推論、網路、串流緩衝），寫成一頁筆記。
-- **原文標題**：Building ultra-low-latency voice AI applications on AWS
-- `#推論部署` `#低延遲` `#語音AI` `#AWS`
+- **內容**：聚焦 Physical AI 的 Cyber-Safety 議題：訓練資料汙染、模型幻覺、感測器誤判都可能造成實體風險，VicOne 把防護從出廠驗證延伸到上線後即時監控。
+- **對你的意義**：提醒你「上線後持續監控」不只是效能指標，還包含資料汙染與異常行為偵測，這是 AI Engineer 面試常被追問的風險面。
+- **今天可以做**：快速掃過，記下 2 個你在自家 data flywheel 中可能存在的資料汙染或去識別化缺口。
+- **原文標題**：AI 機器人不只要聰明，更要安全！VicOne 於 GTC Berlin 展示 Rthena 即時資安防護技術
+- `#Physical AI` `#資安` `#監控` `#風險治理`
 
-### [DeepSeek 開源編碼代理 Super-Agent](https://techorange.com/2026/11/02/deepseek-super-agent-proactive-coding-agent/?utm_source=rss&utm_medium=feed&utm_campaign=techorange_rss)
-*TechOrange 科技報橘 · 2026-11-02 · 相關度 9.99 · 快速瀏覽*
+### [AI 代理替客戶動錢，香港金管局推 SAGE 研議驗證](https://techorange.com/2026/11/04/hkma-project-sage-agentic-finance/?utm_source=rss&utm_medium=feed&utm_campaign=techorange_rss)
+*TechOrange 科技報橘 · 2026-11-04 · 相關度 9.85 · 快速瀏覽*
 
-- **內容**：DeepSeek Harness 團隊開源 MIT 授權的主動式 coding agent，能監看開發者群組中的程式問題主動提解法，但預設只記錄會接受的工作、不實際動手。
-- **對你的意義**：『預設只記錄不出手』是 agent 自主性與安全邊界的實務設計，你未來設計 agent 權限與審批流程時可直接借鏡。
-- **今天可以做**：到 GitHub 看 dsh-superagent 的 README，記下它如何定義觸發條件與授權者，寫成三行筆記。
-- **原文標題**：DeepSeek 開源編碼代理 Super-Agent：沒人指派也能接單，預設卻只記錄不出手
-- `#CodingAgent` `#開源` `#Agent安全` `#DeepSeek`
+- **內容**：香港金管局成立代理式金融專家小組並發布討論文件，探討銀行如何驗證外部 AI 代理的指令；美國大行則先行限制外部代理只能查詢不能動錢，並轉向 MCP 伺服器。
+- **對你的意義**：顯示企業導入 Agent 的真正門檻是身分驗證與責任歸屬，了解 MCP 與授權設計能讓你在面試時談得比一般 LLM 玩家深。
+- **今天可以做**：查閱 MCP（Model Context Protocol）規格文件 10 分鐘，寫下它如何處理工具授權與存取範圍。
+- **原文標題**：AI 代理替客戶動錢，誰來把關？美國大銀行先擋，香港金管局研議身分與授權驗證
+- `#MCP` `#法規治理` `#agentic finance` `#授權驗證`
 
-### [用 Scikit-LLM 把 LLM 摘要放進 scikit-learn pipeline](https://www.kdnuggets.com/using-llm-summarization-in-your-scikit-learn-pipelines-with-scikit-llm)
-*KDnuggets · 2026-11-03 · 相關度 9.21 · 快速瀏覽*
+### [datasette-agent 0.5a0 釋出](https://simonwillison.net/2026/Nov/3/datasette-agent/)
+*Simon Willison's Weblog · 2026-11-03 · 相關度 9.78 · 快速瀏覽*
 
-- **內容**：示範把 Scikit-LLM 的摘要 estimator 與傳統 scikit-learn 方法組成單一 pipeline，處理雜亂原始文字的摘要與分類。
-- **對你的意義**：對熟悉 pipeline 思維的 DE 很親切：讓你用既有的 transform/fit 心智模型理解 LLM 如何當成管線中的一個處理節點。
-- **今天可以做**：pip install scikit-llm，用 20 筆自己的文字資料跑一次 summarize + classify 的 pipeline。
-- **原文標題**：Using LLM Summarization in Your Scikit-Learn Pipelines with Scikit-LLM
-- `#scikit-learn` `#LLM整合` `#文字處理` `#Pipeline`
+- **內容**：Simon Willison 的 Datasette Agent 新版加入 panel 功能，可在資料表或查詢頁面旁開啟聊天，並與 datasette-apps 搭配用對話生成並修改資料庫應用。
+- **對你的意義**：這是「自然語言 + 資料庫」的輕量實作範例，對熟 SQL 的你是研究 text-to-SQL agent 架構的低成本入口。
+- **今天可以做**：到 agent.datasette.io 用 GitHub 登入試玩 10 分鐘，觀察它如何把 SQL 查詢結果回灌成 agent context。
+- **原文標題**：datasette-agent 0.5a0
+- `#text-to-SQL` `#開源工具` `#Datasette` `#實作體驗`
 
-### [五大本地 AI 模型與取得方式](https://www.analyticsvidhya.com/blog/2026/11/local-ai-models/)
-*Analytics Vidhya · 2026-11-03 · 相關度 6.0 · 快速瀏覽*
+### [U Mobile 用 Bedrock AgentCore 打造電信 agentic 維運](https://aws.amazon.com/blogs/machine-learning/how-u-mobile-built-agentic-telco-operations-with-amazon-bedrock-agentcore/)
+*AWS Machine Learning Blog · 2026-11-04 · 相關度 9.71 · 快速瀏覽*
 
-- **內容**：介紹在 Ollama、LM Studio 等工具上可完全離線執行的五個本地模型，強調可配置性與掌控權而非純效能。
-- **對你的意義**：企業資料不能外流時，本地模型是 RAG 專案的常見前提；先熟悉 Ollama 也能讓你零成本做大量實驗。
-- **今天可以做**：安裝 Ollama 並 pull 一個小模型，實測它對你手邊一段內部文件的摘要品質。
-- **原文標題**：Top 5 Local AI Models and How to Get Them
-- `#本地模型` `#Ollama` `#地端部署` `#實驗環境`
+- **內容**：馬來西亞 U Mobile 建置 AiDaH agentic 維運平台，上線九個月涵蓋六大部門逾 150 個情境，故障工單最多減少 84.5%。
+- **對你的意義**：是少數有明確營運成效數字的 agent 落地案例，可當作你寫轉職履歷或提案時「agent 能帶來什麼量化價值」的參考範本。
+- **今天可以做**：摘錄其場景分類與成效指標，想一個你公司資料平台的維運情境（如 pipeline 失敗排查）能否 agent 化。
+- **原文標題**：How U Mobile built agentic telco operations with Amazon Bedrock AgentCore
+- `#agentic ops` `#企業落地` `#Bedrock` `#ROI`
+
+### [七個單項贏過大型 LLM 的小型專用模型](https://www.kdnuggets.com/7-small-specialist-models-that-beat-giant-llms-at-one-job)
+*KDnuggets · 2026-11-04 · 相關度 7.6 · 快速瀏覽*
+
+- **內容**：介紹七個 100 億參數以下的開源專用模型，在轉錄、OCR、routing、語音等單一任務上可媲美更大型系統。
+- **對你的意義**：成本與延遲是 AI Engineer 的日常取捨，知道何時用 small specialist model 取代通用 LLM，是上線維運的實戰判斷力。
+- **今天可以做**：挑一個與你工作相關的任務（如 routing 或 OCR），記下對應模型名稱與大小，列入日後 PoC 候選。
+- **原文標題**：7 Small Specialist Models That Beat Giant LLMs at One Job
+- `#小模型` `#成本優化` `#開源模型` `#推論效能`
 
 ## 🗂️ 存起來參考（3）
 
 *之後需要時再回頭看*
 
-### [Meta F3 Lightning：大規模加速廣告 ML 特徵上線](https://engineering.fb.com/2026/11/03/ml-applications/f3-lightning-how-meta-accelerates-ads-ml-features-to-production/)
-*Engineering at Meta · 2026-11-03 · 相關度 10.91 · 存參考*
+### [用決策模型引導語音助理](https://towardsdatascience.com/let-decision-models-guide-your-voice-assistant/)
+*Towards Data Science · 2026-11-04 · 相關度 9.1 · 存參考*
 
-- **內容**：F3 是 Meta 編寫、編譯與服務廣告排序特徵的框架，單一請求可能需要超過兩萬個特徵，透過把特徵編譯成單一合併圖降低運算成本。
-- **對你的意義**：feature engineering 的生產化是 DE 轉 ML/AI 平台工程最直接的橋樑，合併計算圖的思路也和 pipeline DAG 最佳化相通。
-- **今天可以做**：對照你手上的 Airflow/Spark pipeline，寫下兩個可以用『合併重複計算』降低成本的具體節點。
-- **原文標題**：F3 Lightning: How Meta Accelerates Ads ML Features to Production at Scale
-- `#FeatureStore` `#MLOps` `#Meta` `#效能最佳化`
+- **內容**：文章示範以 GPT-Live 負責對話、另用 decision model 追蹤已確認資訊並決定下一個該問的問題。摘要資訊有限。
+- **對你的意義**：示範了「LLM 負責語言、確定性模型負責狀態控制」的混合架構，這種職責切分正是避免 agent 亂走的實務技巧。
+- **今天可以做**：用一頁筆記寫下：哪些 agent 狀態該用程式碼控管、哪些交給 LLM 判斷。
+- **原文標題**：Let Decision Models Guide Your Voice Assistant
+- `#語音助理` `#狀態管理` `#混合架構`
 
-### [AI 會取代你的工作，而這該是好消息](https://towardsdatascience.com/ai-will-do-your-job-that-should-be-good-news/)
-*Towards Data Science · 2026-11-03 · 相關度 7.6 · 存參考*
+### [2026 年七大 AI Agent 協作平台](https://www.analyticsvidhya.com/blog/2026/11/best-ai-agent-collaboration-platforms/)
+*Analytics Vidhya · 2026-11-04 · 相關度 7.7 · 存參考*
 
-- **內容**：摘要資訊有限，屬於觀點文，討論當機器承擔工作後，人該如何重新定義勞動與價值。
-- **對你的意義**：轉職期的心態調適與敘事素材，面試談『你如何看待 AI 對職涯的影響』時可引用。
-- **今天可以做**：略讀後用三句話寫下你自己對「DE 工作被 agent 取代後我要做什麼」的回答。
-- **原文標題**：AI Will Do Your Job. That Should Be Good News.
-- `#職涯` `#觀點` `#AI影響`
+- **內容**：盤點七個 agent 協作平台，比較共享存取、權限、整合與可重用 workflow 等面向，讓 agent 從個人工具變成團隊資源。
+- **對你的意義**：幫你建立 agent 平台選型的語彙，面試談到「如何讓 agent 在團隊規模化」時能具體舉例比較。
+- **今天可以做**：挑其中兩個平台看其權限與整合模型，寫三行比較筆記存進知識庫。
+- **原文標題**：7 Best AI Agent Collaboration Platforms in 2026
+- `#平台選型` `#團隊協作` `#Agent 工具`
 
-### [學會規則：駭客思維](https://www.microsoft.com/en-us/research/podcast/learn-the-rules-the-hacker-mindset/)
-*Microsoft Research · 2026-11-03 · 相關度 7.21 · 存參考*
+### [如何在 DAX 中組合互相矛盾的篩選條件](https://towardsdatascience.com/how-to-combine-contradictory-filters-in-dax/)
+*Towards Data Science · 2026-11-04 · 相關度 7.34 · 存參考*
 
-- **內容**：Microsoft Research podcast，研究經理 Mike Walker 分享橫跨駭客文化、資安與 AI 的職涯心得，談信任、團隊與解難題所需的好奇心與判斷力。
-- **對你的意義**：對照 agent 安全與 prompt injection 議題，駭客思維有助你在設計 LLM 系統時主動想攻擊面。
-- **今天可以做**：通勤時聽 15 分鐘，記下一個可套用到 agent 權限設計的『先想怎麼被破』的問題。
-- **原文標題**：Learn the rules: The hacker mindset
-- `#資安` `#Podcast` `#思維方法`
+- **內容**：說明矛盾篩選條件會導致空結果，並示範如何調整資料模型讓計算成立。
+- **對你的意義**：屬於 BI 建模技巧，與 AI Engineer 轉職路徑關聯較低，僅在你需支援 BI 報表時有用。
+- **今天可以做**：略過，或加入書籤待日後處理 Power BI 需求時再看。
+- **原文標題**：How to Combine Contradictory Filters in DAX
+- `#DAX` `#BI` `#資料建模`
 
 ## 🎯 今天的 30 分鐘學習計畫
 
-1. 先讀 [1] 與 [5]，把『semantic layer 是 agent 的 context 來源』這個概念寫成一頁筆記，並對照你現有的 dbt/數據倉儲，列出三個缺少業務語意定義的表。
-2. 用 [13] 的 llm CLI 做一個 10 分鐘最小實驗：安裝後跑一次 prompt 與一次 embedding，確認你能在 terminal 端完成 LLM 呼叫與向量產生。
-3. 掃讀 [10] 與 [4]，整理一份『agent 上線前檢查清單』草稿（失敗重試、逾時、觀測性、batching/KV cache 對延遲與成本的影響）。
+1. 先讀 [1] AWS 四層 context engineering 框架，用自己的話整理成一頁筆記：architecture / prompts / file-based tools / verification agent 各自解決什麼失敗模式，並對照你現有 pipeline 想一個可落地的 agent 應用點。
+2. 花 10 分鐘看 [2] Databricks MLflow + OpenTelemetry 的 agent trace 做法，在本機跑一個 mlflow.autolog 的最小 LLM 呼叫範例，確認你看得懂 span、token 用量與重複檢索這類訊號。
+3. 掃 [4] 與 [6]，把「LLM 產 data quality rule + human-in-the-loop 審核」與「Agent 先出計畫再比對權限」兩個設計模式寫成 checklist，作為你未來面試時講 agent 安全設計的素材。
 
 ---
 
-掃描 73 篇，收錄 14 篇。來源分布：TechOrange 科技報橘 × 3、AWS Machine Learning Blog × 2、KDnuggets × 2、Towards Data Science × 2、Simon Späti – Data Engineering Design × 1、Engineering at Meta × 1、Microsoft Research × 1、Simon Willison's Weblog × 1、Analytics Vidhya × 1
+掃描 76 篇，收錄 14 篇。來源分布：AWS Machine Learning Blog × 3、TechOrange 科技報橘 × 3、Towards Data Science × 2、KDnuggets × 2、Databricks Blog × 1、Pinterest Engineering × 1、Simon Willison's Weblog × 1、Analytics Vidhya × 1
 
 > ⚠️ [Uber Engineering Blog](https://www.uber.com/en-US/blog/engineering/)：官方無 RSS（robots.txt 禁止 API 抓取），請人工瀏覽；同性質內容已由 Netflix / Meta / Pinterest / Airbnb 工程部落格補上。
 
-*由 ai-data-digest 於 2026-11-04 04:32 自動產生 · 摘要引擎：Claude（claude-opus-5）*
+*由 ai-data-digest 於 2026-11-05 04:51 自動產生 · 摘要引擎：Claude（claude-opus-5）*
