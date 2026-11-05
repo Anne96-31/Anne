@@ -140,6 +140,18 @@ Uber Engineering（`eng.uber.com`）官方沒有 RSS，且 `robots.txt` 禁止�
 
 本機預覽（不寫入 Notion）：`python -m aidigest --dry-run`
 
+## 📅 每日學習日程（iPhone 行事曆訂閱）
+
+[`schedule/study.ics`](schedule/study.ics) 是平日 08:00–22:00 的學習時程（不含休息與用餐），每個時段開始時會跳通知，事件裡附上可以打勾的[每日學習日程網頁](https://claude.ai/artifact/Ce2nALJ4LdQh6MsCaWdJtT)。
+
+**在 iPhone 訂閱（只需做一次）：** 設定 → App → 行事曆 → 行事曆帳號 → 加入帳號 → 其他 → **加入已訂閱的行事曆**，伺服器填：
+
+```
+https://raw.githubusercontent.com/Anne96-31/Anne/master/schedule/study.ics
+```
+
+改時段時編輯 [`schedule/make_ics.py`](schedule/make_ics.py) 的 `BLOCKS`，執行 `python -m schedule.make_ics` 後 commit，iPhone 會在下次重新整理時自動更新。
+
 ## 本機執行
 
 ```bash
