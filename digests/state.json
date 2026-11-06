@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-06T05:09:46+08:00",
+ "updated": "2026-11-07T04:30:31+08:00",
  "seen": {
   "https://techorange.com/2026/10/10/machinenative-economy": "2026-10-12",
   "https://towardsdatascience.com/agentic-systems-a-practitioners-guide-to-6-advanced-architectural-patterns": "2026-10-12",
@@ -346,6 +346,20 @@
   "https://www.analyticsvidhya.com/blog/2026/11/gpt-image-2-6-review": "2026-11-06",
   "https://www.microsoft.com/en-us/research/blog/formally-verifying-agent-written-full-stack-web-apps-with-pdd-kit": "2026-11-06",
   "https://towardsdatascience.com/how-to-report-for-100-clients-with-one-semantic-model": "2026-11-06",
-  "https://www.kdnuggets.com/web-scraping-7000-pages-in-3-minutes-with-python-and-olostep": "2026-11-06"
+  "https://www.kdnuggets.com/web-scraping-7000-pages-in-3-minutes-with-python-and-olostep": "2026-11-06",
+  "https://techorange.com/2026/11/06/red-hat-summit-sovereign-ai": "2026-11-07",
+  "https://arxiv.org/abs/2608.06112": "2026-11-07",
+  "https://aws.amazon.com/blogs/machine-learning/sagemaker-inference-now-supports-multi-instance-gpu-to-maximize-gpu-utilization-for-model-endpoints": "2026-11-07",
+  "https://techorange.com/2026/11/06/thub-digital-twin-physical-ai": "2026-11-07",
+  "https://aws.amazon.com/blogs/machine-learning/serverless-mcp-server-for-ai-agent-data-lake-access-on-amazon-ecs-fargate": "2026-11-07",
+  "https://www.kdnuggets.com/how-to-give-your-ai-agent-memory": "2026-11-07",
+  "https://techorange.com/2026/11/06/marketer-influencer-ai": "2026-11-07",
+  "https://medium.com/pinterest-engineering/safe-and-efficient-multi-epoch-embedding-training-103bec2abc83": "2026-11-07",
+  "https://techorange.com/2026/11/06/kneron-nasdaq-ipo": "2026-11-07",
+  "https://towardsdatascience.com/build-your-first-multi-tool-ai-agent-with-ollama-and-python": "2026-11-07",
+  "https://aws.amazon.com/blogs/machine-learning/govern-ai-agent-access-with-okta-cross-app-access-and-amazon-bedrock-agentcore-part-2": "2026-11-07",
+  "https://aws.amazon.com/blogs/machine-learning/taxonomy-of-agentic-primitives-in-amazon-quick": "2026-11-07",
+  "https://towardsdatascience.com/give-your-python-ai-agent-persistent-memory-with-one-json-file": "2026-11-07",
+  "https://www.kdnuggets.com/2026/10/365careers/free-ai-and-data-courses-with-365-data-science-100-unlimited-access-until-nov-20": "2026-11-07"
  }
 }
