@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-07T04:30:31+08:00",
+ "updated": "2026-11-08T02:55:04+08:00",
  "seen": {
   "https://techorange.com/2026/10/10/machinenative-economy": "2026-10-12",
   "https://towardsdatascience.com/agentic-systems-a-practitioners-guide-to-6-advanced-architectural-patterns": "2026-10-12",
@@ -360,6 +360,20 @@
   "https://aws.amazon.com/blogs/machine-learning/govern-ai-agent-access-with-okta-cross-app-access-and-amazon-bedrock-agentcore-part-2": "2026-11-07",
   "https://aws.amazon.com/blogs/machine-learning/taxonomy-of-agentic-primitives-in-amazon-quick": "2026-11-07",
   "https://towardsdatascience.com/give-your-python-ai-agent-persistent-memory-with-one-json-file": "2026-11-07",
-  "https://www.kdnuggets.com/2026/10/365careers/free-ai-and-data-courses-with-365-data-science-100-unlimited-access-until-nov-20": "2026-11-07"
+  "https://www.kdnuggets.com/2026/10/365careers/free-ai-and-data-courses-with-365-data-science-100-unlimited-access-until-nov-20": "2026-11-07",
+  "https://github.blog/ai-and-ml/github-copilot/beyond-code-generation-a-developers-guide-to-agentic-engineering": "2026-11-08",
+  "https://techorange.com/2026/11/07/what-work-can-robots-do": "2026-11-08",
+  "https://techorange.com/2026/11/06/agility-robotics-nasdaq-humanoid-listing": "2026-11-08",
+  "https://aws.amazon.com/blogs/machine-learning/taxbit-assist-a-grounded-role-aware-ai-agent-on-amazon-bedrock-agentcore": "2026-11-08",
+  "https://towardsdatascience.com/timestral-t0-tabby-and-morpheus-20-compared-on-gift-eval": "2026-11-08",
+  "https://techorange.com/2026/11/06/apple-cuts-employee-ai-budgets": "2026-11-08",
+  "https://techorange.com/2026/11/06/china-ai-robotics-brain": "2026-11-08",
+  "https://aws.amazon.com/blogs/machine-learning/govern-ai-agent-access-with-okta-cross-app-access-and-amazon-bedrock-agentcore-part-1": "2026-11-08",
+  "https://aws.amazon.com/blogs/machine-learning/how-greenlight-financial-built-an-autonomous-soc-solution-on-amazon-bedrock-agentcore": "2026-11-08",
+  "https://www.databricks.com/blog/how-public-sector-organizations-can-govern-ai-scale": "2026-11-08",
+  "https://towardsdatascience.com/how-to-prioritize-product-feedback-by-revenue-at-risk": "2026-11-08",
+  "https://towardsdatascience.com/how-to-measure-ai-adoption-performance-and-roi-with-12-kpis": "2026-11-08",
+  "https://openai.com/index/cultfit-builds-with-codex": "2026-11-08",
+  "https://www.kdnuggets.com/top-7-python-libraries-for-time-series-analysis-and-modeling": "2026-11-08"
  }
 }

@@ -1,155 +1,155 @@
-# AI & Data 每日摘要 2026-11-07（六）
+# AI & Data 每日摘要 2026-11-08（日）
 
-> 今天這批文章有一條非常明確的主線：Agent 正在從「會聊天」走向「會做事、有記憶、受治理」。多篇（6、10、11、12、13）分別對應 agent 的記憶層（Mem0/JSON 持久化）、多工具決策迴圈、權限治理（Okta + Bedrock AgentCore + Cedar policy）與架構分類法（trigger/agent/capability/context），幾乎可拼成一套 agent 系統設計藍圖。第二條主線是「資料平台 × AI」：MCP server 讓 agent 安全存取 data lake（5）、醫院多層 agentic 架構（2）、Pinterest 的 embedding 訓練基礎建設（8），這些正是 DE 背景最容易建立差異化優勢的戰場。第三條是基礎設施與算力經濟學：SageMaker MIG GPU 切分（3）、Red Hat 主權 AI 與 Token 供應商思維（1）、耐能邊緣推論（9），提醒你 AI Engineer 的成本與部署知識同樣會被面試問到。建議今天把重心放在「agent memory + MCP 存取資料」這組直接可動手的題目。
+> （規則式整理：Claude 摘要未啟用或呼叫失敗）今天共收錄 14 篇，主題集中在 系統設計 / 大廠實戰、LLM 應用 / RAG / Agent、工具 / 開源專案。建議先看標記為「必讀」的項目。
 
-## 🔥 今日必讀（5）
+## 🔥 今日必讀（2）
 
 *直接補上你轉職缺的能力*
 
-### [在 ECS Fargate 上建 Serverless MCP Server 讓 Agent 存取 Data Lake](https://aws.amazon.com/blogs/machine-learning/serverless-mcp-server-for-ai-agent-data-lake-access-on-amazon-ecs-fargate/)
-*AWS Machine Learning Blog · 2026-11-06 · 相關度 12.63 · 必讀*
+### [Beyond code generation: A developer’s guide to agentic engineering](https://github.blog/ai-and-ml/github-copilot/beyond-code-generation-a-developers-guide-to-agentic-engineering/)
+*GitHub Blog – AI & ML · 2026-11-06 · 相關度 13.69 · 必讀*
 
-- **內容**：示範以 Fargate 建置 MCP server，透過 metadata 驅動讓 AI agent 安全存取企業 data lake，新增資料集只需一個 JSON 檔、不必寫整合程式碼。
-- **對你的意義**：這是 DE → AI Engineer 最直接的橋樑：你的 data catalog 與權限模型可以原封不動變成 agent 的工具層，metadata-driven 的設計思路你已經很熟。
-- **今天可以做**：用 15 分鐘讀架構圖，然後寫出你手上一張核心表的 MCP tool 描述 JSON（名稱、欄位語意、可用查詢範圍、權限條件）。
-- **原文標題**：Serverless MCP server for AI agent data lake access on Amazon ECS Fargate
-- `#MCP` `#Agent` `#Data Lake` `#AWS`
+- **內容**：Writing code got faster
+- **對你的意義**：這是 AI Engineer 日常在做的事：把模型接上你的資料與工具，做成可用的產品。
+- **今天可以做**：花 10 分鐘掃過原文，把「LLM 應用 / RAG / Agent」相關的關鍵字記進學習清單。
+- **原文標題**：Beyond code generation: A developer’s guide to agentic engineering
+- `#LLM 應用 / RAG / Agent` `#系統設計 / 大廠實戰` `#職涯 / 學習路徑`
 
-### [如何給你的 AI Agent 記憶](https://www.kdnuggets.com/how-to-give-your-ai-agent-memory)
-*KDnuggets · 2026-11-06 · 相關度 12.36 · 必讀*
+### [【Anthropic 機器人工作能力報告】技術已能接管全美 34% 工作，但真正「比請人便宜」的不到 1%](https://techorange.com/2026/11/07/what-work-can-robots-do/?utm_source=rss&utm_medium=feed&utm_campaign=techorange_rss)
+*TechOrange 科技報橘 · 2026-11-06 · 相關度 12.92 · 必讀*
 
-- **內容**：教學文，使用 OpenAI Agents SDK、Mem0 與 MCP，讓 agent 跨 session 記住使用者偏好與重要上下文。
-- **對你的意義**：memory 是 agent 系統的核心設計題，也是 RAG 之外最常被面試追問的主題；用 Mem0 這種成熟方案可以快速建立你缺乏的實作經驗。
-- **今天可以做**：跟著教學跑通 Mem0 的 add/search 兩個 API，把一段對話寫入再查回來，並在筆記記下它底層用了哪種儲存與檢索策略。
-- **原文標題**：How to Give Your AI Agent Memory
-- `#Agent Memory` `#Mem0` `#MCP` `#實作教學`
+- **內容**：人工智慧研究機構 Anthropic 發布《What work can robots do?》（機器人能做哪些工作？），由學者 Russell Legate-Yang 與 Maxim Massenkoff 共同撰寫。報告內容核心在於建立了一套具備 50 年歷史驗證力的「機器人工作暴露度指標」，透過實際比對當前機器人的能力與部署成本，指出機器人技術上已能勝任許
+- **對你的意義**：同時涵蓋資料工程與 AI 系統，正好是你從 DE 跨到 AI Engineer 的橋樑。
+- **今天可以做**：花 10 分鐘掃過原文，把「推論 / 部署 / 效能」相關的關鍵字記進學習清單。
+- **原文標題**：【Anthropic 機器人工作能力報告】技術已能接管全美 34% 工作，但真正「比請人便宜」的不到 1%
+- `#推論 / 部署 / 效能` `#資料工程 / 平台` `#系統設計 / 大廠實戰`
 
-### [用 Ollama 與 Python 打造第一個多工具 AI Agent](https://towardsdatascience.com/build-your-first-multi-tool-ai-agent-with-ollama-and-python/)
-*Towards Data Science · 2026-11-06 · 相關度 9.7 · 必讀*
-
-- **內容**：入門教學，agent 在三個資料庫工具間自主選擇，依前一步結果決定下一次呼叫，並以八輪 circuit-breaker 避免卡死。
-- **對你的意義**：用資料庫工具當範例，正好讓你把既有 SQL 能力直接接成 agent tool；circuit-breaker 則是 agent 可靠性設計的基本功。
-- **今天可以做**：本地用 Ollama 跑通這個範例，把其中一個 tool 換成你自己的 SQL 查詢函式，觀察 agent 的工具選擇軌跡。
-- **原文標題**：Build Your First Multi-Tool AI Agent with Ollama and Python
-- `#Agent` `#Ollama` `#工具呼叫` `#實作教學`
-
-### [用 Okta Cross App Access 與 Bedrock AgentCore 治理 Agent 權限](https://aws.amazon.com/blogs/machine-learning/govern-ai-agent-access-with-okta-cross-app-access-and-amazon-bedrock-agentcore-part-2/)
-*AWS Machine Learning Blog · 2026-11-06 · 相關度 8.45 · 必讀*
-
-- **內容**：Part 2 將單一受治理 agent 擴展到企業規模：AgentCore Gateway 作為唯一入口兌換 Okta 授權，Cedar policy 綁定工具權限，並以 AgentCore Observability 將每次允許／拒絕記錄到 CloudWatch。
-- **對你的意義**：Agent 的身分與授權是企業導入的最大關卡，也是多數自學者的盲區；懂這塊能讓你從「會做 demo」升級到「能上線」。
-- **今天可以做**：花 10 分鐘讀懂 Gateway + Cedar policy 的授權流程，畫一張四格流程圖（使用者→agent→gateway→tool）標註每步驗證什麼。
-- **原文標題**：Govern AI agent access with Okta Cross App Access and Amazon Bedrock AgentCore – Part 2
-- `#Agent治理` `#身分授權` `#Observability` `#AWS`
-
-### [Amazon Quick 的 Agentic 基本元件分類法](https://aws.amazon.com/blogs/machine-learning/taxonomy-of-agentic-primitives-in-amazon-quick/)
-*AWS Machine Learning Blog · 2026-11-06 · 相關度 8.24 · 必讀*
-
-- **內容**：AWS 分享建構 Amazon Quick 時收斂出的 agent 元件分類：triggers、agents、capabilities、learned context，對應 When／What／Who／How 四個問題。
-- **對你的意義**：提供一套可複用的 agent 系統設計語彙，讓你在設計與面試溝通時不會只會說「做了一個 agent」，而能講清楚架構分層。
-- **今天可以做**：把這四個 primitive 抄進筆記，並用它重新描述你最近接觸過的任一自動化流程（哪個是 trigger、哪些是 capability）。
-- **原文標題**：Taxonomy of agentic primitives in Amazon Quick
-- `#Agent架構` `#系統設計` `#設計模式` `#AWS`
-
-## 👀 值得快速瀏覽（5）
+## 👀 值得快速瀏覽（7）
 
 *掃過標題與重點即可*
 
-### [Red Hat 年會：開放架構與主權 AI 佈局](https://techorange.com/2026/11/06/red-hat-summit-sovereign-ai/?utm_source=rss&utm_medium=feed&utm_campaign=techorange_rss)
-*TechOrange 科技報橘 · 2026-11-06 · 相關度 19.59 · 快速瀏覽*
+### [Agility 成美國首家上市人形機器人專業公司：逾 3 億美元訂單，還得先通過效能驗收](https://techorange.com/2026/11/06/agility-robotics-nasdaq-humanoid-listing/?utm_source=rss&utm_medium=feed&utm_campaign=techorange_rss)
+*TechOrange 科技報橘 · 2026-11-06 · 相關度 8.83 · 快速瀏覽*
 
-- **內容**：Red Hat 主張 Any Model / Any Accelerator / Any Cloud，並提出企業 IT 應從 Token 消費者轉為內部 Token 供應商，以 OpenShift AI 的 MaaS 調度 GPU 與提供模型評測數據。
-- **對你的意義**：「內部 Token 供應商」其實就是你熟悉的平台化思維從資料管線延伸到模型服務；DE 轉 AI Engineer 最容易被低估的能力，正是把模型當成可計量、可配額、可監控的共享資源。
-- **今天可以做**：用 10 分鐘畫一張圖：把你現在的資料平台架構圖上多加一層 Model Gateway，標出 token 計量、模型路由、GPU 配額三個欄位。
-- **原文標題**：以開放架構掌握 AI 主導權──Red Hat 全球巡迴年會揭企業 AI 算力、資安與主權治理新布局
-- `#LLMOps` `#平台架構` `#主權AI` `#成本治理`
+- **內容**：人形機器人公司 Agility Robotics 於美國時間 11/5 以代號 AGLT 在那斯達克掛牌。《Bloomberg》指出，Agility 是美國第一家上市的人形機器人專業公司，對這個仍待證明的新興產業而言是重要的里程碑；在此之前，中國的宇樹科技（Unitree）已於 8 月在上海掛牌。Agility 透過與特殊目的收購公司（SPAC）Church
+- **對你的意義**：AI Engineer 與 DS 的分水嶺：模型跑得動、跑得快、跑得便宜。
+- **今天可以做**：花 10 分鐘掃過原文，把「推論 / 部署 / 效能」相關的關鍵字記進學習清單。
+- **原文標題**：Agility 成美國首家上市人形機器人專業公司：逾 3 億美元訂單，還得先通過效能驗收
+- `#推論 / 部署 / 效能` `#系統設計 / 大廠實戰` `#模型基礎 / 研究`
 
-### [醫院 AI 的多層合規優先 Agentic 架構](https://arxiv.org/abs/2608.06112)
-*arXiv cs.LG (Machine Learning) · 2026-11-06 · 相關度 15.61 · 快速瀏覽*
+### [Taxbit Assist: A grounded, role-aware AI agent on Amazon Bedrock AgentCore](https://aws.amazon.com/blogs/machine-learning/taxbit-assist-a-grounded-role-aware-ai-agent-on-amazon-bedrock-agentcore/)
+*AWS Machine Learning Blog · 2026-11-06 · 相關度 8.15 · 快速瀏覽*
 
-- **內容**：論文指出 70-80% 醫療 AI 試點無法規模化，主因是治理缺口、資料破碎與缺乏整合藍圖，並提出合規優先的多層互通 agentic 架構。
-- **對你的意義**：這篇把「AI 專案失敗多半死在資料與治理而非模型」講得很清楚，剛好是 DE 背景的主場；可作為你面試時論述自身價值的現成論據。
-- **今天可以做**：摘錄論文列出的失敗三因（governance、fragmented data、integration blueprint），對照你現在公司的資料現況各寫一句風險註記。
-- **原文標題**：From Siloed Algorithms to Compliance-First Agentic Platforms: A Multi-Layered Architecture for Hospital AI Systems
-- `#Agent架構` `#資料治理` `#法遵` `#產業落地`
+- **內容**：Taxbit built Taxbit Assist, a cited, permission-aware AI assistant embedded in its enterprise dashboard, on Amazon Bedrock AgentCore
+- **對你的意義**：這是 AI Engineer 日常在做的事：把模型接上你的資料與工具，做成可用的產品。
+- **今天可以做**：花 10 分鐘掃過原文，把「LLM 應用 / RAG / Agent」相關的關鍵字記進學習清單。
+- **原文標題**：Taxbit Assist: A grounded, role-aware AI agent on Amazon Bedrock AgentCore
+- `#LLM 應用 / RAG / Agent` `#系統設計 / 大廠實戰`
 
-### [SageMaker 推論支援 MIG 提升 GPU 使用率](https://aws.amazon.com/blogs/machine-learning/sagemaker-inference-now-supports-multi-instance-gpu-to-maximize-gpu-utilization-for-model-endpoints/)
-*AWS Machine Learning Blog · 2026-11-06 · 相關度 14.2 · 快速瀏覽*
+### [Timestral, t0, Tabby, and Morpheus-2.0 Compared on GIFT-Eval](https://towardsdatascience.com/timestral-t0-tabby-and-morpheus-20-compared-on-gift-eval/)
+*Towards Data Science · 2026-11-07 · 相關度 8.0 · 快速瀏覽*
 
-- **內容**：SageMaker Inference 新增 NVIDIA Multi-Instance GPU 支援，可將單顆 GPU 切成硬體隔離分區，每區跑不同模型，並提供與整顆舊 GPU 的效能實測對照。
-- **對你的意義**：AI Engineer 面試常被問「怎麼降低推論成本」，GPU 切分與 right-sizing 是標準答案之一，這是 DE 少接觸的硬體層知識。
-- **今天可以做**：花 10 分鐘讀完文中兩個 API 欄位設定，並在筆記寫下「什麼情況下該用 MIG、什麼情況該用多模型共用 endpoint」的判斷準則。
-- **原文標題**：SageMaker Inference now supports Multi-Instance GPU to maximize GPU utilization for model endpoints
-- `#推論部署` `#GPU` `#成本優化` `#SageMaker`
+- **內容**：All four time-series foundation models scale, patch, and predict quantiles; the real split is how series share information
+- **對你的意義**：面試最常被問、也是 DE 最容易切入的一塊：把 AI 系統做得可量測、可回歸、可上線。
+- **今天可以做**：花 10 分鐘掃過原文，把「評估 / LLMOps / 上線監控」相關的關鍵字記進學習清單。
+- **原文標題**：Timestral, t0, Tabby, and Morpheus-2.0 Compared on GIFT-Eval
+- `#評估 / LLMOps / 上線監控`
 
-### [AI 讓品牌選網紅更細，最後一關仍得靠人](https://techorange.com/2026/11/06/marketer-influencer-ai/?utm_source=rss&utm_medium=feed&utm_campaign=techorange_rss)
-*TechOrange 科技報橘 · 2026-11-06 · 相關度 11.66 · 快速瀏覽*
+### [蘋果傳調降工程師每日 AI 額度，從 300 降至 200 美元：企業怎麼控管 AI 成本？](https://techorange.com/2026/11/06/apple-cuts-employee-ai-budgets/?utm_source=rss&utm_medium=feed&utm_campaign=techorange_rss)
+*TechOrange 科技報橘 · 2026-11-06 · 相關度 7.81 · 快速瀏覽*
 
-- **內容**：AI 網紅搜尋與社群聆聽工具能做到極細顆粒度的條件篩選與 EMV 量化，但美學風格判斷與假粉絲辨識仍需人工把關，形成人機協作模式。
-- **對你的意義**：是個很好的 human-in-the-loop 產品案例：提醒你設計 AI 應用時要明確切出「AI 做初篩、人做終審」的界線，這在評估流程設計上很實用。
-- **今天可以做**：花 5 分鐘寫下你想做的 AI 應用中，哪一步該保留人工審核，以及用什麼指標決定 AI 可以自動通過。
-- **原文標題**：連「有腸躁症的網紅」都找得到，AI 讓品牌選網紅更細，最後一關仍得靠人
-- `#人機協作` `#AI應用案例` `#評估設計`
+- **內容**：根據《Bloomberg》引述知情人士報導，蘋果在 10 月悄悄調降部分工程師使用 AI 模型的每日支出上限，從 300 美元降到 200 美元，並計畫再調降部分工程團隊的額度。與此同時，蘋果仍尋求讓 AI 成為營運核心。報導形容，這凸顯蘋果面臨的平衡難題：一邊要控制成本，一邊又要鼓勵員工把 AI 更深入融入日常工作。 AI 帳單的壓力，Gartner 早已
+- **對你的意義**：這是 AI Engineer 日常在做的事：把模型接上你的資料與工具，做成可用的產品。
+- **今天可以做**：花 10 分鐘掃過原文，把「LLM 應用 / RAG / Agent」相關的關鍵字記進學習清單。
+- **原文標題**：蘋果傳調降工程師每日 AI 額度，從 300 降至 200 美元：企業怎麼控管 AI 成本？
+- `#LLM 應用 / RAG / Agent` `#模型基礎 / 研究` `#工具 / 開源專案`
 
-### [用一個 JSON 檔給 Python Agent 持久記憶](https://towardsdatascience.com/give-your-python-ai-agent-persistent-memory-with-one-json-file/)
-*Towards Data Science · 2026-11-06 · 相關度 8.2 · 快速瀏覽*
+### [中國機器人競爭轉向 AI「大腦」：為何連訓練資料新創都募得 1 億美元？](https://techorange.com/2026/11/06/china-ai-robotics-brain/?utm_source=rss&utm_medium=feed&utm_campaign=techorange_rss)
+*TechOrange 科技報橘 · 2026-11-05 · 相關度 7.58 · 快速瀏覽*
 
-- **內容**：以三個 Python class、OpenRouter key 與 gpt-4.1-mini，為 agent 加上計算機、模擬網頁搜尋與可跨重啟保存的對話記憶。
-- **對你的意義**：是理解 agent memory 最低成本的版本，先搞懂 JSON 持久化，再升級到向量庫或 Mem0 時會更清楚每層在解決什麼問題。
-- **今天可以做**：對照 [6] 的 Mem0 做法，寫一段比較筆記：JSON 檔記憶在什麼規模下會失效、需要換成什麼儲存方案。
-- **原文標題**：Give Your Python AI Agent Persistent Memory with One JSON File
-- `#Agent Memory` `#Python` `#實作教學` `#持久化`
+- **內容**：當外界對中國人形機器人的印象，仍停留在機器人展會上的跑步、跳舞、翻筋斗，中國業者的競爭焦點已逐漸轉變。相較於展示靈活的運動能力，越來越多中國企業開始投入讓機器人理解環境、學習新任務的 AI「大腦」，希望讓機器人真正走進工廠與日常工作場域。 據《Reuters》近日報導，研究機構 ITjuzi 統計，中國具身 AI 產業今年上半年完成 322 筆融資，總額達 
+- **對你的意義**：打底用：了解模型能力邊界，才知道系統該怎麼設計。
+- **今天可以做**：花 10 分鐘掃過原文，把「模型基礎 / 研究」相關的關鍵字記進學習清單。
+- **原文標題**：中國機器人競爭轉向 AI「大腦」：為何連訓練資料新創都募得 1 億美元？
+- `#模型基礎 / 研究` `#職涯 / 學習路徑`
 
-## 🗂️ 存起來參考（4）
+### [Govern AI agent access with Okta Cross App Access and Amazon Bedrock AgentCore – Part 1](https://aws.amazon.com/blogs/machine-learning/govern-ai-agent-access-with-okta-cross-app-access-and-amazon-bedrock-agentcore-part-1/)
+*AWS Machine Learning Blog · 2026-11-06 · 相關度 7.33 · 快速瀏覽*
+
+- **內容**：An AI agent that acts for a user raises an identity question that per-app OAuth and service accounts leave open: which agent may act for which user, and how you stop it
+- **對你的意義**：這是 AI Engineer 日常在做的事：把模型接上你的資料與工具，做成可用的產品。
+- **今天可以做**：花 10 分鐘掃過原文，把「LLM 應用 / RAG / Agent」相關的關鍵字記進學習清單。
+- **原文標題**：Govern AI agent access with Okta Cross App Access and Amazon Bedrock AgentCore – Part 1
+- `#LLM 應用 / RAG / Agent`
+
+### [How Greenlight Financial built an autonomous SOC solution on Amazon Bedrock AgentCore](https://aws.amazon.com/blogs/machine-learning/how-greenlight-financial-built-an-autonomous-soc-solution-on-amazon-bedrock-agentcore/)
+*AWS Machine Learning Blog · 2026-11-06 · 相關度 7.2 · 快速瀏覽*
+
+- **內容**：Greenlight Financial resolves more than 90% of up to 4,000 monthly security and risk cases without human intervention using Luna, a tiered multi-agent system on Amazon Bedrock Agen
+- **對你的意義**：這是 AI Engineer 日常在做的事：把模型接上你的資料與工具，做成可用的產品。
+- **今天可以做**：花 10 分鐘掃過原文，把「LLM 應用 / RAG / Agent」相關的關鍵字記進學習清單。
+- **原文標題**：How Greenlight Financial built an autonomous SOC solution on Amazon Bedrock AgentCore
+- `#LLM 應用 / RAG / Agent` `#系統設計 / 大廠實戰`
+
+## 🗂️ 存起來參考（5）
 
 *之後需要時再回頭看*
 
-### [t.Hub 國際交流會：Digital Twin 與 Physical AI](https://techorange.com/2026/11/06/thub-digital-twin-physical-ai/?utm_source=rss&utm_medium=feed&utm_campaign=techorange_rss)
-*TechOrange 科技報橘 · 2026-11-06 · 相關度 13.62 · 存參考*
+### [How public sector organizations can govern AI at scale](https://www.databricks.com/blog/how-public-sector-organizations-can-govern-ai-scale)
+*Databricks Blog · 2026-11-06 · 相關度 6.85 · 存參考*
 
-- **內容**：活動預告，聚焦數位孿生與實體 AI 趨勢及台灣製造業的機會；摘要資訊有限，技術細節不多。
-- **對你的意義**：若你未來想往製造／IoT 領域的 AI 應用發展，這類場域需要大量時序與感測資料管線，是 DE 技能可直接轉用的切入點。
-- **今天可以做**：花 3 分鐘判斷是否報名 11/18 活動，若不相關就直接跳過，不佔用今日學習時間。
-- **原文標題**：國際創投與產業領袖齊聚臺北！t.Hub 11/18 國際交流會解析 Digital Twin 與 Physical AI 趨勢
-- `#活動` `#Physical AI` `#數位孿生` `#台灣產業`
+- **內容**：Every government CIO has the same mandate right now: adopt AI, move faster, do more...
+- **對你的意義**：可以直接寫進履歷與面試故事的實戰案例，補上你缺的「AI 系統設計」語彙。
+- **今天可以做**：花 10 分鐘掃過原文，把「系統設計 / 大廠實戰」相關的關鍵字記進學習清單。
+- **原文標題**：How public sector organizations can govern AI at scale
+- `#系統設計 / 大廠實戰`
 
-### [Pinterest：安全且高效的多輪 Embedding 訓練](https://medium.com/pinterest-engineering/safe-and-efficient-multi-epoch-embedding-training-103bec2abc83?source=rss----4c5a5f6279b6---4)
-*Pinterest Engineering · 2026-11-06 · 相關度 11.63 · 存參考*
+### [How to Prioritize Product Feedback by Revenue at Risk](https://towardsdatascience.com/how-to-prioritize-product-feedback-by-revenue-at-risk/)
+*Towards Data Science · 2026-11-07 · 相關度 6.5 · 存參考*
 
-- **內容**：Pinterest 工程團隊分享大型 ID embedding table 的 multi-epoch 訓練實務，涵蓋排序與檢索模型的 teacher scaling 與跨域預訓練基礎建設。
-- **對你的意義**：大廠推薦系統的 embedding 基礎建設與你熟悉的大規模資料處理高度重疊，是理解 embedding 從訓練到 serving 全鏈路的好教材。
-- **今天可以做**：略讀其 multi-epoch 會造成 overfitting／資料洩漏的風險說明，寫三行筆記對比它與 RAG 中 embedding 使用方式的差別。
-- **原文標題**：Safe and Efficient Multi-Epoch Embedding Training
-- `#Embedding` `#推薦系統` `#大廠實戰` `#訓練基礎建設`
+- **內容**：Bellwether joins support tickets, store reviews, sales calls, and NPS to CRM accounts, then stress-tests the ranking on 6,693 synthetic signals
+- **對你的意義**：與 AI / Data 產業動態相關。
+- **今天可以做**：花 10 分鐘掃過原文，把「未分類」相關的關鍵字記進學習清單。
+- **原文標題**：How to Prioritize Product Feedback by Revenue at Risk
+- `#未分類`
 
-### [耐能衝刺 Nasdaq IPO，從 AI 晶片跨足算力服務](https://techorange.com/2026/11/06/kneron-nasdaq-ipo/?utm_source=rss&utm_medium=feed&utm_campaign=techorange_rss)
-*TechOrange 科技報橘 · 2026-11-06 · 相關度 11.48 · 存參考*
+### [How to Measure AI Adoption, Performance, and ROI With 12 KPIs](https://towardsdatascience.com/how-to-measure-ai-adoption-performance-and-roi-with-12-kpis/)
+*Towards Data Science · 2026-11-06 · 相關度 6.4 · 存參考*
 
-- **內容**：台灣 NPU 廠耐能營收約為去年 3 倍並推進 Nasdaq 上市，策略從賣晶片延伸到企業 AI 推論、邊緣運算與主權 AI 基礎設施。
-- **對你的意義**：產業動態為主，對你的價值在於理解邊緣推論與低功耗場景正在成為獨立市場，影響未來 AI Engineer 的部署選項。
-- **今天可以做**：花 3 分鐘讀完，記下「雲端推論 vs 邊緣推論」各自適合的應用情境一句話即可。
-- **原文標題**：耐能衝刺 Nasdaq IPO、營收達去年約 3 倍：從賣 AI 晶片跨足算力服務，瞄準什麼商機？
-- `#產業動態` `#邊緣AI` `#NPU` `#台灣`
+- **內容**：Includes a worked example with 50 users and $110,000 in first-year cost, plus baselines, targets, and ownership rules for every AI initiative
+- **對你的意義**：與 AI / Data 產業動態相關。
+- **今天可以做**：花 10 分鐘掃過原文，把「未分類」相關的關鍵字記進學習清單。
+- **原文標題**：How to Measure AI Adoption, Performance, and ROI With 12 KPIs
+- `#未分類`
 
-### [365 Data Science 免費課程開放至 11/20](https://www.kdnuggets.com/2026/10/365careers/free-ai-and-data-courses-with-365-data-science-100-unlimited-access-until-nov-20)
-*KDnuggets · 2026-11-06 · 相關度 5.84 · 存參考*
+### [Cult.fit builds operational muscle with Codex](https://openai.com/index/cultfit-builds-with-codex)
+*OpenAI News · 2026-11-05 · 相關度 4.95 · 存參考*
 
-- **內容**：KDnuggets 推廣資訊，11/20 前可無限存取 365 Data Science 的 134 門 AI 與資料課程、實作專案與證照。
-- **對你的意義**：對已有 DE 基礎的你，課程多半偏入門，價值有限；但可挑選 LLM/agent 相關單元補空白。
-- **今天可以做**：花 3 分鐘瀏覽課程清單，只收藏 1-2 門與 LLM 或 MLOps 相關的，其餘略過。
-- **原文標題**：Free AI and Data Courses with 365 Data Science: 100% Unlimited Access until Nov 20
-- `#學習資源` `#免費課程` `#職涯`
+- **內容**：Cult.fit is using Codex to help teams across functions build tools, move faster, and change how work gets done.
+- **對你的意義**：與 AI / Data 產業動態相關。
+- **今天可以做**：花 10 分鐘掃過原文，把「未分類」相關的關鍵字記進學習清單。
+- **原文標題**：Cult.fit builds operational muscle with Codex
+- `#未分類`
+
+### [Top 7 Python Libraries for Time Series Analysis and Modeling](https://www.kdnuggets.com/top-7-python-libraries-for-time-series-analysis-and-modeling)
+*KDnuggets · 2026-11-06 · 相關度 4.75 · 存參考*
+
+- **內容**：Working with time series data? These Python libraries cover everything from classical forecasting to deep learning and anomaly detection.
+- **對你的意義**：與 AI / Data 產業動態相關。
+- **今天可以做**：花 10 分鐘掃過原文，把「未分類」相關的關鍵字記進學習清單。
+- **原文標題**：Top 7 Python Libraries for Time Series Analysis and Modeling
+- `#未分類`
 
 ## 🎯 今天的 30 分鐘學習計畫
 
-1. 先花 15 分鐘讀 [6] 與 [13]，把 agent memory 分成 short-term（conversation buffer）、long-term（Mem0/向量庫）、persistent store（JSON/DB）三層，寫成一頁筆記並標註各層在你熟悉的資料架構中對應什麼元件。
-2. 用 10 分鐘照 [10] 跑一個 Ollama 本地 multi-tool agent 最小範例，把三個 tool 換成你自己的 SQL 查詢函式，觀察 agent 如何選工具與 circuit-breaker 機制。
-3. 剩餘 5 分鐘掃過 [5] 與 [11]，在筆記寫下一句「我現有的 data lake 要暴露給 agent，需要補哪些 metadata 與權限控制」，作為下週的 side project 題目。
+1. 挑一篇「系統設計 / 大廠實戰」相關文章精讀，並用自己的話寫 5 行筆記。
+2. 把文章中出現、你沒實作過的工具挑一個，跑一次官方 quickstart。
+3. 對照你現在維護的 pipeline，寫下一個可以導入 AI 的具體切入點。
 
 ---
 
-掃描 489 篇，收錄 14 篇。來源分布：TechOrange 科技報橘 × 4、AWS Machine Learning Blog × 4、KDnuggets × 2、Towards Data Science × 2、arXiv cs.LG (Machine Learning) × 1、Pinterest Engineering × 1
+掃描 46 篇，收錄 14 篇。來源分布：TechOrange 科技報橘 × 4、AWS Machine Learning Blog × 3、Towards Data Science × 3、GitHub Blog – AI & ML × 1、Databricks Blog × 1、OpenAI News × 1、KDnuggets × 1
 
 > ⚠️ [Uber Engineering Blog](https://www.uber.com/en-US/blog/engineering/)：官方無 RSS（robots.txt 禁止 API 抓取），請人工瀏覽；同性質內容已由 Netflix / Meta / Pinterest / Airbnb 工程部落格補上。
 
-*由 ai-data-digest 於 2026-11-07 04:28 自動產生 · 摘要引擎：Claude（claude-opus-5）*
+*由 ai-data-digest 於 2026-11-08 02:54 自動產生 · 摘要引擎：規則式*
