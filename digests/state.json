@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-08T02:55:04+08:00",
+ "updated": "2026-11-09T02:54:48+08:00",
  "seen": {
   "https://techorange.com/2026/10/10/machinenative-economy": "2026-10-12",
   "https://towardsdatascience.com/agentic-systems-a-practitioners-guide-to-6-advanced-architectural-patterns": "2026-10-12",
@@ -374,6 +374,13 @@
   "https://towardsdatascience.com/how-to-prioritize-product-feedback-by-revenue-at-risk": "2026-11-08",
   "https://towardsdatascience.com/how-to-measure-ai-adoption-performance-and-roi-with-12-kpis": "2026-11-08",
   "https://openai.com/index/cultfit-builds-with-codex": "2026-11-08",
-  "https://www.kdnuggets.com/top-7-python-libraries-for-time-series-analysis-and-modeling": "2026-11-08"
+  "https://www.kdnuggets.com/top-7-python-libraries-for-time-series-analysis-and-modeling": "2026-11-08",
+  "https://towardsdatascience.com/how-to-build-multi-agent-systems-with-the-openai-agents-sdk": "2026-11-09",
+  "https://www.databricks.com/blog/read-dont-copy-replacing-file-and-api-feeds-opensharing-part-1-why": "2026-11-09",
+  "https://www.databricks.com/blog/read-dont-copy-replacing-file-feeds-opensharing-part-2-how-implement": "2026-11-09",
+  "https://towardsdatascience.com/change-one-monty-hall-rule-and-five-llms-still-say-switch": "2026-11-09",
+  "https://www.ssp.sh/blog/cynthia-dunlop-": "2026-11-09",
+  "https://simonwillison.net/2026/Nov/7/link-rel-next": "2026-11-09",
+  "https://newsletter.pragmaticengineer.com/p/the-pragmatic-summit-2027": "2026-11-09"
  }
 }
