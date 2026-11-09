@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-09T02:54:48+08:00",
+ "updated": "2026-11-10T07:30:30+08:00",
  "seen": {
   "https://techorange.com/2026/10/10/machinenative-economy": "2026-10-12",
   "https://towardsdatascience.com/agentic-systems-a-practitioners-guide-to-6-advanced-architectural-patterns": "2026-10-12",
@@ -381,6 +381,20 @@
   "https://towardsdatascience.com/change-one-monty-hall-rule-and-five-llms-still-say-switch": "2026-11-09",
   "https://www.ssp.sh/blog/cynthia-dunlop-": "2026-11-09",
   "https://simonwillison.net/2026/Nov/7/link-rel-next": "2026-11-09",
-  "https://newsletter.pragmaticengineer.com/p/the-pragmatic-summit-2027": "2026-11-09"
+  "https://newsletter.pragmaticengineer.com/p/the-pragmatic-summit-2027": "2026-11-09",
+  "https://aws.amazon.com/blogs/machine-learning/pluggable-agentic-ai-framework-a-seven-layer-composable-enterprise-agentic-ai-reference-architecture-on-amazon-bedrock-agentcore": "2026-11-10",
+  "https://towardsdatascience.com/continuous-batching-beats-static-and-dynamic-by-up-to-291-in-vllm": "2026-11-10",
+  "https://techorange.com/2026/11/09/becoming-a-semiconductor-industry": "2026-11-10",
+  "https://netflixtechblog.com/fact-checking-at-scale-building-a-more-accurate-and-efficient-synopsis-factuality-system-d7d85859d808": "2026-11-10",
+  "https://techorange.com/2026/11/10/smb-ai": "2026-11-10",
+  "https://techorange.com/2026/11/09/deepseek-harness-plugin-marketplace": "2026-11-10",
+  "https://aws.amazon.com/blogs/machine-learning/single-shot-and-agentic-retrieval-with-amazon-bedrock-managed-knowledge-base": "2026-11-10",
+  "https://techorange.com/2026/11/09/delta-zeiss-fab-diasecs": "2026-11-10",
+  "https://engineering.fb.com/2026/11/09/developer-tools/extending-lldb-to-debug-applications-that-span-cpus-and-gpus": "2026-11-10",
+  "https://openai.com/index/control-room": "2026-11-10",
+  "https://openai.com/index/coderabbit-codex-daybreak": "2026-11-10",
+  "https://www.databricks.com/blog/accelerate-gpu-training-unity-catalog-tables-ucdataset": "2026-11-10",
+  "https://towardsdatascience.com/how-to-estimate-the-recall-of-ai-agents-with-capture-recapture": "2026-11-10",
+  "https://towardsdatascience.com/ask-ai-to-refine-your-ideas-not-invent-them": "2026-11-10"
  }
 }
