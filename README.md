@@ -22,7 +22,7 @@
 
 👉 **最新日報：[`reports/latest.md`](reports/latest.md)**，歷史日報都在 [`reports/`](reports/)，入選股另存 CSV（可用 Excel 開啟）。
 
-🗺️ 系統架構圖與各環節程式碼：[`docs/architecture.html`](docs/architecture.html)｜GitHub 與 Copilot 操作地圖：[`docs/github-guide.html`](docs/github-guide.html)
+🗺️ 系統架構圖與各環節程式碼：[`docs/architecture.html`](docs/architecture.html)｜GitHub 與 Copilot 操作地圖：[`docs/github-guide.html`](docs/github-guide.html)｜⚡ Spark & Databricks 學習指南：[`docs/spark-databricks-learning.md`](docs/spark-databricks-learning.md)
 
 ## 選股邏輯
 
