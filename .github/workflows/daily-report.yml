@@ -40,6 +40,7 @@ jobs:
         run: python -m pytest -q tests
 
       - name: 產生日報
+        id: report
         run: python -m twdaily --top "${{ github.event.inputs.top || '800' }}" --out reports
 
       - name: 刪除超過 15 天的日報
@@ -52,14 +53,24 @@ jobs:
           git add -A reports
           git diff --cached --quiet && exit 0
           git commit -m "日報：$(TZ=Asia/Taipei date +%Y-%m-%d)"
-          git push
+          # 其他 workflow（AI 摘要、英文）或合併 PR 也會推到 master，
+          # 推送被拒時先拉最新版本再重試，最多 5 次
+          for i in 1 2 3 4 5; do
+            git pull --rebase origin "${GITHUB_REF_NAME}" && git push && exit 0
+            echo "推送失敗，第 $i 次重試…"
+            sleep $((i * 5))
+          done
+          exit 1
 
       - name: 同步到 Notion
+        # 只要日報有產生就同步，即使推回 GitHub 失敗也不影響 Notion
         # 未設定 secrets 時會自動略過
+        if: ${{ !cancelled() && steps.report.outcome == 'success' }}
         env:
           NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
           NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
         run: python -m twdaily.notion reports/latest.md reports/latest.json
 
       - name: 顯示摘要
+        if: ${{ !cancelled() && steps.report.outcome == 'success' }}
         run: cat reports/latest.md >> "$GITHUB_STEP_SUMMARY"

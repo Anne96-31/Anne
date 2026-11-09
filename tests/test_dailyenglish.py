@@ -83,6 +83,10 @@ def test_history_and_publish(monkeypatch):
     words, grammar, done = app.load_history(client, "db", "2026-10-08")
     assert words == ["leverage", "mitigate", "scrutiny"]
     assert grammar == ["Hedging", "Articles"] and done == 2
+    # 欄位必須在第一次查詢前建立，否則全新的資料庫會回 400
+    first_query = next(i for i, c in enumerate(calls) if c[1].endswith("/query"))
+    first_schema = next(i for i, c in enumerate(calls) if c[0] == "PATCH" and c[1] == "/databases/db")
+    assert first_schema < first_query
 
     lesson = sample_lesson()
     app.publish(client, "db", lesson, to_markdown(lesson, 3, date(2026, 10, 8)), 3, "2026-10-08")

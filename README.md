@@ -1,4 +1,16 @@
-# Anne — 台股每日投資日報 📈
+# Anne — 每日自動化筆記 📈📘🤖
+
+三套每天自動產生筆記並同步到 Notion 的流程，全部跑在 GitHub Actions 上，不需要開電腦：
+
+| 流程 | 台北時間 | 內容 |
+|---|---|---|
+| [📈 台股每日投資日報](#自動排程) | 07:43 | 市場儀表板、三大法人、MACD 選股、必看新聞 |
+| [📘 每日商務英文](#-每日商務英文同步到-notion) | 06:47 | 詞彙、商業文章、文法重點、寫作任務 |
+| [🤖 每日 AI & Data 產業摘要](#-每日-ai--data-產業摘要同步到-notion) | 22:28 | 30 個來源依「DE → AI Engineer 轉職」相關度排序後的中文摘要 |
+
+---
+
+## 📈 台股每日投資日報
 
 每天早上 8:00 自動產生一份日報，內容包含：
 
@@ -10,7 +22,7 @@
 
 👉 **最新日報：[`reports/latest.md`](reports/latest.md)**，歷史日報都在 [`reports/`](reports/)，入選股另存 CSV（可用 Excel 開啟）。
 
-🗺️ 系統架構圖與各環節程式碼：[`docs/architecture.html`](docs/architecture.html)
+🗺️ 系統架構圖與各環節程式碼：[`docs/architecture.html`](docs/architecture.html)｜GitHub 與 Copilot 操作地圖：[`docs/github-guide.html`](docs/github-guide.html)｜⚡ Spark & Databricks 學習指南：[`docs/spark-databricks-learning.md`](docs/spark-databricks-learning.md)
 
 ## 選股邏輯
 
@@ -110,7 +122,17 @@ python -m pytest -q tests
 
 # 手動同步到 Notion
 NOTION_TOKEN=ntn_xxx NOTION_DATABASE_ID=xxx python -m twdaily.notion
+
+# 每日 AI & Data 摘要
+python -m aidigest --check          # 檢查 30 個來源與 Notion 連線
+python -m aidigest --dry-run        # 不寫入 Notion，只產生 digests/
+python -m aidigest                  # 正式執行
+python -m aidigest.cleanup digests --days 30 --dry-run   # 看清理會刪什麼
 ```
+
+> 在 Windows 本機跑時，若 `requests` 出現 `CERTIFICATE_VERIFY_FAILED`，
+> 裝 `pip install truststore` 即可（`aidigest/__init__.py` 會自動改用作業系統憑證庫）。
+> GitHub Actions 的 Ubuntu 不需要。
 
 ## 資料來源
 
