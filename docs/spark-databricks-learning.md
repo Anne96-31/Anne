@@ -145,7 +145,7 @@ Job（一個 action 觸發一個 job）
 <summary>參考答案</summary>
 
 1. `filter` 是 transformation，只是記錄計畫；`count` 是 action，才真正讀資料計算。
-2. 大約 3 個：filter 那段 → (shuffle) → groupBy 聚合 → (shuffle) → orderBy。實際數量會受 AQE 等優化影響，可在 Spark UI 驗證。
+2. 這段程式是 **2 個**（關掉 AQE 實測）：Stage 1 讀資料 → 篩選 TW → 先在本地依 city 部分計數；（shuffle）→ Stage 2 合併計數，每個 partition 各自排序取前 20 筆，最後交給 Driver 合併。因為 `orderBy` 後面接的是 `show()`，只需要前 20 筆，Catalyst 會把排序換成 `TakeOrderedAndProject`，省掉第二次 shuffle。如果改成寫出全部排序結果，就會多一次 shuffle 變成 3 個 stage（還會多一個抽樣用的 job）。開著 AQE 時，Spark UI 看到的數字還會再不同，以實際畫面為準。
 3. `collect()` 把所有資料拉回 Driver 記憶體，資料太大會 OOM。改用 `show()`、`limit(n)`、`take(n)` 或直接寫出檔案。
 
 </details>

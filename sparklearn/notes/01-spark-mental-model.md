@@ -128,7 +128,7 @@ Shuffle 很貴的原因：
 <summary>參考答案（先自己想過再打開）</summary>
 
 1. `filter` 是 transformation，只記錄計畫；`count` 是 action，才真正讀資料計算。
-2. 大約 3 個：filter 那段 →（shuffle）→ groupBy 聚合 →（shuffle）→ orderBy。實際數量會受 AQE 等優化影響，可以在 Spark UI 驗證。
+2. 這段程式是 **2 個**（關掉 AQE 實測）：Stage 1 讀資料 → 篩選 TW → 先在本地依 city 部分計數；（shuffle）→ Stage 2 合併計數，每個 partition 各自排序取前 20 筆，最後交給 Driver 合併。因為 `orderBy` 後面接的是 `show()`，只需要前 20 筆，Catalyst 會把排序換成 `TakeOrderedAndProject`，省掉第二次 shuffle。如果改成寫出全部排序結果，就會多一次 shuffle 變成 3 個 stage（還會多一個抽樣用的 job）。開著 AQE 時，Spark UI 看到的數字還會再不同，以實際畫面為準。
 3. 所有資料會被拉回 Driver 的記憶體，容易 OOM。改用 `show()`、`take(n)`、`limit(n)`，或直接寫成檔案。
 4. **Broadcast join**：把 200 筆的小表複製一份給每個 Executor，每台機器拿自己手上的訂單直接對照，大表完全不用搬。寫法是 `orders.join(broadcast(countries), "country_code")`，第 3 課會詳細介紹。
 
