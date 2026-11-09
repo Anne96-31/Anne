@@ -92,89 +92,27 @@ MACD 參數 12 / 26 / 9，命名依台灣看盤軟體慣例：DIF（快慢線差
 
 本機預覽（不寫入 Notion）：`ANTHROPIC_API_KEY=sk-ant-xxx python -m dailyenglish --dry-run`
 
-## 🤖 每日 AI & Data 產業摘要（同步到 Notion）
+## 🤖 每日 AI 資訊（同步到 Notion）
 
-[`.github/workflows/daily-ai-digest.yml`](.github/workflows/daily-ai-digest.yml) 於 **每天台北時間 22:28** 掃描 30 個 AI / Data 來源，依「Data Engineer → AI Engineer 轉職」的相關度排序，用 Claude 整理成繁體中文摘要，並在 Notion 母頁底下新增一個子頁。
+[`.github/workflows/daily-ai.yml`](.github/workflows/daily-ai.yml) 於 **每天台北時間 07:13** 在 GitHub 雲端執行（電腦不用開機），抓取過去一天的 AI 新聞（英文國際媒體 + 繁中科技新聞），用 Claude 整理成繁體中文快報，在 Notion「每日 AI 資訊」資料庫新增一頁：
 
-每頁內容：
+- 📌 **今日一句話重點**與 3 個關鍵 takeaway
+- 6–10 則精選新聞，依類別分組：🚀 模型與產品、💰 產業與投資、🔬 研究與開源、🏛️ 政策與監管、🖥️ 晶片與算力、🇹🇼 台灣 AI；每則附摘要、💡 為什麼重要、原文連結
+- 👀 **後續觀察**與 📖 **AI 術語小教室**（不會和最近 30 天重複）
+- 會避開前 3 天已報導過的新聞；Claude 回傳的連結若不在當天抓到的新聞裡會被剔除，避免捏造來源
 
-- 💡 **今日重點**：這批文章共同透露的產業訊號
-- 🔥 **今日必讀** / 👀 **值得快速瀏覽** / 🗂️ **存起來參考**，每篇附
-  - 內容（這篇在講什麼）
-  - **對你的意義**（連結到 DE → AI Engineer 的能力落差）
-  - **今天可以做**（10–30 分鐘做得完的具體動作）
-- 🎯 **今天的 30 分鐘學習計畫**：3 個排好優先順序的動作
-
-同一份 Markdown 會存到 [`digests/`](digests/)（最新一份是 [`digests/latest.md`](digests/latest.md)）。
-
-### 來源（30 個 RSS）
-
-| 類別 | 來源 |
-|---|---|
-| 核心 | KDnuggets、Towards Data Science、Analytics Vidhya、**TechOrange 科技報橘**（中文） |
-| 大廠工程部落格 | Netflix、Meta、Pinterest、Airbnb、Databricks、AWS ML、Cloudflare、GitHub AI |
-| 模型／平台官方 | OpenAI、Google AI、Google Research、Microsoft Research、Apple ML、Hugging Face |
-| 實務工作者 | Eugene Yan、Chip Huyen、Lil'Log、Simon Willison、Data Engineering Weekly、Materialized View、SeattleDataGuy、Maarten Grootendorst、The Pragmatic Engineer、Simon Späti、DAGWorks |
-| 研究 | arXiv cs.LG（權重壓低，每天最多佔 1 個名額，避免論文洗版） |
-
-Uber Engineering（`eng.uber.com`）官方沒有 RSS，且 `robots.txt` 禁止抓取 API，所以不自動抓取；摘要底部會保留提醒連結。要新增來源改 [`aidigest/sources.py`](aidigest/sources.py)。
-
-### 排序邏輯
-
-分數 = 來源權重 + 主題關鍵字加權（中英文並存）+ 新鮮度 + 實作型標題加分 − 商業噪音扣分。
-
-八大主題的權重依「對轉職的價值」設定：LLM 應用/RAG/Agent 3.2、評估/LLMOps 3.0、推論/部署 2.8、職涯/學習 2.6、系統設計/大廠實戰 2.4、資料工程/平台 2.2、工具/開源 1.8、模型基礎/研究 1.6。**同時命中「資料工程 + LLM/推論/LLMOps」的文章額外 +3 分** —— 那正是 DE 跨到 AI Engineer 的橋樑內容。細節在 [`aidigest/ranking.py`](aidigest/ranking.py)。
-
-### 自動清理
-
-只保留最近 **30 天**。過期的 `digests/YYYY-MM-DD.md` 會被刪除（仍可在 git 歷史找回），Notion 上過期的頁面會移到垃圾桶（30 天內可復原）。天數可改 workflow 裡的 `RETENTION_DAYS`。
-
-> 清理只會動**標題符合 `AI & Data 每日摘要 YYYY-MM-DD` 格式**的頁面，母頁底下你自己的其他筆記不會被碰到。
+資料庫欄位：`日期`、`重點`、`標籤`、`則數`、`新聞標題`、`術語`、`已讀`。同一天重跑會封存舊頁面。
 
 **設定步驟（只需做一次）：**
 
-1. **建立 Notion 母頁**：新增一個普通頁面（不是資料庫），命名為「AI & Data 每日摘要」。
-2. **授權**：右上角 **⋯** → **Connections** → 加入現有的 Integration（同一把 `NOTION_TOKEN`）。
+1. **建立 Notion 資料庫**：新增頁面 → `/database` → **Database - Full page**，命名為「每日 AI 資訊」。欄位不用自己加。
+2. **授權資料庫**：右上角 **⋯** → **Connections** → 加入現有的「台股日報」Integration。
 3. **設定 GitHub Secrets**（repo → Settings → Secrets and variables → Actions）：
-   - `NOTION_AI_DIGEST_PAGE_ID`：第 1 步那一頁的網址或 ID
+   - `NOTION_AI_DATABASE_ID`：第 1 步資料庫的網址或 ID
    - `ANTHROPIC_API_KEY`、`NOTION_TOKEN`：沿用已設定的
-4. 到 **Actions** →「每日 AI & Data 產業摘要」→ **Run workflow** 測試。
+4. 到 **Actions** →「每日 AI 資訊」→ **Run workflow** 測試。確認雲端版正常後，就可以把電腦上的排程關掉，避免同一天寫入兩次。
 
-本機預覽（不寫入 Notion）：`python -m aidigest --dry-run`
-
-## ⚡ Spark & Databricks 學習筆記（同步到 Notion）
-
-每堂課的學習筆記放在 [`sparklearn/notes/`](sparklearn/notes/)，一課一個 Markdown 檔。[`.github/workflows/spark-notes.yml`](.github/workflows/spark-notes.yml) 會把每一課寫成 Notion 母頁底下的一個子頁（標題、表格、程式碼、可收合的參考答案都會保留）。完整學習指南見 [`docs/spark-databricks-learning.md`](docs/spark-databricks-learning.md)。
-
-| 課 | 主題 |
-|---|---|
-| 1 | Spark 的心智模型：Driver / Executor、Lazy evaluation、Shuffle |
-| 2 | DataFrame 實戰：常用操作、Window function、explain |
-| 3 | 效能調校入門：broadcast、資料傾斜、cache、Spark UI |
-| 4 | Databricks 平台與 Delta Lake：Medallion、MERGE、Auto Loader、Lakeflow |
-
-**同步時機**：`sparklearn/` 有變更並合併進 master 時自動執行；也可到 **Actions** →「Spark & Databricks 學習筆記同步」→ **Run workflow** 手動執行（可指定課號）。同名頁面已存在時會原地重寫，頁面網址和順序不變。
-
-**設定步驟（只需做一次）：**
-
-1. **建立母頁**：在 Notion 新增一個頁面，例如「⚡ Spark & Databricks 學習筆記」。
-2. **授權母頁**：右上角 **⋯** → **Connections** → 加入現有的「台股日報」Integration（沿用同一把 `NOTION_TOKEN`）。
-3. **設定 GitHub Secret**：repo → Settings → Secrets and variables → Actions → 新增 `NOTION_SPARK_PAGE_ID`，值填母頁的網址或 ID。
-4. 到 **Actions** →「Spark & Databricks 學習筆記同步」→ **Run workflow** 測試。
-
-本機預覽（不寫入 Notion）：`python -m sparklearn --dry-run`
-
-## 📅 每日學習日程（iPhone 行事曆訂閱）
-
-[`schedule/study.ics`](schedule/study.ics) 是平日 08:00–22:00 的學習時程（不含休息與用餐），每個時段開始時會跳通知，事件裡附上可以打勾的[每日學習日程網頁](https://claude.ai/artifact/Ce2nALJ4LdQh6MsCaWdJtT)。
-
-**在 iPhone 訂閱（只需做一次）：** 設定 → App → 行事曆 → 行事曆帳號 → 加入帳號 → 其他 → **加入已訂閱的行事曆**，伺服器填：
-
-```
-https://raw.githubusercontent.com/Anne96-31/Anne/master/schedule/study.ics
-```
-
-改時段時編輯 [`schedule/make_ics.py`](schedule/make_ics.py) 的 `BLOCKS`，執行 `python -m schedule.make_ics` 後 commit，iPhone 會在下次重新整理時自動更新。
+本機預覽（不寫入 Notion）：`ANTHROPIC_API_KEY=sk-ant-xxx python -m dailyai --dry-run`
 
 ## 本機執行
 
