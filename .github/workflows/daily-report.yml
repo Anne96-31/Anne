@@ -2,8 +2,8 @@ name: 台股每日投資日報
 
 on:
   schedule:
-    # 每天台北時間 07:43（UTC 23:43）開始，8:00 前完成：前一交易日收盤 + 美股隔夜行情
-    # 避開整點：GitHub 排程在整點最擁擠，容易延遲甚至略過
+    # 備援排程：主要由 Claude 排程任務每天台北 07:50 以 workflow_dispatch 觸發。
+    # GitHub 排程常延遲數小時才開始；若當天日報已產生，下方 check job 會略過。
     - cron: "43 23 * * *"
   workflow_dispatch:
     inputs:
@@ -22,7 +22,26 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  check:
+    runs-on: ubuntu-latest
+    outputs:
+      done: ${{ steps.c.outputs.done }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: c
+        name: 今天的日報是否已產生
+        run: |
+          today=$(TZ=Asia/Taipei date +%F)
+          if [ "${{ github.event_name }}" = "schedule" ] && [ -f "reports/$today.md" ]; then
+            echo "done=true" >> "$GITHUB_OUTPUT"
+            echo "reports/$today.md 已存在（07:50 的觸發已完成），略過備援排程"
+          else
+            echo "done=false" >> "$GITHUB_OUTPUT"
+          fi
+
   report:
+    needs: check
+    if: needs.check.outputs.done != 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:

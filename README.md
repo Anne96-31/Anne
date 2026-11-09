@@ -40,12 +40,14 @@ MACD 參數 12 / 26 / 9，命名依台灣看盤軟體慣例：DIF（快慢線差
 
 ## 自動排程
 
-[`.github/workflows/daily-report.yml`](.github/workflows/daily-report.yml) 於 **每天台北時間 07:43** 開始執行，約 8:00 前完成（涵蓋前一交易日收盤與美股隔夜行情），完成後把日報 commit 回 repo。
+[`.github/workflows/daily-report.yml`](.github/workflows/daily-report.yml) 每天產生日報，完成後把日報 commit 回 repo（涵蓋前一交易日收盤與美股隔夜行情）。
 
-- 刻意避開整點：GitHub 免費排程在整點最擁擠，可能延遲數分鐘到數小時。若某天沒準時出現，可到 Actions 手動 **Run workflow**。
+- **主要觸發**：Claude 排程任務每天 **台北時間 07:50** 以 `workflow_dispatch` 觸發，幾秒內開始，約 8:00 前完成。
+- **備援排程**：GitHub cron `43 23 * * *`（台北 07:43）。GitHub 免費排程常延遲數小時才開始；若當天日報已產生，`check` job 會自動略過，不會重複執行。
+- 若某天都沒出現，可到 Actions 手動 **Run workflow**。
 - **自動清理**：只保留最近 **15 天** 的日報。過期的 `reports/YYYY-MM-DD.md`、`-picks.csv` 會被刪除（仍可在 git 歷史找回），Notion 中過期的頁面會移到垃圾桶（30 天內可復原）。天數可改 workflow 裡的 `RETENTION_DAYS`。
 
-- 排程只在 **預設分支（master）** 上生效，請先把這個分支合併進 master。
+- 排程與觸發都使用 **預設分支（master）** 上的 workflow 檔。
 - 也可在 GitHub → Actions → 「台股每日投資日報」→ **Run workflow** 手動執行。
 
 ## 同步到 Notion
