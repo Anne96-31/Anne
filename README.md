@@ -140,6 +140,28 @@ Uber Engineering（`eng.uber.com`）官方沒有 RSS，且 `robots.txt` 禁止�
 
 本機預覽（不寫入 Notion）：`python -m aidigest --dry-run`
 
+## ⚡ Spark & Databricks 學習筆記（同步到 Notion）
+
+每堂課的學習筆記放在 [`sparklearn/notes/`](sparklearn/notes/)，一課一個 Markdown 檔。[`.github/workflows/spark-notes.yml`](.github/workflows/spark-notes.yml) 會把每一課寫成 Notion 母頁底下的一個子頁（標題、表格、程式碼、可收合的參考答案都會保留）。完整學習指南見 [`docs/spark-databricks-learning.md`](docs/spark-databricks-learning.md)。
+
+| 課 | 主題 |
+|---|---|
+| 1 | Spark 的心智模型：Driver / Executor、Lazy evaluation、Shuffle |
+| 2 | DataFrame 實戰：常用操作、Window function、explain |
+| 3 | 效能調校入門：broadcast、資料傾斜、cache、Spark UI |
+| 4 | Databricks 平台與 Delta Lake：Medallion、MERGE、Auto Loader、Lakeflow |
+
+**同步時機**：`sparklearn/` 有變更並合併進 master 時自動執行；也可到 **Actions** →「Spark & Databricks 學習筆記同步」→ **Run workflow** 手動執行（可指定課號）。同名頁面已存在時會原地重寫，頁面網址和順序不變。
+
+**設定步驟（只需做一次）：**
+
+1. **建立母頁**：在 Notion 新增一個頁面，例如「⚡ Spark & Databricks 學習筆記」。
+2. **授權母頁**：右上角 **⋯** → **Connections** → 加入現有的「台股日報」Integration（沿用同一把 `NOTION_TOKEN`）。
+3. **設定 GitHub Secret**：repo → Settings → Secrets and variables → Actions → 新增 `NOTION_SPARK_PAGE_ID`，值填母頁的網址或 ID。
+4. 到 **Actions** →「Spark & Databricks 學習筆記同步」→ **Run workflow** 測試。
+
+本機預覽（不寫入 Notion）：`python -m sparklearn --dry-run`
+
 ## 📅 每日學習日程（iPhone 行事曆訂閱）
 
 [`schedule/study.ics`](schedule/study.ics) 是平日 08:00–22:00 的學習時程（不含休息與用餐），每個時段開始時會跳通知，事件裡附上可以打勾的[每日學習日程網頁](https://claude.ai/artifact/Ce2nALJ4LdQh6MsCaWdJtT)。
