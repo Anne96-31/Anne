@@ -42,7 +42,9 @@ jobs:
           NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
           NOTION_SPARK_PAGE_ID: ${{ secrets.NOTION_SPARK_PAGE_ID }}
           LESSONS: ${{ github.event.inputs.lessons }}
+        # pipefail：讓 sparklearn 失敗時整個步驟也失敗（否則 tee 會把錯誤蓋掉，顯示成功）
         run: |
+          set -o pipefail
           if [ -n "$LESSONS" ]; then
             python -m sparklearn --lesson $LESSONS | tee -a "$GITHUB_STEP_SUMMARY"
           else
