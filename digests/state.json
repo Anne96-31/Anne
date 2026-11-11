@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-11T04:57:03+08:00",
+ "updated": "2026-11-12T05:30:03+08:00",
  "seen": {
   "https://techorange.com/2026/10/10/machinenative-economy": "2026-10-12",
   "https://towardsdatascience.com/agentic-systems-a-practitioners-guide-to-6-advanced-architectural-patterns": "2026-10-12",
@@ -409,6 +409,20 @@
   "https://aws.amazon.com/blogs/machine-learning/how-tcs-built-an-agentic-test-orchestrator-with-amazon-bedrock-agentcore": "2026-11-11",
   "https://towardsdatascience.com/copilot-caught-8-of-8-diff-bugs-with-rules-0-of-2-outside-the-diff": "2026-11-11",
   "https://aws.amazon.com/blogs/machine-learning/how-skills-and-agents-work-in-aws-quick": "2026-11-11",
-  "https://aws.amazon.com/blogs/machine-learning/autonomous-treasury-agents-how-trovata-built-an-ai-native-solution-on-amazon-bedrock-and-agentcore": "2026-11-11"
+  "https://aws.amazon.com/blogs/machine-learning/autonomous-treasury-agents-how-trovata-built-an-ai-native-solution-on-amazon-bedrock-and-agentcore": "2026-11-11",
+  "https://towardsdatascience.com/ai-assistant-vs-copilot-vs-agent-and-when-to-use-each": "2026-11-12",
+  "https://techorange.com/2026/11/11/unilever-digital-twins-manufacturing": "2026-11-12",
+  "https://arxiv.org/abs/2611.13243": "2026-11-12",
+  "https://aws.amazon.com/blogs/machine-learning/automating-aws-agent-registry-updates-with-push-based-architecture": "2026-11-12",
+  "https://techorange.com/2026/11/11/ai-davids-bridal": "2026-11-12",
+  "https://techorange.com/2026/11/11/token-spend-management": "2026-11-12",
+  "https://techorange.com/2026/11/10/visionbay-kneron-ai-power-compute": "2026-11-12",
+  "https://aws.amazon.com/blogs/machine-learning/introducing-usage-based-pricing-for-amazon-sagemaker-ai-bidirectional-streaming": "2026-11-12",
+  "https://aws.amazon.com/blogs/machine-learning/the-attendees-guide-to-the-aws-reinvent-2026-ai-ml-track": "2026-11-12",
+  "https://www.analyticsvidhya.com/blog/2026/11/ai-agent-team-memory-tencentdb": "2026-11-12",
+  "https://towardsdatascience.com/a-jev-of-all-trades-build-and-train-a-jev-style-decision-model-from-scratch": "2026-11-12",
+  "https://towardsdatascience.com/how-to-use-apples-fm-cli-to-run-on-device-llms-from-python": "2026-11-12",
+  "https://aws.amazon.com/blogs/machine-learning/introducing-kimi-k3-1-pro-on-amazon-bedrock": "2026-11-12",
+  "https://www.databricks.com/blog/bring-your-business-context-chatgpt-claude-microsoft-copilot-cowork-and-grok-bot": "2026-11-12"
  }
 }
