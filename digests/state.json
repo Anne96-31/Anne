@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-12T05:30:03+08:00",
+ "updated": "2026-11-13T05:31:47+08:00",
  "seen": {
   "https://techorange.com/2026/10/10/machinenative-economy": "2026-10-12",
   "https://towardsdatascience.com/agentic-systems-a-practitioners-guide-to-6-advanced-architectural-patterns": "2026-10-12",
@@ -423,6 +423,20 @@
   "https://towardsdatascience.com/a-jev-of-all-trades-build-and-train-a-jev-style-decision-model-from-scratch": "2026-11-12",
   "https://towardsdatascience.com/how-to-use-apples-fm-cli-to-run-on-device-llms-from-python": "2026-11-12",
   "https://aws.amazon.com/blogs/machine-learning/introducing-kimi-k3-1-pro-on-amazon-bedrock": "2026-11-12",
-  "https://www.databricks.com/blog/bring-your-business-context-chatgpt-claude-microsoft-copilot-cowork-and-grok-bot": "2026-11-12"
+  "https://www.databricks.com/blog/bring-your-business-context-chatgpt-claude-microsoft-copilot-cowork-and-grok-bot": "2026-11-12",
+  "https://techorange.com/2026/11/12/tisi-hpe-pegatron-ai-cdc": "2026-11-13",
+  "https://aws.amazon.com/blogs/machine-learning/build-autonomous-ai-agents-with-amazon-bedrock-and-spring-ai": "2026-11-13",
+  "https://aws.amazon.com/blogs/machine-learning/build-composable-interoperable-multi-agent-systems-with-a2a-on-aws": "2026-11-13",
+  "https://techorange.com/2026/11/12/google-gemini-decision-1-api": "2026-11-13",
+  "https://medium.com/pinterest-engineering/how-pinterest-improved-analytics-agent-compliance-with-loop-engineering-d3c52d0abaa2": "2026-11-13",
+  "https://www.kdnuggets.com/building-graph-enhanced-genai-applications-with-graphrag-toolkit": "2026-11-13",
+  "https://aws.amazon.com/blogs/machine-learning/from-prototype-to-production-engineering-agents-with-agent-dlc": "2026-11-13",
+  "https://huggingface.co/blog/3d-lora-finetuning": "2026-11-13",
+  "https://www.kdnuggets.com/7-free-books-to-learn-about-building-ai-systems": "2026-11-13",
+  "https://aws.amazon.com/blogs/machine-learning/migrate-to-amazon-bedrock-managed-knowledge-base-with-your-coding-agent": "2026-11-13",
+  "https://techorange.com/2026/11/11/ai-project-cost-overruns-vb-pulse": "2026-11-13",
+  "https://www.kdnuggets.com/9-key-llm-inference-metrics-explained-in-5-minutes": "2026-11-13",
+  "https://towardsdatascience.com/rag-retrieval-lost-40-points-when-distracting-passages-grew-to-268m": "2026-11-13",
+  "https://towardsdatascience.com/how-to-read-cross-pair-correlation-in-r-without-fake-repulsion-part-3": "2026-11-13"
  }
 }

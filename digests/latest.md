@@ -1,155 +1,155 @@
-# AI & Data 每日摘要 2026-11-12（四）
+# AI & Data 每日摘要 2026-11-13（五）
 
-> 今天這批文章最明顯的共同訊號是：Agent 已從「能不能跑起來」進入「怎麼管、怎麼算帳、怎麼記住經驗」的階段——Gartner 預估逾四成 agentic AI 專案會被取消、IBM 建議改以「每項任務成本與步驟數」衡量效益、TencentDB Agent Memory 處理跨 session 的經驗繼承，都是同一條主線。第二條線是企業資料才是護城河：David's Bridal 用第一手顧客資料與知識圖譜做雙向平台、Databricks 把企業 context 推到各家 chatbot、聯合利華用工廠即時數據＋AI Agent 做數位分身，全都在講「把既有資料管線接到 LLM 上」，這正是 DE 轉 AI Engineer 的最大優勢。第三條線是基礎設施與成本：從缺 GPU 到缺電、SageMaker 串流改用量計價、Bedrock 上架 Kimi K3.1 Pro，顯示推論成本與部署選型已是 AI Engineer 的日常決策。建議今天把重點放在「Agent 分級與成本/記憶設計」，而不是追新模型。
+> 今天這批文章集中在三個訊號：一是 Agent 從 demo 走向 production 的工程化（AWS Agent DLC、A2A 多代理協定、Pinterest 的 Loop Engineering），評估與合規流程成為新的 CI/CD 核心；二是 RAG 的現實檢驗——當干擾段落擴張到百萬級時檢索品質崩跌 40 分，加上 GraphRAG 的興起，顯示「資料品質與檢索架構」才是 AI 應用勝負點，這正是 DE 的主場；三是成本與 ROI 的焦慮全面浮現（VB Pulse 調查、製造業算力論壇、LLM inference metrics），企業要的是能把 token 帳單與延遲指標算清楚的工程師。對 DE 轉職者而言，今天的主軸就是：把 pipeline 能力延伸到 retrieval 品質、agent 評估迴圈與推論成本量測這三個介面。
 
-## 🔥 今日必讀（4）
+## 🔥 今日必讀（7）
 
 *直接補上你轉職缺的能力*
 
-### [Assistant、Copilot 與 Agent 該怎麼選](https://towardsdatascience.com/ai-assistant-vs-copilot-vs-agent-and-when-to-use-each/)
-*Towards Data Science · 2026-11-11 · 相關度 16.29 · 必讀*
+### [Google Gemini Decision 1 決策模型登場](https://techorange.com/2026/11/12/google-gemini-decision-1-api/?utm_source=rss&utm_medium=feed&utm_campaign=techorange_rss)
+*TechOrange 科技報橘 · 2026-11-12 · 相關度 13.33 · 必讀*
 
-- **內容**：用婚禮籌備情境比喻 assistant、copilot、agent 與 orchestration 的分工差異，並引用 Gartner 預估逾 40% agentic AI 專案將被取消。
-- **對你的意義**：DE 轉 AI Engineer 最常見的誤區是一律想做全自動 agent；先釐清自主程度分級，才能在需求訪談時選對架構、避免過度工程。
-- **今天可以做**：花 10 分鐘讀完，寫一張四層分級對照表（自主度／人類介入點／失敗代價／適用場景）。
-- **原文標題**：AI Assistant vs. Copilot vs. Agent, and When to Use Each
-- `#Agent` `#架構選型` `#產品思維`
+- **內容**：Google 推出不以生成文字為主、直接對候選選項評分並回傳信心分數的 Gemini Decision 1，單次呼叫最多評估 1,000 項獨立判斷，支援多模態。
+- **對你的意義**：決策模型把「分類／路由／評分」從 LLM 生成中拆出來，這類批次高吞吐的判斷任務跟 DE 熟悉的批次資料處理極像，是你能快速切入的 AI 應用型態。
+- **今天可以做**：挑一個你現有 pipeline 中的規則式分類欄位（例如資料品質標記），設計成「是非題 + 信心分數」的 decision model prompt 規格草稿。
+- **原文標題**：Google 的決策模型來了：Gemini Decision 1 一次評估千項問題，與 Jev 有何不同？
+- `#決策模型` `#Gemini` `#多模態` `#分類路由`
 
-### [用 push 架構自動更新 AWS Agent Registry](https://aws.amazon.com/blogs/machine-learning/automating-aws-agent-registry-updates-with-push-based-architecture/)
-*AWS Machine Learning Blog · 2026-11-11 · 相關度 14.69 · 必讀*
+### [Pinterest 如何用 Loop Engineering 提升 Agent 合規性](https://medium.com/pinterest-engineering/how-pinterest-improved-analytics-agent-compliance-with-loop-engineering-d3c52d0abaa2?source=rss----4c5a5f6279b6---4)
+*Pinterest Engineering · 2026-11-12 · 相關度 13.16 · 必讀*
 
-- **內容**：示範以 CloudTrail、EventBridge、Lambda 與 AgentCore Identity 組成事件驅動 pipeline，偵測 MCP server 變動並自動推送工具 metadata 到 agent registry，且不儲存 secrets。
-- **對你的意義**：這幾乎就是 DE 熟悉的 event-driven metadata pipeline，只是對象換成 agent 的工具目錄——是你最容易用既有技能切入 AI 平台工程的題目。
-- **今天可以做**：花 15 分鐘畫出這條 pipeline 的流程圖，並對照你做過的 metadata/CDC 流程標註相似處。
-- **原文標題**：Automating AWS Agent Registry updates with push-based architecture
-- `#MCP` `#AWS` `#事件驅動` `#AgentOps`
+- **內容**：Pinterest 的 Analytics Agent 需在正確時機執行正確步驟，團隊以 Loop Engineering 提升 agent 的「compliance」以讓答案更一致。
+- **對你的意義**：這是資料分析型 agent 的真實案例——它要搜尋公司資料生態系並回答查詢延遲類問題，幾乎是 DE 工作的 agent 化，最貼近你的轉職落點。
+- **今天可以做**：讀完後列出 Pinterest 定義 compliance 的方式，並為「查詢自家 data warehouse 的 agent」寫下 5 個必要步驟檢查清單。
+- **原文標題**：How Pinterest Improved Analytics Agent Compliance with Loop Engineering
+- `#Analytics Agent` `#評估` `#大廠實戰`
 
-### [別只看 token 單價：看懂 AI 代理人的經濟效益](https://techorange.com/2026/11/11/token-spend-management/?utm_source=rss&utm_medium=feed&utm_campaign=techorange_rss)
-*TechOrange 科技報橘 · 2026-11-11 · 相關度 14.1 · 必讀*
+### [用 graphrag-toolkit 打造圖強化 GenAI 應用](https://www.kdnuggets.com/building-graph-enhanced-genai-applications-with-graphrag-toolkit)
+*KDnuggets · 2026-11-12 · 相關度 12.08 · 必讀*
 
-- **內容**：主張以「工作／任務」而非 token 為成本衡量單位，並引用 IBM 建議用每任務成本與步驟數評估代理人效率，因 agent 每次執行的運算量本就不固定。
-- **對你的意義**：AI Engineer 被要求對成本負責，而這正是 DE 做資源與成本治理的強項延伸；懂得設計 per-task cost 指標會是你的差異化。
-- **今天可以做**：設計一組 agent 成本監控欄位（task_id、步驟數、token 數、工具呼叫次數、是否達成目標），寫成一張表 schema。
-- **原文標題**：【別只看 token 單價】從支出追到成果，看懂 AI 代理人的經濟效益將成為管理優勢
-- `#成本治理` `#FinOps` `#Agent 評估`
+- **內容**：說明 graph-enhanced RAG 如何串起純向量檢索會漏掉的關聯事實，並用 AWS Labs 的 graphrag-toolkit、Neo4j 與 pgvector 做多跳研究助理。
+- **對你的意義**：GraphRAG 本質是建模與 ETL 問題（實體抽取、關係表、索引），DE 的資料建模經驗可直接遷移，是差異化優勢最高的 RAG 進階主題。
+- **今天可以做**：用 pgvector 或本機 Neo4j 跑一次 toolkit 的 quickstart，或至少畫出你某個領域資料的 entity-relation 圖草稿。
+- **原文標題**：Building Graph-Enhanced GenAI Applications with graphrag-toolkit
+- `#GraphRAG` `#Neo4j` `#pgvector` `#資料建模`
 
-### [AI Agent 能繼承團隊經驗嗎？TencentDB Agent Memory 實測](https://www.analyticsvidhya.com/blog/2026/11/ai-agent-team-memory-tencentdb/)
-*Analytics Vidhya · 2026-11-11 · 相關度 10.18 · 必讀*
+### [從原型到上線：用 Agent DLC 做 Agent 工程](https://aws.amazon.com/blogs/machine-learning/from-prototype-to-production-engineering-agents-with-agent-dlc/)
+*AWS Machine Learning Blog · 2026-11-12 · 相關度 11.48 · 必讀*
 
-- **內容**：以 coding agent 重複犯同樣錯誤為例，指出加大 context window 無法解決跨 session 的經驗累積問題，並實測 TencentDB 的 agent memory 方案。
-- **對你的意義**：agent memory 的本質是資料建模與檢索問題，正中你的強項；理解 context window 與長期記憶的界線是 Agent 系統設計的核心能力。
-- **今天可以做**：花 15 分鐘讀完，筆記「短期 context／情節記憶／語意記憶」各自的存放方式與檢索時機。
-- **原文標題**：Can an AI Agent Inherit Its Team’s Hard-Won Lessons? A Hands-On Look at TencentDB Agent Memory
-- `#Agent Memory` `#RAG` `#系統設計`
+- **內容**：指出 agent 卡在 demo 與發布之間的原因是缺乏可重複的品質衡量方式，提出 agent 打破傳統 CI/CD 的三個特性，以及 Agent DLC 的一套生命週期、兩個迴圈與一個判準。
+- **對你的意義**：你熟悉資料 pipeline 的 CI/CD 與資料測試，這篇正好補上「非確定性系統該怎麼做回歸測試」的空缺，是 AI Engineer 面試常考的 LLMOps 核心。
+- **今天可以做**：把文中「aggregate metric 掩蓋覆蓋缺口」的案例寫成筆記，並想一個你會如何用分層切片指標避免同樣盲點。
+- **原文標題**：From prototype to production: Engineering agents with Agent DLC
+- `#LLMOps` `#Agent 評估` `#CI/CD`
 
-## 👀 值得快速瀏覽（6）
+### [AI 預算加碼但 ROI 說不清：38% 專案曾因超支受挫](https://techorange.com/2026/11/11/ai-project-cost-overruns-vb-pulse/?utm_source=rss&utm_medium=feed&utm_campaign=techorange_rss)
+*TechOrange 科技報橘 · 2026-11-11 · 相關度 9.73 · 必讀*
+
+- **內容**：VB Pulse 調查 156 位 AI 從業者，38% 的組織過去一年因成本超支延後／縮減／取消 AI 專案，僅 26% 用財務報酬衡量支出，且 57% 的 GPU 營運者平均使用率在 50% 以下。
+- **對你的意義**：成本與使用率的量測正是 DE 最擅長的「指標與報表」工作，把 token/GPU 成本做成可觀測儀表板，是你進 AI 團隊後最快展現價值的切入點。
+- **今天可以做**：設計一張 AI 成本觀測表的欄位草稿（每請求 token 數、單位成本、使用率、對應業務指標），想好資料從哪裡抓。
+- **原文標題**：AI 預算還要加碼，投資報酬卻說不清：38% 受訪者曾因超支延後、縮減或取消專案
+- `#AI ROI` `#成本管理` `#FinOps`
+
+### [5 分鐘搞懂 9 個 LLM 推論關鍵指標](https://www.kdnuggets.com/9-key-llm-inference-metrics-explained-in-5-minutes)
+*KDnuggets · 2026-11-11 · 相關度 9.34 · 必讀*
+
+- **內容**：解說量測 LLM 推論效能的關鍵指標與公式，涵蓋延遲、token 產生速度與系統負載。
+- **對你的意義**：TTFT、TPOT、throughput 這些是 AI Engineer 的日常語言，補齊後你才能在容量規劃與成本討論中和 ML/平台團隊對話。
+- **今天可以做**：把 9 個指標做成一頁 cheat sheet，並標註哪些可從你現有監控系統（如 Prometheus）直接延伸採集。
+- **原文標題**：9 Key LLM Inference Metrics Explained in 5 Minutes
+- `#推論效能` `#延遲指標` `#監控`
+
+### [干擾段落增至 268 萬時 RAG 檢索掉了 40 分](https://towardsdatascience.com/rag-retrieval-lost-40-points-when-distracting-passages-grew-to-268m/)
+*Towards Data Science · 2026-11-12 · 相關度 8.2 · 必讀*
+
+- **內容**：以可重現實驗比較 BM25、embedding 與 parent document 檢索，顯示干擾段落規模擴大時檢索品質大幅下滑，並指出自撰評測會高估搜尋效果、答案在 context 中的位置也有影響。
+- **對你的意義**：這直指 RAG 從 demo 到真實語料規模的斷崖，正好是 DE 能貢獻之處：資料規模、切分策略與評測集設計都是你的強項領域。
+- **今天可以做**：把自己的小型 RAG 測試集刻意混入大量不相關文件，重跑一次 recall@k 並記錄下降幅度。
+- **原文標題**：RAG Retrieval Lost 40 Points When Distracting Passages Grew to 2.68M
+- `#RAG` `#檢索評估` `#BM25` `#embedding`
+
+## 👀 值得快速瀏覽（4）
 
 *掃過標題與重點即可*
 
-### [聯合利華再部署 40 多套 AI 數位分身](https://techorange.com/2026/11/11/unilever-digital-twins-manufacturing/?utm_source=rss&utm_medium=feed&utm_campaign=techorange_rss)
-*TechOrange 科技報橘 · 2026-11-11 · 相關度 15.18 · 快速瀏覽*
+### [製造業 AI 規模化：算力之外的數據治理](https://techorange.com/2026/11/12/tisi-hpe-pegatron-ai-cdc/?utm_source=rss&utm_medium=feed&utm_campaign=techorange_rss)
+*TechOrange 科技報橘 · 2026-11-12 · 相關度 18.26 · 快速瀏覽*
 
-- **內容**：聯合利華將數位分身結合 AI Agent 擴展到全球工廠，已在美、波、越、印 5 廠帶來減廢 20–30%、產能提升 10% 等成效，並說明如何挑選導入據點。
-- **對你的意義**：這是「即時感測資料管線 → AI 決策」的典型案例，你的串流與資料品質經驗可直接轉化；選址邏輯也等同 AI 專案的 use case 優先排序方法。
-- **今天可以做**：用 10 分鐘列出文中各廠的「資料來源 → 模型任務 → 可量化成效」三欄，當成自己提案的模板。
-- **原文標題**：聯合利華再部署 40 多套 AI 數位分身：數百座工廠中，怎麼挑出值得導入的據點？
-- `#Digital Twin` `#製造業` `#ROI`
+- **內容**：大世科、HPE、和碩與學界討論製造業如何把 AI 算力投資轉成可規模化效益，強調流程、知識庫、電力散熱與數據治理。
+- **對你的意義**：文中點明「算力與演算法迭代快，真正握在企業手中的是數據」，這正是 DE 背景轉 AI Engineer 的最大籌碼——把資料治理能力包裝成 AI 落地的前置條件。
+- **今天可以做**：花 10 分鐘寫下你現有 pipeline 中有哪三類資料可直接變成企業知識庫的來源，以及各自缺什麼治理（權限、版本、品質）。
+- **原文標題**：「如何讓燒掉的 Token 轉化為企業競爭力？」大世科、HPE、和碩解析製造業 AI 規模化關鍵
+- `#台灣產業` `#數據治理` `#AI 落地`
 
-### [David's Bridal 如何從賣婚紗轉型婚禮平台](https://techorange.com/2026/11/11/ai-davids-bridal/?utm_source=rss&utm_medium=feed&utm_campaign=techorange_rss)
-*TechOrange 科技報橘 · 2026-11-11 · 相關度 14.2 · 快速瀏覽*
+### [用 Amazon Bedrock 與 Spring AI 打造自主 Agent](https://aws.amazon.com/blogs/machine-learning/build-autonomous-ai-agents-with-amazon-bedrock-and-spring-ai/)
+*AWS Machine Learning Blog · 2026-11-12 · 相關度 14.58 · 快速瀏覽*
 
-- **內容**：David's Bridal 推出 Pearl Planner 與 Pearl Connect 雙向 AI 平台，以 76 年累積的第一手顧客資料與知識圖譜為核心，連結新人與婚禮服務業者。
-- **對你的意義**：示範「專有資料＋知識圖譜」比通用模型更有價值，正好對應 GraphRAG 的商業邏輯，也是你資料建模能力的延伸戰場。
-- **今天可以做**：用 10 分鐘查一下 GraphRAG 與一般向量 RAG 的差異，記下「何時該用知識圖譜」的三個判準。
-- **原文標題**：靠 AI 開拓新生意：全美最大婚紗商 David’s Bridal 如何從賣婚紗轉型婚禮平台？
-- `#知識圖譜` `#GraphRAG` `#商業模式`
+- **內容**：示範 Java 開發者如何用 Bedrock + Spring AI 實作 tool calling、對話記憶、韌性模式與多 agent 編排，並以 AgentCore 部署。
+- **對你的意義**：對 DE 來說重點不是 Java，而是「tool calling + memory + resilience + orchestration」這組 production agent 的標準零件清單，可直接對照你熟悉的工作流編排思維。
+- **今天可以做**：把文中提到的四個 agent 元件（tool calling、memory、resilience、orchestration）各寫一句話定義，並對照 Airflow 的 task/retry/XCom 做類比筆記。
+- **原文標題**：Build autonomous AI agents with Amazon Bedrock and Spring AI
+- `#Agent` `#Bedrock` `#架構模式`
 
-### [從缺 GPU 到缺電：算力上雲還是留地端](https://techorange.com/2026/11/10/visionbay-kneron-ai-power-compute/?utm_source=rss&utm_medium=feed&utm_campaign=techorange_rss)
-*TechOrange 科技報橘 · 2026-11-10 · 相關度 13.03 · 快速瀏覽*
+### [用 A2A 協定建可組合的多代理系統](https://aws.amazon.com/blogs/machine-learning/build-composable-interoperable-multi-agent-systems-with-a2a-on-aws/)
+*AWS Machine Learning Blog · 2026-11-12 · 相關度 14.48 · 快速瀏覽*
 
-- **內容**：專訪亞灣超算與耐能，談資料中心用電 2026 年年增 26%、AIDC 部署節奏，以及效率改以「每瓦產出多少 token」衡量，雲端與地端該如何分工。
-- **對你的意義**：幫你建立基礎設施視角，未來在選擇雲端 API、地端推論或 NPU 邊緣部署時能說出成本與能耗的理由。
-- **今天可以做**：用 5 分鐘記下「每瓦 token 產出」這個指標，並想想自己的場景哪些任務適合小模型地端跑。
-- **原文標題**：從缺 GPU 到缺電：專訪亞灣超算姚延宗、耐能劉峻誠，企業 AI 算力上雲還是留地端？
-- `#算力` `#能耗` `#地端 vs 雲端`
+- **內容**：介紹在 AWS 上以 Agent-to-Agent (A2A) 協定，讓 ECS 上的 LangChain orchestrator 與 Bedrock AgentCore 上的 Strands agent 跨組織邊界互通，雙向且 OAuth 驗證。
+- **對你的意義**：A2A 是 agent 世界的介面標準化嘗試，概念上類似資料界的 schema contract；理解它能讓你在設計跨團隊 AI 系統時不被單一框架綁死。
+- **今天可以做**：花 10 分鐘查 A2A 的 Agent Card 規格，寫下它與 MCP 的分工差異（誰接工具、誰接 agent）。
+- **原文標題**：Build composable, interoperable multi-agent systems with A2A on AWS
+- `#A2A` `#Multi-agent` `#互通協定`
 
-### [用 Apple fm CLI 從 Python 跑端上 LLM](https://towardsdatascience.com/how-to-use-apples-fm-cli-to-run-on-device-llms-from-python/)
-*Towards Data Science · 2026-11-11 · 相關度 8.3 · 快速瀏覽*
+### [7 本免費書帶你學會打造 AI 系統](https://www.kdnuggets.com/7-free-books-to-learn-about-building-ai-systems)
+*KDnuggets · 2026-11-12 · 相關度 11.06 · 快速瀏覽*
 
-- **內容**：介紹如何透過 Apple 的 fm CLI 在本機跑端上模型，並指出這類免費私有模型在離開 prototyping 前仍需 grounding 與驗證。
-- **對你的意義**：讓你零成本練習本地 LLM 呼叫與輸出驗證，正好補上 DE 缺少的「模型輸出不可信、需加驗證層」直覺。
-- **今天可以做**：若有 Mac，花 20 分鐘跑一個最小範例，並刻意出一題會答錯的問題，體驗 grounding 的必要性。
-- **原文標題**：How to Use Apple's fm CLI to Run On-Device LLMs From Python
-- `#本地 LLM` `#Apple` `#grounding`
+- **內容**：整理 7 本免費書籍，聚焦把 AI agent 從「能動」推到「能在 production 穩定運作」所需的工程知識。
+- **對你的意義**：轉職最缺的往往不是會串 API，而是系統性的 AI 工程知識地圖，這份書單可當你 1–3 個月的自學骨架。
+- **今天可以做**：掃完書單後挑 1 本與 agent 上線或評估最相關的，下載並排進本週讀書計畫的前兩章。
+- **原文標題**：7 FREE Books to Learn About Building AI Systems
+- `#學習資源` `#書單` `#AI 系統`
 
-### [Amazon Bedrock 上線 Kimi K3.1 Pro](https://aws.amazon.com/blogs/machine-learning/introducing-kimi-k3-1-pro-on-amazon-bedrock/)
-*AWS Machine Learning Blog · 2026-11-11 · 相關度 8.19 · 快速瀏覽*
-
-- **內容**：Moonshot AI 的 Kimi K3.1 Pro 登上 Bedrock，可透過 OpenAI 相容的 Chat Completions、Responses 與 Converse API 使用，並支援顯式 prompt caching。
-- **對你的意義**：顯式 prompt caching 是降低 RAG/Agent 成本的實用手段，而 OpenAI 相容介面讓模型可替換性成為架構設計重點。
-- **今天可以做**：花 10 分鐘搞懂 explicit prompt caching 的運作與適用情境，估算它能為長 system prompt 省下多少成本。
-- **原文標題**：Introducing Kimi K3.1 Pro on Amazon Bedrock
-- `#Bedrock` `#prompt caching` `#模型選型`
-
-### [把企業 context 帶進 ChatGPT、Claude 等助理](https://www.databricks.com/blog/bring-your-business-context-chatgpt-claude-microsoft-copilot-cowork-and-grok-bot)
-*Databricks Blog · 2026-11-11 · 相關度 7.8 · 快速瀏覽*
-
-- **內容**：摘要資訊有限：Databricks 談如何將企業自有資料與 context 接入 ChatGPT、Claude、Microsoft Copilot Cowork 與 Grok Bot 等外部 AI 工具。
-- **對你的意義**：這是 DE 最直接的切入點——把 lakehouse 的治理資料安全地暴露給外部 LLM，涉及權限、語意層與 MCP 類介面設計。
-- **今天可以做**：花 10 分鐘讀原文，記下它採用的連接機制（例如 MCP 或 connector）與權限控管做法。
-- **原文標題**：Bring your business context to ChatGPT, Claude, Microsoft Copilot Cowork and Grok Bot
-- `#Databricks` `#企業資料` `#MCP` `#治理`
-
-## 🗂️ 存起來參考（4）
+## 🗂️ 存起來參考（3）
 
 *之後需要時再回頭看*
 
-### [GigaEdge Spench：串流語音增強 SDK](https://arxiv.org/abs/2611.13243)
-*arXiv cs.LG (Machine Learning) · 2026-11-11 · 相關度 14.88 · 存參考*
+### [3D 生成模型 Fine-Tuning 指南](https://huggingface.co/blog/3d-lora-finetuning)
+*Hugging Face Blog · 2026-11-12 · 相關度 11.1 · 存參考*
 
-- **內容**：開源 SDK，支援 CPU、行動裝置與瀏覽器上的串流語音降噪，提供 INT8 與 FP32 模型，底層以 C++ core 串接 ONNX Runtime 與 TFLite。
-- **對你的意義**：若你未來碰語音類 LLM 應用，前處理品質直接決定下游效果；同時是觀察 INT8 量化與跨平台 runtime 部署的實例。
-- **今天可以做**：存書籤，順手查一下 ONNX Runtime 與 TFLite 在部署上的差異，寫三行筆記。
-- **原文標題**：GigaEdge Spench: An SDK for Practical Streaming Speech Enhancement
-- `#語音` `#Edge 推論` `#量化`
+- **內容**：Hugging Face 關於 3D 生成模型 LoRA fine-tuning 的教學文章；摘要資訊有限，僅能依標題判斷。
+- **對你的意義**：3D 生成與你的轉職主線（LLM 應用、RAG、Agent）相關性低，但 LoRA 的訓練流程概念可供日後需要微調時參考。
+- **今天可以做**：先存書籤，只花 2 分鐘確認文中 LoRA 設定的參數名稱（rank、alpha）是否與文字模型一致。
+- **原文標題**：The Definitive Fine-Tuning Guide for 3D Generation Models
+- `#Fine-tuning` `#LoRA` `#3D`
 
-### [SageMaker 雙向串流推論改採用量計價](https://aws.amazon.com/blogs/machine-learning/introducing-usage-based-pricing-for-amazon-sagemaker-ai-bidirectional-streaming/)
-*AWS Machine Learning Blog · 2026-11-11 · 相關度 11.01 · 存參考*
+### [用 coding agent 遷移到 Bedrock 託管知識庫](https://aws.amazon.com/blogs/machine-learning/migrate-to-amazon-bedrock-managed-knowledge-base-with-your-coding-agent/)
+*AWS Machine Learning Blog · 2026-11-12 · 相關度 9.99 · 存參考*
 
-- **內容**：AWS Marketplace 支援 SageMaker 雙向串流推論的用量計價，Deepgram 為首發夥伴，提供依實際消耗計費的 STT／TTS。
-- **對你的意義**：串流推論的計價模式會直接影響即時語音 agent 的成本結構，是你做部署選型時的參考資料點。
-- **今天可以做**：存檔；若近期有即時語音需求再細看，今天只記下「串流推論計費單位」這個概念。
-- **原文標題**：Introducing usage-based pricing for Amazon SageMaker AI bidirectional streaming
-- `#SageMaker` `#串流推論` `#計價`
+- **內容**：介紹 amazon-bedrock skill 的遷移指南，讓 coding agent 以唯讀探勘規劃、並行建立新知識庫或 IaC 模板，並在切換前驗證檢索結果。
+- **對你的意義**：「先唯讀探勘、平行建置、切換前驗證」正是資料遷移的經典 pattern，看它如何套用在知識庫上，可幫你把 DE 的遷移經驗翻譯成 RAG 維運語言。
+- **今天可以做**：用 15 分鐘寫下一份 RAG 知識庫遷移檢查表，至少包含檢索結果比對（retrieval parity）的驗證方法。
+- **原文標題**：Migrate to Amazon Bedrock Managed Knowledge Base with your coding agent
+- `#Bedrock` `#Knowledge Base` `#遷移` `#IaC`
 
-### [AWS re:Invent 2026 AI/ML 議程導覽](https://aws.amazon.com/blogs/machine-learning/the-attendees-guide-to-the-aws-reinvent-2026-ai-ml-track/)
-*AWS Machine Learning Blog · 2026-11-11 · 相關度 10.4 · 存參考*
+### [用 R 讀交叉配對相關性避免假性排斥（第三篇）](https://towardsdatascience.com/how-to-read-cross-pair-correlation-in-r-without-fake-repulsion-part-3/)
+*Towards Data Science · 2026-11-12 · 相關度 6.5 · 存參考*
 
-- **內容**：整理 re:Invent 2026 超過 140 場 AI/ML 議程，涵蓋 AI 晶片、模型與推論、agent、agent trust 與永續等主題。
-- **對你的意義**：即使不參加，議程分類本身就是一份產業能力地圖，可用來檢視自己的學習路徑缺口。
-- **今天可以做**：花 5 分鐘掃過議程分類，圈出三個你完全不懂的主題關鍵字，放進待學清單。
-- **原文標題**：The attendee’s guide to the AWS re:Invent 2026 AI/ML track
-- `#會議` `#學習路徑` `#AWS`
-
-### [從零打造 Jev 風格決策模型](https://towardsdatascience.com/a-jev-of-all-trades-build-and-train-a-jev-style-decision-model-from-scratch/)
-*Towards Data Science · 2026-11-11 · 相關度 9.1 · 存參考*
-
-- **內容**：摘要資訊有限：以 PathMNIST 六種組織資料訓練小型 KEEP adapter，宣稱無需 retrain 即可處理新增標籤，但線性分類器在熟悉類別上達 88%。
-- **對你的意義**：對 LLM 應用路線的轉職者而言優先度低，但可當作理解 adapter 與輕量微調概念的入門讀物。
-- **今天可以做**：略過或僅記下「adapter 可在不 retrain 主模型下擴充任務」這一句。
-- **原文標題**：A Jev of All Trades: Build and Train a Jev-style Decision Model From Scratch
-- `#adapter` `#影像` `#研究`
+- **內容**：以模擬疤痕與 31 隻動物缺血後資料，說明非齊性估計量、random labelling 與 brms 如何區分組織損失與真實交互作用。
+- **對你的意義**：屬生醫空間統計領域，與 AI Engineer 轉職主線幾乎無關，僅在你需要嚴謹統計推論設計時可借鏡其實驗控制思路。
+- **今天可以做**：略過即可，若有興趣可花 3 分鐘看它如何設計對照以排除假訊號。
+- **原文標題**：How to Read Cross Pair Correlation in R Without Fake Repulsion (Part 3)
+- `#空間統計` `#R` `#生醫`
 
 ## 🎯 今天的 30 分鐘學習計畫
 
-1. 先讀 [1] 與 [6]，用 10 分鐘寫一張對照表：Assistant / Copilot / Agent / Orchestration 各自的自主程度、適用場景、失敗風險，並補上「每任務成本、步驟數、成功率」三個衡量欄位。
-2. 拿自己現有的一條 Airflow/Spark pipeline，花 10 分鐘設計一個最小 agent 應用點（例如資料品質異常診斷 agent），明確寫出它的工具清單、每次執行預估 token 成本與成功判準。
-3. 花 10 分鐘翻 [10] 的 agent memory 實作思路，筆記「短期 context vs 長期記憶」的差異，並想想自己熟悉的資料庫（Postgres/向量庫）能怎麼當 agent 的記憶後端。
+1. 先讀 [13] RAG 檢索崩跌實驗，動手把自己手邊任一份文件集擴充 10 倍干擾資料，重跑一次 BM25 vs embedding 的 recall@k，記錄分數變化（15 分鐘）。
+2. 讀 [7] Agent DLC 與 [5] Pinterest Loop Engineering，用 10 分鐘寫一份「Agent 評估規格」筆記：定義三個通過標準（compliance 步驟、aggregate metric 的覆蓋盲點、回歸判準）。
+3. 掃 [12] 九個 LLM inference 指標，把 TTFT、TPOT、throughput、cost per 1K tokens 填成一張可套用的表格，對照 [11] 的 ROI 問題，想一個自家 pipeline 的成本量測點（5 分鐘）。
 
 ---
 
-掃描 475 篇，收錄 14 篇。來源分布：TechOrange 科技報橘 × 4、AWS Machine Learning Blog × 4、Towards Data Science × 3、arXiv cs.LG (Machine Learning) × 1、Analytics Vidhya × 1、Databricks Blog × 1
+掃描 83 篇，收錄 14 篇。來源分布：AWS Machine Learning Blog × 4、TechOrange 科技報橘 × 3、KDnuggets × 3、Towards Data Science × 2、Pinterest Engineering × 1、Hugging Face Blog × 1
 
 > ⚠️ [Uber Engineering Blog](https://www.uber.com/en-US/blog/engineering/)：官方無 RSS（robots.txt 禁止 API 抓取），請人工瀏覽；同性質內容已由 Netflix / Meta / Pinterest / Airbnb 工程部落格補上。
 
-*由 ai-data-digest 於 2026-11-12 05:28 自動產生 · 摘要引擎：Claude（claude-opus-5）*
+*由 ai-data-digest 於 2026-11-13 05:30 自動產生 · 摘要引擎：Claude（claude-opus-5）*
