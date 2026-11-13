@@ -7,3 +7,8 @@ __pycache__/
 .env.*
 !.env.example
 .venv/
+
+# ticketwatch 本機資料（含 Telegram token、登入狀態）
+ticketwatch/config.json
+ticketwatch/.browser-profile/
+ticketwatch/screenshots/
