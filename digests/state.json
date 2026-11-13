@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-13T05:31:47+08:00",
+ "updated": "2026-11-14T04:58:04+08:00",
  "seen": {
   "https://techorange.com/2026/10/10/machinenative-economy": "2026-10-12",
   "https://towardsdatascience.com/agentic-systems-a-practitioners-guide-to-6-advanced-architectural-patterns": "2026-10-12",
@@ -437,6 +437,20 @@
   "https://techorange.com/2026/11/11/ai-project-cost-overruns-vb-pulse": "2026-11-13",
   "https://www.kdnuggets.com/9-key-llm-inference-metrics-explained-in-5-minutes": "2026-11-13",
   "https://towardsdatascience.com/rag-retrieval-lost-40-points-when-distracting-passages-grew-to-268m": "2026-11-13",
-  "https://towardsdatascience.com/how-to-read-cross-pair-correlation-in-r-without-fake-repulsion-part-3": "2026-11-13"
+  "https://towardsdatascience.com/how-to-read-cross-pair-correlation-in-r-without-fake-repulsion-part-3": "2026-11-13",
+  "https://github.blog/ai-and-ml/github-copilot/build-once-run-on-any-agent-a-practical-guide-to-agent-skills": "2026-11-14",
+  "https://www.kdnuggets.com/getting-started-with-ducklake-build-a-lakehouse-on-duckdb-in-under-an-hour": "2026-11-14",
+  "https://techorange.com/2026/11/13/google-gemini-4-hydrogen-antigravity-orchestrator": "2026-11-14",
+  "https://techorange.com/2026/11/13/jp-morgan-us-humanoid-robot-production-2030": "2026-11-14",
+  "https://aws.amazon.com/blogs/machine-learning/cost-optimizing-assemblyai-speech-to-text-inference-on-aws-with-amazon-ec2-spot": "2026-11-14",
+  "https://towardsdatascience.com/keyword-search-tied-an-8b-embedding-model-at-picking-agent-tools": "2026-11-14",
+  "https://www.databricks.com/blog/spark-vs-flink": "2026-11-14",
+  "https://aws.amazon.com/blogs/machine-learning/build-a-model-improvement-flywheel-with-amazon-sagemaker-hyperpod-data-capture": "2026-11-14",
+  "https://aws.amazon.com/blogs/machine-learning/optimizing-cost-per-task-and-proving-agent-roi-on-amazon-bedrock": "2026-11-14",
+  "https://www.analyticsvidhya.com/blog/2026/11/how-to-evaluate-ai-agents-for-enterprise": "2026-11-14",
+  "https://www.kdnuggets.com/5-free-open-source-alternatives-to-jev": "2026-11-14",
+  "https://towardsdatascience.com/how-to-check-local-llm-output-with-ollama-gemma-4-and-nimble": "2026-11-14",
+  "https://newsletter.pragmaticengineer.com/p/the-pulse-what-can-we-learn-from-114": "2026-11-14",
+  "https://www.analyticsvidhya.com/blog/2026/11/gemini-4-hydrogen-review": "2026-11-14"
  }
 }
