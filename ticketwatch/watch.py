@@ -1,12 +1,16 @@
-"""NOL World 餘票追蹤：定時重新整理購票頁，畫面一有變化就用 Telegram 通知。
+"""米津玄師 GHOST 餘票追蹤：定時重新整理購票頁，一有變化就用 Telegram 通知。
+
+追蹤兩場：
+  仁川場（NOL World）：要登入，比對「售完」時的基準畫面
+  台北場（遠大 Ticket Plus）：不用登入，直接讀各場次的「售票狀態」和「最新公告」
 
 只做「看」和「通知」，不會自動下單。請在自己的電腦上執行（見 README.md）。
 
 指令：
   python watch.py telegram   設定 Telegram bot，並送一則測試訊息
-  python watch.py setup      開瀏覽器讓你登入，停在「售完」的畫面後按 Enter，記下基準畫面
-  python watch.py check      只檢查一次，把結果和截圖印出來（測試用）
-  python watch.py run        持續追蹤，預設每 90 秒左右檢查一次
+  python watch.py setup      （仁川場）開瀏覽器讓你登入，停在「售完」的畫面後按 Enter，記下基準畫面
+  python watch.py check      只檢查一次（測試用），可加 --target taipei / incheon
+  python watch.py run        持續追蹤，預設兩場都追、每 90 秒左右檢查一次
 """
 from __future__ import annotations
 
@@ -32,6 +36,10 @@ SHOTS = HERE / "screenshots"
 
 DEFAULT_URL = "https://world.nol.com/en/ticket/products/26015024"  # 米津玄師 GHOST 仁川場
 MIN_INTERVAL = 60  # 秒；不要再調低，避免對售票網站造成負擔或被封鎖
+
+# 台北大巨蛋場（遠大 Ticket Plus 一般售票頁）；公開頁面就有各場次的「售票狀態」
+TAIPEI_URL = "https://ticketplus.com.tw/activity/73ed24f36dd62ca2b67a8b266c23df7f"
+TAIPEI_CLOSED = {"銷售一空", "已售完", "售完", "登記截止", "已結束", "銷售結束"}
 
 SOLD_OUT_WORDS = ["sold out", "soldout", "매진", "no seats", "not available", "售完", "完売"]
 AVAILABLE_WORDS = ["remaining", "seats left", "잔여", "available seat", "select seat", "좌석선택", "残り", "剩餘"]
@@ -221,34 +229,107 @@ def check_once(ctx: BrowserContext, cfg: dict, state: dict) -> None:
         state["last_digest"] = digest
 
 
+def parse_taipei(text: str) -> tuple[dict[str, str], str]:
+    """從遠大活動頁文字取出 {場次: 售票狀態} 和「最新公告」內容。"""
+    lines = [l.strip() for l in text.splitlines() if l.strip()]
+    shows: dict[str, str] = {}
+    for i, line in enumerate(lines):
+        m = re.search(r"（(\d{1,2}/\d{1,2})場次）", line)
+        if not m:
+            continue
+        # 每列依序是：場次名稱、日期、時間、地點、地址、售票狀態
+        for j in range(i + 1, min(i + 8, len(lines))):
+            if lines[j].startswith(("臺北市", "台北市")):
+                if j + 1 < len(lines):
+                    shows[m.group(1)] = lines[j + 1]
+                break
+    notice = ""
+    if "最新公告" in lines:
+        idxs = [i for i, l in enumerate(lines) if l == "最新公告"]
+        start = idxs[-1] + 1
+        end = next((i for i in range(start, len(lines)) if lines[i] in ("立即購買", "場次名稱")), start)
+        notice = "\n".join(lines[start:end])
+    return shows, notice
+
+
+def check_taipei(ctx: BrowserContext, cfg: dict, state: dict) -> None:
+    """台北場：公開頁面就看得到「售票狀態」，不需要登入。"""
+    page = ctx.new_page()
+    try:
+        page.goto(TAIPEI_URL, wait_until="domcontentloaded", timeout=60_000)
+        page.wait_for_selector("text=場次）", timeout=30_000)
+        page.wait_for_timeout(2_000)
+        shows, notice = parse_taipei(page.locator("body").inner_text())
+        if not shows:
+            raise RuntimeError("台北場頁面讀不到場次列表（可能頁面改版）")
+        open_shows = {k: v for k, v in shows.items() if v not in TAIPEI_CLOSED}
+        summary = "、".join(f"{k} {v}" for k, v in shows.items())
+        key = json.dumps(open_shows, ensure_ascii=False)
+        if open_shows and key != state.get("taipei_open"):
+            SHOTS.mkdir(exist_ok=True)
+            shot = SHOTS / f"{datetime.now():%Y%m%d-%H%M%S}-taipei.png"
+            page.screenshot(path=str(shot))
+            tg_send(cfg, f"🎫 台北場狀態變了，快去看！\n{summary}\n{TAIPEI_URL}", shot)
+            log(f"台北場有變化：{summary}（已通知）")
+        else:
+            log(f"台北場：{summary}")
+        state["taipei_open"] = key
+        if state.get("taipei_notice") is not None and notice != state["taipei_notice"]:
+            tg_send(cfg, f"📢 台北場「最新公告」更新了：\n{notice[:1500]}\n{TAIPEI_URL}")
+            log("台北場公告更新（已通知）")
+        state["taipei_notice"] = notice
+    finally:
+        page.close()
+
+
+def check_nol(ctx: BrowserContext, cfg: dict, state: dict) -> None:
+    if not cfg.get("baseline"):
+        if not state.get("nol_warned"):
+            log("仁川場還沒有基準畫面（請先執行 `python watch.py setup`），這次先跳過")
+            state["nol_warned"] = True
+        return
+    check_once(ctx, cfg, state)
+
+
+CHECKERS = {"incheon": check_nol, "taipei": check_taipei}
+
+
+def targets_of(args) -> list[str]:
+    return list(CHECKERS) if args.target == "all" else [args.target]
+
+
 def cmd_check(args) -> None:
     cfg = load_config()
     with sync_playwright() as pw:
         ctx = open_context(pw, headless=not args.show)
-        check_once(ctx, cfg, {})
+        for target in targets_of(args):
+            CHECKERS[target](ctx, cfg, {})
         ctx.close()
 
 
 def cmd_run(args) -> None:
     cfg = load_config()
-    if not cfg.get("baseline"):
-        sys.exit("還沒有基準畫面，請先執行 `python watch.py setup`。")
+    targets = targets_of(args)
+    if targets == ["incheon"] and not cfg.get("baseline"):
+        sys.exit("還沒有仁川場的基準畫面，請先執行 `python watch.py setup`。")
     interval = max(MIN_INTERVAL, args.interval)
-    tg_send(cfg, f"▶️ 餘票追蹤開始，每 {interval} 秒左右檢查一次。")
-    state: dict = {}
-    errors = 0
+    names = "、".join({"incheon": "仁川場", "taipei": "台北場"}[t] for t in targets)
+    tg_send(cfg, f"▶️ 餘票追蹤開始（{names}），每 {interval} 秒左右檢查一次。")
+    states: dict[str, dict] = {t: {} for t in targets}
+    errors = {t: 0 for t in targets}
     with sync_playwright() as pw:
         ctx = open_context(pw, headless=not args.show)
         try:
             while True:
-                try:
-                    check_once(ctx, cfg, state)
-                    errors = 0
-                except Exception as e:  # 網路斷線、頁面逾時等
-                    errors += 1
-                    log(f"檢查失敗（第 {errors} 次）：{e}")
-                    if errors == 5:
-                        tg_send(cfg, f"⚠️ 餘票追蹤連續失敗 5 次，最後的錯誤：{str(e)[:300]}")
+                for t in targets:
+                    try:
+                        CHECKERS[t](ctx, cfg, states[t])
+                        errors[t] = 0
+                    except Exception as e:  # 網路斷線、頁面逾時等
+                        errors[t] += 1
+                        log(f"[{t}] 檢查失敗（第 {errors[t]} 次）：{e}")
+                        if errors[t] == 5:
+                            tg_send(cfg, f"⚠️ [{t}] 餘票追蹤連續失敗 5 次，最後的錯誤：{str(e)[:300]}")
                 time.sleep(interval * random.uniform(0.8, 1.2))
         except KeyboardInterrupt:
             log("已停止")
@@ -261,10 +342,13 @@ def main() -> None:
     sub = ap.add_subparsers(dest="cmd", required=True)
     sub.add_parser("telegram", help="設定 Telegram 通知").set_defaults(func=cmd_telegram)
     sub.add_parser("setup", help="登入並記下售完時的基準畫面").set_defaults(func=cmd_setup)
+    target_help = "追蹤哪一場：incheon（仁川）、taipei（台北）、all（兩場都追，預設）"
     c = sub.add_parser("check", help="只檢查一次")
+    c.add_argument("--target", choices=["all", "incheon", "taipei"], default="all", help=target_help)
     c.add_argument("--show", action="store_true", help="顯示瀏覽器視窗")
     c.set_defaults(func=cmd_check)
     r = sub.add_parser("run", help="持續追蹤")
+    r.add_argument("--target", choices=["all", "incheon", "taipei"], default="all", help=target_help)
     r.add_argument("--interval", type=int, default=90, help=f"檢查間隔秒數（最少 {MIN_INTERVAL}）")
     r.add_argument("--show", action="store_true", help="顯示瀏覽器視窗")
     r.set_defaults(func=cmd_run)
