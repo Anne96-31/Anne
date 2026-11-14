@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-14T04:58:04+08:00",
+ "updated": "2026-11-15T03:19:46+08:00",
  "seen": {
   "https://techorange.com/2026/10/10/machinenative-economy": "2026-10-12",
   "https://towardsdatascience.com/agentic-systems-a-practitioners-guide-to-6-advanced-architectural-patterns": "2026-10-12",
@@ -451,6 +451,20 @@
   "https://www.kdnuggets.com/5-free-open-source-alternatives-to-jev": "2026-11-14",
   "https://towardsdatascience.com/how-to-check-local-llm-output-with-ollama-gemma-4-and-nimble": "2026-11-14",
   "https://newsletter.pragmaticengineer.com/p/the-pulse-what-can-we-learn-from-114": "2026-11-14",
-  "https://www.analyticsvidhya.com/blog/2026/11/gemini-4-hydrogen-review": "2026-11-14"
+  "https://www.analyticsvidhya.com/blog/2026/11/gemini-4-hydrogen-review": "2026-11-14",
+  "https://techorange.com/2026/11/14/gartner-trends-for-2027": "2026-11-15",
+  "https://aws.amazon.com/blogs/machine-learning/production-mlops-at-gs-caltex-with-amazon-sagemaker-canvas-part-1": "2026-11-15",
+  "https://techorange.com/2026/11/13/helsing-clarity-palantir-maven-rival": "2026-11-15",
+  "https://towardsdatascience.com/data-from-100-ai-agents-shows-they-fail-by-silent-drift-not-errors": "2026-11-15",
+  "https://techorange.com/2026/11/13/foxconn-humanoid-robotics-leo-kuo": "2026-11-15",
+  "https://towardsdatascience.com/how-to-build-a-markov-chain-in-python-with-numpy": "2026-11-15",
+  "https://aws.amazon.com/blogs/machine-learning/route-coding-agent-requests-to-the-right-model-on-amazon-bedrock-with-nvidia-nemo-switchyard": "2026-11-15",
+  "https://aws.amazon.com/blogs/machine-learning/four-amazon-bedrock-inference-choices-that-affect-cost": "2026-11-15",
+  "https://techorange.com/2026/11/13/nvidia-after-jensen-huang-governance-export-controls": "2026-11-15",
+  "https://aws.amazon.com/blogs/machine-learning/how-natera-designed-an-agentic-ai-system-for-lab-ops-with-amazon-bedrock-agentcore": "2026-11-15",
+  "https://engineering.fb.com/2026/11/13/android/cuttlefish-on-mac": "2026-11-15",
+  "https://huggingface.co/blog/nvidia/simready-assets-robot-pick-and-place": "2026-11-15",
+  "https://simonwillison.net/2026/Nov/13/datasette-cluster-map": "2026-11-15",
+  "https://simonwillison.net/2026/Nov/13/datasette-leaflet": "2026-11-15"
  }
 }
