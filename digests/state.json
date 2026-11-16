@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-16T03:53:03+08:00",
+ "updated": "2026-11-17T07:28:11+08:00",
  "seen": {
   "https://techorange.com/2026/10/10/machinenative-economy": "2026-10-12",
   "https://towardsdatascience.com/agentic-systems-a-practitioners-guide-to-6-advanced-architectural-patterns": "2026-10-12",
@@ -474,6 +474,20 @@
   "https://aws.amazon.com/blogs/machine-learning/openfold3-on-amazon-sagemaker-jumpstart-predict-biomolecular-structures": "2026-11-16",
   "https://simonwillison.net/2026/Nov/14/datasette-vega": "2026-11-16",
   "https://blog.cloudflare.com/kitesurf-open-source": "2026-11-16",
-  "https://research.google/blog/advancing-science-engineering-with-antigravitys-teamwork-feature": "2026-11-16"
+  "https://research.google/blog/advancing-science-engineering-with-antigravitys-teamwork-feature": "2026-11-16",
+  "https://arxiv.org/abs/2611.17790": "2026-11-17",
+  "https://aws.amazon.com/blogs/machine-learning/taxonomy-of-multi-agent-design-patterns-anti-patterns-and-lessons-from-manufacturing": "2026-11-17",
+  "https://medium.com/pinterest-engineering/rebuilding-guardian-how-pinterest-upgraded-its-real-time-abuse-platform-to-modern-infrastructure-56e45ee8f471": "2026-11-17",
+  "https://aws.amazon.com/blogs/machine-learning/use-prompt-caching-with-open-weight-models-on-amazon-bedrock": "2026-11-17",
+  "https://www.kdnuggets.com/agentic-system-design-a-self-study-roadmap": "2026-11-17",
+  "https://www.databricks.com/blog/teach-genie-one-your-workflows-ultimate-guide-skills-genie-one": "2026-11-17",
+  "https://techorange.com/2026/11/16/robbyant-lingbot-touch-tactile-foundation-model": "2026-11-17",
+  "https://aws.amazon.com/blogs/machine-learning/how-moengage-built-agentic-customer-engagement-on-amazon-bedrock-agentcore": "2026-11-17",
+  "https://techorange.com/2026/11/16/openai-chatgpt-wallet-ai-agent": "2026-11-17",
+  "https://techorange.com/2026/11/16/context-is-the-competitive-advantage": "2026-11-17",
+  "https://towardsdatascience.com/local-llms-handle-textbook-rag-but-fail-on-new-research-papers": "2026-11-17",
+  "https://www.analyticsvidhya.com/blog/2026/11/product-launch-videos-with-claude-opus-5-5": "2026-11-17",
+  "https://www.kdnuggets.com/how-to-give-claude-code-up-to-date-documentation-with-context7": "2026-11-17",
+  "https://towardsdatascience.com/why-human-in-the-loop-ai-oversight-fails-and-how-to-fix-it": "2026-11-17"
  }
 }
