@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-17T07:28:11+08:00",
+ "updated": "2026-11-18T06:31:26+08:00",
  "seen": {
   "https://techorange.com/2026/10/10/machinenative-economy": "2026-10-12",
   "https://towardsdatascience.com/agentic-systems-a-practitioners-guide-to-6-advanced-architectural-patterns": "2026-10-12",
@@ -488,6 +488,20 @@
   "https://towardsdatascience.com/local-llms-handle-textbook-rag-but-fail-on-new-research-papers": "2026-11-17",
   "https://www.analyticsvidhya.com/blog/2026/11/product-launch-videos-with-claude-opus-5-5": "2026-11-17",
   "https://www.kdnuggets.com/how-to-give-claude-code-up-to-date-documentation-with-context7": "2026-11-17",
-  "https://towardsdatascience.com/why-human-in-the-loop-ai-oversight-fails-and-how-to-fix-it": "2026-11-17"
+  "https://towardsdatascience.com/why-human-in-the-loop-ai-oversight-fails-and-how-to-fix-it": "2026-11-17",
+  "https://towardsdatascience.com/how-to-design-mcp-servers-that-leave-orchestration-to-the-host": "2026-11-18",
+  "https://towardsdatascience.com/how-to-govern-coding-agent-skills-across-repos-with-plugins": "2026-11-18",
+  "https://techorange.com/2026/11/17/us-curbs-remote-access-ai-chips": "2026-11-18",
+  "https://techorange.com/2026/11/17/tpisoftware-ai-first-workflow": "2026-11-18",
+  "https://aws.amazon.com/blogs/machine-learning/responsible-ai-for-agentic-ai-a-phased-roadmap-for-platform-and-application-teams": "2026-11-18",
+  "https://aws.amazon.com/blogs/machine-learning/secure-oauth-patterns-for-snowflake-cortex-ai-through-amazon-bedrock-agentcore": "2026-11-18",
+  "https://www.kdnuggets.com/how-to-calibrate-your-classifiers-probabilities-in-scikit-learn": "2026-11-18",
+  "https://techorange.com/2026/11/17/ai-agent-like-a-new-hire": "2026-11-18",
+  "https://techorange.com/2026/11/17/threat-intelligence-agentic-threat-activity-crosses-significant": "2026-11-18",
+  "https://aws.amazon.com/blogs/machine-learning/amazon-sagemaker-ai-real-time-endpoints-now-support-kv-cache-aware-routing": "2026-11-18",
+  "https://aws.amazon.com/blogs/machine-learning/how-loanpro-built-an-agentic-ai-loan-servicing-assistant-with-amazon-bedrock-agentcore": "2026-11-18",
+  "https://newsletter.pragmaticengineer.com/p/inference-engineering-for-software-engineers": "2026-11-18",
+  "https://www.databricks.com/blog/advancing-catalog-interoperability-unity-catalog-and-google-clouds-borderless-lakehouse": "2026-11-18",
+  "https://www.kdnuggets.com/7-best-ai-coding-plans-for-10-or-less-in-2026": "2026-11-18"
  }
 }
