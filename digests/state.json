@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-18T06:31:26+08:00",
+ "updated": "2026-11-19T06:11:32+08:00",
  "seen": {
   "https://techorange.com/2026/10/10/machinenative-economy": "2026-10-12",
   "https://towardsdatascience.com/agentic-systems-a-practitioners-guide-to-6-advanced-architectural-patterns": "2026-10-12",
@@ -502,6 +502,20 @@
   "https://aws.amazon.com/blogs/machine-learning/how-loanpro-built-an-agentic-ai-loan-servicing-assistant-with-amazon-bedrock-agentcore": "2026-11-18",
   "https://newsletter.pragmaticengineer.com/p/inference-engineering-for-software-engineers": "2026-11-18",
   "https://www.databricks.com/blog/advancing-catalog-interoperability-unity-catalog-and-google-clouds-borderless-lakehouse": "2026-11-18",
-  "https://www.kdnuggets.com/7-best-ai-coding-plans-for-10-or-less-in-2026": "2026-11-18"
+  "https://www.kdnuggets.com/7-best-ai-coding-plans-for-10-or-less-in-2026": "2026-11-18",
+  "https://arxiv.org/abs/2611.22248": "2026-11-19",
+  "https://techorange.com/2026/11/18/dell-ai-advisory-workshop": "2026-11-19",
+  "https://techorange.com/2026/11/18/microsoft-ignite-2026-building-frontier-ecosystem": "2026-11-19",
+  "https://techorange.com/2026/11/18/personal-agents": "2026-11-19",
+  "https://aws.amazon.com/blogs/machine-learning/managed-nvidia-dynamo-on-amazon-sagemaker-hyperpod-inference": "2026-11-19",
+  "https://aws.amazon.com/blogs/machine-learning/how-salesforce-is-advancing-global-scale-model-serving-with-cross-region-inference-routing-in-amazon-sagemaker-ai": "2026-11-19",
+  "https://engineering.fb.com/2026/11/18/ml-applications/design-once-deploy-at-scale-template-driven-ml-ecosystem": "2026-11-19",
+  "https://huggingface.co/blog/Dharma-AI/predicting-fine-tuning-time": "2026-11-19",
+  "https://towardsdatascience.com/how-to-improve-coding-agent-efficiency-by-30-with-an-orchestrator": "2026-11-19",
+  "https://aws.amazon.com/blogs/machine-learning/how-stretto-built-an-ai-voice-agent-with-amazon-nova-2-sonic": "2026-11-19",
+  "https://towardsdatascience.com/google-adk-agents-that-pause-resume-and-wait-hours-for-a-human": "2026-11-19",
+  "https://www.analyticsvidhya.com/blog/2026/11/connect-demat-account-claude-stocks": "2026-11-19",
+  "https://www.kdnuggets.com/introducing-gemini-decision-1-a-model-that-picks-answers-instead-of-writing-them": "2026-11-19",
+  "https://www.kdnuggets.com/jagged-intelligence-why-ai-is-brilliant-one-minute-and-clueless-the-next": "2026-11-19"
  }
 }
