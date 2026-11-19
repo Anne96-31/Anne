@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-19T06:11:32+08:00",
+ "updated": "2026-11-20T06:20:41+08:00",
  "seen": {
   "https://techorange.com/2026/10/10/machinenative-economy": "2026-10-12",
   "https://towardsdatascience.com/agentic-systems-a-practitioners-guide-to-6-advanced-architectural-patterns": "2026-10-12",
@@ -516,6 +516,20 @@
   "https://towardsdatascience.com/google-adk-agents-that-pause-resume-and-wait-hours-for-a-human": "2026-11-19",
   "https://www.analyticsvidhya.com/blog/2026/11/connect-demat-account-claude-stocks": "2026-11-19",
   "https://www.kdnuggets.com/introducing-gemini-decision-1-a-model-that-picks-answers-instead-of-writing-them": "2026-11-19",
-  "https://www.kdnuggets.com/jagged-intelligence-why-ai-is-brilliant-one-minute-and-clueless-the-next": "2026-11-19"
+  "https://www.kdnuggets.com/jagged-intelligence-why-ai-is-brilliant-one-minute-and-clueless-the-next": "2026-11-19",
+  "https://aws.amazon.com/blogs/machine-learning/exa-boosts-embedding-throughput-by-50-to-index-billions-of-documents-on-aws-ai-chips": "2026-11-20",
+  "https://aws.amazon.com/blogs/machine-learning/amazon-sagemaker-ai-now-detects-latency-drift-idle-gpus-and-missed-optimizations-on-your-inference-endpoints": "2026-11-20",
+  "https://arxiv.org/abs/2605.07384": "2026-11-20",
+  "https://techorange.com/2026/11/19/toyota-humanoid-robot-race": "2026-11-20",
+  "https://techorange.com/2026/11/19/ai-agent-autonomous-payments": "2026-11-20",
+  "https://techorange.com/2026/11/19/ai-agents-shopping-airbnb-the-realreal": "2026-11-20",
+  "https://towardsdatascience.com/how-to-oversee-ai-agents-at-scale-with-a-three-tier-architecture": "2026-11-20",
+  "https://www.kdnuggets.com/what-i-learned-from-kaggle-googles-free-agentic-ai-course": "2026-11-20",
+  "https://www.kdnuggets.com/one-table-many-engines-running-bigquery-spark-and-trino-on-a-single-iceberg-copy": "2026-11-20",
+  "https://www.databricks.com/blog/genie-zeroops-now-public-beta-autonomous-agent-fixes-data-pipelines-lessons-80000-customer": "2026-11-20",
+  "https://aws.amazon.com/blogs/machine-learning/using-nvidia-runai-gpu-fractioning-on-amazon-eks": "2026-11-20",
+  "https://aws.amazon.com/blogs/machine-learning/from-learning-to-leaderboard-how-cisco-upskilled-1200-engineers-in-agentic-ai-with-aws-ai-league": "2026-11-20",
+  "https://towardsdatascience.com/neurosymbolic-agents-explained-with-a-z3-example-in-python": "2026-11-20",
+  "https://www.analyticsvidhya.com/blog/2026/11/gemini-4-neon-review": "2026-11-20"
  }
 }
