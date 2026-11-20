@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-20T06:20:41+08:00",
+ "updated": "2026-11-21T05:54:39+08:00",
  "seen": {
   "https://techorange.com/2026/10/10/machinenative-economy": "2026-10-12",
   "https://towardsdatascience.com/agentic-systems-a-practitioners-guide-to-6-advanced-architectural-patterns": "2026-10-12",
@@ -530,6 +530,20 @@
   "https://aws.amazon.com/blogs/machine-learning/using-nvidia-runai-gpu-fractioning-on-amazon-eks": "2026-11-20",
   "https://aws.amazon.com/blogs/machine-learning/from-learning-to-leaderboard-how-cisco-upskilled-1200-engineers-in-agentic-ai-with-aws-ai-league": "2026-11-20",
   "https://towardsdatascience.com/neurosymbolic-agents-explained-with-a-z3-example-in-python": "2026-11-20",
-  "https://www.analyticsvidhya.com/blog/2026/11/gemini-4-neon-review": "2026-11-20"
+  "https://www.analyticsvidhya.com/blog/2026/11/gemini-4-neon-review": "2026-11-20",
+  "https://techorange.com/2026/11/20/openai-amd-chip-design": "2026-11-21",
+  "https://arxiv.org/abs/2609.30059": "2026-11-21",
+  "https://techorange.com/2026/11/20/target-walmart-q3-ai-strategy": "2026-11-21",
+  "https://techorange.com/2026/11/20/nexcom-robowiz-physicalai": "2026-11-21",
+  "https://aws.amazon.com/blogs/machine-learning/introducing-enhanced-observability-in-amazon-sagemaker-hyperpod-to-diagnose-gpu-training-issues": "2026-11-21",
+  "https://aws.amazon.com/blogs/machine-learning/amazon-sagemaker-inference-2026-launches-in-review-part-2": "2026-11-21",
+  "https://www.kdnuggets.com/open-source-vs-proprietary-llms-a-decision-framework-for-2026": "2026-11-21",
+  "https://towardsdatascience.com/how-to-prepare-for-a-credit-risk-internship-interview-in-nine-steps": "2026-11-21",
+  "https://aws.amazon.com/blogs/machine-learning/use-kimi-code-cli-with-models-on-amazon-bedrock": "2026-11-21",
+  "https://towardsdatascience.com/five-guardrails-that-limit-the-damage-an-ai-agent-can-do": "2026-11-21",
+  "https://aws.amazon.com/blogs/machine-learning/protect-agent-tool-calls-with-skyflow-and-amazon-bedrock-agentcore-gateway": "2026-11-21",
+  "https://openai.com/index/combatting-adversarial-distillation": "2026-11-21",
+  "https://www.kdnuggets.com/decision-ai-explained-in-5-minutes": "2026-11-21",
+  "https://www.analyticsvidhya.com/blog/2026/11/gpt-6-2-astra-sol-review": "2026-11-21"
  }
 }
