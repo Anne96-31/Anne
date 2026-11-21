@@ -1,155 +1,155 @@
-# AI & Data 每日摘要 2026-11-21（六）
+# AI & Data 每日摘要 2026-11-22（日）
 
-> 今天這批文章共同指向三個訊號：第一，Agent 已從「能不能跑」進入「怎麼安全地跑」——TDS 的五道 guardrail、AWS 的 AgentCore Gateway + Skyflow 去識別化，都在談工具呼叫的權限、資料外洩與步數上限，這正是 DE 背景最容易建立差異化的地帶。第二，推論與基礎設施的工程化持續加深：SageMaker Inference 2026 全年 26 項更新、HyperPod 的 GPU/網路/主機層可觀測性，等同把 DE 熟悉的 pipeline 監控語彙搬到 GPU workload 上。第三，模型選型與成本意識成為日常決策：開源 vs 商用 LLM 決策框架、GPT-6.2 雙模型分流、甚至 OpenAI 用模型重寫 RTL 幫 AMD 提升 14% PPA，都說明「選對模型/選對算力」本身就是工程能力。建議今天把重心放在 Agent guardrails 與模型選型框架，這兩項最快轉化成作品集。
+> 今天這批文章的共同訊號是「AI 系統的成本、可靠度與驗證機制，已經取代模型本身成為工程重點」。推論端出現 KV cache 重用、跨區域 inference gateway、信心分數分流（小模型先接、不確定才轉大模型）等成本/延遲優化手法；品質端則看到 Google Chrome 用合成網路沙箱大規模測試 web agent、Uber 用 AI 代理＋傳統工具＋CI 多層把關清技術債，兩者都在示範「agent 不能全自動，要有可驗證的管線」。資本面 Anthropic 千億級 IPO 與近 90 億美元算力支出，再度說明企業端的選型重點會是成本結構與平台依賴風險。對 DE 轉 AI Engineer 來說，這些剛好都是你既有的 pipeline／可觀測性／成本治理技能可以直接平移的戰場。
 
-## 🔥 今日必讀（4）
+## 🔥 今日必讀（5）
 
 *直接補上你轉職缺的能力*
 
-### [SageMaker HyperPod 強化基礎設施可觀測性](https://aws.amazon.com/blogs/machine-learning/introducing-enhanced-observability-in-amazon-sagemaker-hyperpod-to-diagnose-gpu-training-issues/)
-*AWS Machine Learning Blog · 2026-11-20 · 相關度 10.58 · 必讀*
+### [用分散式 KV cache 降低自架 LLM 的成本與延遲](https://aws.amazon.com/blogs/machine-learning/cut-self-hosted-llm-cost-and-latency-with-the-distributed-kv-caching-agent-skill/)
+*AWS Machine Learning Blog · 2026-11-21 · 相關度 17.01 · 必讀*
 
-- **內容**：HyperPod 新增診斷與 profiling 能力，支援 EKS 與 Slurm，能跨 GPU、網路、主機層定位訓練問題。
-- **對你的意義**：你在 Spark/Airflow 累積的故障排查與監控直覺可平移到 GPU 訓練叢集，這是 DE 進入 AI infra/LLMOps 最短的一條路。
-- **今天可以做**：寫一張對照表：Airflow task 失敗排查的三個步驟，分別對應 GPU 訓練中的哪一層（GPU/網路/主機）指標。
-- **原文標題**：Introducing enhanced infrastructure observability in Amazon SageMaker HyperPod
-- `#LLMOps` `#可觀測性` `#AWS` `#訓練基礎設施`
+- **內容**：自架 LLM 每輪對話都重算相同 context，透過 ElastiCache 做分散式 KV caching，官方宣稱可降低最多 40% 推論成本、80% TTFT。
+- **對你的意義**：AI Engineer 面試最常被問「你怎麼降成本」，而 KV cache 是 DE 熟悉的快取／資料重用思維在推論層的直接延伸，是你最容易建立差異化的切入點。
+- **今天可以做**：花 15 分鐘讀懂 KV cache 是什麼（prefill vs decode），並寫下「哪些 RAG 場景的 prefix 可以被重用」的三個例子。
+- **原文標題**：Cut self-hosted LLM cost and latency with the distributed KV caching agent skill
+- `#inference` `#cost-optimization` `#KV-cache` `#AWS`
 
-### [開源 vs 商用 LLM：2026 決策框架](https://www.kdnuggets.com/open-source-vs-proprietary-llms-a-decision-framework-for-2026)
-*KDnuggets · 2026-11-20 · 相關度 9.51 · 必讀*
+### [Chrome 以合成網路沙箱安全測試 AI 瀏覽代理](https://techorange.com/2026/11/20/chrome-mirror-dimension-ai-agent-security/?utm_source=rss&utm_medium=feed&utm_campaign=techorange_rss)
+*TechOrange 科技報橘 · 2026-11-20 · 相關度 9.57 · 必讀*
 
-- **內容**：以四個關鍵問題構成的實務指南，協助判斷該選 open-weight 還是商用 API 模型。
-- **對你的意義**：模型選型是 AI Engineer 面試與實務最常被問的判斷題，DE 轉職者容易只談技術不談成本/合規/延遲 trade-off，這篇補上決策語言。
-- **今天可以做**：讀完後用這四個問題替你的 side project 做一次選型評分，並把結論寫成三行理由。
-- **原文標題**：Open Source vs. Proprietary LLMs: A Decision Framework for 2026
-- `#模型選型` `#開源LLM` `#決策框架`
+- **內容**：Google Chrome 建了名為 Mirror Dimension 的封閉合成網路，內含數千個模擬網站，讓 web-use agent 能在零現實風險下做大規模安全與可靠性測試。
+- **對你的意義**：這是 agent 評估環境工程的頂級案例：你要從「資料管線測試」進化到「agent 行為測試」，必須理解為何需要可控、可重放的沙箱而非真實環境。
+- **今天可以做**：寫一段筆記比較「合成沙箱測試 agent」與你做過的 data pipeline staging/測試資料集，列出兩者相同與不同的三個點。
+- **原文標題**：Google Chrome 打造「鏡像維度」合成網路，以 30 倍效率安全測試 AI 瀏覽代理
+- `#agent` `#evaluation` `#safety` `#sandbox`
 
-### [限制 AI Agent 破壞力的五道護欄](https://towardsdatascience.com/five-guardrails-that-limit-the-damage-an-ai-agent-can-do/)
-*Towards Data Science · 2026-11-20 · 相關度 8.2 · 必讀*
+### [Uber 清技術債：AI 代理與傳統工具分工把關](https://techorange.com/2026/11/20/using-ai-delete-code-agentic-tech-debt-cleanup/?utm_source=rss&utm_medium=feed&utm_campaign=techorange_rss)
+*TechOrange 科技報橘 · 2026-11-20 · 相關度 8.77 · 必讀*
 
-- **內容**：以 Pydantic 嚴格參數、tool allowlist、唯讀 SQLite、步數上限與寫入需確認五道護欄，並用五個 pytest 在 0.68 秒內驗證。
-- **對你的意義**：直接補上 DE 轉 AI Engineer 最關鍵的落差：把 agent 當成受控的生產系統來設計與測試，而且用的是你熟悉的 SQL 與單元測試語彙。
-- **今天可以做**：今天照著實作一個最小 agent，至少完成 tool allowlist 與 step cap 兩道護欄，並寫一個 pytest 驗證越權行為被擋下。
-- **原文標題**：Five Guardrails That Limit the Damage an AI Agent Can Do
-- `#Agent` `#Guardrails` `#測試` `#Pydantic`
+- **內容**：Uber 的 AutoClean 用 AI 代理判斷影響範圍、傳統程式碼轉換工具做精確改寫，再經 CI、靜態檢查與多個審查代理層層驗證，已清理超過 1.6 萬個 feature flag、逾 100 萬行程式碼。
+- **對你的意義**：這是「agent 不是全自動，而是放在可驗證管線中的一個節點」的最佳實戰範本，正好對應 DE 擅長的 orchestration 與驗證思維，是你設計 agent 系統的架構藍圖。
+- **今天可以做**：畫一張 AutoClean 的流程圖（AI 判斷 → 確定性工具改寫 → CI/靜態檢查 → 審查 agent → 人工決策），並標註哪一層對應你現有 Airflow DAG 的哪個環節。
+- **原文標題**：Uber 清技術債，為何不全交給 AI 代理？拆解傳統工具、審查代理如何層層把關
+- `#agent` `#system-design` `#code-automation` `#Uber`
 
-### [用 Skyflow 與 Bedrock AgentCore Gateway 保護工具呼叫](https://aws.amazon.com/blogs/machine-learning/protect-agent-tool-calls-with-skyflow-and-amazon-bedrock-agentcore-gateway/)
-*AWS Machine Learning Blog · 2026-11-19 · 相關度 8.16 · 必讀*
+### [Amazon Textract Insights：可驗證的文件生成式 AI](https://aws.amazon.com/blogs/machine-learning/announcing-amazon-textract-insights-verifiable-generative-ai-for-documents/)
+*AWS Machine Learning Blog · 2026-11-20 · 相關度 5.99 · 必讀*
 
-- **內容**：將 Skyflow 作為 gateway interceptor，在任何工具、模型或 log 看到資料前先去識別化，並對授權呼叫者還原，且不需改動 agent 程式碼。
-- **對你的意義**：PII 治理原本就是 DE 的強項，這篇讓你知道該把去識別化放在 agent 架構的哪一層，是能直接講給面試官聽的系統設計觀點。
-- **今天可以做**：畫一張三層架構圖（agent → gateway/interceptor → tool），標註 PII 在哪一步被遮蔽、哪一步被還原。
-- **原文標題**：Protect agent tool calls with Skyflow and Amazon Bedrock AgentCore Gateway
-- `#Agent安全` `#PII` `#資料治理` `#AWS`
+- **內容**：用自然語言描述要抽取的欄位，丟入文件即可得到結構化結果，每個值附帶信心分數與頁面層級的 grounding，且不需訓練模型。
+- **對你的意義**：文件結構化抽取是 DE 最容易接手的 LLM 應用場景，而「confidence + grounding」正是你要內化的輸出可驗證設計模式。
+- **今天可以做**：挑一份自家 PDF，用任一 LLM 設計一個「輸出欄位值＋信心分數＋出處頁碼」的 prompt，實測 10 分鐘。
+- **原文標題**：Announcing Amazon Textract Insights: Verifiable generative AI for documents
+- `#document-AI` `#structured-extraction` `#grounding` `#AWS`
 
-## 👀 值得快速瀏覽（6）
+### [用信心分數讓小模型處理 72.8% 問題仍達 98% 準確](https://towardsdatascience.com/clairic-hit-98-accuracy-on-728-of-questions-via-confidence-scores/)
+*Towards Data Science · 2026-11-20 · 相關度 4.77 · 必讀*
+
+- **內容**：Cloudflare 的 System One 模型以 0.9 信心門檻處理簡單案例，其餘路由給更大更慢的 LLM。
+- **對你的意義**：模型路由（model routing／cascade）是降低 LLM 成本最務實的架構手法，也是你能用 DE 的分流與門檻設計直接貢獻的地方。
+- **今天可以做**：用 2~3 個模型寫一個 20 行的 router 偽碼：低信心才升級到大模型，並估算成本節省比例。
+- **原文標題**：Clairic Hit 98% Accuracy on 72.8% of Questions via Confidence Scores
+- `#model-routing` `#cost-optimization` `#confidence-score` `#evaluation`
+
+## 👀 值得快速瀏覽（5）
 
 *掃過標題與重點即可*
 
-### [OpenAI 用 AI 重寫 RTL，助 AMD PPA 提升 14%](https://techorange.com/2026/11/20/openai-amd-chip-design/?utm_source=rss&utm_medium=feed&utm_campaign=techorange_rss)
-*TechOrange 科技報橘 · 2026-11-20 · 相關度 17.61 · 快速瀏覽*
+### [用 Claude Code 學供應鏈分析](https://towardsdatascience.com/how-to-learn-supply-chain-analytics-in-2027-with-claude-code/)
+*Towards Data Science · 2026-11-21 · 相關度 9.94 · 快速瀏覽*
 
-- **內容**：OpenAI 發布技術報告，指其前沿模型能推理 SystemVerilog RTL 並優化晶片的功耗、效能與面積，已在 AMD 旗艦 GPU IP 上取得最高 14% 指標提升。
-- **對你的意義**：這是「LLM 深入高度專業領域並直接操作工具鏈（EDA）」的指標案例，與你未來要做的 domain-specific agent 同構：領域知識 + 工具呼叫 + 迭代驗證迴圈。
-- **今天可以做**：花 10 分鐘把這篇的運作模式抽象成一張流程圖：模型 → 呼叫工具 → 讀取量化指標 → 迭代，再對照你自己的資料品質檢查流程想一個可 agent 化的點。
-- **原文標題**：旗艦 GPU 還能再升級？OpenAI 用 AI 重寫 RTL 電路，助 AMD PPA 最高再提升 14%
-- `#Agent` `#晶片設計` `#產業動態`
+- **內容**：以 5 分鐘一則的案例形式，結合營運情境、問題陳述與有註解的程式碼，讓資料科學家與非工程背景的規劃人員一起學。摘要資訊有限。
+- **對你的意義**：示範「用 coding agent 當領域學習工具」的工作流，對要快速補 domain knowledge 的轉職者是可複製的學習方法。
+- **今天可以做**：挑一個你不熟的業務領域，用 Claude Code 或 ChatGPT 要求它產出一則 5 分鐘案例＋可執行程式碼，體驗這種學習節奏。
+- **原文標題**：How to Learn Supply Chain Analytics in 2027 with Claude Code
+- `#learning-method` `#coding-agent` `#analytics`
 
-### [KernelOPT：以 profiling 導引的 GPU Kernel 優化多代理系統](https://arxiv.org/abs/2609.30059)
-*arXiv cs.LG (Machine Learning) · 2026-11-20 · 相關度 14.9 · 快速瀏覽*
+### [Anthropic 813 億美元 IPO，AI 競爭轉向算力與資本](https://techorange.com/2026/11/20/anthropic-record-ipo-ai-compute-competition/?utm_source=rss&utm_medium=feed&utm_campaign=techorange_rss)
+*TechOrange 科技報橘 · 2026-11-19 · 相關度 7.57 · 快速瀏覽*
 
-- **內容**：提出 KernelOPT，用 profiling 結果引導的 multi-agent 系統檢視 Triton kernel 與編譯產物，解決「單一 kernel 改善無法轉化為模型層效能」的問題。
-- **對你的意義**：示範了「用真實量測數據當 agent 的 feedback signal」的設計模式，這比純靠 LLM 自評可靠得多，是你做 agent 評估迴圈時可直接借用的架構思路。
-- **今天可以做**：讀 abstract 與方法章節圖，寫下 100 字筆記回答：它的 agent 用什麼訊號決定下一步？能否換成你 pipeline 的 query profiling 數據？
-- **原文標題**：KernelOPT: Dispatch-Aware Agentic Search for GPU Kernel Optimization
-- `#Multi-Agent` `#GPU` `#效能優化` `#論文`
+- **內容**：Anthropic 以約 1.5 兆美元估值完成創紀錄 IPO，2026 上半年算力與基礎設施支出近 90 億美元、約為去年同期 4 倍。
+- **對你的意義**：提醒你企業選 AI 供應商時要評估服務成本、交付能力與平台依賴風險——這正是 AI Engineer 在架構決策會議上被期待提出的判斷。
+- **今天可以做**：花 5 分鐘列出你若要為公司選 LLM 供應商的 5 項評估指標（成本、延遲、資料落地、可替換性、SLA）。
+- **原文標題**：【科技早餐】Anthropic 813 億美元 IPO 創紀錄！AI 模型競爭轉向算力與資本
+- `#industry` `#market` `#vendor-selection`
 
-### [Target、Walmart Q3 財報秀 AI：九成品項 AI 補貨、布局 AI 代理購物](https://techorange.com/2026/11/20/target-walmart-q3-ai-strategy/?utm_source=rss&utm_medium=feed&utm_campaign=techorange_rss)
-*TechOrange 科技報橘 · 2026-11-20 · 相關度 13.57 · 快速瀏覽*
+### [SageMaker HyperPod 全球推論閘道：單一跨區端點](https://aws.amazon.com/blogs/machine-learning/introducing-amazon-sagemaker-hyperpod-global-inference-gateway-one-endpoint-across-regions-and-clusters/)
+*AWS Machine Learning Blog · 2026-11-20 · 相關度 7.0 · 快速瀏覽*
 
-- **內容**：Target 將 AI 補貨覆蓋率從 40% 拉到逾 90% 品項並用數位孿生 Proxima 預演物流；Walmart 則為「消費者派 AI 代理來購物」的代理商務鋪路。
-- **對你的意義**：這是 DE 能力直接變現的場景：AI 補貨與數位孿生底層全是資料管線與特徵工程，而「服務 AI agent 的商務介面」預告了未來 API/資料產品要同時給人與 agent 用。
-- **今天可以做**：用 10 分鐘列出：若要支撐「AI agent 來查庫存並下單」，你會提供哪三個工具型 API 與其輸入輸出 schema。
-- **原文標題**：美國零售雙雄 Q3 財報秀 AI 實力：Target 逾九成品項導入 AI 補貨，Walmart 為「自帶 AI 代理」鋪路
-- `#零售AI` `#Agentic Commerce` `#資料平台`
+- **內容**：Global Inference Gateway 提供單一託管端點，可跨區域與叢集路由推論請求、自動 failover，並以 SigV4／IAM 搭配 PrivateLink 驗證每個請求。
+- **對你的意義**：推論服務的高可用與路由設計是 AI Engineer 上線維運的核心課題，概念上等同你熟悉的資料服務負載平衡與容錯，可快速平移。
+- **今天可以做**：寫下三個你會為 LLM 端點設計的 failover 條件（延遲超標、429、區域故障）與對應處理策略。
+- **原文標題**：Introducing Amazon SageMaker HyperPod Global Inference Gateway: One endpoint across Regions and clusters
+- `#inference` `#deployment` `#high-availability` `#AWS`
 
-### [在 Amazon Bedrock 上使用 Kimi Code CLI](https://aws.amazon.com/blogs/machine-learning/use-kimi-code-cli-with-models-on-amazon-bedrock/)
-*AWS Machine Learning Blog · 2026-11-20 · 相關度 8.38 · 快速瀏覽*
+### [LightGBM 對決四週平均：單車租借預測實驗](https://towardsdatascience.com/lightgbm-vs-a-four-week-average-for-forecasting-bike-share-rentals/)
+*Towards Data Science · 2026-11-20 · 相關度 5.88 · 快速瀏覽*
 
-- **內容**：Kimi Code CLI v2.7.0 新增原生 Bedrock provider，可直接用 AWS 憑證鏈（named profile 或 SSO）連接 Kimi K3.1 Pro 等模型，不需另外的 API key。
-- **對你的意義**：示範 coding agent 如何接進企業既有的身分與憑證體系，這正是你把 agent 從 demo 推上企業環境時會踩到的第一道關卡。
-- **今天可以做**：花 10 分鐘讀設定章節，記錄「憑證管理」在 agent 架構中該放哪一層，並對照你目前存放 API key 的方式是否安全。
-- **原文標題**：Use Kimi Code CLI with models on Amazon Bedrock
-- `#Coding Agent` `#Bedrock` `#憑證管理`
+- **內容**：用 Capital Bikeshare 48 小時預測任務，讓 XGBoost、Ridge、SARIMA、Prophet 與簡單 baseline 對打，並特別處理缺漏時段與 leakage。
+- **對你的意義**：核心是「先建 baseline、嚴防 leakage」的評估紀律，這套紀律搬到 RAG/Agent 評估就是你最缺的 eval 能力。
+- **今天可以做**：為你手上任一 LLM 任務寫下一個最笨的 baseline（例如直接關鍵字檢索），作為之後評估的對照組。
+- **原文標題**：LightGBM vs. a Four-Week Average for Forecasting Bike-Share Rentals
+- `#evaluation` `#baseline` `#forecasting` `#data-leakage`
 
-### [五分鐘搞懂 Decision AI](https://www.kdnuggets.com/decision-ai-explained-in-5-minutes)
-*KDnuggets · 2026-11-20 · 相關度 6.54 · 快速瀏覽*
+### [引述 Levent Alpöge：與 Claude 合作的數學證明宣稱](https://simonwillison.net/2026/Nov/20/levent-alpoge/)
+*Simon Willison's Weblog · 2026-11-20 · 相關度 4.94 · 快速瀏覽*
 
-- **內容**：介紹 decision model 的運作方式、如何把 LLM 轉成更快的決策系統，以及如何在本地跑開源替代方案。
-- **對你的意義**：幫你區分「生成任務」與「決策任務」的設計差異，在做 agent routing 或分類節點時，知道何時不該用大模型硬扛。
-- **今天可以做**：讀完後在筆記寫下：你的 pipeline 中有哪一個規則引擎環節，可改用 decision model 做試驗。
-- **原文標題**：Decision AI Explained in 5 Minutes
-- `#Decision AI` `#本地模型` `#系統設計`
-
-### [GPT-6.2 Astra 與 Sol 實測評比](https://www.analyticsvidhya.com/blog/2026/11/gpt-6-2-astra-sol-review/)
-*Analytics Vidhya · 2026-11-20 · 相關度 5.76 · 快速瀏覽*
-
-- **內容**：OpenAI 推出雙模型選項：Sol 面向日常程式與寫作、Astra 面向高要求專業任務，文章實測比較兩者功能、取用方式與定價。
-- **對你的意義**：同一家族的大小模型分流是實務上控制成本的常見手法，可參考它的能力邊界來設計自己系統的 model routing 策略。
-- **今天可以做**：掃過定價與能力比較表，寫下一條判斷規則：什麼樣的請求該路由到便宜模型、什麼該升級。
-- **原文標題**：GPT-6.2 Astra and Sol: A Hands-On Performance Review
-- `#模型評測` `#Model Routing` `#成本`
+- **內容**：一位數學家宣稱與 Claude 合作得出 Riemann 假設的證明並形式化論證；Simon Willison 僅引述其說法。摘要資訊有限，未見第三方驗證。
+- **對你的意義**：提醒你在 AI 成果宣稱上要保持驗證意識——這正是 AI Engineer 做模型評估時最該有的職業習慣。
+- **今天可以做**：花 3 分鐘讀完引文，寫下一句你評估任何「AI 達成 X」宣稱時會先問的驗證問題。
+- **原文標題**：Quoting Levent Alpöge
+- `#AI-claims` `#verification` `#commentary`
 
 ## 🗂️ 存起來參考（4）
 
 *之後需要時再回頭看*
 
-### [新漢 RoboWIZ AI 機器人開放平台擴大招募生態夥伴](https://techorange.com/2026/11/20/nexcom-robowiz-physicalai/?utm_source=rss&utm_medium=feed&utm_campaign=techorange_rss)
-*TechOrange 科技報橘 · 2026-11-20 · 相關度 13.01 · 存參考*
+### [SageMaker HyperPod Slurm 推出託管叢集擴充功能](https://aws.amazon.com/blogs/machine-learning/introducing-managed-cluster-extensions-for-observability-and-user-management-in-amazon-sagemaker-hyperpod-slurm/)
+*AWS Machine Learning Blog · 2026-11-20 · 相關度 8.67 · 存參考*
 
-- **內容**：新漢旗下創博擴大 RoboWIZ 開放生態系招募，整合 AI 控制、功能安全、視覺感知與實時控制，推動 Physical AI 與具身智慧落地。
-- **對你的意義**：屬台灣硬體生態的產業動態，與 LLM 應用開發轉職路徑關聯較低，但可作為「台灣 AI 職缺方向」的背景資訊參考。
-- **今天可以做**：略讀標題與首段即可，記下「Physical AI / Embodied AI」這組關鍵字留待日後觀察台灣職缺趨勢。
-- **原文標題**：NEXCOM RoboWIZ AI 機器人開放平台擴大招募生態系夥伴
-- `#Physical AI` `#機器人` `#台灣產業`
+- **內容**：HyperPod 為 Slurm 叢集節點提供宣告式、API 與 console 驅動的可觀測性與使用者管理擴充，並以平台團隊營運一季共享叢集的視角說明。
+- **對你的意義**：這是 ML 平台團隊的運維視角，與 DE 的叢集／資源治理經驗高度重疊，但在大型訓練場景的多租戶與 observability 需求上更進一步。
+- **今天可以做**：快速掃過，記下他們把哪些指標列為叢集可觀測性必備，對照你現在監控 Spark 叢集的指標清單。
+- **原文標題**：Introducing managed cluster extensions for observability and user management in Amazon SageMaker HyperPod Slurm
+- `#MLOps` `#observability` `#AWS` `#cluster`
 
-### [SageMaker Inference 2026 年度更新回顧（下）](https://aws.amazon.com/blogs/machine-learning/amazon-sagemaker-inference-2026-launches-in-review-part-2/)
-*AWS Machine Learning Blog · 2026-11-20 · 相關度 9.59 · 存參考*
+### [Visa 數位匯款報告：信任與防詐是穩定幣普及關鍵](https://techorange.com/2026/11/21/future-of-global-money-movement/?utm_source=rss&utm_medium=feed&utm_campaign=techorange_rss)
+*TechOrange 科技報橘 · 2026-11-20 · 相關度 6.84 · 存參考*
 
-- **內容**：回顧 2026 年另外 13 項 SageMaker 推論更新，涵蓋組態建議、單 GPU 多模型裝載、超大模型跨實例服務、跨區路由與上線後調校。
-- **對你的意義**：推論部署的成本與吞吐優化是 AI Engineer 的核心職責，這篇等於一份「部署議題清單」，能幫你盤點自己還缺哪些概念（如 multi-model endpoint、sharding）。
-- **今天可以做**：掃過 13 項標題，把不懂的 3 個名詞寫進學習待辦清單，今天先查清其中一個的定義。
-- **原文標題**：Amazon SageMaker Inference: 2026 launches in review, part 2
-- `#推論部署` `#AWS` `#成本優化`
+- **內容**：涵蓋 20 國 45,000 人的調查顯示，69% 民眾對跨境匯款方式的信任取決於「由誰提供服務」而非底層技術多先進。
+- **對你的意義**：與 AI 技術落地直接相關的一課：技術再先進，採用率仍由信任與風險感知決定——這會影響你設計 AI 產品時的可解釋性與防錯機制。
+- **今天可以做**：把「使用者信任來自提供者而非技術」這句話，轉成你 RAG 產品的兩個設計要求（例如來源引用、信心標示）寫進筆記。
+- **原文標題**：【Visa 全球數位匯款報告】近七成民眾更看重「由誰提供」，信任與防詐是穩定幣普及關鍵
+- `#industry-report` `#trust` `#fintech` `#product`
 
-### [信用風險實習面試的九步準備法](https://towardsdatascience.com/how-to-prepare-for-a-credit-risk-internship-interview-in-nine-steps/)
-*Towards Data Science · 2026-11-20 · 相關度 9.1 · 存參考*
+### [Databricks 推出跨 70 個產業的互動式參考架構](https://www.databricks.com/blog/interactive-databricks-reference-architectures-across-70-industries)
+*Databricks Blog · 2026-11-20 · 相關度 6.04 · 存參考*
 
-- **內容**：從遺漏值處理、VIF 到 AUC 與 Gini，整理成一套 logistic regression 評分模型的面試準備流程。
-- **對你的意義**：與 LLM 轉職路徑關聯低，但 AUC/Gini 這類評估指標觀念在你日後做模型評估時仍是基本功。
-- **今天可以做**：只需掃過評估指標段落，複習 AUC 的定義與何時會失真即可。
-- **原文標題**：How to Prepare for a Credit Risk Internship Interview in Nine Steps
-- `#傳統ML` `#面試` `#模型評估`
+- **內容**：Databricks 把過去投影片式的架構簡報，做成涵蓋 70 個產業的互動式參考架構。摘要資訊有限。
+- **對你的意義**：對 DE 出身的你是最省力的架構語彙升級：可直接看各產業如何把 data platform 與 AI/ML 工作負載接在一起。
+- **今天可以做**：挑一個你所在產業的參考架構看 10 分鐘，標出其中你還不熟的 AI 相關元件名稱。
+- **原文標題**：Interactive Databricks Reference Architectures Across 70 Industries
+- `#architecture` `#Databricks` `#data-platform`
 
-### [OpenAI 談對抗性蒸餾的防禦](https://openai.com/index/combatting-adversarial-distillation)
-*OpenAI News · 2026-11-20 · 相關度 7.2 · 存參考*
+### [Python 中的截斷與設限迴歸解析](https://towardsdatascience.com/censored-vs-truncated-regression-in-python-explained/)
+*Towards Data Science · 2026-11-21 · 相關度 5.91 · 存參考*
 
-- **內容**：OpenAI 說明其以模型訓練、防護機制、偵測與執法組成的分層策略，防止他人透過蒸餾萃取模型能力。摘要資訊有限。
-- **對你的意義**：提醒你在設計 LLM 產品時，API 濫用偵測與速率限制也是上線維運的一環，與你熟悉的流量監控思維相通。
-- **今天可以做**：花 5 分鐘讀完，列出兩個你會在自家 LLM API 上加的濫用偵測訊號（如異常 query 分布、高頻同質請求）。
-- **原文標題**：Combatting adversarial distillation
-- `#模型安全` `#蒸餾` `#OpenAI`
+- **內容**：用模擬薪資調查展示 OLS 把每年 5k 的效果低估成 3.2k，再用自建的 Tobit 與 truncated likelihood 還原真實效果。
+- **對你的意義**：提醒你資料偏誤會直接污染任何下游模型與評估指標；在建 LLM 評估集時，樣本選擇偏誤同樣會讓分數失真。
+- **今天可以做**：花 10 分鐘讀完概念，寫下一句話定義 censored 與 truncated 的差別，並想一個你 pipeline 中可能有選擇偏誤的資料表。
+- **原文標題**：Censored vs. Truncated Regression in Python, Explained
+- `#statistics` `#regression` `#bias`
 
 ## 🎯 今天的 30 分鐘學習計畫
 
-1. （15 分鐘）精讀 [10] 五道 Agent guardrails，照著用 Pydantic 嚴格參數 + tool allowlist + 唯讀 SQLite + step cap 寫一個最小 agent，並補一個 pytest 驗證「越權寫入被擋下」。
-2. （10 分鐘）讀 [7] 開源 vs 商用 LLM 決策框架，把四個判斷問題整理成一頁表格，並用它實際評分你想做的 RAG side project 該選哪個模型。
-3. （5 分鐘）掃 [11] 與 [5]，各寫三行筆記：PII 去識別化該放在 agent 架構哪一層、以及 GPU 訓練可觀測性和你熟悉的 Airflow/Spark 監控有何對應關係。
+1. 先讀 [1] KV caching 與 [14] 信心分數路由，在筆記上畫一張「LLM 推論成本優化」地圖：cache 重用、模型分流、failover 三條路線各自降的是什麼成本（$ / TTFT / 可用性）。
+2. 細讀 [4] Uber AutoClean 與 [3] Chrome Mirror Dimension，寫下 300 字筆記回答：一個 agent 系統要上線，需要哪幾層驗證（沙箱環境、CI、靜態檢查、審查 agent、人工最終決定），並對照自己現有 Airflow pipeline 的檢核機制。
+3. 花 10 分鐘用 LiteLLM 或自寫 router 做一個最小 demo：同一組 10 題，先用小模型回答並輸出 confidence，低於門檻才轉大模型，記錄準確率與成本差異。
 
 ---
 
-掃描 282 篇，收錄 14 篇。來源分布：AWS Machine Learning Blog × 4、TechOrange 科技報橘 × 3、KDnuggets × 2、Towards Data Science × 2、arXiv cs.LG (Machine Learning) × 1、OpenAI News × 1、Analytics Vidhya × 1
+掃描 51 篇，收錄 14 篇。來源分布：AWS Machine Learning Blog × 4、Towards Data Science × 4、TechOrange 科技報橘 × 4、Databricks Blog × 1、Simon Willison's Weblog × 1
 
 > ⚠️ [Uber Engineering Blog](https://www.uber.com/en-US/blog/engineering/)：官方無 RSS（robots.txt 禁止 API 抓取），請人工瀏覽；同性質內容已由 Netflix / Meta / Pinterest / Airbnb 工程部落格補上。
 
-*由 ai-data-digest 於 2026-11-21 05:53 自動產生 · 摘要引擎：Claude（claude-opus-5）*
+*由 ai-data-digest 於 2026-11-22 04:36 自動產生 · 摘要引擎：Claude（claude-opus-5）*

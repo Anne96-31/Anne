@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-21T05:54:39+08:00",
+ "updated": "2026-11-22T04:37:51+08:00",
  "seen": {
   "https://techorange.com/2026/10/10/machinenative-economy": "2026-10-12",
   "https://towardsdatascience.com/agentic-systems-a-practitioners-guide-to-6-advanced-architectural-patterns": "2026-10-12",
@@ -544,6 +544,20 @@
   "https://aws.amazon.com/blogs/machine-learning/protect-agent-tool-calls-with-skyflow-and-amazon-bedrock-agentcore-gateway": "2026-11-21",
   "https://openai.com/index/combatting-adversarial-distillation": "2026-11-21",
   "https://www.kdnuggets.com/decision-ai-explained-in-5-minutes": "2026-11-21",
-  "https://www.analyticsvidhya.com/blog/2026/11/gpt-6-2-astra-sol-review": "2026-11-21"
+  "https://www.analyticsvidhya.com/blog/2026/11/gpt-6-2-astra-sol-review": "2026-11-21",
+  "https://aws.amazon.com/blogs/machine-learning/cut-self-hosted-llm-cost-and-latency-with-the-distributed-kv-caching-agent-skill": "2026-11-22",
+  "https://towardsdatascience.com/how-to-learn-supply-chain-analytics-in-2027-with-claude-code": "2026-11-22",
+  "https://techorange.com/2026/11/20/chrome-mirror-dimension-ai-agent-security": "2026-11-22",
+  "https://techorange.com/2026/11/20/using-ai-delete-code-agentic-tech-debt-cleanup": "2026-11-22",
+  "https://aws.amazon.com/blogs/machine-learning/introducing-managed-cluster-extensions-for-observability-and-user-management-in-amazon-sagemaker-hyperpod-slurm": "2026-11-22",
+  "https://techorange.com/2026/11/20/anthropic-record-ipo-ai-compute-competition": "2026-11-22",
+  "https://aws.amazon.com/blogs/machine-learning/introducing-amazon-sagemaker-hyperpod-global-inference-gateway-one-endpoint-across-regions-and-clusters": "2026-11-22",
+  "https://techorange.com/2026/11/21/future-of-global-money-movement": "2026-11-22",
+  "https://www.databricks.com/blog/interactive-databricks-reference-architectures-across-70-industries": "2026-11-22",
+  "https://aws.amazon.com/blogs/machine-learning/announcing-amazon-textract-insights-verifiable-generative-ai-for-documents": "2026-11-22",
+  "https://towardsdatascience.com/censored-vs-truncated-regression-in-python-explained": "2026-11-22",
+  "https://towardsdatascience.com/lightgbm-vs-a-four-week-average-for-forecasting-bike-share-rentals": "2026-11-22",
+  "https://simonwillison.net/2026/Nov/20/levent-alpoge": "2026-11-22",
+  "https://towardsdatascience.com/clairic-hit-98-accuracy-on-728-of-questions-via-confidence-scores": "2026-11-22"
  }
 }
