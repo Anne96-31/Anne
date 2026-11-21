@@ -7,6 +7,7 @@
 | [📈 台股每日投資日報](#自動排程) | 07:43 | 市場儀表板、三大法人、MACD 選股、必看新聞 |
 | [📘 每日商務英文](#-每日商務英文同步到-notion) | 06:47 | 詞彙、商業文章、文法重點、寫作任務 |
 | [🤖 每日 AI & Data 產業摘要](#-每日-ai--data-產業摘要同步到-notion) | 22:28 | 30 個來源依「DE → AI Engineer 轉職」相關度排序後的中文摘要 |
+| [🔎 AI 學習筆記 RAG + MCP](#-ai-學習筆記-rag--mcp) | 隨時 | 對累積的摘要提問、附來源；可接進 Claude Code / Desktop |
 
 ---
 
@@ -113,6 +114,34 @@ MACD 參數 12 / 26 / 9，命名依台灣看盤軟體慣例：DIF（快慢線差
 4. 到 **Actions** →「每日 AI 資訊」→ **Run workflow** 測試。確認雲端版正常後，就可以把電腦上的排程關掉，避免同一天寫入兩次。
 
 本機預覽（不寫入 Notion）：`ANTHROPIC_API_KEY=sk-ant-xxx python -m dailyai --dry-run`
+
+## 🔎 AI 學習筆記 RAG + MCP
+
+每日 AI 摘要一個月就累積 400 多則，[`airag/`](airag/) 把它們變成**可以提問、會附來源**的知識庫，
+並包成 **MCP server**，讓 Claude Code / Claude Desktop 直接查詢。
+
+📖 **從零自己實作的白話教學：[`docs/rag-mcp-tutorial.md`](docs/rag-mcp-tutorial.md)**
+
+| 步驟 | 檔案 | 做法 |
+|---|---|---|
+| 切塊 | `airag/corpus.py` | 一張文章卡片 = 一個 chunk，保留日期/來源/標籤 metadata |
+| 檢索 | `airag/index.py` | 中英混合 BM25：中文字元 bigram、中英同義詞擴充、metadata 過濾 |
+| 評估 | `airag/evaluate.py` | 44 題黃金測試集（含 20 題換句話說/中英交叉困難題）、hit@k、MRR、消融實驗 |
+| 生成 | `airag/answer.py` | Claude + structured output + 引用驗證；無 key 或失敗時退回列出相關筆記 |
+| MCP | `airag/mcp_server.py` | 唯讀工具 `search_notes` / `ask_notes` / `list_digests` / `get_digest` 與 `notes://` resources |
+
+```bash
+pip install -r requirements-rag.txt
+python -m airag search "RAG 評估"                   # 檢索（不需 API key）
+python -m airag ask "最近有哪些 MCP 的實際案例？"     # 有 ANTHROPIC_API_KEY 時用 Claude 生成
+python -m airag eval --ablation                     # 檢索評估
+python -m airag.mcp_server                          # 啟動 MCP server（stdio）
+```
+
+接進 Claude Code（路徑換成你的 repo 位置）：
+`claude mcp add anne-notes -e PYTHONPATH=/你的/路徑/Anne -- python -m airag.mcp_server`
+
+改到 `airag/` 時，[`rag-ci.yml`](.github/workflows/rag-ci.yml) 會跑測試與評估，檢索品質低於門檻就失敗。
 
 ## 本機執行
 

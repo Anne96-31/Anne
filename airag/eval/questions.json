@@ -1,0 +1,454 @@
+[
+  {
+    "question": "vLLM 怎麼提升推論吞吐量？",
+    "relevant": [
+      {
+        "title": "vLLM continuous batching 最高快 2.91 倍",
+        "url": "https://towardsdatascience.com/continuous-batching-beats-static-and-dynamic-by-up-to-291-in-vllm/"
+      }
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "Netflix 怎麼偵測 LLM 生成內容的幻覺？",
+    "relevant": [
+      {
+        "title": "Netflix 大規模劇情簡介事實查核系統",
+        "url": "https://netflixtechblog.com/fact-checking-at-scale-building-a-more-accurate-and-efficient-synopsis-factuality-system-d7d85859d808?source=rss----2615bd06b42e---4"
+      }
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "how to validate LLM output inside a dbt pipeline",
+    "relevant": [
+      {
+        "title": "如何在 DuckDB + dbt 管線中驗證 LLM 輸出",
+        "url": "https://towardsdatascience.com/how-to-validate-llm-output-in-a-duckdb-and-dbt-pipeline/"
+      }
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "省錢的微調方法有哪些，例如 LoRA",
+    "relevant": [
+      {
+        "title": "5 種不燒錢的 LLM fine-tuning 技巧",
+        "url": "https://www.kdnuggets.com/5-techniques-for-fine-tuning-llms-without-breaking-the-bank"
+      }
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "Airbnb open source workflow engine",
+    "relevant": [
+      {
+        "title": "Airbnb 開源嵌入式工作流引擎 Skipper",
+        "url": "https://medium.com/airbnb-engineering/skipper-airbnbs-embedded-workflow-engine-is-now-open-source-78dd354f472b?source=rss----53c7c27702d5---4"
+      }
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "Agent 的長期記憶要怎麼設計？",
+    "relevant": [
+      {
+        "title": "AI Agent 能繼承團隊經驗嗎？TencentDB Agent Memory 實測",
+        "url": "https://www.analyticsvidhya.com/blog/2026/11/ai-agent-team-memory-tencentdb/"
+      }
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "評估 AI 代理人的經濟效益不能只看 token 價格",
+    "relevant": [
+      {
+        "title": "別只看 token 單價：看懂 AI 代理人的經濟效益",
+        "url": "https://techorange.com/2026/11/11/token-spend-management/?utm_source=rss&utm_medium=feed&utm_campaign=techorange_rss"
+      }
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "Databricks 怎麼把企業資料接到 Claude 這類助理",
+    "relevant": [
+      {
+        "title": "把企業 context 帶進 ChatGPT、Claude 等助理",
+        "url": "https://www.databricks.com/blog/bring-your-business-context-chatgpt-claude-microsoft-copilot-cowork-and-grok-bot"
+      }
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "A2A protocol for multi-agent interoperability",
+    "relevant": [
+      {
+        "title": "用 A2A 協定建可組合的多代理系統",
+        "url": "https://aws.amazon.com/blogs/machine-learning/build-composable-interoperable-multi-agent-systems-with-a2a-on-aws/"
+      }
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "LLM 推論上線要監控哪些延遲指標",
+    "relevant": [
+      {
+        "title": "5 分鐘搞懂 9 個 LLM 推論關鍵指標",
+        "url": "https://www.kdnuggets.com/9-key-llm-inference-metrics-explained-in-5-minutes"
+      }
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "當干擾文件非常多時，RAG 檢索表現會怎樣？",
+    "relevant": [
+      {
+        "title": "干擾段落增至 268 萬時 RAG 檢索掉了 40 分",
+        "url": "https://towardsdatascience.com/rag-retrieval-lost-40-points-when-distracting-passages-grew-to-268m/"
+      }
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "用 DuckDB 快速搭一個 lakehouse",
+    "relevant": [
+      {
+        "title": "DuckLake 入門：一小時用 DuckDB 架 Lakehouse",
+        "url": "https://www.kdnuggets.com/getting-started-with-ducklake-build-a-lakehouse-on-duckdb-in-under-an-hour"
+      }
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "Spark 跟 Flink 串流處理該選哪個",
+    "relevant": [
+      {
+        "title": "Apache Spark vs Apache Flink 該選哪個",
+        "url": "https://www.databricks.com/blog/spark-vs-flink"
+      }
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "keyword search vs embedding for agent tool retrieval",
+    "relevant": [
+      {
+        "title": "選 Agent 工具時，關鍵字搜尋打平 8B embedding",
+        "url": "https://towardsdatascience.com/keyword-search-tied-an-8b-embedding-model-at-picking-agent-tools/"
+      }
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "Agent 上線後為什麼會悄悄變差？",
+    "relevant": [
+      {
+        "title": "100+ AI Agent 數據：失敗來自無聲漂移而非錯誤",
+        "url": "https://towardsdatascience.com/data-from-100-ai-agents-shows-they-fail-by-silent-drift-not-errors/"
+      }
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "agentic GraphRAG 有哪些實作模式",
+    "relevant": [
+      {
+        "title": "實戰指南：6 種 Agentic GraphRAG 模式",
+        "url": "https://towardsdatascience.com/a-practitioners-guide-to-6-agentic-graphrag-patterns/"
+      }
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "怎麼降低 AgentCore 的冷啟動時間",
+    "relevant": [
+      {
+        "title": "Bedrock AgentCore Runtime 的快速啟動架構模式",
+        "url": "https://aws.amazon.com/blogs/machine-learning/architecture-patterns-for-fast-session-startup-on-amazon-bedrock-agentcore-runtime/"
+      }
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "多代理系統常見的反模式",
+    "relevant": [
+      {
+        "title": "多代理設計模式、反模式與製造業經驗",
+        "url": "https://aws.amazon.com/blogs/machine-learning/taxonomy-of-multi-agent-design-patterns-anti-patterns-and-lessons-from-manufacturing/"
+      }
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "把既有 API 包成 MCP tools 並做多租戶隔離的案例",
+    "relevant": [
+      {
+        "title": "MoEngage 用 Bedrock AgentCore 打造行銷 agent",
+        "url": "https://aws.amazon.com/blogs/machine-learning/how-moengage-built-agentic-customer-engagement-on-amazon-bedrock-agentcore/"
+      }
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "Claude Code 讀不到最新的套件文件怎麼辦",
+    "relevant": [
+      {
+        "title": "用 Context7 讓 Claude Code 讀到最新文件",
+        "url": "https://www.kdnuggets.com/how-to-give-claude-code-up-to-date-documentation-with-context7"
+      }
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "人工審查 AI 輸出為什麼會疲乏失效",
+    "relevant": [
+      {
+        "title": "為什麼 Human-in-the-Loop 監督會失效",
+        "url": "https://towardsdatascience.com/why-human-in-the-loop-ai-oversight-fails-and-how-to-fix-it/"
+      }
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "prompt caching on open-weight models",
+    "relevant": [
+      {
+        "title": "在 Bedrock 開源模型上使用 prompt caching",
+        "url": "https://aws.amazon.com/blogs/machine-learning/use-prompt-caching-with-open-weight-models-on-amazon-bedrock/"
+      },
+      {
+        "title": "影響 Amazon Bedrock 成本的四個推論選項",
+        "url": "https://aws.amazon.com/blogs/machine-learning/four-amazon-bedrock-inference-choices-that-affect-cost/"
+      }
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "台灣製造業擴大導入 AI 時的資料治理問題",
+    "relevant": [
+      {
+        "title": "製造業 AI 規模化：算力之外的數據治理",
+        "url": "https://techorange.com/2026/11/12/tisi-hpe-pegatron-ai-cdc/?utm_source=rss&utm_medium=feed&utm_campaign=techorange_rss"
+      }
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "用 model routing 讓 agent 省成本",
+    "relevant": [
+      {
+        "title": "Google Gemini 4 Hydrogen：Agent 動態分工省 24% 配額",
+        "url": "https://techorange.com/2026/11/13/google-gemini-4-hydrogen-antigravity-orchestrator/?utm_source=rss&utm_medium=feed&utm_campaign=techorange_rss"
+      },
+      {
+        "title": "用 NeMo Switchyard 在 Bedrock 上做 coding agent 路由",
+        "url": "https://aws.amazon.com/blogs/machine-learning/route-coding-agent-requests-to-the-right-model-on-amazon-bedrock-with-nvidia-nemo-switchyard/"
+      }
+    ],
+    "difficulty": "easy"
+  },
+  {
+    "question": "how can one GPU serve more concurrent LLM requests",
+    "difficulty": "hard",
+    "relevant": [
+      {
+        "title": "vLLM continuous batching 最高快 2.91 倍",
+        "url": "https://towardsdatascience.com/continuous-batching-beats-static-and-dynamic-by-up-to-291-in-vllm/"
+      }
+    ]
+  },
+  {
+    "question": "串流平台如何自動檢查節目介紹有沒有寫錯",
+    "difficulty": "hard",
+    "relevant": [
+      {
+        "title": "Netflix 大規模劇情簡介事實查核系統",
+        "url": "https://netflixtechblog.com/fact-checking-at-scale-building-a-more-accurate-and-efficient-synopsis-factuality-system-d7d85859d808?source=rss----2615bd06b42e---4"
+      }
+    ]
+  },
+  {
+    "question": "從職缺描述抽取技能欄位後，怎麼確保 LLM 的答案正確",
+    "difficulty": "hard",
+    "relevant": [
+      {
+        "title": "如何在 DuckDB + dbt 管線中驗證 LLM 輸出",
+        "url": "https://towardsdatascience.com/how-to-validate-llm-output-in-a-duckdb-and-dbt-pipeline/"
+      }
+    ]
+  },
+  {
+    "question": "low cost techniques to fine-tune a model",
+    "difficulty": "hard",
+    "relevant": [
+      {
+        "title": "5 種不燒錢的 LLM fine-tuning 技巧",
+        "url": "https://www.kdnuggets.com/5-techniques-for-fine-tuning-llms-without-breaking-the-bank"
+      }
+    ]
+  },
+  {
+    "question": "服務崩潰後可以從中斷處恢復的多步驟流程框架",
+    "difficulty": "hard",
+    "relevant": [
+      {
+        "title": "Airbnb 開源嵌入式工作流引擎 Skipper",
+        "url": "https://medium.com/airbnb-engineering/skipper-airbnbs-embedded-workflow-engine-is-now-open-source-78dd354f472b?source=rss----53c7c27702d5---4"
+      }
+    ]
+  },
+  {
+    "question": "coding agent keeps repeating the same mistakes across sessions",
+    "difficulty": "hard",
+    "relevant": [
+      {
+        "title": "AI Agent 能繼承團隊經驗嗎？TencentDB Agent Memory 實測",
+        "url": "https://www.analyticsvidhya.com/blog/2026/11/ai-agent-team-memory-tencentdb/"
+      }
+    ]
+  },
+  {
+    "question": "衡量 agent 成本時應該以每個任務而不是每個 token 計算",
+    "difficulty": "hard",
+    "relevant": [
+      {
+        "title": "別只看 token 單價：看懂 AI 代理人的經濟效益",
+        "url": "https://techorange.com/2026/11/11/token-spend-management/?utm_source=rss&utm_medium=feed&utm_campaign=techorange_rss"
+      }
+    ]
+  },
+  {
+    "question": "let ChatGPT and Copilot access our company data",
+    "difficulty": "hard",
+    "relevant": [
+      {
+        "title": "把企業 context 帶進 ChatGPT、Claude 等助理",
+        "url": "https://www.databricks.com/blog/bring-your-business-context-chatgpt-claude-microsoft-copilot-cowork-and-grok-bot"
+      }
+    ]
+  },
+  {
+    "question": "agents owned by different organizations talking to each other",
+    "difficulty": "hard",
+    "relevant": [
+      {
+        "title": "用 A2A 協定建可組合的多代理系統",
+        "url": "https://aws.amazon.com/blogs/machine-learning/build-composable-interoperable-multi-agent-systems-with-a2a-on-aws/"
+      }
+    ]
+  },
+  {
+    "question": "time to first token 跟每秒產生多少 token 要怎麼量",
+    "difficulty": "hard",
+    "relevant": [
+      {
+        "title": "5 分鐘搞懂 9 個 LLM 推論關鍵指標",
+        "url": "https://www.kdnuggets.com/9-key-llm-inference-metrics-explained-in-5-minutes"
+      }
+    ]
+  },
+  {
+    "question": "self-written benchmarks overestimate search quality",
+    "difficulty": "hard",
+    "relevant": [
+      {
+        "title": "干擾段落增至 268 萬時 RAG 檢索掉了 40 分",
+        "url": "https://towardsdatascience.com/rag-retrieval-lost-40-points-when-distracting-passages-grew-to-268m/"
+      }
+    ]
+  },
+  {
+    "question": "metadata 放在 SQL 資料庫、資料存成 Parquet 的開放表格格式",
+    "difficulty": "hard",
+    "relevant": [
+      {
+        "title": "DuckLake 入門：一小時用 DuckDB 架 Lakehouse",
+        "url": "https://www.kdnuggets.com/getting-started-with-ducklake-build-a-lakehouse-on-duckdb-in-under-an-hour"
+      }
+    ]
+  },
+  {
+    "question": "which engine should I use for batch versus stream processing",
+    "difficulty": "hard",
+    "relevant": [
+      {
+        "title": "Apache Spark vs Apache Flink 該選哪個",
+        "url": "https://www.databricks.com/blog/spark-vs-flink"
+      }
+    ]
+  },
+  {
+    "question": "監控 agent 時要看品質與成本異常，而不是只看錯誤率",
+    "difficulty": "hard",
+    "relevant": [
+      {
+        "title": "100+ AI Agent 數據：失敗來自無聲漂移而非錯誤",
+        "url": "https://towardsdatascience.com/data-from-100-ai-agents-shows-they-fail-by-silent-drift-not-errors/"
+      }
+    ]
+  },
+  {
+    "question": "知識圖譜如何記住使用者意圖與決策歷史",
+    "difficulty": "hard",
+    "relevant": [
+      {
+        "title": "實戰指南：6 種 Agentic GraphRAG 模式",
+        "url": "https://towardsdatascience.com/a-practitioners-guide-to-6-agentic-graphrag-patterns/"
+      }
+    ]
+  },
+  {
+    "question": "對初始化好的環境做 snapshot 讓新 session 啟動更快",
+    "difficulty": "hard",
+    "relevant": [
+      {
+        "title": "Bedrock AgentCore Runtime 的快速啟動架構模式",
+        "url": "https://aws.amazon.com/blogs/machine-learning/architecture-patterns-for-fast-session-startup-on-amazon-bedrock-agentcore-runtime/"
+      }
+    ]
+  },
+  {
+    "question": "什麼時候真的需要用到多個 agent",
+    "difficulty": "hard",
+    "relevant": [
+      {
+        "title": "多代理設計模式、反模式與製造業經驗",
+        "url": "https://aws.amazon.com/blogs/machine-learning/taxonomy-of-multi-agent-design-patterns-anti-patterns-and-lessons-from-manufacturing/"
+      }
+    ]
+  },
+  {
+    "question": "avoid outdated library code generated by AI coding assistants",
+    "difficulty": "hard",
+    "relevant": [
+      {
+        "title": "用 Context7 讓 Claude Code 讀到最新文件",
+        "url": "https://www.kdnuggets.com/how-to-give-claude-code-up-to-date-documentation-with-context7"
+      }
+    ]
+  },
+  {
+    "question": "只在自動檢查失敗時才找人工審查",
+    "difficulty": "hard",
+    "relevant": [
+      {
+        "title": "為什麼 Human-in-the-Loop 監督會失效",
+        "url": "https://towardsdatascience.com/why-human-in-the-loop-ai-oversight-fails-and-how-to-fix-it/"
+      }
+    ]
+  },
+  {
+    "question": "依照任務難度自動切換不同的模型",
+    "difficulty": "hard",
+    "relevant": [
+      {
+        "title": "Google Gemini 4 Hydrogen：Agent 動態分工省 24% 配額",
+        "url": "https://techorange.com/2026/11/13/google-gemini-4-hydrogen-antigravity-orchestrator/?utm_source=rss&utm_medium=feed&utm_campaign=techorange_rss"
+      },
+      {
+        "title": "用 NeMo Switchyard 在 Bedrock 上做 coding agent 路由",
+        "url": "https://aws.amazon.com/blogs/machine-learning/route-coding-agent-requests-to-the-right-model-on-amazon-bedrock-with-nvidia-nemo-switchyard/"
+      }
+    ]
+  }
+]

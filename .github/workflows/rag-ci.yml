@@ -1,0 +1,45 @@
+name: AI 筆記 RAG 測試與評估
+
+# 改到 RAG 程式或評估集時自動執行：跑單元測試，並把檢索評估表格寫進 Actions 摘要頁。
+# 檢索品質低於門檻（tests/test_airag.py 的回歸測試）時會失敗，避免改壞了還不知道。
+on:
+  push:
+    paths:
+      - "airag/**"
+      - "tests/test_airag.py"
+      - "requirements-rag.txt"
+      - ".github/workflows/rag-ci.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test-and-eval:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: 安裝套件
+        run: pip install -r requirements-rag.txt pytest
+
+      - name: 單元測試（含檢索品質回歸門檻）
+        run: python -m pytest -q tests/test_airag.py
+
+      - name: 檢索評估（消融實驗）
+        run: |
+          {
+            echo "## 🔎 檢索評估（全部題目）"
+            echo
+            python -m airag eval --ablation
+            echo
+            echo "## 🧗 困難題（換句話說、中英交叉）"
+            echo
+            python -m airag eval --ablation --difficulty hard
+          } >> "$GITHUB_STEP_SUMMARY"

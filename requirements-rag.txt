@@ -1,0 +1,3 @@
+# airag（AI 學習筆記 RAG + MCP）額外需要的套件；每日排程不需要，所以不放進 requirements.txt
+-r requirements.txt
+mcp>=2.3,<3

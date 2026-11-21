@@ -112,7 +112,8 @@ class IndexConfig:
     cjk_bigrams: bool = True
     expand_synonyms: bool = True
     expansion_weight: float = 0.5
-    field_boost: bool = True            # 標題與 tag 權重加倍
+    # 標題與 tag 權重加倍。直覺上有用，但評估顯示會讓「用詞不同」的提問排名變差，所以預設關閉。
+    field_boost: bool = False
 
 
 class BM25Index:
