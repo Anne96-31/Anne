@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-22T04:37:51+08:00",
+ "updated": "2026-11-23T04:47:39+08:00",
  "seen": {
   "https://techorange.com/2026/10/10/machinenative-economy": "2026-10-12",
   "https://towardsdatascience.com/agentic-systems-a-practitioners-guide-to-6-advanced-architectural-patterns": "2026-10-12",
@@ -558,6 +558,15 @@
   "https://towardsdatascience.com/censored-vs-truncated-regression-in-python-explained": "2026-11-22",
   "https://towardsdatascience.com/lightgbm-vs-a-four-week-average-for-forecasting-bike-share-rentals": "2026-11-22",
   "https://simonwillison.net/2026/Nov/20/levent-alpoge": "2026-11-22",
-  "https://towardsdatascience.com/clairic-hit-98-accuracy-on-728-of-questions-via-confidence-scores": "2026-11-22"
+  "https://towardsdatascience.com/clairic-hit-98-accuracy-on-728-of-questions-via-confidence-scores": "2026-11-22",
+  "https://www.analyticsvidhya.com/blog/2026/11/positional-embeddings-explained-llm-word-order": "2026-11-23",
+  "https://simonwillison.net/2026/Nov/21/muru": "2026-11-23",
+  "https://towardsdatascience.com/ransac-explained-consensus-fitting-for-image-feature-matching": "2026-11-23",
+  "https://www.ssp.sh/blog/cynthia-dunlop-writing-books": "2026-11-23",
+  "https://openai.com/index/perplexity-and-intelligence": "2026-11-23",
+  "https://aws.amazon.com/blogs/machine-learning/meta-ads-is-now-available-in-aws-quick": "2026-11-23",
+  "https://towardsdatascience.com/how-ai-changes-the-four-types-of-analytics-for-data-scientists": "2026-11-23",
+  "https://aws.amazon.com/blogs/machine-learning/new-in-aws-quick-more-capable-flows-an-updated-web-experience-and-agents-that-work-together": "2026-11-23",
+  "https://research.google/blog/how-google-duplex-evolved-to-also-call-businesses-for-you-in-gemini": "2026-11-23"
  }
 }
