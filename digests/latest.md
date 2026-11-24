@@ -1,155 +1,155 @@
-# AI & Data 每日摘要 2026-11-24（二）
+# AI & Data 每日摘要 2026-11-25（三）
 
-> 今天的主軸是「Agent 從實驗走向生產」：GitHub Copilot 的兆級 token 生產追蹤揭示 agent workload 與 chatbot 完全不同（LLM 呼叫與 tool 執行近 1:1），a16z 更直接提出 B2A 經濟，agent 已在建資料庫、觸發雲端部署。第二條線是「評估與維運」：Hugging Face 談 agentic evaluation、OpenAI 想把 perplexity 當成業界共同煞車線，顯示 AI Engineer 的核心價值越來越在「量測與監控」而非寫 prompt。第三條線是「基礎設施與風險」：prompt cache 命中率的統計陷阱、推論供應鏈被入侵導致 ZDR prompt 外洩、MCP 之外的輕量 tool 接法，全都是 DE 背景者最容易切入的題目。對你而言，今天最值得投資的是把資料工程的可觀測性與成本思維，平移到 agent 的 trace、eval 與 gateway 選型上。
+> 今天這批文章有一條清楚主線：Agent 要能在企業真正上線，缺的不是更強的模型，而是「模型周邊的工程」——語意層／知識圖譜補業務脈絡（1）、retry 與人工接手的流程設計（4）、身分與隔離等資安邊界（3、12）、以及資料基礎建模（7）。第二條線是「小模型本地化」：用 YAML 微調小模型（9）、在單張 RTX 3090 跑本地 LLM（6），顯示低成本自建推論路徑逐漸成熟。第三條線是 Agent 與資料工具的融合，Simon Willison 的 datasette-agent/charts（5、8）示範了「讓 agent 直接操作你的資料平台」的最小可行樣貌，這正是 DE 背景最容易切入的角度。對你而言，今天的重點是：把既有的資料治理、schema、metadata 能力，翻譯成 agent 可消費的語意層與工具介面。
 
-## 🔥 今日必讀（5）
+## 🔥 今日必讀（4）
 
 *直接補上你轉職缺的能力*
 
-### [生產規模下的 Copilot Agent 追蹤分析](https://arxiv.org/abs/2608.00101)
-*arXiv cs.LG (Machine Learning) · 2026-11-23 · 相關度 16.84 · 必讀*
+### [知識圖譜與語意層：AI 代理的企業脈絡補丁](https://techorange.com/2026/11/24/semantic-knowledge-graph-ai/?utm_source=rss&utm_medium=feed&utm_campaign=techorange_rss)
+*TechOrange 科技報橘 · 2026-11-24 · 相關度 14.56 · 必讀*
 
-- **內容**：用 740 萬使用者、57 億次 LLM 呼叫的 Copilot trace，首次刻畫 coding agent 的真實工作負載，發現它與 chatbot 截然不同：一次使用者輸入會展開成自主迴圈，LLM 呼叫與 tool 執行近 1:1。
-- **對你的意義**：你熟悉 batch/streaming pipeline 的負載特性，這篇等於把同一套「workload characterization」思維搬到 agent，是你理解 agent 系統設計與成本結構最直接的橋樑。
-- **今天可以做**：花 15 分鐘讀摘要與圖表，列出 3 個 agent workload 指標（turn 展開深度、LLM:tool 比例、token 放大倍數），對照你現有 pipeline 的監控欄位。
-- **原文標題**：Agentic Coding in the Wild: Characterizing GitHub Copilot Traces at Production Scale
-- `#Agent` `#系統設計` `#可觀測性`
+- **內容**：報導指出 RAG 只給了相關資料，但 agent 執行任務還需要知道資料在企業中的意義與用法，語意知識圖譜正是補上這層脈絡。
+- **對你的意義**：這是 DE 轉 AI Engineer 最有優勢的切入點：你已經懂 schema、血緣與業務定義，差的是把它轉成 agent 可消費的語意層而非只給 BI 用。
+- **今天可以做**：挑一張你最熟的核心表，寫一份 200 字的語意描述（欄位意義、業務規則、常見誤用），當成未來 agent 的 context 範本。
+- **原文標題**：建了資料湖，AI 代理為何還是看不懂業務？拆解知識圖譜在企業 AI 的新角色
+- `#RAG` `#knowledge graph` `#semantic layer` `#agent`
 
-### [標記零資料保留的 prompt 仍遭竊，OpenRouter 下架 3 家供應商](https://techorange.com/2026/11/23/security-ai-leaky-supply-chain/?utm_source=rss&utm_medium=feed&utm_campaign=techorange_rss)
-*TechOrange 科技報橘 · 2026-11-23 · 相關度 14.66 · 必讀*
+### [AWS CEO：模型周邊工程比選哪個模型更重要](https://techorange.com/2026/11/24/ai-safety-cant-depend-emergency-brake-engineering/?utm_source=rss&utm_medium=feed&utm_campaign=techorange_rss)
+*TechOrange 科技報橘 · 2026-11-24 · 相關度 13.06 · 必讀*
 
-- **內容**：Dragos 以近 200 萬筆誘餌 prompt 實測，發現多家推論供應商與轉售商外洩或記錄 prompt，連宣稱 ZDR 的請求也不保險，OpenRouter 已移除 3 家供應商與 125 個端點資格。
-- **對你的意義**：AI Engineer 必須替公司做 model gateway 選型與資料治理決策，這是你從 DE 的資料合規經驗能立刻加分、也最容易被主管追問的題目。
-- **今天可以做**：花 15 分鐘整理一份「LLM 供應鏈風險檢查清單」：是否走 router、ZDR 是否可驗證、敏感欄位是否在送出前遮罩。
-- **原文標題**：AI 提示詞送出後誰看得到？近 200 萬筆誘餌實測：標記「零資料保留」的請求也遭竊，OpenRouter 下架 3 家推論服務供應商
-- `#資安` `#LLMOps` `#Gateway`
+- **內容**：AWS 執行長 Matt Garman 主張 AI 安全靠的不是 kill switch，而是身分、記錄、隔離等既有資安原則構成的可強制邊界。
+- **對你的意義**：直接點出 AI Engineer 的核心價值不在換模型，而在系統設計與防護欄；你在資料平台的權限與稽核經驗可以直接遷移。
+- **今天可以做**：寫一頁筆記列出你要給 agent 的三道邊界：身分權限、操作記錄、執行隔離，並各寫一個具體實作方式。
+- **原文標題**：AI 安全不能只靠「緊急煞車」，AWS 執行長：模型周邊的工程，比選哪個模型更重要
+- `#AI safety` `#系統設計` `#guardrails` `#LLMOps`
 
-### [90% Prompt Cache 命中率藏了什麼](https://towardsdatascience.com/what-a-90-prompt-cache-hit-rate-hides-about-attention-work/)
-*Towards Data Science · 2026-11-23 · 相關度 10.78 · 必讀*
+### [多代理工作流的重試策略該怎麼事先規劃](https://towardsdatascience.com/how-to-plan-retries-for-multi-agent-workflows-before-you-write-code/)
+*Towards Data Science · 2026-11-24 · 相關度 12.9 · 必讀*
 
-- **內容**：指出 request hit rate、token reuse 與 latency 講的是三個不同故事，引述 2026 preprint 顯示 cache 可降低 P99 但中位 TTFT 反而上升。
-- **對你的意義**：這是 LLM 成本與延遲調校的核心實務，也和你在 DE 看慣的「平均值騙人、要看分位數」完全同一套直覺，容易快速上手。
-- **今天可以做**：花 15 分鐘讀完，並在自己的 LLM 呼叫程式加上 TTFT 的 P50/P99 紀錄欄位。
-- **原文標題**：What a 90% Prompt Cache Hit Rate Hides About Attention Work
-- `#推論效能` `#成本優化` `#快取`
+- **內容**：用 Mermaid 流程圖、Python dataclasses 與 retryable 旗標，在寫程式前就決定失敗的 agent 何時重試、何時轉交人工。
+- **對你的意義**：你在 Airflow 已有 retry/SLA/告警的直覺，這篇幫你把它翻譯到非確定性的 agent workflow，是 DE 最快拿分的技能轉移。
+- **今天可以做**：用 Mermaid 畫出一個既有 DAG 改成 agent workflow 的圖，標註每個節點 retryable 與 human handoff 條件。
+- **原文標題**：How to Plan Retries for Multi-Agent Workflows Before You Write Code
+- `#multi-agent` `#workflow` `#retry` `#orchestration`
 
-### [不用 MCP 的 5 種輕量 Agent 工具接法](https://www.kdnuggets.com/5-lightweight-alternatives-to-mcp-for-giving-ai-agents-tools)
-*KDnuggets · 2026-11-23 · 相關度 9.74 · 必讀*
+### [Agentic CDP 的資料建模最佳實務（上）：資料基礎](https://www.databricks.com/blog/agentic-cdp-data-modeling-data-foundation)
+*Databricks Blog · 2026-11-24 · 相關度 7.8 · 必讀*
 
-- **內容**：比較 Python dispatcher、框架內建 tools、REST adapter、subprocess 與 webhook 五種給 agent 工具的輕量方式，並說明何時才值得導入 MCP。
-- **對你的意義**：讓你不被 MCP 的框架包袱卡住，先用最小程式碼搞懂 tool-calling 的本質，這是建構 Agent 系統的第一塊基本功。
-- **今天可以做**：花 20 分鐘用純 Python 寫一個 function dispatcher，讓 LLM 呼叫你的一個 SQL 查詢函式並回傳結果。
-- **原文標題**：5 Lightweight Alternatives to MCP for Giving AI Agents Tools
-- `#Agent` `#Tool Calling` `#MCP`
-
-### [如何建立並維護 Agentic Evaluation](https://huggingface.co/blog/agentic-evals)
-*Hugging Face Blog · 2026-11-23 · 相關度 9.33 · 必讀*
-
-- **內容**：Hugging Face 談 agent 評估體系的建立與長期維護。摘要資訊有限，僅能依標題判斷。
-- **對你的意義**：評估能力是 DE 轉 AI Engineer 最大的斷層：你會做資料品質監控，但還缺一套針對多步驟 agent 行為的 eval 流程與回歸測試。
-- **今天可以做**：讀完後立刻為一個 agent 任務寫 10 筆 eval 案例（輸入、期望工具呼叫、通過判準），存成 JSONL。
-- **原文標題**：How to build and maintain an agentic evaluation
-- `#評估` `#LLMOps` `#Agent`
+- **內容**：Databricks 談如何為「代理式 CDP」打好資料基礎建模，從顧客行為事件（如 9 天前加入願望清單）驅動 agent 行動。摘要資訊有限。
+- **對你的意義**：這是 DE 能力最直接升級成 AI 產品的案例：既有的事件表與顧客 360 建模，正是 agent 決策的輸入層。
+- **今天可以做**：對照你現有的事件表，列出三個「agent 需要但目前模型缺少」的欄位或時間語意（例如事件新鮮度、狀態轉移）。
+- **原文標題**：Data Modeling Best Practices for an Agentic CDP, Part 1: The Data Foundation
+- `#Databricks` `#CDP` `#data modeling` `#agent`
 
 ## 👀 值得快速瀏覽（5）
 
 *掃過標題與重點即可*
 
-### [Spark Structured Streaming 原生 Lakebase Postgres Sink GA](https://www.databricks.com/blog/announcing-general-availability-native-lakebase-postgres-sink-spark-structured-streaming)
-*Databricks Blog · 2026-11-23 · 相關度 14.78 · 快速瀏覽*
+### [【科技早餐】OpenAI 攜手 Cisco 推開源資安工具 Shirudo](https://techorange.com/2026/11/25/openai-cisco-shirudo-ai-cybersecurity/?utm_source=rss&utm_medium=feed&utm_campaign=techorange_rss)
+*TechOrange 科技報橘 · 2026-11-24 · 相關度 14.22 · 快速瀏覽*
 
-- **內容**：Databricks 宣布 Spark Structured Streaming 可原生寫入 Lakebase Postgres，鎖定詐欺偵測、即時個人化等低延遲場景。摘要資訊有限。
-- **對你的意義**：這正是你既有技能的延伸：低延遲 feature serving 是 RAG/Agent 線上特徵與 context 供給的基礎，DE 背景在此有天然優勢。
-- **今天可以做**：花 10 分鐘讀官方文件，寫下「若我的 RAG 要即時取用使用者最新行為特徵，這個 sink 會放在架構的哪一層」。
-- **原文標題**：Announcing General Availability of native Lakebase Postgres sink for Spark Structured Streaming
-- `#資料工程` `#Streaming` `#Feature Serving`
+- **內容**：OpenAI 與 Cisco 推出開源專案 Shirudo，用 eBPF 讓 AI agent 分析漏洞、產生防護程式並測試，免重啟服務部署；另含 Amazon 收購 Decart 推論最佳化技術等新聞。
+- **對你的意義**：展示 agent 在真實維運場景的落地樣貌（人類核准 + 可驗證部署），這種 human-in-the-loop 設計正是 AI Engineer 要負責的上線安全流程。
+- **今天可以做**：花 5 分鐘掃過，筆記 Shirudo 的「agent 產出 → 自動測試 → 人工核准 → 部署」四階段，對照你自己的 pipeline 想一個可套用的點。
+- **原文標題**：【科技早餐】OpenAI 聯手 Cisco 推出開源資安工具！測試不重啟服務就能阻擋漏洞攻擊
+- `#agent` `#security` `#LLMOps` `#新聞`
 
-### [a16z 提 B2A 經濟：Agent 開始建資料庫與觸發部署](https://techorange.com/2026/11/23/a16z-welcome-b2a-economy/?utm_source=rss&utm_medium=feed&utm_campaign=techorange_rss)
-*TechOrange 科技報橘 · 2026-11-23 · 相關度 14.18 · 快速瀏覽*
+### [在 RTX 3090 用 Unsloth Studio 本地跑 Inkling 2 Mini](https://www.kdnuggets.com/how-to-run-inkling-2-mini-locally-on-an-rtx-3090-using-unsloth-studio)
+*KDnuggets · 2026-11-24 · 相關度 8.11 · 快速瀏覽*
 
-- **內容**：a16z 主張 AI agent 正成為企業的新客戶，並以 Supabase、Stripe、Vercel 數據說明 agent 已在實際建資料庫、呼叫 API 與部署雲端；但 PPC Land 指出部分說法超出其圖表數據。
-- **對你的意義**：這預示「給 agent 用的介面」會成為新職責：你未來可能要設計讓 agent 安全存取的 API/資料層，這正是 DE 的強項延伸。
-- **今天可以做**：花 10 分鐘思考並寫下：若要讓 agent 安全查詢你現有的資料倉儲，需要哪 3 道護欄（權限範圍、查詢白名單、成本上限）。
-- **原文標題**：a16z 提 B2A 經濟：AI 代理的生意不只在購物車，連資料庫、雲端部署都開始用 AI
-- `#Agent` `#產業趨勢` `#API 設計`
+- **內容**：介紹如何在單張 RTX 3090 以 Unsloth Studio 本地部署小型開源 LLM，主打不靠昂貴 API 也能快速推論與跑 coding agent。
+- **對你的意義**：補上 DE 較陌生的 GPU 推論與本地部署手感，之後談成本、延遲與資料不出境的方案時才有底氣。
+- **今天可以做**：花 10 分鐘讀設定步驟，記下量化格式、VRAM 需求與吞吐量三個關鍵參數，建立一張本地部署的成本評估表。
+- **原文標題**：How to Run Inkling 2 Mini Locally on an RTX 3090 Using Unsloth Studio
+- `#local LLM` `#inference` `#Unsloth` `#GPU`
 
-### [OpenAI 公開困惑度數據，想替業界訂煞車線](https://techorange.com/2026/11/23/openai-perplexity-common-limits/?utm_source=rss&utm_medium=feed&utm_campaign=techorange_rss)
-*TechOrange 科技報橘 · 2026-11-23 · 相關度 14.0 · 快速瀏覽*
+### [datasette-charts 0.2a0：對話生成圖表](https://simonwillison.net/2026/Nov/24/datasette-charts/)
+*Simon Willison's Weblog · 2026-11-24 · 相關度 7.7 · 快速瀏覽*
 
-- **內容**：OpenAI 首席科學家公開歷代模型 perplexity 數據，提議前沿業者以此與其他指標訂共同開發上限，並呼籲建立共享評估與紅隊規範。
-- **對你的意義**：幫你釐清 perplexity 這類 pretraining 指標與你實際要做的 task-level eval 的差別，避免誤用錯的量尺評估 LLM 應用。
-- **今天可以做**：花 10 分鐘寫一張對照表：perplexity vs. task accuracy vs. LLM-as-judge，各自量到什麼、量不到什麼。
-- **原文標題**：OpenAI 公開內部「困惑度」數據，想替業界訂「煞車線」：這把量尺能成為共同標準嗎？
-- `#評估` `#模型基礎` `#AI 治理`
+- **內容**：新圖表 plugin 整合 Datasette Agent，可用自然語言請 agent 依資料表產生圖表並在聊天中內嵌顯示，再開啟圖表編輯器微調。
+- **對你的意義**：示範把資料查詢與視覺化包成 agent tool 的具體設計，是你做內部 data agent 的現成參考架構。
+- **今天可以做**：看完 demo 影片後，寫下若要把你的查詢服務包成 agent tool，tool schema 的輸入輸出該怎麼定義。
+- **原文標題**：datasette-charts 0.2a0
+- `#datasette` `#tool use` `#visualization` `#agent`
 
-### [GLM-5.4 與 Loop Transformer 架構](https://simonwillison.net/2026/Nov/23/glm-54/)
-*Simon Willison's Weblog · 2026-11-23 · 相關度 7.76 · 快速瀏覽*
+### [Soup：用一個 YAML 檔微調小型 LLM](https://www.analyticsvidhya.com/blog/2026/11/fine-tune-small-llm-locally-with-soup/)
+*Analytics Vidhya · 2026-11-24 · 相關度 7.3 · 快速瀏覽*
 
-- **內容**：Z.ai 發表 GLM-5.4，首次採用 looped transformer：共享權重的層組多次迭代，在不增加參數量下取得更深網路；一週內已是第二個採此架構的模型。
-- **對你的意義**：幫你建立「架構選擇如何影響推論延遲與成本」的判斷力，這是選模型時除了 benchmark 之外更深一層的依據。
-- **今天可以做**：花 10 分鐘讀完並筆記 looped transformer 的一句話定義，以及它對推論延遲可能的影響。
-- **原文標題**：GLM-5.4: Toward Generalized Coding with Our First Loop Transformer
-- `#模型架構` `#開源模型` `#Coding Model`
+- **內容**：透過單一 YAML 設定檔微調小模型，用途示例是把工程師隨手寫的事故更新，強制轉成固定格式（狀態／影響／下一步）且不得捏造。
+- **對你的意義**：是 DE 最容易理解的 fine-tuning 入門：本質是格式與規則的一致性，正好用你熟悉的設定檔思維切入訓練流程。
+- **今天可以做**：花 15 分鐘讀完流程，並擬出一個你自己場景的微調資料範例（10 筆輸入→標準輸出），當作後續練習素材。
+- **原文標題**：Soup: Fine-Tune a Small LLM with One YAML File
+- `#fine-tuning` `#small LLM` `#YAML` `#structured output`
 
-### [用生日悖論測小型 LLM 的輸出多樣性](https://towardsdatascience.com/the-birthday-paradox-shows-small-llms-pick-from-about-6-of-40-words/)
-*Towards Data Science · 2026-11-23 · 相關度 6.12 · 快速瀏覽*
+### [GPT-6.2 Astra 自主破解歷史懸案](https://simonwillison.net/2026/Nov/24/astra-historical-mystery/)
+*Simon Willison's Weblog · 2026-11-24 · 相關度 5.39 · 快速瀏覽*
 
-- **內容**：同一問題問 300 次、數重複次數，再用生日悖論反推模型實際的有效候選詞數量，發現小型 LLM 大約只從 40 個詞中選 6 個。
-- **對你的意義**：提供一個幾行 Python 就能跑的輸出多樣性量測法，正好補上你對 LLM 非決定性行為的量化直覺，對設計 eval 很有用。
-- **今天可以做**：花 15 分鐘照文中方法，對你手上的模型跑 100 次同一 prompt，統計重複率。
-- **原文標題**：The Birthday Paradox Shows Small LLMs Pick From About 6 of 40 Words
-- `#評估` `#取樣` `#實驗方法`
+- **內容**：歷史教授 Mark Humphries 記錄 GPT-6.2 Astra 在極少提示下，22 分鐘內自主找出 1808 年匿名素描本的作者，過程包含提出假設並找到冷門紙本檔案佐證。
+- **對你的意義**：這是深度研究型 agent 的能力上限觀察：模型能自主規劃檢索與驗證假設，提醒你 RAG 設計正從「單輪檢索」走向「多輪研究迴圈」。
+- **今天可以做**：讀完後寫三句筆記：這個 agent 的規劃、檢索、驗證各做了什麼，對照你自己的 RAG 流程缺哪一段。
+- **原文標題**：GPT 6.2 Astra Solves a Historical Mystery
+- `#agent` `#deep research` `#case study` `#GPT`
 
-## 🗂️ 存起來參考（4）
+## 🗂️ 存起來參考（5）
 
 *之後需要時再回頭看*
 
-### [AI 代理設計全新 CPU 架構 Frostbite](https://techorange.com/2026/11/23/architect-labs-ai-cpu-frostbite/?utm_source=rss&utm_medium=feed&utm_campaign=techorange_rss)
-*TechOrange 科技報橘 · 2026-11-23 · 相關度 12.95 · 存參考*
+### [datasette-agent 0.7a1 釋出](https://simonwillison.net/2026/Nov/24/datasette-agent/)
+*Simon Willison's Weblog · 2026-11-24 · 相關度 8.66 · 存參考*
 
-- **內容**：新創 Architect Labs 宣稱其 AI 系統自主設計出採用 interaction nets 的全新指令集 CPU，流片前模擬每瓦效能達傳統循序核心 4.59 倍。
-- **對你的意義**：屬於 agent 應用於硬體設計的前沿案例，對日常轉職工作幫助有限，但可作為「agent 能走多遠」的認知素材。
-- **今天可以做**：花 5 分鐘掃過，記下「流片前模擬數據 ≠ 實機驗證」這個評估陷阱即可。
-- **原文標題**：AI 代理從零設計全新 CPU 架構「Frostbite」！Architect Labs 宣稱流片前模擬每瓦效能達循序核心 4.59 倍
-- `#硬體` `#Agent` `#前沿研究`
+- **內容**：Simon Willison 的 Datasette Agent 小版本更新，改善 iframe 側邊面板以 fragment hash 導航，便於與其他 plugin 深度整合。摘要資訊有限。
+- **對你的意義**：是「agent 直接操作資料平台」的開源實作樣本，對 DE 來說是看懂 agent 工具介面設計的最低門檻範例。
+- **今天可以做**：花 5 分鐘到 agent.datasette.io 點開看一下互動方式，記下它把哪些資料操作暴露成 agent tool。
+- **原文標題**：datasette-agent 0.7a1
+- `#datasette` `#open source` `#agent tooling`
 
-### [2026 年用 AI 工具更快學資料科學](https://www.kdnuggets.com/how-to-use-ai-tools-to-learn-data-science-faster-in-2026)
-*KDnuggets · 2026-11-23 · 相關度 10.01 · 存參考*
+### [馴服真實世界的髒 CSV：pandas read_csv 實戰](https://www.kdnuggets.com/from-messy-to-clean-taming-real-world-csv-files-with-pandas-read_csv)
+*KDnuggets · 2026-11-24 · 相關度 7.2 · 存參考*
 
-- **內容**：介紹如何組合 AI 助理、coding 工具與自適應學習平台來縮短學習曲線。偏入門導向，摘要資訊有限。
-- **對你的意義**：對已有 DE 實戰經驗的你新意不多，但可挑其中的學習工作流技巧，加速你補 LLM 領域知識的速度。
-- **今天可以做**：花 5 分鐘掃標題與小標，挑 1 個學習工作流技巧套用到今天的讀論文流程。
-- **原文標題**：How to Use AI Tools to Learn Data Science Faster in 2026
-- `#學習方法` `#職涯`
+- **內容**：示範如何用 pandas read_csv 的參數打造一個防彈的 Python 資料載入器，把雜亂資料整理乾淨。
+- **對你的意義**：對你多半是既有技能複習，但可借來當 LLM 應用的資料前處理檢查清單（編碼、型別、缺值）以降低後續 embedding 噪音。
+- **今天可以做**：快速掃過參數清單，把三個你沒用過的 read_csv 參數記下來存成 snippet。
+- **原文標題**：From Messy to Clean: Taming Real-World CSV Files with pandas read_csv()
+- `#pandas` `#data cleaning` `#ETL`
 
-### [Ladybird 瀏覽器首個 alpha 釋出](https://simonwillison.net/2026/Nov/23/ladybird/)
-*Simon Willison's Weblog · 2026-11-23 · 相關度 6.0 · 存參考*
+### [如何計算並落地顧客終身價值（CLV）](https://towardsdatascience.com/how-to-calculate-and-operationalize-customer-lifetime-value/)
+*Towards Data Science · 2026-11-24 · 相關度 6.5 · 存參考*
 
-- **內容**：從零實作 HTML、CSS、JS 與 WebAssembly 的獨立瀏覽器 Ladybird 發布首個 alpha，macOS/Linux 可直接安裝。
-- **對你的意義**：與 AI Engineer 轉職路徑關聯低，純屬開源生態觀察，可作為 agent 瀏覽器環境的潛在備選知識。
-- **今天可以做**：花 3 分鐘掃過，有興趣再收藏即可。
-- **原文標題**：Ladybird's first alpha release
-- `#開源` `#瀏覽器`
+- **內容**：介紹用 cohort churn、BTYD 模型與行為分群，把 CLV 從簡報 KPI 變成每日決策依據。
+- **對你的意義**：補的是業務領域知識而非 AI 技能，但能幫你在設計 agent 或 CDP 應用時說出對的商業語言。
+- **今天可以做**：存起來，若近期要做 CDP/行銷類 AI 專案再回頭讀 BTYD 模型段落。
+- **原文標題**：How to Calculate and Operationalize Customer Lifetime Value
+- `#CLV` `#analytics` `#business metrics`
 
-### [datasette-charts 0.1a0 發布](https://simonwillison.net/2026/Nov/23/datasette-charts/)
-*Simon Willison's Weblog · 2026-11-23 · 相關度 5.69 · 存參考*
+### [Amazon Bedrock 推出 Trusted Access API](https://aws.amazon.com/blogs/machine-learning/introducing-the-amazon-bedrock-trusted-access-api-with-anthropics-enterprise-frontier-safeguards-and-enterprise-data-controls/)
+*AWS Machine Learning Blog · 2026-11-24 · 相關度 6.0 · 存參考*
 
-- **內容**：Simon Willison 用 LLM 快速做出原型，推出可對任意 Datasette 表或 SQL 查詢自動建議圖表類型的視覺化外掛。
-- **對你的意義**：是「資料工具 + LLM 輔助開發」的具體示範，值得學他如何用 heuristics 自動推薦，而不是全交給模型亂猜。
-- **今天可以做**：花 10 分鐘在 Datasette Lite 試玩一次，記下它用什麼欄位型別 heuristics 來推薦圖表。
-- **原文標題**：datasette-charts 0.1a0
-- `#工具` `#資料視覺化` `#開源`
+- **內容**：Bedrock 新增統一入口讓企業探索與申請模型供應商方案，首波公開預覽為 Anthropic 的 Enterprise Frontier Safeguards 與 Enterprise Data Controls。
+- **對你的意義**：企業導入 LLM 時的資料控管與合規，是 AI Engineer 面試常被追問的點；這是你理解雲端託管模型治理機制的入口。
+- **今天可以做**：花 5 分鐘看 EDC 的資料控管說明，筆記「企業用 Claude 時資料去哪、如何控管」的一句話答案。
+- **原文標題**：Introducing the Amazon Bedrock Trusted Access API, with Enterprise Frontier Safeguards and Enterprise Data Controls for Claude models
+- `#Bedrock` `#governance` `#enterprise` `#Claude`
+
+### [強化 Transformer 的殘差連接](https://research.google/blog/supercharging-transformer-residual-connections/)
+*Google Research Blog · 2026-11-23 · 相關度 5.34 · 存參考*
+
+- **內容**：Google Research 探討改良 Transformer 殘差連接的演算法與理論工作。摘要資訊極為有限。
+- **對你的意義**：屬於模型底層研究，對日常 LLM 應用開發非必要，但有助於你在面試時談得出架構層級的理解。
+- **今天可以做**：存入待讀清單，今天只花 3 分鐘看圖表結論，確認是否影響推論成本或長序列表現。
+- **原文標題**：Supercharging transformer residual connections
+- `#transformer` `#research` `#架構`
 
 ## 🎯 今天的 30 分鐘學習計畫
 
-1. 先讀 [10] agentic evaluation，動手把自己想做的一個 agent 任務寫成 10 筆 eval dataset（輸入、期望行為、判定準則），這是 DE→AI Engineer 最關鍵的能力缺口。
-2. 讀 [9]，用純 Python function dispatcher 做一個最小 tool-calling 範例（不裝 MCP server），確認自己能從零接通 LLM 與工具。
-3. 掃 [1] 與 [7]，把 agent workload 的特性（LLM call 與 tool 1:1、cache hit rate 與 TTFT 的落差）寫成一頁筆記，對照你現有 pipeline 的監控指標設計。
+1. 先讀 [1] 知識圖譜／語意層那篇，花 10 分鐘把你現在負責的一張核心事實表，寫成一份 agent 可讀的語意描述（欄位含義、業務規則、常見錯用情境），這就是 RAG/Agent 的 context 來源。
+2. 再讀 [4] multi-agent retry 設計，花 10 分鐘用 Mermaid 畫出一個你熟悉的 pipeline 改成 agent workflow 的流程圖，標出每個節點 retryable / 需人工介入。
+3. 最後花 10 分鐘掃 [5][8] 的 datasette-agent demo 影片與 [3] AWS 的安全工程觀點，筆記一條「agent 操作資料庫時我要加哪些邊界（權限、唯讀、記錄）」。
 
 ---
 
-掃描 342 篇，收錄 14 篇。來源分布：TechOrange 科技報橘 × 4、Simon Willison's Weblog × 3、Towards Data Science × 2、KDnuggets × 2、arXiv cs.LG (Machine Learning) × 1、Databricks Blog × 1、Hugging Face Blog × 1
+掃描 62 篇，收錄 14 篇。來源分布：TechOrange 科技報橘 × 3、Simon Willison's Weblog × 3、Towards Data Science × 2、KDnuggets × 2、Databricks Blog × 1、Analytics Vidhya × 1、AWS Machine Learning Blog × 1、Google Research Blog × 1
 
 > ⚠️ [Uber Engineering Blog](https://www.uber.com/en-US/blog/engineering/)：官方無 RSS（robots.txt 禁止 API 抓取），請人工瀏覽；同性質內容已由 Netflix / Meta / Pinterest / Airbnb 工程部落格補上。
 
-*由 ai-data-digest 於 2026-11-24 09:45 自動產生 · 摘要引擎：Claude（claude-opus-5）*
+*由 ai-data-digest 於 2026-11-25 07:33 自動產生 · 摘要引擎：Claude（claude-opus-5）*

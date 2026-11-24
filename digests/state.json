@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-24T09:46:41+08:00",
+ "updated": "2026-11-25T07:34:22+08:00",
  "seen": {
   "https://techorange.com/2026/10/10/machinenative-economy": "2026-10-12",
   "https://towardsdatascience.com/agentic-systems-a-practitioners-guide-to-6-advanced-architectural-patterns": "2026-10-12",
@@ -581,6 +581,20 @@
   "https://simonwillison.net/2026/Nov/23/glm-54": "2026-11-24",
   "https://towardsdatascience.com/the-birthday-paradox-shows-small-llms-pick-from-about-6-of-40-words": "2026-11-24",
   "https://simonwillison.net/2026/Nov/23/ladybird": "2026-11-24",
-  "https://simonwillison.net/2026/Nov/23/datasette-charts": "2026-11-24"
+  "https://simonwillison.net/2026/Nov/23/datasette-charts": "2026-11-24",
+  "https://techorange.com/2026/11/24/semantic-knowledge-graph-ai": "2026-11-25",
+  "https://techorange.com/2026/11/25/openai-cisco-shirudo-ai-cybersecurity": "2026-11-25",
+  "https://techorange.com/2026/11/24/ai-safety-cant-depend-emergency-brake-engineering": "2026-11-25",
+  "https://towardsdatascience.com/how-to-plan-retries-for-multi-agent-workflows-before-you-write-code": "2026-11-25",
+  "https://simonwillison.net/2026/Nov/24/datasette-agent": "2026-11-25",
+  "https://www.kdnuggets.com/how-to-run-inkling-2-mini-locally-on-an-rtx-3090-using-unsloth-studio": "2026-11-25",
+  "https://www.databricks.com/blog/agentic-cdp-data-modeling-data-foundation": "2026-11-25",
+  "https://simonwillison.net/2026/Nov/24/datasette-charts": "2026-11-25",
+  "https://www.analyticsvidhya.com/blog/2026/11/fine-tune-small-llm-locally-with-soup": "2026-11-25",
+  "https://www.kdnuggets.com/from-messy-to-clean-taming-real-world-csv-files-with-pandas-read_csv": "2026-11-25",
+  "https://towardsdatascience.com/how-to-calculate-and-operationalize-customer-lifetime-value": "2026-11-25",
+  "https://aws.amazon.com/blogs/machine-learning/introducing-the-amazon-bedrock-trusted-access-api-with-anthropics-enterprise-frontier-safeguards-and-enterprise-data-controls": "2026-11-25",
+  "https://simonwillison.net/2026/Nov/24/astra-historical-mystery": "2026-11-25",
+  "https://research.google/blog/supercharging-transformer-residual-connections": "2026-11-25"
  }
 }
