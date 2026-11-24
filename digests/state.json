@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-23T04:47:39+08:00",
+ "updated": "2026-11-24T09:46:41+08:00",
  "seen": {
   "https://techorange.com/2026/10/10/machinenative-economy": "2026-10-12",
   "https://towardsdatascience.com/agentic-systems-a-practitioners-guide-to-6-advanced-architectural-patterns": "2026-10-12",
@@ -567,6 +567,20 @@
   "https://aws.amazon.com/blogs/machine-learning/meta-ads-is-now-available-in-aws-quick": "2026-11-23",
   "https://towardsdatascience.com/how-ai-changes-the-four-types-of-analytics-for-data-scientists": "2026-11-23",
   "https://aws.amazon.com/blogs/machine-learning/new-in-aws-quick-more-capable-flows-an-updated-web-experience-and-agents-that-work-together": "2026-11-23",
-  "https://research.google/blog/how-google-duplex-evolved-to-also-call-businesses-for-you-in-gemini": "2026-11-23"
+  "https://research.google/blog/how-google-duplex-evolved-to-also-call-businesses-for-you-in-gemini": "2026-11-23",
+  "https://arxiv.org/abs/2608.00101": "2026-11-24",
+  "https://www.databricks.com/blog/announcing-general-availability-native-lakebase-postgres-sink-spark-structured-streaming": "2026-11-24",
+  "https://techorange.com/2026/11/23/security-ai-leaky-supply-chain": "2026-11-24",
+  "https://techorange.com/2026/11/23/a16z-welcome-b2a-economy": "2026-11-24",
+  "https://techorange.com/2026/11/23/openai-perplexity-common-limits": "2026-11-24",
+  "https://techorange.com/2026/11/23/architect-labs-ai-cpu-frostbite": "2026-11-24",
+  "https://towardsdatascience.com/what-a-90-prompt-cache-hit-rate-hides-about-attention-work": "2026-11-24",
+  "https://www.kdnuggets.com/how-to-use-ai-tools-to-learn-data-science-faster-in-2026": "2026-11-24",
+  "https://www.kdnuggets.com/5-lightweight-alternatives-to-mcp-for-giving-ai-agents-tools": "2026-11-24",
+  "https://huggingface.co/blog/agentic-evals": "2026-11-24",
+  "https://simonwillison.net/2026/Nov/23/glm-54": "2026-11-24",
+  "https://towardsdatascience.com/the-birthday-paradox-shows-small-llms-pick-from-about-6-of-40-words": "2026-11-24",
+  "https://simonwillison.net/2026/Nov/23/ladybird": "2026-11-24",
+  "https://simonwillison.net/2026/Nov/23/datasette-charts": "2026-11-24"
  }
 }
