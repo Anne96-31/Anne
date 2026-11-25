@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-25T07:34:22+08:00",
+ "updated": "2026-11-26T07:11:53+08:00",
  "seen": {
   "https://techorange.com/2026/10/10/machinenative-economy": "2026-10-12",
   "https://towardsdatascience.com/agentic-systems-a-practitioners-guide-to-6-advanced-architectural-patterns": "2026-10-12",
@@ -595,6 +595,20 @@
   "https://towardsdatascience.com/how-to-calculate-and-operationalize-customer-lifetime-value": "2026-11-25",
   "https://aws.amazon.com/blogs/machine-learning/introducing-the-amazon-bedrock-trusted-access-api-with-anthropics-enterprise-frontier-safeguards-and-enterprise-data-controls": "2026-11-25",
   "https://simonwillison.net/2026/Nov/24/astra-historical-mystery": "2026-11-25",
-  "https://research.google/blog/supercharging-transformer-residual-connections": "2026-11-25"
+  "https://research.google/blog/supercharging-transformer-residual-connections": "2026-11-25",
+  "https://techorange.com/2026/11/26/tsmc-texas-fab-investment-dell-ai-server": "2026-11-26",
+  "https://techorange.com/2026/11/25/anthropic-siren-ai-agent-honeypot": "2026-11-26",
+  "https://techorange.com/2026/11/25/anthropic-openai-unreleased-ai-safety-risks": "2026-11-26",
+  "https://techorange.com/2026/11/24/maxinsights-ai-robot-training-data": "2026-11-26",
+  "https://towardsdatascience.com/duckdb-20-vs-polars-20-in-five-real-world-tests-and-one-14x-gap": "2026-11-26",
+  "https://github.blog/ai-and-ml/github-copilot/how-to-choose-the-next-safe-step-in-application-modernization": "2026-11-26",
+  "https://www.kdnuggets.com/the-roadmap-to-becoming-an-ai-security-engineer-in-2026": "2026-11-26",
+  "https://www.kdnuggets.com/why-data-job-candidates-freeze-on-questions-they-already-know": "2026-11-26",
+  "https://huggingface.co/blog/ibm-research/an-indic-voice-agent-with-cuga": "2026-11-26",
+  "https://huggingface.co/blog/inkling-2-mini-inference-hillclimb": "2026-11-26",
+  "https://towardsdatascience.com/a-second-llm-judge-hit-875-precision-but-left-21-of-33-for-humans": "2026-11-26",
+  "https://newsletter.pragmaticengineer.com/p/how-anthropic-builds-software-in": "2026-11-26",
+  "https://simonwillison.net/2026/Nov/24/llm-inflection-points": "2026-11-26",
+  "https://blog.cloudflare.com/search-for-agents": "2026-11-26"
  }
 }
