@@ -1,5 +1,5 @@
 {
- "updated": "2026-11-26T07:11:53+08:00",
+ "updated": "2026-11-27T07:08:43+08:00",
  "seen": {
   "https://techorange.com/2026/10/10/machinenative-economy": "2026-10-12",
   "https://towardsdatascience.com/agentic-systems-a-practitioners-guide-to-6-advanced-architectural-patterns": "2026-10-12",
@@ -609,6 +609,20 @@
   "https://towardsdatascience.com/a-second-llm-judge-hit-875-precision-but-left-21-of-33-for-humans": "2026-11-26",
   "https://newsletter.pragmaticengineer.com/p/how-anthropic-builds-software-in": "2026-11-26",
   "https://simonwillison.net/2026/Nov/24/llm-inflection-points": "2026-11-26",
-  "https://blog.cloudflare.com/search-for-agents": "2026-11-26"
+  "https://blog.cloudflare.com/search-for-agents": "2026-11-26",
+  "https://techorange.com/2026/11/26/hpe-syscom-mananged-service": "2026-11-27",
+  "https://techorange.com/2026/11/26/fcc-approves-spacex-orbital-datacenter": "2026-11-27",
+  "https://arxiv.org/abs/2611.33741": "2026-11-27",
+  "https://techorange.com/2026/11/26/ai-chip-design-software-optimization": "2026-11-27",
+  "https://huggingface.co/blog/training-swarms": "2026-11-27",
+  "https://huggingface.co/blog/nvidia/building-on-nemotron-35-parse-open-data-fine-tunin": "2026-11-27",
+  "https://www.kdnuggets.com/how-to-future-proof-your-data-career-as-coding-agents-take-over-routine-work": "2026-11-27",
+  "https://towardsdatascience.com/how-to-map-usgs-earthquake-data-from-2015-to-2025-in-python": "2026-11-27",
+  "https://www.kdnuggets.com/top-5-open-source-alternatives-to-openai-dots": "2026-11-27",
+  "https://www.databricks.com/blog/rethinking-read-replicas-lakebase-architecture": "2026-11-27",
+  "https://simonwillison.net/2026/Nov/25/datasette-charts": "2026-11-27",
+  "https://towardsdatascience.com/shuffle-the-questions-to-catch-an-llm-that-memorized-its-benchmark": "2026-11-27",
+  "https://www.analyticsvidhya.com/blog/2026/11/world-models-llm-limitations": "2026-11-27",
+  "https://simonwillison.net/2026/Nov/26/sqlite3-rsync": "2026-11-27"
  }
 }
